@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+    <flow id="Financial-9999-0101">
+        <service id="dep"><!--id与服务节点的ID一致-->
+            <in><!--输入数据映射-->
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_CODE">'1001'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY">
+                    <item name="ACCT_NO">[in][BODY][ACCT_NO]</item>
+                    <list name="SERV_DETAIL" alias="SERV_DETAIL" source="[in][BODY][SERV_DETAIL]" ref="#SERV_DETAIL" index="index">
+                        <item name="SEO_NO">#index+1</item>
+                        <item name="BASE_ACCT_NO">[in][BODY][SERV_DETAIL1][#index][BASE_ACCT_NO]</item>
+                    </list>
+                    <list name="SERV_DETAIL" alias="SERV_DETAIL" source="[in][BODY][SERV_DETAIL]" ref="#SERV_DETAIL" index="index" remove="AMOUNT,CCY">
+                        <item name="SEO_NO">#index+1</item>
+                        <item name="BASE_ACCT_NO">[in][BODY][SERV_DETAIL1][#index][BASE_ACCT_NO]</item>
+                    </list>
+                    <list name="ARRAY">
+                        <item name="BASE_ACCT_NO">'bbbb'</item>
+                    </list>
+                    <if test="1==1">
+                        <list name="ARRAY">
+                            <item name="BASE_ACCT_NO">'aaa'</item>
+                        </list>
+                    </if>
+                    <for test="#i &lt; [in][BODY][CLIENTS].size()" index="i">
+                        <for test="#j &lt; [in][BODY][CLIENTS][#i][ACCTS].size()" index="j">
+                            <for test="#k &lt; [in][BODY][CLIENTS][#i][ACCTS][#j][TRANS].size()" index="k">
+                                <list name="TRANS">
+                                    <item name="CLIENT_NO">[in][BODY][CLIENTS][#i][CLIENT_NO]</item>
+                                    <item name="BASE_ACCT_NO">[in][BODY][CLIENTS][#i][ACCTS][#j][BASE_ACCT_NO]</item>
+                                    <item name="CCY">[in][BODY][CLIENTS][#i][ACCTS][#j][TRANS][#k][CCY]</item>
+                                    <item name="AMOUNT">[in][BODY][CLIENTS][#i][ACCTS][#j][TRANS][#k][AMOUNT]</item>
+                                </list>
+                            </for>
+                        </for>
+                    </for>
+                </map>
+            </in>
+            <reversal><!--冲正数据映射-->
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_CODE">'1001'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY">
+                    <item name="ACCT_NO">[in][BODY][ACCT_NO]</item>
+                    <list name="SERV_DETAIL" alias="SERV_DETAIL" source="[in][BODY][SERV_DETAIL]" ref="#SERV_DETAIL" index="index">
+                        <item name="SEO_NO">#index+1</item>
+                        <item name="BASE_ACCT_NO">[in][BODY][SERV_DETAIL1][#index][BASE_ACCT_NO]</item>
+                    </list>
+                </map>
+            </reversal>
+            <confirm><!--确认数据映射-->
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_CODE">'1001'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY">
+                    <item name="ACCT_NO">[in][BODY][ACCT_NO]</item>
+                    <list name="SERV_DETAIL" alias="SERV_DETAIL" source="[in][BODY][SERV_DETAIL]" ref="#SERV_DETAIL" index="index">
+                        <item name="SEO_NO">#index+1</item>
+                        <item name="BASE_ACCT_NO">[in][BODY][SERV_DETAIL1][#index][BASE_ACCT_NO]</item>
+                    </list>
+                    <list name="SERV_DETAIL" alias="SERV_DETAIL" source="[in][BODY][SERV_DETAIL]" ref="#SERV_DETAIL" index="index">
+                        <item name="SEO_NO">#index+1</item>
+                        <item name="BASE_ACCT_NO">[in][BODY][SERV_DETAIL1][#index][BASE_ACCT_NO]</item>
+                    </list>
+                    <list name="ARRAY">
+                        <item name="BASE_ACCT_NO">[in][BODY][BASE_ACCT_NO]</item>
+                    </list>
+                </map>
+            </confirm>
+        </service>
+        <service id="wtd">
+            <in>
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_CODE">'1001'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY">
+                    <item name="ACCT_NO">[in][BODY][ACCT_NO]</item>
+                </map>
+            </in>
+        </service>
+        <mapper name="">
+
+        </mapper>
+        <out>
+            <if test="">
+                <map name="SYS_HEAD">
+                    <list name="RET">
+                        <item name="RET_CODE">'000000'</item>
+                        <item name="RET_MSG">'Success'</item>
+                    </list>
+                    <item name="RET_STATUS">'S'</item>
+                </map>
+            </if>
+        </out>
+    </flow>
+</mapping>

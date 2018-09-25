@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileConvert name="excelFormatExample" type="excel" encoding="UTF-8">
+    <body class="rb.eod.Tran">
+        <field name="BODY" trim="Y"/>
+        <field name="BASE_ACCT_NO" trim="Y"/>
+        <field name="ACCT_TYPE" trim="Y"/>
+        <field name="CCY" trim="Y"/>
+        <field name="AMOUNT" parseBeanId="amountParse"/>
+    </body>
+</fileConvert>

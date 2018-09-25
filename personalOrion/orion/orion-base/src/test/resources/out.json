@@ -1,0 +1,11 @@
+{
+  "BODY" : {
+    "ACCT_CCY" : "CNY"
+  },
+  "LOCAL_HEAD" : { },
+  "SYS_HEAD" : {
+    "APPR_FLAG" : "",
+    "APPR_USER_ID" : "",
+    "AUTH_FLAG" : "N"
+  }
+}

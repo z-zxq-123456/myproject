@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AntiRepeat switch="off">
+    <Filters>
+        <key keys="sysHead.reference">
+            <include>
+                <filter condition="sysHead.sourceType=MC"/>
+                <filter condition="sysHead.sourceType=MT"/>
+            </include>
+            <exclude>
+                <filter condition="sysHead.messageType=1400"/>
+            </exclude>
+        </key>
+        <key keys="sysHead.reference">
+            <include>
+                <filter condition="sysHead.sourceType=MT"/>
+            </include>
+            <exclude>
+                <filter condition="sysHead.messageType=1200"/>
+            </exclude>
+        </key>
+    </Filters>
+    <Services>
+        <key keys="body.acctNo">
+            <service id="SVR_FINANCIAL-1200-6048"/>
+        </key>
+        <key keys="sysHead.seqNo,body.reference">
+            <service id="SVR_FINANCIAL-1200-6049"/>
+            <service id="SVR_FINANCIAL-1200-6050"/>
+            <service id="SVR_FINANCIAL-1200-6051"/>
+        </key>
+    </Services>
+    <ReversalServices>
+        <key keys="body.reference">
+            <service id="SVR_FINANCIAL-1200-6048"/>
+        </key>
+        <key  keys="body.reference,body.tranSeqNo">
+            <service id="SVR_FINANCIAL-1200-6050"/>
+            <service id="SVR_FINANCIAL-1200-6052"/>
+        </key>
+    </ReversalServices>
+</AntiRepeat>

@@ -1,0 +1,40 @@
+<!ELEMENT mappings (mapping|baseDefine)*>
+    <!ELEMENT baseDefine (globalMappingId|mappingIdSpel)+>
+        <!ELEMENT globalMappingId (#PCDATA)>
+        <!ELEMENT mappingIdSpel (#PCDATA)>
+    <!ELEMENT mapping (in|out)>
+        <!ELEMENT in (map|list|item|if)*>
+        <!ELEMENT out (map|list|item|if)*>
+            <!ELEMENT map (map|list|item|if)*>
+            <!ELEMENT list (map|list|item|if)*>
+            <!ELEMENT item ((#PCDATA))*>
+            <!ELEMENT if (map|list|item|if)*>
+
+<!ATTLIST mappings useMapping CDATA #IMPLIED> useMapping CDATA #IMPLIED>
+
+<!ATTLIST baseDefine id CDATA #IMPLIED #REQUIRED>
+
+<!ATTLIST mapping id CDATA #IMPLIED #REQUIRED>
+<!ATTLIST mapping useMapping CDATA #IMPLIED>
+
+<!ATTLIST in ref CDATA #IMPLIED>
+<!ATTLIST in useMapping CDATA #IMPLIED>
+
+<!ATTLIST out ref CDATA #IMPLIED>
+<!ATTLIST out useMapping CDATA #IMPLIED>
+
+<!ATTLIST map name CDATA #IMPLIED #REQUIRED>
+<!ATTLIST map ref CDATA #IMPLIED #REQUIRED>
+<!ATTLIST map remove CDATA #IMPLIED>
+
+        <!ATTLIST list name CDATA #IMPLIED #REQUIRED>
+        <!ATTLIST list ref CDATA #IMPLIED>
+        <!ATTLIST list remove CDATA #IMPLIED>
+        <!ATTLIST list alias CDATA #IMPLIED>
+        <!ATTLIST list source CDATA #IMPLIED>
+        <!ATTLIST list index CDATA #IMPLIED>
+
+        <!ATTLIST item name CDATA #IMPLIED #REQUIRED>
+
+        <!ATTLIST if test CDATA #IMPLIED #REQUIRED>
+

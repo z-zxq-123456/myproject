@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+    <service id="Fin-1200-9102">
+        <mapper name="FIN0101" class="com.dcits.orion.stria.test.mapping.Fin10000101In" condition="1==1">
+            <item name="sysHead">sysHead</item>
+            <item name="appHead">appHead</item>
+            <item name="localHead">localHead</item>
+            <item name="uid">uid</item>
+            <clazz name="body" class="com.dcits.orion.stria.test.mapping.Fin10000101In$Body">
+                <list name="servDetail" class="com.dcits.orion.stria.test.mapping.Fin10000101In$Body$ServDetail"
+                      source="body.servDetail">
+                    <item name="servCcy">${source}.servCcy</item>
+                    <item name="servCons">${source}.servCons</item>
+                    <list name="test" class="com.dcits.orion.stria.test.mapping.Fin10000101In$Body$ServDetail$Test"
+                          source="${superSource}.test">
+                        <item name="t1">${superSource}.servCcy</item>
+                        <item name="t2">${source}.t2</item>
+                        <item name="t3">${source}.t3</item>
+                        <item name="t4">${source}.t4</item>
+                    </list>
+                </list>
+                <item name="docType">body.docType</item>
+                <item name="ccy">body.ccy</item>
+                <item name="baseAcctNo">body.baseAcctNo</item>
+                <item name="clientNo">body.clientNo</item>
+                <item name="effectDate">body.effectDate</item>
+            </clazz>
+        </mapper>
+        <mapperlist name="FIN0102" class="com.dcits.orion.stria.test.mapping.TestBean" condition="1==1">
+            <item name="clientNo">body.clientNo</item>
+            <item name="inputBalType">body.inputBalType</item>
+        </mapperlist>
+    </service>
+
+    <service id="Non-Financial-1200-9100">
+        <mapper name="cifClient" class="com.dcits.ensemble.cif.dbmodel.CifClient">
+            <item name="clientNo">body.clientNo</item>
+            <item name="clientType">body.clientType</item>
+            <item name="majorCategory">body.majorCategory</item>
+            <item name="clientShort">body.clientShort</item>
+            <item name="clientName">body.surname+body.givenName</item>
+            <item name="chClientName">body.chSurname+body.chGivenName</item>
+            <item name="inlandOffshore">body.inlandOffshore</item>
+            <item name="printLanguage">body.printLanguage</item>
+            <item name="location">body.location</item>
+            <item name="countryLoc">body.countryLoc</item>
+            <item name="countryRisk">body.countryRisk</item>
+            <item name="stateLoc">body.stateLoc</item>
+            <item name="countryCitizen">body.countryCitizen</item>
+            <item name="clientCity">body.clientCity</item>
+            <item name="tempClient">"Y"</item>
+        </mapper>
+        <mapper name="cifClientIndvl" class="com.dcits.ensemble.cif.dbmodel.CifClientIndvl">
+            <item name="clientNo">body.clientNo</item>
+            <item name="surname">body.surname</item>
+            <item name="chSurname">body.chSurname</item>
+            <item name="givenName">body.givenName</item>
+            <item name="chGivenName">body.chGivenName</item>
+            <item name="sex">body.sex</item>
+            <item name="residentStatus">body.residentStatus</item>
+        </mapper>
+        <mapper name="cifClientCorp" class="com.dcits.ensemble.cif.dbmodel.CifClientCorp">
+            <item name="clientNo">body.clientNo</item>
+        </mapper>
+        <mapperlist name="document" class="com.dcits.ensemble.cif.dbmodel.CifClientDocument" source="body.documentInfo">
+            <item name="clientNo">${source}.clientNo</item>
+            <item name="documentType">${source}.documentType</item>
+            <item name="documentId">${source}.documentId</item>
+            <item name="issCountry">${source}.issCountry</item>
+            <item name="prefFlag">${source}.prefFlag</item>
+        </mapperlist>
+
+        <mapperlist name="contact" class="com.dcits.ensemble.cif.dbmodel.CifClientContactTbl" source="body.contactInfo">
+            <item name="clientNo">${source}.clientNo</item>
+            <item name="contactType">${source}.contactType</item>
+            <item name="route">${source}.route</item>
+            <item name="addrMode">${source}.addrMode</item>
+            <item name="address">${source}.address</item>
+            <item name="country">${source}.country</item>
+            <item name="countryTel">${source}.countryTel</item>
+            <item name="state">${source}.state</item>
+            <item name="city">${source}.city</item>
+            <item name="cityTel">${source}.cityTel</item>
+            <item name="postCode">${source}.postCode</item>
+            <item name="contactId">${source}.contactId</item>
+            <item name="address1">${source}.address1</item>
+            <item name="prefFlag">${source}.prefFlag</item>
+        </mapperlist>
+
+        <mapperlist name="FIN0102" class="com.dcits.orion.stria.test.mapping.TestBean" condition="1==1">
+            <item name="clientNo">body.clientNo</item>
+            <item name="inputBalType">body.inputBalType</item>
+        </mapperlist>
+
+        <mapperlist name="test1" class="com.dcits.orion.stria.test.mapping.Test1" source="body.test1">
+            <item name="f1">${source}.f1</item>
+            <item name="f2">${source}.f2</item>
+            <list name="subTest" class="com.dcits.orion.stria.test.mapping.Test1$SubTest2">
+                <item name="f1">${superSource}.f1</item>
+                <item name="f2">${superSource}.f2</item>
+            </list>
+        </mapperlist>
+    </service>
+
+    <service id="Non-Financial-1200-9100-2">
+        <mapperlist name="test1" class="com.dcits.orion.stria.test.mapping.Test1" source="body.test1">
+            <item name="f1">${source}.f1</item>
+            <item name="f2">${source}.f2</item>
+            <list name="subTest2s" class="com.dcits.orion.stria.test.mapping.Test1$SubTest2">
+                <item name="subF1">body.clientType</item>
+                <item name="subF2">${superSource}.f2</item>
+            </list>
+        </mapperlist>
+    </service>
+
+</mapping>

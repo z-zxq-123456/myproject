@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.orion.scp.dao.ScpDao">
+
+    <insert id="insertFlowLog" parameterType="java.util.Map">
+        insert into fw_flow_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="FLOW_ID != null">
+                FLOW_ID,
+            </if>
+            <if test="KEY_VALUE != null">
+                KEY_VALUE,
+            </if>
+            <if test="BEGIN_TIME != null">
+                BEGIN_TIME,
+            </if>
+            <if test="END_TIME != null">
+                END_TIME,
+            </if>
+            <if test="STATUS != null">
+                STATUS,
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                REVERSAL_STATUS,
+            </if>
+            <if test="IN_MSG != null">
+                IN_MSG,
+            </if>
+            <if test="OUT_MSG != null">
+                OUT_MSG,
+            </if>
+            <if test="AFTER_STATUS != null">
+                AFTER_STATUS,
+            </if>
+            <if test="APP_ID != null">
+                APP_ID,
+            </if>
+            <if test="MQ_ID != null">
+                MQ_ID,
+            </if>
+            <if test="logFields != null">
+                <foreach collection="logFields.keys" item="k">
+                    <if test="null != logFields[k]">
+                        ${k},
+                    </if>
+                </foreach>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="FLOW_ID != null">
+                #{FLOW_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="KEY_VALUE != null">
+                #{KEY_VALUE,jdbcType=VARCHAR},
+            </if>
+            <if test="BEGIN_TIME != null">
+                #{BEGIN_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="END_TIME != null">
+                #{END_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="STATUS != null">
+                #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                #{REVERSAL_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="IN_MSG != null">
+                #{IN_MSG,jdbcType=BLOB},
+            </if>
+            <if test="OUT_MSG != null">
+                #{OUT_MSG,jdbcType=BLOB},
+            </if>
+            <if test="AFTER_STATUS != null">
+                #{AFTER_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="APP_ID != null">
+                #{APP_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="MQ_ID != null">
+                #{MQ_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="logFields != null">
+                <foreach collection="logFields.keys" item="k">
+                    <if test="null != logFields[k]">
+                       #{logFields[${k}]},
+                    </if>
+                </foreach>
+            </if>
+        </trim>
+    </insert>
+
+    <select id="queryFlowLog" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        FLOW_ID,
+        KEY_VALUE,
+        BEGIN_TIME,
+        END_TIME,
+        STATUS,
+        REVERSAL_STATUS,
+        REVERSAL_COUNT,
+        IN_MSG,
+        OUT_MSG,
+        AFTER_STATUS,
+        APP_ID,
+        MQ_ID
+        FROM
+        fw_flow_log
+        WHERE KEY_VALUE = #{KEY_VALUE}
+        <if test="FLOW_ID != null">
+          and FLOW_ID = #{FLOW_ID}
+        </if>
+    </select>
+    <update id="updateFlowLog" parameterType="java.util.Map">
+        update fw_flow_log
+        <set>
+            <if test="END_TIME != null">
+                END_TIME = #{END_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="STATUS != null">
+                STATUS = #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                REVERSAL_STATUS = #{REVERSAL_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="REVERSAL_COUNT != null">
+                REVERSAL_COUNT = #{REVERSAL_COUNT},
+            </if>
+            <if test="OUT_MSG != null">
+                OUT_MSG = #{OUT_MSG,jdbcType=BLOB},
+            </if>
+            <if test="AFTER_STATUS != null">
+                AFTER_STATUS = #{AFTER_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="APP_ID != null">
+                APP_ID = #{APP_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="MQ_ID != null">
+                MQ_ID = #{MQ_ID,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where FLOW_ID = #{FLOW_ID,jdbcType=VARCHAR} AND KEY_VALUE = #{KEY_VALUE,jdbcType=VARCHAR}
+    </update>
+
+
+    <update id="updateNodeLog" parameterType="java.util.Map">
+        update fw_flow_node_log
+        <set>
+            <if test="END_TIME != null">
+                END_TIME = #{END_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="STATUS != null">
+                STATUS = #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                REVERSAL_STATUS = #{REVERSAL_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="IN_MSG != null">
+                IN_MSG = #{IN_MSG,jdbcType=BLOB},
+            </if>
+            <if test="OUT_MSG != null">
+                OUT_MSG = #{OUT_MSG,jdbcType=BLOB},
+            </if>
+            <if test="CONFIRM_MSG != null">
+                CONFIRM_MSG = #{CONFIRM_MSG,jdbcType=BLOB},
+            </if>
+            <if test="REVERSAL_MSG != null">
+                REVERSAL_MSG = #{REVERSAL_MSG,jdbcType=BLOB}
+            </if>
+        </set>
+        where FLOW_ID = #{FLOW_ID,jdbcType=VARCHAR}
+        AND KEY_VALUE = #{KEY_VALUE,jdbcType=VARCHAR}
+        AND NODE_ID = #{NODE_ID,jdbcType=VARCHAR}
+        AND SEQ_NO = #{SEQ_NO}
+    </update>
+    <insert id="insertNodeLog" parameterType="java.util.Map">
+        insert into fw_flow_node_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="FLOW_ID != null">
+                FLOW_ID,
+            </if>
+            <if test="KEY_VALUE != null">
+                KEY_VALUE,
+            </if>
+            <if test="SEQ_NO != null">
+                SEQ_NO,
+            </if>
+            <if test="NODE_ID != null">
+                NODE_ID,
+            </if>
+            <if test="BEGIN_TIME != null">
+                BEGIN_TIME,
+            </if>
+            <if test="END_TIME != null">
+                END_TIME,
+            </if>
+            <if test="STATUS != null">
+                STATUS,
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                REVERSAL_STATUS,
+            </if>
+            <if test="IN_MSG != null">
+                IN_MSG,
+            </if>
+            <if test="OUT_MSG != null">
+                OUT_MSG,
+            </if>
+            <if test="CONFIRM_MSG != null">
+                CONFIRM_MSG,
+            </if>
+            <if test="REVERSAL_MSG != null">
+                REVERSAL_MSG,
+            </if>
+            <if test="logFields != null">
+                <foreach collection="logFields.keys" item="k">
+                    <if test="null != logFields[k]">
+                        ${k},
+                    </if>
+                </foreach>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="FLOW_ID != null">
+                #{FLOW_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="KEY_VALUE != null">
+                #{KEY_VALUE,jdbcType=VARCHAR},
+            </if>
+            <if test="SEQ_NO != null">
+                #{SEQ_NO,jdbcType=DECIMAL},
+            </if>
+            <if test="NODE_ID != null">
+                #{NODE_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="BEGIN_TIME != null">
+                #{BEGIN_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="END_TIME != null">
+                #{END_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="STATUS != null">
+                #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                #{REVERSAL_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="IN_MSG != null">
+                #{IN_MSG,jdbcType=BLOB},
+            </if>
+            <if test="OUT_MSG != null">
+                #{OUT_MSG,jdbcType=BLOB},
+            </if>
+            <if test="CONFIRM_MSG != null">
+                #{CONFIRM_MSG,jdbcType=BLOB},
+            </if>
+            <if test="REVERSAL_MSG != null">
+                #{REVERSAL_MSG,jdbcType=BLOB},
+            </if>
+            <if test="logFields != null">
+                <foreach collection="logFields.keys" item="k">
+                    <if test="null != logFields[k]">
+                        #{logFields[${k}]},
+                    </if>
+                </foreach>
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertNodeReversalLog" parameterType="java.util.Map">
+        insert into fw_flow_node_reversal_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="FLOW_ID != null">
+                FLOW_ID,
+            </if>
+            <if test="KEY_VALUE != null">
+                KEY_VALUE,
+            </if>
+            <if test="SEQ_NO != null">
+                SEQ_NO,
+            </if>
+            <if test="NODE_ID != null">
+                NODE_ID,
+            </if>
+            <if test="BEGIN_TIME != null">
+                BEGIN_TIME,
+            </if>
+            <if test="END_TIME != null">
+                END_TIME,
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                REVERSAL_STATUS,
+            </if>
+            <if test="IN_MSG != null">
+                IN_MSG,
+            </if>
+            <if test="OUT_MSG != null">
+                OUT_MSG,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="FLOW_ID != null">
+                #{FLOW_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="KEY_VALUE != null">
+                #{KEY_VALUE,jdbcType=VARCHAR},
+            </if>
+            <if test="SEQ_NO != null">
+                #{SEQ_NO,jdbcType=DECIMAL},
+            </if>
+            <if test="NODE_ID != null">
+                #{NODE_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="BEGIN_TIME != null">
+                #{BEGIN_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="END_TIME != null">
+                #{END_TIME,jdbcType=DECIMAL},
+            </if>
+            <if test="REVERSAL_STATUS != null">
+                #{REVERSAL_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="IN_MSG != null">
+                #{IN_MSG,jdbcType=BLOB},
+            </if>
+            <if test="OUT_MSG != null">
+                #{OUT_MSG,jdbcType=BLOB},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="queryCommitted" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            NODE_ID,
+            SEQ_NO,
+            REVERSAL_MSG
+        FROM
+            fw_flow_node_log
+        WHERE
+            KEY_VALUE = #{KEY_VALUE}
+        AND FLOW_ID = #{FLOW_ID}
+        AND STATUS = 'S'
+        AND REVERSAL_STATUS != 'S'
+        ORDER BY BEGIN_TIME
+    </select>
+
+    <select id="queryUnFinishFlow" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        FLOW_ID,
+        KEY_VALUE,
+        BEGIN_TIME,
+        END_TIME,
+        STATUS,
+        REVERSAL_STATUS,
+        REVERSAL_COUNT,
+        IN_MSG,
+        AFTER_STATUS,
+        APP_ID,
+        MQ_ID
+        FROM
+        fw_flow_log
+        WHERE
+        BEGIN_TIME &lt; #{BEGIN_TIME}
+        AND (
+        STATUS = 'N'
+        OR REVERSAL_STATUS = 'P'
+        )
+    </select>
+
+    <select id="queryTimerReversalFlow" resultType="java.util.Map">
+        SELECT
+        FLOW_ID,
+        KEY_VALUE,
+        REVERSAL_COUNT
+        FROM
+        fw_flow_log
+        WHERE REVERSAL_STATUS = 'R'
+    </select>
+    <select id="queryToReversalNode" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        NODE_ID,
+        SEQ_NO,
+        REVERSAL_MSG
+        FROM
+        fw_flow_node_log
+        WHERE
+        KEY_VALUE = #{KEY_VALUE}
+        AND FLOW_ID = #{FLOW_ID}
+        AND STATUS in ('N','S','E') and REVERSAL_STATUS in ('N','R')
+        ORDER BY BEGIN_TIME
+    </select>
+    <select id="queryNodeLog" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        STATUS,
+        IN_MSG,
+        OUT_MSG
+        FROM
+        fw_flow_node_log
+        WHERE KEY_VALUE = #{KEY_VALUE}
+            AND FLOW_ID = #{FLOW_ID}
+            AND NODE_ID = #{NODE_ID}
+            AND SEQ_NO = #{SEQ_NO}
+    </select>
+</mapper>

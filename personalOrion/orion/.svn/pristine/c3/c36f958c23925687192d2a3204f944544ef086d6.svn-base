@@ -1,0 +1,17 @@
+-- ----------------------------
+-- Table structure for BATCH_MACHINE
+-- ----------------------------
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE BATCH_MACHINE';
+EXCEPTION
+   WHEN OTHERS
+   THEN
+      NULL;
+END;
+/
+
+CREATE TABLE BATCH_MACHINE (
+  GROUP_ID VARCHAR2(32 CHAR) NOT NULL,
+  IP VARCHAR2(32 CHAR) NOT NULL
+) TABLESPACE FW_DATA;
+/

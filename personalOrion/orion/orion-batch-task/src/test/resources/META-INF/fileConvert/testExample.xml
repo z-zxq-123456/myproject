@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileConvert name="example" type="txt" encoding="UTF-8" br="\r\n">
+    <body sepType="S" separator="|" clazz="java.util.Map">
+        <field name="SEQ_NO" trim="Y"/>
+        <field name="INTERNAL_KEY" trim="Y"/>
+        <field name="TRAN_DATA" trim="Y"/>
+        <field name="EVENT_TYPE" trim="Y"/>
+    </body>
+</fileConvert>

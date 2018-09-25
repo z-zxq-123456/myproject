@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <!-- ***********************************自增序列服务 sequences start************************* -->
+    <!-- zk序列服务协调器 -->
+    <bean class="com.dcits.galaxy.sequences.ZkSequencesLock">
+        <property name="shardSequences" ref="shardSequences"/>
+        <property name="shardSequencesCacheManager" ref="shardSequencesCacheManager"/>
+    </bean>
+    <!-- 序列持久化DAO，默认提供序列存放于关系型数据库中。 -->
+    <bean id="sequencesDao" class="com.dcits.galaxy.sequences.dao.SequencesDao">
+        <property name="shardSqlSessionTemplate" ref="shardSqlSessionTemplate"/>
+    </bean>
+    <!-- 序列配置 -->
+    <bean id="sequencesConfiguration" class="com.dcits.galaxy.sequences.SequencesConfiguration"/>
+    <!-- 分布式服务的自增序列生成器，集群中同一时间，有且仅有一个节点提供序列服务 -->
+    <bean id="shardSequences" class="com.dcits.galaxy.sequences.impl.ServiceShardSequences">
+        <property name="sequencesConfiguration" ref="sequencesConfiguration"/>
+        <property name="sequencesDao" ref="sequencesDao"/>
+        <property name="shardSequencesCacheManager" ref="shardSequencesCacheManager"/>
+    </bean>
+    <!-- 本地序列获取序列实现，当且仅当序列服务无法使用时，使用本地方式。每次获取数据实时与持久化序列保持一致 -->
+    <bean id="localSequences" class="com.dcits.galaxy.sequences.impl.ServiceShardSequences">
+        <property name="sequencesDao" ref="sequencesDao"/>
+        <property name="sequencesConfiguration" ref="sequencesConfiguration"/>
+    </bean>
+    <!-- 序列缓存管理器 -->
+    <bean id="shardSequencesCacheManager"
+          class="com.dcits.galaxy.sequences.impl.ServiceShardSequencesCacheManager">
+        <property name="sequencesConfiguration" ref="sequencesConfiguration"/>
+        <property name="sequencesDao" ref="sequencesDao"/>
+        <!-- 异步同步周期，默认500ms。只有持久化方式为async是有效 -->
+        <property name="persistentPeriod" value="500"/>
+        <!-- 持久化方式。async：异步持久化方式；sync：同步持久化方式。默认async
+            异步方式会启动一个守护进行，监控缓存中的序列，周期性的将序列持久化。
+            同步方式会在内存中的序列被用完时，持久一次，无守护进程。此动作在获取序列同时进行。-->
+        <property name="persistentMode" value="sync"/>
+    </bean>
+    <!-- ***********************************自增序列服务 sequences end************************* -->
+
+    <!-- ***********************************Redis序列服务 sequences start************************* -->
+    <!--    <bean id="localSequences" class="com.dcits.galaxy.sequences.impl.RedisSequences"/>
+        <bean id="shardSequences" class="com.dcits.galaxy.sequences.impl.RedisSequences"/>
+        <dcits:service group="${galaxy.business.sequences.group}" interface="com.dcits.galaxy.business.sequences.ShardSequences"
+                       ref="shardSequences"/>-->
+    <!-- ***********************************Redis序列服务 sequences start************************* -->
+
+	 <!-- ***********************************Oracle序列服务 sequences start************************* -->
+    <!--<bean id="oracleSeqDao" class="com.dcits.galaxy.sequences.dao.OracleSeqDao">
+        <property name="shardSqlSessionTemplate" ref="shardSqlSessionTemplate"/>
+        <property name="autoCreateSeq" value="true"/>
+    </bean>
+    <bean id="localSequences" class="com.dcits.galaxy.sequences.impl.OracleSequences">
+        <property name="oracleSeqDao" ref="oracleSeqDao"/>
+    </bean>
+    <bean id="shardSequences" class="com.dcits.galaxy.sequences.impl.OracleSequences">
+        <property name="oracleSeqDao" ref="oracleSeqDao"/>
+    </bean>
+    <dcits:service group="${galaxy.business.sequences.group}"
+                   interface="com.dcits.galaxy.sequences.ShardSequences"
+                   ref="shardSequences"/>-->
+    <!-- ***********************************Oracle序列服务 sequences start************************* -->
+</beans>

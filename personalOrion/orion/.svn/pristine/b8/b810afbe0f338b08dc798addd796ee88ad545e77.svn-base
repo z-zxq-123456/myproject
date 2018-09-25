@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs>
+    <!--gx_job>
+        <description>gx job gl Manual Batch </description>
+        <job_name>GlManualBatch</job_name>
+        <job_type>galaxy</job_type>
+        <api>com.dcits.ensemble.gl.api.IGlManualBatchService</api>
+        <method>process</method>
+        <arguments> <arg> <argType>string</argType> <argValue>asdfaf</argValue>
+            </arg> </arguments>
+    </gx_job>-->
+    <dx_job>
+        <description>抽取交易流水</description>
+        <job_name>sqoopTranHist</job_name>
+        <job_type>sqoop</job_type>
+        <connection_name>post</connection_name>
+        <operate_type>import</operate_type>
+        <sql>
+            <![CDATA[SELECT * FROM (SELECT rth.seq_no ,rth.REFERENCE tran_refreence,'DEP' tran_event_type,rth.branch tran_branch,rth.tran_date,rth.ccy tran_ccy,rth.SOURCE_MODULE,rth.source_type,'RB_TRAN' amt_type,'A' tran_status,rth.TRACE_ID,rth.OTH_ACCT_DESC oth_acct_name,rth.OTH_BASE_ACCT_NO oth_acct_no,rth.narrative,rth.PROD_TYPE prod_type,rth.BASE_ACCT_NO acct_no,rth.CCY,rth.BRANCH branch FROM mb_tran_hist rth) temp WHERE ${CONDITIONS}]]></sql>
+        <boundary_query>
+            <![CDATA[SELECT min(SEQ_NO) ,max(SEQ_NO)  FROM mb_tran_hist]]></boundary_query>
+        <partition_column>SEQ_NO</partition_column>
+        <rows>20000</rows>
+        <compression_format>NONE</compression_format>
+        <!--<output_directory>/user/rb_tran_hist/${sysdate}/input</output_directory>-->
+        <!--<output_directory>/user/rb_tran_hist/20151201/input</output_directory>-->
+        <output_directory>/user/rb_tran_hist/${sysdate}/input</output_directory>
+        <extractors>10</extractors>
+        <loaders>10</loaders>
+    </dx_job>
+
+
+    <dx_job>
+        <description>到处测试</description>
+        <job_name>export</job_name>
+        <job_type>sqoop</job_type>
+        <connection_name>g1</connection_name>
+        <operate_type>export</operate_type>
+        <table>test</table>
+        <columns>id,name</columns>
+        <input_directory>/input</input_directory>
+        <extractors>10</extractors>
+        <loaders>10</loaders>
+    </dx_job>
+
+    <dx_job>
+        <description>抽取MYSQL交易流水水平库1</description>
+        <job_name>gtEnsembleTranHist1</job_name>
+        <job_type>sqoop</job_type>
+        <connection_name>ensemble_level1</connection_name>
+        <operate_type>import</operate_type>
+        <sql>
+            <![CDATA[SELECT * FROM (SELECT rth.seq_no source_ref_no, rth.reference tran_refreence, rth.tran_event_type, rth.branch tran_branch, rth.tran_date, rth.ccy tran_ccy, rth.source_module, rth.source_type, 'RB_TRAN' amt_type, rth.tran_amt amount,rth.previous_bal_amt,'A' tran_status, rth.trace_id, rth.oth_acct_desc oth_acct_name, rth.oth_acct_no, rth.narrative, ra.acct_type prod_type, ra.base_acct_no acct_no, ra.ccy, ra.branch branch, ra.acct_status, ra.actual_bal * -1 actual_bal FROM rb_tran_hist rth, rb_acct ra WHERE rth.internal_key = ra.internal_key) temp WHERE ${CONDITIONS}]]></sql>
+        <boundary_query><![CDATA[select min(seq_no),max(seq_no) from rb_tran_hist]]></boundary_query>
+        <partition_column>source_ref_no</partition_column>
+        <rows>200000</rows>
+        <compression_format>NONE</compression_format>
+        <output_directory>/user/gt/${sysdate}/13/input1</output_directory>
+        <extractors>10</extractors>
+        <loaders>10</loaders>
+    </dx_job>
+    <dx_job>
+        <description>抽取MYSQL交易流水水平库2</description>
+        <job_name>gtEnsembleTranHist2</job_name>
+        <job_type>sqoop</job_type>
+        <connection_name>ensemble_level2</connection_name>
+        <operate_type>import</operate_type>
+        <sql>
+            <![CDATA[SELECT * FROM (SELECT rth.seq_no source_ref_no, rth.reference tran_refreence, rth.tran_event_type, rth.branch tran_branch, rth.tran_date, rth.ccy tran_ccy, rth.source_module, rth.source_type, 'RB_TRAN' amt_type, rth.tran_amt amount,rth.previous_bal_amt,'A' tran_status, rth.trace_id, rth.oth_acct_desc oth_acct_name, rth.oth_acct_no, rth.narrative, ra.acct_type prod_type, ra.base_acct_no acct_no, ra.ccy, ra.branch branch, ra.acct_status, ra.actual_bal * -1 actual_bal FROM rb_tran_hist rth, rb_acct ra WHERE rth.internal_key = ra.internal_key) temp WHERE ${CONDITIONS}]]></sql>
+        <boundary_query><![CDATA[select min(seq_no),max(seq_no) from rb_tran_hist]]></boundary_query>
+        <partition_column>source_ref_no</partition_column>
+        <rows>200000</rows>
+        <compression_format>NONE</compression_format>
+        <output_directory>/user/gt/${sysdate}/14/input2</output_directory>
+        <extractors>10</extractors>
+        <loaders>10</loaders>
+    </dx_job>
+
+    <mr_job>
+        <description>空job</description>
+        <job_name>j2</job_name>
+        <job_type>mr</job_type>
+        <job_jars></job_jars>
+        <jarByClass></jarByClass>
+        <mapperInputPatch></mapperInputPatch>
+        <mapperFormatClass></mapperFormatClass>
+        <mapperClass></mapperClass>
+        <mapperOutputKey></mapperOutputKey>
+        <mapperOutputValue></mapperOutputValue>
+        <reducerClass></reducerClass>
+        <reducerOnputPatch></reducerOnputPatch>
+        <reducerNumTask>0</reducerNumTask>
+        <outputFormatClass></outputFormatClass>
+        <outputKey></outputKey>
+        <outputValue></outputValue>
+    </mr_job>
+
+    <hb_job>
+        <description>数据导入</description>
+        <job_name>GL_Import_Data</job_name>
+        <job_type>hbase</job_type>
+        <job_jars>lib/accounting-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.accounting.gl.job.hadoop.mapreduce.MRImportData</jarByClass>
+        <!--<mapperInputPatch>/user/rb_tran_hist/${sysdate}/input1,/user/rb_tran_hist/${sysdate}/input2</mapperInputPatch>-->
+        <mapperInputPatch>/user/rb_tran_hist/20151201/input/</mapperInputPatch>
+        <mapperFormatClass>org.apache.hadoop.mapreduce.lib.input.TextInputFormat</mapperFormatClass>
+        <mapperClass>com.dcits.accounting.gl.job.hadoop.mapreduce.MRImportData$ImportData</mapperClass>
+        <mapperOutputKey>org.apache.hadoop.hbase.io.ImmutableBytesWritable</mapperOutputKey>
+        <mapperOutputValue>org.apache.hadoop.hbase.client.Put</mapperOutputValue>
+        <mapperTable></mapperTable>
+        <mapperScanCaching></mapperScanCaching>
+        <mapperScanCacheBlocks></mapperScanCacheBlocks>
+        <reducerTable>GL_TRAN_HIST</reducerTable>
+        <reducerClass></reducerClass>
+        <reducerOnputPatch></reducerOnputPatch>
+        <reducerNumTask>0</reducerNumTask>
+        <outputFormatClass></outputFormatClass>
+        <outputKey></outputKey>
+        <outputValue></outputValue>
+
+        <configuration>
+            <property>
+                <name>tmpjars</name>
+                <value>/lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar,/lib/fastjson-1.1.41.jar,/lib/freemarker-2.3.20.jar,/lib/galaxy-common-1.0.0-SNAPSHOT.jar,/lib/json-path-0.9.1.jar,/lib/ensemble-common-1.0.0-SNAPSHOT.jar,/lib/ensemble-gl-core-1.0.0-SNAPSHOT.jar,/lib/galaxy-nosql-1.0.0-SNAPSHOT.jar,/lib/galaxy-core-1.0.0-.jar</value>
+                <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description>
+            </property>
+        </configuration>
+    </hb_job>
+
+    <!--<hb_job>-->
+        <!--<description>数据导入</description>-->
+        <!--<job_name>GL_Import_Data</job_name>-->
+        <!--<job_type>hbase</job_type>-->
+        <!--<job_jars>lib/accounting-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>-->
+        <!--<jarByClass>com.dcits.accounting.gl.job.hadoop.mapreduce.MRImportData</jarByClass>-->
+        <!--&lt;!&ndash;<mapperInputPatch>/user/rb_tran_hist/${sysdate}/input1,/user/rb_tran_hist/${sysdate}/input2</mapperInputPatch>&ndash;&gt;-->
+        <!--<mapperInputPatch>/user/rb_tran_hist/20151201/input</mapperInputPatch>-->
+        <!--<mapperFormatClass>org.apache.hadoop.mapreduce.lib.input.TextInputFormat</mapperFormatClass>-->
+        <!--<mapperClass>com.dcits.accounting.gl.job.hadoop.mapreduce.MRImportData$ImportData</mapperClass>-->
+        <!--<mapperOutputKey>org.apache.hadoop.hbase.io.ImmutableBytesWritable</mapperOutputKey>-->
+        <!--<mapperOutputValue>org.apache.hadoop.hbase.client.Put</mapperOutputValue>-->
+        <!--<mapperTable></mapperTable>-->
+        <!--<mapperScanCaching></mapperScanCaching>-->
+        <!--<mapperScanCacheBlocks></mapperScanCacheBlocks>-->
+        <!--<reducerTable>GL_TRAN_HIST</reducerTable>-->
+        <!--<reducerClass></reducerClass>-->
+        <!--<reducerOnputPatch></reducerOnputPatch>-->
+        <!--<reducerNumTask>0</reducerNumTask>-->
+        <!--<outputFormatClass></outputFormatClass>-->
+        <!--<outputKey></outputKey>-->
+        <!--<outputValue></outputValue>-->
+
+        <!--<configuration>-->
+            <!--<property>-->
+                <!--<name>tmpjars</name>	<value>/lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar,/lib/fastjson-1.1.41.jar,/lib/freemarker-2.3.20.jar,/lib/galaxy-common-1.0.0-SNAPSHOT.jar,/lib/json-path-0.9.1.jar,/lib/ensemble-common-1.0.0-SNAPSHOT.jar,/lib/ensemble-gl-core-1.0.0-SNAPSHOT.jar,/lib/galaxy-nosql-1.0.0-SNAPSHOT.jar,/lib/galaxy-core-1.0.0-.jar</value>-->
+                <!--<description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description>-->
+            <!--</property>-->
+        <!--</configuration>-->
+    <!--</hb_job>-->
+
+
+
+
+
+
+    <hb_job>
+        <description>生成会计分录</description>
+        <job_name>GL_Batch_Insert</job_name>
+        <job_type>hbase</job_type>
+        <job_jars>lib/accounting-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.accounting.gl.job.hadoop.mapreduce.MRGenProdPost</jarByClass>
+        <mapperInputPatch>/user/rb_tran_hist/20151201/input</mapperInputPatch>
+        <!--<mapperInputPatch>F:\rb_tran_hist\20140402\input1</mapperInputPatch>-->
+        <mapperFormatClass>org.apache.hadoop.mapreduce.lib.input.TextInputFormat</mapperFormatClass>
+        <mapperClass>com.dcits.accounting.gl.job.hadoop.mapreduce.MRGenProdPost$GenProdPostMap</mapperClass>
+        <mapperOutputKey></mapperOutputKey>
+        <mapperOutputValue></mapperOutputValue>
+        <mapperTable></mapperTable>
+        <mapperScanCaching></mapperScanCaching>
+        <mapperScanCacheBlocks></mapperScanCacheBlocks>
+        <reducerTable></reducerTable>
+        <reducerClass></reducerClass>
+        <reducerOnputPatch></reducerOnputPatch>
+        <reducerNumTask>0</reducerNumTask>
+        <outputFormatClass>org.apache.hadoop.mapreduce.lib.output.NullOutputFormat</outputFormatClass>
+        <outputKey></outputKey>
+        <outputValue></outputValue>
+
+        <configuration>
+            <property>
+                <name>tmpjars</name>
+                <value>
+                    /lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar,/lib/fastjson-1.1.41.jar,/lib/freemarker-2.3.20.jar,/lib/galaxy-common-1.0.0-SNAPSHOT.jar,/lib/json-path-0.9.1.jar,/lib/ensemble-common-1.0.0-SNAPSHOT.jar,/lib/ensemble-gl-core-1.0.0-SNAPSHOT.jar,/lib/galaxy-common-1.0.0-SNAPSHOT.jar,/lib/galaxy-nosql-1.0.0-SNAPSHOT.jar
+                </value>
+                <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description>
+            </property>
+        </configuration>
+    </hb_job>
+    <hb_job>
+        <description>总账余额分组</description>
+        <job_name>GL_Batch_Group</job_name>
+        <job_type>hbase</job_type>
+        <job_jars>lib/ensemble-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.ensemble.gl.job.hadoop.mapreduce</jarByClass>
+        <mapperClass>com.dcits.ensemble.gl.job.hadoop.mapreduce.MRGlBatchGroup$GlBatchGroupMap
+        </mapperClass>
+        <mapperFormatClass></mapperFormatClass>
+        <mapperInputPatch></mapperInputPatch>
+        <mapperOutputKey>org.apache.hadoop.io.Text</mapperOutputKey>
+        <mapperOutputValue>org.apache.hadoop.io.FloatWritable
+        </mapperOutputValue>
+        <mapperTable>GL_POST</mapperTable>
+        <mapperScanCaching>500</mapperScanCaching>
+        <mapperScanCacheBlocks>false</mapperScanCacheBlocks>
+        <reducerTable>GL_POST_GROUP</reducerTable>
+        <reducerClass>com.dcits.ensemble.gl.job.hadoop.mapreduce.MRGlBatchGroup$GlBatchGroupReduce</reducerClass>
+        <reducerOnputPatch></reducerOnputPatch>
+        <reducerNumTask>1</reducerNumTask>
+        <outputFormatClass></outputFormatClass>
+        <outputKey></outputKey>
+        <outputValue></outputValue>
+        <configuration>
+            <property>
+                <name>TRAN_TYPE</name>
+                <value>O</value>
+                <description>交易类型</description>
+            </property>
+            <property>
+                <name>tmpjars</name>
+                <value>
+                    /lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar,/lib/galaxy-common-1.0.0-SNAPSHOT.jar,/lib/json-path-0.9.1.jar,/lib/ensemble-common-1.0.0-SNAPSHOT.jar,/lib/ensemble-gl-core-1.0.0-SNAPSHOT.jar,/lib/galaxy-common-1.0.0-SNAPSHOT.jar,/lib/galaxy-nosql-1.0.0-SNAPSHOT.jar
+                </value>
+                <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description>
+            </property>
+        </configuration>
+    </hb_job>
+    <!-- <hb_job> <description>更新总账余额</description> <job_name>GL_Update_Balance</job_name>
+        <job_type>hbase</job_type> <job_jars>joblib/ensemble-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.gl.entry.mapreduce.MRUpdGlBal</jarByClass> <mapperClass>com.dcits.gl.entry.mapreduce.MRUpdGlBal$UpdGlBalMap</mapperClass>
+        <mapperFormatClass></mapperFormatClass> <mapperInputPatch></mapperInputPatch>
+        <mapperOutputKey>org.apache.hadoop.io.Text</mapperOutputKey> <mapperOutputValue>org.apache.hadoop.io.Text</mapperOutputValue>
+        <mapperTable>GL_BATCH_GROUP</mapperTable> <mapperScanCaching>500</mapperScanCaching>
+        <mapperScanCacheBlocks>false</mapperScanCacheBlocks> <reducerTable>GL_ACCT</reducerTable>
+        <reducerClass>com.dcits.gl.entry.mapreduce.MRUpdGlBal$UpdGlBalReduce</reducerClass>
+        <reducerOnputPatch></reducerOnputPatch> <reducerNumTask>1</reducerNumTask>
+        <outputFormatClass></outputFormatClass> <outputKey></outputKey> <outputValue></outputValue>
+        <configuration> <property> <name>tmpjars</name> <value>/lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar</value>
+        <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description> </property> </configuration>
+        </hb_job> <hb_job> <description>生成准备金缴存明细</description> <job_name>GL_Gen_Reserve_Detail</job_name>
+        <job_type>hbase</job_type> <job_jars>joblib/ensemble-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.gl.entry.mapreduce.MRGenReserveDetail</jarByClass>
+        <mapperClass>com.dcits.gl.entry.mapreduce.MRGenReserveDetail$MRGenReserveDetailMap</mapperClass>
+        <mapperFormatClass></mapperFormatClass> <mapperInputPatch></mapperInputPatch>
+        <mapperOutputKey>org.apache.hadoop.io.Text</mapperOutputKey> <mapperOutputValue>org.apache.hadoop.io.FloatWritable</mapperOutputValue>
+        <mapperTable>GL_ACCT</mapperTable> <mapperScanCaching>500</mapperScanCaching>
+        <mapperScanCacheBlocks>false</mapperScanCacheBlocks> <reducerTable>GL_RESERVE_PAY_HIST_DETAIL</reducerTable>
+        <reducerClass>com.dcits.gl.entry.mapreduce.MRGenReserveDetail$MRGenReserveDetailReduce</reducerClass>
+        <reducerOnputPatch></reducerOnputPatch> <reducerNumTask>1</reducerNumTask>
+        <outputFormatClass></outputFormatClass> <outputKey></outputKey> <outputValue></outputValue>
+        <configuration> <property> <name>tmpjars</name> <value>/lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar</value>
+        <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description> </property> </configuration>
+        </hb_job> -->
+    <!-- <hb_job> <description>准备金缴存</description> <job_name>GL_Gen_Reserve_Pay</job_name>
+        <job_type>hbase</job_type> <job_jars>joblib/ensemble-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.gl.entry.mapreduce.MRGenReservePay</jarByClass> <mapperClass>com.dcits.gl.entry.mapreduce.MRGenReservePay$MRGenReservePayMap</mapperClass>
+        <mapperFormatClass></mapperFormatClass> <mapperInputPatch></mapperInputPatch>
+        <mapperOutputKey>org.apache.hadoop.io.Text</mapperOutputKey> <mapperOutputValue>org.apache.hadoop.io.Text</mapperOutputValue>
+        <mapperTable>GL_RESERVE_PAY_HIST_DETAIL</mapperTable> <mapperScanCaching>500</mapperScanCaching>
+        <mapperScanCacheBlocks>false</mapperScanCacheBlocks> <reducerTable>GL_BATCH</reducerTable>
+        <reducerClass>com.dcits.gl.entry.mapreduce.MRGenReservePay$MRGenReservePayReduce</reducerClass>
+        <reducerOnputPatch></reducerOnputPatch> <reducerNumTask>10</reducerNumTask>
+        <outputFormatClass></outputFormatClass> <outputKey></outputKey> <outputValue></outputValue>
+        <configuration> <property> <name>tmpjars</name> <value>/lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar</value>
+        <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description> </property> </configuration>
+        </hb_job> -->
+    <!-- <hb_job> <description>准备金外部缴存</description> <job_name>GL_Gen_Reserve_Pay_Out</job_name>
+        <job_type>hbase</job_type> <job_jars>joblib/ensemble-gl-job-hadoop-1.0.0-SNAPSHOT.jar</job_jars>
+        <jarByClass>com.dcits.gl.entry.mapreduce.MRGenReservePayOut</jarByClass>
+        <mapperClass>com.dcits.gl.entry.mapreduce.MRGenReservePayOut$MRGenReservePayOutMap</mapperClass>
+        <mapperFormatClass></mapperFormatClass> <mapperInputPatch></mapperInputPatch>
+        <mapperOutputKey>org.apache.hadoop.io.Text</mapperOutputKey> <mapperOutputValue>org.apache.hadoop.io.Text</mapperOutputValue>
+        <mapperTable>GL_RESERVE_PAY_HIST</mapperTable> <mapperScanCaching>500</mapperScanCaching>
+        <mapperScanCacheBlocks>false</mapperScanCacheBlocks> <reducerTable>GL_BATCH</reducerTable>
+        <reducerClass>com.dcits.gl.entry.mapreduce.MRGenReservePayOut$MRGenReservePayOutReduce</reducerClass>
+        <reducerOnputPatch></reducerOnputPatch> <reducerNumTask>10</reducerNumTask>
+        <outputFormatClass></outputFormatClass> <outputKey></outputKey> <outputValue></outputValue>
+        <configuration> <property> <name>tmpjars</name> <value>/lib/hbase/hbase-client-0.98.3-hadoop2.jar,/lib/hbase/hbase-common-0.98.3-hadoop2.jar,/lib/hbase/hbase-protocol-0.98.3-hadoop2.jar,/lib/hbase/hbase-server-0.98.3-hadoop2.jar,/lib/hbase/hbase-hadoop-compat-0.98.3-hadoop2.jar,/lib/hbase/htrace-core-2.04.jar</value>
+        <description>第三方依赖jar包，先上传到hdfs相应目录，','分割</description> </property> </configuration>
+        </hb_job> -->
+</jobs>

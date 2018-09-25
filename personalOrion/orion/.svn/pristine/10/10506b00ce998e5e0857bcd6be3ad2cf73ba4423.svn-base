@@ -1,0 +1,26 @@
+##
+# Copyright 2013-2014 DIGITAL CHINA INFORMATION SERVICE COMPANY LTD.
+#
+##
+galaxy.container=log4j,spring
+
+galaxy.application.name=galaxy-stria
+galaxy.application.group=galaxy-stria
+galaxy.application.owner=dcits
+galaxy.application.logger=slf4j
+galaxy.provider.timeout=5000
+galaxy.registry.address=zookeeper://127.0.0.1:2181
+#galaxy.registry.address=zookeeper://127.0.0.1:2181
+galaxy.registry.timeout=1000
+galaxy.monitor.protocol=registry
+galaxy.protocol.name=dubbo
+galaxy.protocol.port=21777
+
+#trace switch
+#0:all close
+#1:dubbo
+#2:dubbo + java
+#3:dubbo + java + log
+galaxy.trace.level=3
+#stria cache type 1:local 2:redis 3:none\uFF1B default:redis
+#galaxy.business.stria.cache=local

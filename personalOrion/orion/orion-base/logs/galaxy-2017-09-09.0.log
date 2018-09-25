@@ -1,0 +1,160 @@
+2017-09-09 09:05:51,738 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:05:51,785 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:05:52,160 WARN [main] org.springframework.context.support.ClassPathXmlApplicationContext.AbstractApplicationContext#refresh[AbstractApplicationContext.java:486] Exception encountered during context initialization - cancelling refresh attempt
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'parserMapping' defined in file [D:\svn\guotaoMachine\orion\orion-base\target\classes\META-INF\spring\orion-base.xml]: Invocation of init method failed; nested exception is com.dcits.galaxy.base.exception.GalaxyException: 资源解析失败，请检查配置文件[global-mapping.xml]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1514) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:293) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:290) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:191) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:636) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:934) ~[spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479) ~[spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139) [spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83) [spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at com.dcits.galaxy.junit.TestBase.<init>(TestBase.java:12) [galaxy-junit-2.1.0-20170728.090748-3.jar:na]
+	at com.dcits.orion.convert.TestFileConvert.<init>(TestFileConvert.java:18) [test-classes/:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [na:1.7.0_80]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57) [na:1.7.0_80]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [na:1.7.0_80]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526) [na:1.7.0_80]
+	at com.intellij.junit3.TestRunnerUtil.createMethodSuite(TestRunnerUtil.java:183) [junit-rt.jar:na]
+	at com.intellij.junit3.TestRunnerUtil.createClassOrMethodSuite(TestRunnerUtil.java:152) [junit-rt.jar:na]
+	at com.intellij.junit3.TestRunnerUtil.getTestSuite(TestRunnerUtil.java:81) [junit-rt.jar:na]
+	at com.intellij.junit3.JUnit3IdeaTestRunner.startRunnerWithArgs(JUnit3IdeaTestRunner.java:50) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:212) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:68) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_80]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_80]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_80]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_80]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:na]
+Caused by: com.dcits.galaxy.base.exception.GalaxyException: 资源解析失败，请检查配置文件[global-mapping.xml]
+	at com.dcits.orion.base.map.mapping.MappingBuilder.<init>(MappingBuilder.java:38) ~[classes/:na]
+	at com.dcits.orion.base.map.mapping.ParserMapping.afterPropertiesSet(ParserMapping.java:254) ~[classes/:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1573) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1511) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 28 common frames omitted
+Caused by: java.io.FileNotFoundException: http://www.dcits.com/xml/dtd/parserMapping.dtd
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:643) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.startEntity(XMLEntityManager.java:1297) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.startDTDEntity(XMLEntityManager.java:1264) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDTDScannerImpl.setInputSource(XMLDTDScannerImpl.java:263) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$DTDDriver.dispatch(XMLDocumentScannerImpl.java:1164) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$DTDDriver.next(XMLDocumentScannerImpl.java:1050) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:964) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:347) ~[na:1.7.0_80]
+	at javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:121) ~[na:1.7.0_80]
+	at com.dcits.orion.base.map.mapping.MappingBuilder.parser(MappingBuilder.java:50) ~[classes/:na]
+	at com.dcits.orion.base.map.mapping.MappingBuilder.<init>(MappingBuilder.java:36) ~[classes/:na]
+	... 31 common frames omitted
+2017-09-09 09:07:52,450 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:07:52,483 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:07:52,769 WARN [main] org.springframework.context.support.ClassPathXmlApplicationContext.AbstractApplicationContext#refresh[AbstractApplicationContext.java:486] Exception encountered during context initialization - cancelling refresh attempt
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'parserMapping' defined in file [D:\svn\guotaoMachine\orion\orion-base\target\classes\META-INF\spring\orion-base.xml]: Invocation of init method failed; nested exception is com.dcits.galaxy.base.exception.GalaxyException: 资源解析失败，请检查配置文件[test-mapping.xml]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1514) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:293) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:290) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:191) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:636) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:934) ~[spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479) ~[spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139) [spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83) [spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at com.dcits.galaxy.junit.TestBase.<init>(TestBase.java:12) [galaxy-junit-2.1.0-20170728.090748-3.jar:na]
+	at com.dcits.orion.convert.TestFileConvert.<init>(TestFileConvert.java:18) [test-classes/:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) [na:1.7.0_80]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57) [na:1.7.0_80]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) [na:1.7.0_80]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526) [na:1.7.0_80]
+	at com.intellij.junit3.TestRunnerUtil.createMethodSuite(TestRunnerUtil.java:183) [junit-rt.jar:na]
+	at com.intellij.junit3.TestRunnerUtil.createClassOrMethodSuite(TestRunnerUtil.java:152) [junit-rt.jar:na]
+	at com.intellij.junit3.TestRunnerUtil.getTestSuite(TestRunnerUtil.java:81) [junit-rt.jar:na]
+	at com.intellij.junit3.JUnit3IdeaTestRunner.startRunnerWithArgs(JUnit3IdeaTestRunner.java:50) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:212) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:68) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_80]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_80]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_80]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_80]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140) [idea_rt.jar:na]
+Caused by: com.dcits.galaxy.base.exception.GalaxyException: 资源解析失败，请检查配置文件[test-mapping.xml]
+	at com.dcits.orion.base.map.mapping.MappingBuilder.<init>(MappingBuilder.java:38) ~[classes/:na]
+	at com.dcits.orion.base.map.mapping.ParserMapping.afterPropertiesSet(ParserMapping.java:254) ~[classes/:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1573) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1511) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 28 common frames omitted
+Caused by: java.io.FileNotFoundException: http://www.dcits.com/xml/dtd/parserMapping.dtd
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:643) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.startEntity(XMLEntityManager.java:1297) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.startDTDEntity(XMLEntityManager.java:1264) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDTDScannerImpl.setInputSource(XMLDTDScannerImpl.java:263) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$DTDDriver.dispatch(XMLDocumentScannerImpl.java:1164) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$DTDDriver.next(XMLDocumentScannerImpl.java:1050) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:964) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243) ~[na:1.7.0_80]
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:347) ~[na:1.7.0_80]
+	at javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:121) ~[na:1.7.0_80]
+	at com.dcits.orion.base.map.mapping.MappingBuilder.parser(MappingBuilder.java:50) ~[classes/:na]
+	at com.dcits.orion.base.map.mapping.MappingBuilder.<init>(MappingBuilder.java:36) ~[classes/:na]
+	... 31 common frames omitted
+2017-09-09 09:08:12,582 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:08:12,628 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:08:12,896 ERROR [main] com.dcits.galaxy.base.util.FileUtils.FileUtils#bufferedRandomAccessFileReadRows[FileUtils.java:247] E:\txt\CORE_CAPT_20150121.txt (拒绝访问。)
+java.io.FileNotFoundException: E:\txt\CORE_CAPT_20150121.txt (拒绝访问。)
+	at java.io.RandomAccessFile.open(Native Method)
+	at java.io.RandomAccessFile.<init>(RandomAccessFile.java:241)
+	at com.dcits.galaxy.base.file.BufferedRandomAccessFile.<init>(BufferedRandomAccessFile.java:93)
+	at com.dcits.galaxy.base.file.BufferedRandomAccessFile.<init>(BufferedRandomAccessFile.java:89)
+	at com.dcits.galaxy.base.util.FileUtils.bufferedRandomAccessFileReadRows(FileUtils.java:233)
+	at com.dcits.galaxy.base.util.FileUtils.bufferedRandomAccessFileReadRows(FileUtils.java:216)
+	at com.dcits.orion.base.file.TxtFileParse.getFileData(TxtFileParse.java:52)
+	at com.dcits.orion.base.file.FileParseUtils.getFileData(FileParseUtils.java:40)
+	at com.dcits.orion.base.file.FileParseUtils.getBody(FileParseUtils.java:68)
+	at com.dcits.orion.convert.TestFileConvert.testSepParseJavaBean(TestFileConvert.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:154)
+	at junit.framework.TestCase.runBare(TestCase.java:127)
+	at junit.framework.TestResult$1.protect(TestResult.java:106)
+	at junit.framework.TestResult.runProtected(TestResult.java:124)
+	at junit.framework.TestResult.run(TestResult.java:109)
+	at junit.framework.TestCase.run(TestCase.java:118)
+	at junit.textui.TestRunner.doRun(TestRunner.java:116)
+	at com.intellij.junit3.JUnit3IdeaTestRunner.doRun(JUnit3IdeaTestRunner.java:141)
+	at junit.textui.TestRunner.doRun(TestRunner.java:109)
+	at com.intellij.junit3.JUnit3IdeaTestRunner.startRunnerWithArgs(JUnit3IdeaTestRunner.java:52)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:212)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:68)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140)
+
+2017-09-09 09:17:37,806 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:17:37,917 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:17:38,124 WARN [main] com.dcits.orion.base.file.FileConvertUtil.FileConvertUtil#afterPropertiesSet[FileConvertUtil.java:65] load antiRepeatCfg.xml failed! Error on line 3 of document  : 在 "{1}" 属性值中找到无效的 XML 字符 (Unicode: 0x{2}), 并且元素为 "1b"。 Nested exception: 在 "{1}" 属性值中找到无效的 XML 字符 (Unicode: 0x{2}), 并且元素为 "1b"。
+2017-09-09 09:21:16,476 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:21:16,581 WARN [main] com.dcits.orion.base.AbstractConvert.AbstractConvert#afterPropertiesSet[AbstractConvert.java:110] load parseStringCfg.xml failed! null
+2017-09-09 09:21:16,803 WARN [main] com.dcits.orion.base.file.FileConvertUtil.FileConvertUtil#afterPropertiesSet[FileConvertUtil.java:65] load antiRepeatCfg.xml failed! Error on line 3 of document  : 在 "{1}" 属性值中找到无效的 XML 字符 (Unicode: 0x{2}), 并且元素为 "1b"。 Nested exception: 在 "{1}" 属性值中找到无效的 XML 字符 (Unicode: 0x{2}), 并且元素为 "1b"。

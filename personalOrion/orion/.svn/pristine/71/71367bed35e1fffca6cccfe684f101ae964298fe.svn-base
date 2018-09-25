@@ -1,0 +1,2 @@
+com.dcist.job.sqoop.server.url=http://slave1:12000/sqoop/
+com.dcist.job.hadoop.am.url=http://slave1:8288/

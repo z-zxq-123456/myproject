@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<!-- 加载资源配置文件 -->
+	<bean id="propertyConfigurerGalaxyDb"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath*:galaxy.db.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- ============================== databaseId start ============================== -->
+	<bean id="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
+		<property name="properties">
+			<props>
+				<prop key="Oracle">oracle</prop>
+				<prop key="MySQL">mysql</prop>
+				<prop key="DB2">db2</prop>
+				<prop key="SQL Server">sqlserver</prop>
+				<prop key="SQLite">sqlite</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- ============================== databaseId start ============================== -->
+
+	<!-- ============================== 查询处理 start ============================== -->
+	<!-- 查询处理规则工厂 -->
+	<bean id="mergeExecutor" class="com.dcits.galaxy.dal.mybatis.merger.MergeExecutor">
+		<property name="mergeRulesFactoryBean" ref="mergeRulesFactory"/>
+	</bean>
+
+	<!-- 聚合处理 -->
+	<bean id="aggregateMerger" class="com.dcits.galaxy.dal.mybatis.merger.aggregate.AggregateMerger"/>
+	<!-- 排序处理 -->
+	<bean id="orderByMerger" class="com.dcits.galaxy.dal.mybatis.merger.orderby.OrderByMerger"/>
+
+	<bean id="proactorExecutor" class="com.dcits.galaxy.dal.mybatis.proactor.ProactorExecutor">
+		<property name="mergeRulesFactoryBean" ref="mergeRulesFactory"/>
+	</bean>
+	<!-- 分页处理 -->
+	<bean id="pageProactor" class="com.dcits.galaxy.dal.mybatis.proactor.page.PageProactor">
+		<!-- 当分页查询,启用内存分页的offset的值  -->
+		<property name="memoryPageOffset" value="10000"/>
+		<!-- 分页查询时，最大 条数限制  -->
+		<property name="maxLimit" value="10000"/>
+	</bean>
+	<!-- ============================== 查询处理 end ============================== -->
+
+	<!-- ============================== 事务配置 start ============================== -->
+	<!-- 事务配置 -->
+	<bean id="transactionManager"
+		  class="com.dcits.galaxy.dal.mybatis.transaction.DynamicBestEffortMultiDataSourceTransactionManager"/>
+
+	<!-- 配置基于注解的事物管理 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+						  proxy-target-class="true"/>
+
+	<bean id="transactionFactory" class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory">
+		<property name="properties">
+			<props>
+				<prop key="closeConnection">false</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- ============================== 事务配置 end ============================== -->
+
+	<!-- ============================== 幂等服务 start ============================== -->
+	<!-- 幂等服务 -->
+	<!--<bean id="idempotentDao" class="com.dcits.galaxy.dal.mybatis.idempotent.dao.impl.IdempotentDaoImpl"></bean>-->
+	<bean id="idempotentService" class="com.dcits.galaxy.dal.mybatis.idempotent.service.impl.IdempotentServiceImpl">
+		<property name="idempotentDao" ref="idempotentDao"/>
+	</bean>
+	<bean id="idempotentUtil" class="com.dcits.galaxy.dal.mybatis.idempotent.IdempotentUtil">
+		<property name="idempotentService" ref="idempotentService"/>
+		<property name="checkFristShard" value="false"/>
+	</bean>
+	<!-- ============================== 幂等服务 end ============================== -->
+</beans>

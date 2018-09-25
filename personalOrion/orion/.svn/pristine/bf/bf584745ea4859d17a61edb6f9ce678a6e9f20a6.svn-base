@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+    <service id="Fin-1200-9100">
+        <mapper name="ACCT" class="com.dcits.orion.stria.test.spel.Acct">
+            <item name="tranCcy">sysHead.branchId</item>
+            <item name="tranAmt">body.tranAmt</item>
+        </mapper>
+        <mapperlist name="SERV" class="com.dcits.orion.stria.test.spel.Serv" source="body.servDetail">
+            <item name="servType">${source}.servType</item>
+            <item name="servAmt">"11"</item>
+            <item name="servBoInd">${source}.servBoInd</item>
+            <item name="chargeType">body.tranAmt</item>
+        </mapperlist>
+    </service>
+</mapping>

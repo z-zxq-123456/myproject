@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workflow>
+	<!-- 禁用workermanager的统一调度 
+	<parallel_worker>5</parallel_worker> -->
+	<worker>
+		<name>aa</name>
+		<description>测试job工作流</description>
+<!-- 		<begin> -->
+<!-- 			<job>j1</job> -->
+<!-- 		</begin> -->
+		<start>
+			<job>GL_Batch_Insert</job>
+<!-- 			<job>Update_Gl_Acct_Bal</job> -->
+		</start>
+		<error></error>
+		<end></end>
+	</worker>
+	<worker>
+		<name>export</name>
+		<description>导库</description>
+ 		<begin> 
+ 			<job>export</job> 
+ 		</begin> 
+		<start>
+		</start>
+		<error></error>
+		<end></end>
+	</worker>
+	<worker>
+		<name>gl_entry</name>
+		<description>测试总账账户余额更新</description>
+ 		<begin>
+			<!--<job>GlManualBatch</job> 
+ 			<job>sqoopTranHist</job> -->
+			<job>EnsembleTranHist1</job>
+			<job>EnsembleTranHist2</job>
+ 		</begin> 
+		<start>
+			<job>GL_Batch_Insert</job>
+			<job>GL_Batch_Group</job>
+<!-- 			<job>GL_Update_Balance</job> -->
+		</start>
+		<error></error>
+		<end></end>
+	</worker>
+	
+	<worker>
+		<name>etlTranHist</name>
+		<description>库1、库2流水抽取</description>
+ 		<begin>
+<!--  			<job>GL_Batch_Insert</job> -->
+ 		</begin> 
+		<start>
+			<job>gtEnsembleTranHist1,gtEnsembleTranHist2</job>
+		</start>
+		<error></error>
+		<end></end>
+	</worker>
+	<!-- <worker>
+		<name>gl_reserve</name>
+		<description>测试准备金缴存</description>
+ 		<begin> 
+ 		</begin> 
+		<start>
+			<job>GL_Gen_Reserve_Detail</job> 
+			<job>GL_Gen_Reserve_Pay</job> 
+			<job>GL_Gen_Reserve_Pay_Out</job> 
+		</start>
+		<error></error>
+		<end></end>
+	</worker> -->
+</workflow>

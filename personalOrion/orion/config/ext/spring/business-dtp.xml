@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 加载资源配置文件 -->
+	<bean id="propertyConfigurerBusiDtp"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="locations">
+			<list>
+				<value>classpath*:galaxy.properties</value>
+				<value>classpath*:galaxy.connector.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- ***********************************DTP start************************* -->
+	<!-- DTP恢复机制 -->
+	<bean id="DTPResumer" class="com.dcits.galaxy.dtp.resume.Resumer" init-method="init">
+		<property name="zkServers" value="${galaxy.registry.address}"/>
+		<property name="zkSessionTimeout" value="5000"/>
+		<property name="zkConnectionTimeout" value="5000"/>
+		<property name="appGroup" value="${galaxy.application.group}"/>
+		<property name="appName" value="${galaxy.application.name}"/>
+		<!-- 恢复频率 单位：秒 -->
+		<property name="internal" value="60"/>
+		<!-- dtp超时时间，超过此时间未提交或取消完成的事务将进行恢复处理 单位：秒 -->
+		<property name="timeout" value="180"/>
+	</bean>
+	<!-- DTP清理机制 -->
+	<bean id="DTPCleaner" class="com.dcits.galaxy.dtp.clean.TrunkCleaner" init-method="start"
+		  destroy-method="shutdown">
+		<property name="appGroup" value="${galaxy.application.group}"/>
+		<!-- 清理时间，超过此事间的已完成dtp事务日志将被清理 单位：秒 -->
+		<property name="cleanCycleTime" value="360"/>
+		<!-- 清理频率 单位：秒 -->
+		<property name="frequency" value="120"/>
+	</bean>
+	<!-- ***********************************DTP end************************* -->
+</beans>

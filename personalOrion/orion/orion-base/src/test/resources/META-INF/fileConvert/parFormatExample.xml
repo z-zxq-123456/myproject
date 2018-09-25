@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileConvert name="parFormatExample" type="txt" encoding="UTF-8">
+
+    <head sepType="F" ident="H" >
+        <field name="HEAD" length="1" trim="Y"/>
+        <field name="SYSTEM_ID" length="8" trim="Y"/>
+        <field name="ROWCOUNT" length="8" trim="Y" type="int"/>
+        <field name="RUNDATE" length="8" trim="Y"/>
+    </head>
+    <body ref="subFormatExample"/>       
+    <tail sepType="F" ident="T">
+        <field name="TAIL" length="1"/>
+        <field name="TOTAL_AMOUNT" length="25" type="double" parseBeanId="amountParse"/>
+    </tail>
+</fileConvert>
