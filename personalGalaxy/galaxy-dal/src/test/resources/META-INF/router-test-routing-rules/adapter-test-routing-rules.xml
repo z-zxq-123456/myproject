@@ -1,0 +1,50 @@
+<rules-setting>
+	<rules type="INDEX_ROUTER"  expression="[hash.apply(#)]" shards="partition1,partition2">
+		<rule>
+			<namespace>com.dcits.galaxy.dal.demo.entities.User1</namespace>
+			<field>sid</field>
+			<field>internalKey</field>
+		</rule>
+
+		<rule>
+			<namespace>com.dcits.galaxy.dal.demo.entities.Custom1</namespace>
+			<shardingExpression>[hash.apply(#)]</shardingExpression>
+			<field>customId</field>
+		</rule>
+	</rules>
+<!-- 
+	<rules type="SIMPLE_ROUTER">
+		<rule>
+			<namespace>com.dcits.galaxy.dal.demo.entities.User</namespace>
+			<shardingExpression>hash.apply(sid) == 1</shardingExpression>
+			<shards>partition3</shards>
+		</rule>
+		<rule>
+			<namespace>com.dcits.galaxy.dal.demo.entities.Custom</namespace>
+			<shardingExpression>hash.apply(sid) == 0</shardingExpression>
+			<shards>partition4</shards>
+		</rule>
+	</rules>
+ -->
+
+	<rules type="INDEX_ROUTER">
+		<rule>
+			<sqlmaps>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findMax</sqlmap>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findMin</sqlmap>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findCount</sqlmap>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findSum</sqlmap>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findMulti</sqlmap>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findOrderBy</sqlmap>
+				<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findPage</sqlmap>
+			</sqlmaps>
+			<shards>partition1,partition2</shards>
+		</rule>
+
+		<rule>
+			<sqlmap>com.dcits.galaxy.dal.demo.entities.User.findOne</sqlmap>
+			<shards>partition1,partition2</shards>
+		</rule>
+	</rules>
+
+</rules-setting>

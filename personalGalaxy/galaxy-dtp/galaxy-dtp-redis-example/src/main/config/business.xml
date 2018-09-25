@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dcits="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://code.alibabatech.com/schema/dubbo 
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<bean id="branchService" class="com.dcits.galaxy.dtp.redis.branch.BranchServiceImplRedis" />
+
+	<bean id="trunkService" class="com.dcits.galaxy.dtp.redis.trunk.TrunkServiceImplRedis" >
+	    <property name="partition" value="180000" />
+	</bean>
+
+	<bean id="prepareLogService"
+		class="com.dcits.galaxy.dtp.redis.log.service.PrepareLogServiceImplRedis" />
+
+	<bean id="submitLogService"
+		class="com.dcits.galaxy.dtp.redis.log.service.SubmitLogServiceImplRedis" />
+
+	<bean id="branchManager"
+		class="com.dcits.galaxy.dtp.defaults.branch.DefaultBranchManager" />
+	<dcits:service group="${galaxy.application.group}"
+		interface="com.dcits.galaxy.dtp.branch.BranchManager" ref="branchManager" />
+
+	<bean id="trunkManager" class="com.dcits.galaxy.dtp.defaults.trunk.DefaultTrunkManager" />
+
+	<bean id="logManager" class="com.dcits.galaxy.dtp.defaults.log.DefaultLogManager">
+		<property name="testOnWrite" value="true" />
+	</bean>
+
+	<bean id="submitLogExecutor"
+		class="com.dcits.galaxy.dtp.defaults.log.executor.DefaultSubmitLogExecutor" />
+		
+	<bean id="prepareLogExecutor"
+		class="com.dcits.galaxy.dtp.redis.log.executor.PrepareLogExecutorImpl" />
+</beans>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.galaxy.dtp.trunk.TrunkTransaction" >
+
+    <sql id="dtpTrunkColumns"> txid,needOrder,status, appGroup,startTime </sql>
+
+	<insert id="save" parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+    insert into dtp_trunk (txid,needOrder,status, appGroup,startTime) 
+    values (#{txid}, #{needOrder}, #{status}, #{appGroup}, #{startTime})
+	</insert>
+
+	<update id="updateStatus" parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+	update dtp_trunk set status=#{status} where txid= #{txid}
+	</update>
+	
+	<select id="getTrunk" resultType="com.dcits.galaxy.dtp.trunk.TrunkTransaction" parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+    select <include refid="dtpTrunkColumns"/> from dtp_trunk where txid=#{txid}
+	</select>
+	
+	<select id="getAll" resultType="com.dcits.galaxy.dtp.trunk.TrunkTransaction" parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+	select <include refid="dtpTrunkColumns"/> from dtp_trunk where appGroup=#{appGroup} and status=#{status}
+	</select>
+	
+	<select id="getAllByAppGroup" resultType="com.dcits.galaxy.dtp.trunk.TrunkTransaction" parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+    select <include refid="dtpTrunkColumns"/> from dtp_trunk where appGroup=#{appGroup}
+	</select>
+	
+	<select id="getUnCompletedTrunks" resultType="com.dcits.galaxy.dtp.trunk.TrunkTransaction" parameterType="java.util.Map">
+	select <include refid="dtpTrunkColumns"/> from dtp_trunk where appGroup= #{appGroup}  and status !='confirm_complete' and 
+	status!='cancel_complete' and startTime <![CDATA[<=]]> #{time}
+	</select>
+	
+	<select id="hasUnCompletedBranches" resultType="int" parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+    select count(*) as bxidCount from dtp_branch where parentBxid='' and txid=#{txid} and status!='submit_complete' 
+	and status!='submit_invalid' and status!='release_complete'
+	</select>
+
+	<update id="setConfirm"  parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+    update dtp_trunk set status='confirm' where txid=#{txid} and (status='prepare' or status='confirm')
+	</update>
+	
+	<update id="setConfirmCompleted"  parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+	update dtp_trunk set status='confirm_complete' where txid=#{txid} and (status='confirm' or status='confirm_complete')
+	</update>
+	
+	<update id="setCancel"  parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+	update dtp_trunk set status='cancel' where txid=#{txid} and (status='prepare' or status='cancel')
+	</update>
+	
+	<update id="setCancelCompleted"  parameterType="com.dcits.galaxy.dtp.trunk.TrunkTransaction">
+	update dtp_trunk set status='cancel_complete' where txid=#{txid} and (status='cancel' or status='cancel_complete')
+	</update>
+	
+	<delete id="clean" parameterType="java.util.Map">
+	delete from dtp_trunk where appGroup=#{appGroup} and (status='confirm_complete' or status='cancel_complete') and startTime <![CDATA[<=]]> #{time}
+	</delete>
+
+</mapper>

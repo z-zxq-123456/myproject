@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 加载资源配置文件 -->
+	<bean id="propertyConfigurerBusiConnector"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="locations">
+			<list>
+				<value>classpath:galaxy.properties</value>
+				<value>classpath:galaxy.connector.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="jettyConnector" class="com.dcits.galaxy.connector.http.JettyConnector"
+		init-method="start" destroy-method="stop">
+		<property name="port" value="${jetty.port}" />
+		<property name="minThreads" value="${jetty.minThreads}" />
+		<property name="maxThreads" value="${jetty.maxThreads}" />
+		<property name="acceptors" value="${jetty.acceptors}" />
+		<property name="selectors" value="${jetty.selectors}" />
+		<property name="solinger" value="${jetty.solinger}" />
+		<property name="urlPattern" value="${jetty.urlPattern}" />
+		<property name="servletClass" value="${jetty.servletClass}" />
+		<property name="appName" value="${galaxy.application.name}" />
+		<property name="appGroup" value="${jetty.appGroup}" />
+		<property name="msgFormat" value="${jetty.msgFormat}" />
+		<property name="msgParser" value="${jetty.msgParser}" />
+		<property name="acceptQueueSize" value="${jetty.acceptQueueSize}" />
+		<property name="ipFilter" value="${jetty.ipFilter}" />
+		<!--<property name="handlerId" value="${jetty.handlerId}" />-->
+	</bean>
+
+	<bean id="socketConnector" class="com.dcits.galaxy.connector.tcp.SocketConnector"
+		init-method="start" destroy-method="stop">
+		<property name="port" value="${socket.port}" />
+		<property name="minThread" value="${socket.minThread}" />
+		<property name="maxThread" value="${socket.maxThread}" />
+		<property name="keepAliveTime" value="${socket.keepAliveTime}" />
+		<property name="testMessage" value="${socket.testMessage}" />
+		<property name="testReturnMessage" value="${socket.testReturnMessage}" />
+		<property name="appName" value="${galaxy.application.name}" />
+		<property name="appGroup" value="${socket.appGroup}" />
+		<property name="msgFormat" value="${socket.msgFormat}" />
+		<property name="msgParser" value="${socket.msgParser}" />
+		<!--<property name="handlerId" value="${socket.handlerId}" />-->
+	</bean>
+
+</beans>

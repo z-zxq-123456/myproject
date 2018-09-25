@@ -1,0 +1,2 @@
+clogger=com.dcits.galaxy.logclient.trace.CLoggerFilter
+slogger=com.dcits.galaxy.logclient.trace.SLoggerFilter

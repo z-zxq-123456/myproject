@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.galaxy.dtp.demo.entities.Money" >
+
+	<update id="updateMoney" parameterType="com.dcits.galaxy.dtp.demo.entities.Money">
+		 update money set amount = amount + #{amount} 
+				where userId=#{userId}
+	</update>
+	
+	<select id="getMoney" resultType="com.dcits.galaxy.dtp.demo.entities.Money" parameterType="com.dcits.galaxy.dtp.demo.entities.Money">
+		 select * from money where userId = #{userId}
+	</select>
+</mapper>
