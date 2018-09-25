@@ -1,0 +1,281 @@
+{
+  "flowid": "Non-Financial-1200-0103-flow",
+  "initNum": 29,
+  "intNum": 0,
+  "lines": {
+    "stria_line_11": {
+      "expr": ""
+    },
+    "stria_line_14": {
+      "expr": "#_inMsg.getBody().getRestraintArray().get(0).getOption().equals('01')",
+      "from": "stria_node_13",
+      "name": "新增",
+      "to": "stria_node_23",
+      "type": "sl"
+    },
+    "stria_line_15": {
+      "expr": "#_inMsg.getBody().getRestraintArray().get(0).getOption().equals('02')",
+      "from": "stria_node_13",
+      "name": "修改",
+      "to": "stria_node_25",
+      "type": "sl"
+    },
+    "stria_line_16": {
+      "expr": "#_inMsg.getBody().getRestraintArray().get(0).getOption().equals('03')",
+      "from": "stria_node_13",
+      "name": "解限",
+      "to": "stria_node_27",
+      "type": "sl"
+    },
+    "stria_line_18": {
+      "expr": "",
+      "from": "stria_node_17",
+      "name": "",
+      "to": "stria_node_12",
+      "type": "sl"
+    },
+    "stria_line_2": {
+      "expr": "",
+      "from": "stria_node_1",
+      "name": "",
+      "to": "stria_node_3",
+      "type": "sl"
+    },
+    "stria_line_20": {
+      "expr": "",
+      "from": "stria_node_19",
+      "name": "",
+      "to": "stria_node_12",
+      "type": "sl"
+    },
+    "stria_line_22": {
+      "expr": "",
+      "from": "stria_node_21",
+      "name": "",
+      "to": "stria_node_12",
+      "type": "sl"
+    },
+    "stria_line_24": {
+      "expr": "",
+      "from": "stria_node_23",
+      "name": "",
+      "to": "stria_node_21",
+      "type": "sl"
+    },
+    "stria_line_26": {
+      "expr": "",
+      "from": "stria_node_25",
+      "name": "",
+      "to": "stria_node_19",
+      "type": "sl"
+    },
+    "stria_line_28": {
+      "expr": "",
+      "from": "stria_node_27",
+      "name": "",
+      "to": "stria_node_17",
+      "type": "sl"
+    },
+    "stria_line_4": {
+      "expr": "",
+      "from": "stria_node_3",
+      "name": "",
+      "to": "stria_node_6",
+      "type": "sl"
+    },
+    "stria_line_5": {
+      "expr": "",
+      "from": "stria_node_3",
+      "name": "",
+      "to": "stria_node_8",
+      "type": "sl"
+    },
+    "stria_line_7": {
+      "expr": "",
+      "from": "stria_node_6",
+      "name": "",
+      "to": "stria_node_10",
+      "type": "sl"
+    },
+    "stria_line_9": {
+      "expr": "",
+      "from": "stria_node_8",
+      "name": "",
+      "to": "stria_node_10",
+      "type": "sl"
+    }
+  },
+  "nodes": {
+    "stria_node_1": {
+      "alt": true,
+      "height": -1,
+      "left": 23,
+      "name": "开始",
+      "top": 242,
+      "type": "start round",
+      "width": -1
+    },
+    "stria_node_10": {
+      "alt": true,
+      "height": -1,
+      "left": 300,
+      "name": "合并",
+      "top": 242,
+      "type": "join round",
+      "width": -1
+    },
+    "stria_node_12": {
+      "alt": true,
+      "height": -1,
+      "left": 817,
+      "name": "结束",
+      "top": 242,
+      "type": "end round",
+      "width": -1
+    },
+    "stria_node_13": {
+      "alt": true,
+      "height": -1,
+      "left": 372,
+      "name": "决策",
+      "top": 242,
+      "type": "chat round",
+      "width": -1
+    },
+    "stria_node_17": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.online.service.nonfinancial.Non12000103",
+      "height": -1,
+      "left": 648,
+      "methodName": "delRestraint",
+      "name": "账户限制解限",
+      "serviceType": "SPRING BEAN",
+      "top": 336,
+      "type": "atom",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_19": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.online.service.nonfinancial.Non12000103",
+      "height": -1,
+      "left": 651,
+      "methodName": "updRestraint",
+      "name": "账户限制修改",
+      "serviceType": "SPRING BEAN",
+      "top": 240,
+      "type": "atom",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_21": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.online.service.nonfinancial.Non12000103",
+      "height": -1,
+      "left": 651,
+      "methodName": "addRestraint",
+      "name": "账户限制新增",
+      "serviceType": "SPRING BEAN",
+      "top": 144,
+      "type": "atom",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_23": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.api.nonfinancial.INon12000103",
+      "height": -1,
+      "left": 480,
+      "methodName": "checkResAdd",
+      "name": "新增检查",
+      "serviceType": "RPC SERVICE API",
+      "sourceType": "all",
+      "top": 144,
+      "type": "check",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_25": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.api.nonfinancial.INon12000103",
+      "height": -1,
+      "left": 480,
+      "methodName": "checkResUpd",
+      "name": "修改检查",
+      "serviceType": "RPC SERVICE API",
+      "sourceType": "all",
+      "top": 240,
+      "type": "check",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_27": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.api.nonfinancial.INon12000103",
+      "height": -1,
+      "left": 480,
+      "methodName": "checkResDel",
+      "name": "解限检查",
+      "serviceType": "RPC SERVICE API",
+      "sourceType": "all",
+      "top": 336,
+      "type": "check",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_3": {
+      "alt": true,
+      "height": -1,
+      "left": 84,
+      "name": "分派",
+      "top": 242,
+      "type": "fork round",
+      "width": -1
+    },
+    "stria_node_6": {
+      "alt": true,
+      "args": "*",
+      "argsClazz": "com.dcits.ensemble.rb.model.nonfinancial.Non12000103In",
+      "clazz": "com.dcits.ensemble.rb.api.nonfinancial.INon12000103",
+      "height": -1,
+      "left": 156,
+      "methodName": "checkResType",
+      "name": "限制类型为空检查",
+      "serviceType": "RPC SERVICE API",
+      "sourceType": "all",
+      "top": 291,
+      "type": "check",
+      "var": "",
+      "width": -1
+    },
+    "stria_node_8": {
+      "alt": true,
+      "args": "body.baseAcctNo|body.acctType|body.ccy|sysHead.branchId",
+      "argsClazz": "String|String|String|String",
+      "clazz": "com.dcits.ensemble.rb.api.inner.IRbCheck",
+      "height": -1,
+      "left": 156,
+      "methodName": "checkWithdrawalType",
+      "name": "跨行支取检查",
+      "serviceType": "RPC SERVICE API",
+      "sourceType": "all",
+      "top": 189,
+      "type": "check",
+      "var": "",
+      "width": -1
+    }
+  },
+  "title": "账户限制"
+}

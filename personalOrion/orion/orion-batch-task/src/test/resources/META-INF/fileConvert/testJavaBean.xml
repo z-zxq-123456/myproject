@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileConvert name="exampleJavaBean" type="txt" encoding="UTF-8" br="\r\n">
+    <body sepType="S" separator="|" clazz="com.dcits.orion.convert.JavaBean">
+        <field name="ref" trim="Y"/>
+        <field name="date" trim="Y"/>
+        <field name="branch" trim="Y"/>
+        <field name="acctNo" trim="Y"/>
+        <field name="programId" trim="Y"/>
+        <field name="eventType" trim="Y"/>
+        <field name="b1" trim="Y"/>
+        <field name="b2" trim="Y"/>
+        <field name="b3" trim="Y"/>
+        <field name="b4" trim="Y"/>
+        <field name="b5" trim="Y"/>
+    </body>
+</fileConvert>

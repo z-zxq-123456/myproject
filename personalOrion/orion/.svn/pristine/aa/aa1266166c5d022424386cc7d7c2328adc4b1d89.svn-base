@@ -1,0 +1,30 @@
+import com.dcits.galaxy.core.threadpool.support.NamedThreadFactory;
+
+import java.util.concurrent.*;
+
+/**
+ * Created by lixiaobin on 2017/3/17.
+ */
+public class TestThread {
+
+    public static void main(String [] args)
+    {
+        int threadPoolSize = Runtime.getRuntime().availableProcessors() * 5;
+        ThreadFactory namedThreadFactory = new NamedThreadFactory("OrionScpWorker");
+        BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+        ExecutorService executorService = new ThreadPoolExecutor(threadPoolSize,threadPoolSize,60, TimeUnit.SECONDS,queue,namedThreadFactory);
+
+        final int i = 10;
+        Callable call = new Callable() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println(i);
+                Thread.sleep(10000);
+                return null;
+            }
+        };
+        executorService.submit(call);
+        System.out.println("OK");
+
+    }
+}

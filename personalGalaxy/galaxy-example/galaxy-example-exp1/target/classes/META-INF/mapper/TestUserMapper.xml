@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dcits.galaxy.example.exp1.mapper.TestUserMapper" >
+  <resultMap id="BaseResultMap" type="com.dcits.galaxy.example.exp1.model.TestUser" >
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="CHAR" />
+    <result column="AGE" property="age" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NAME, SEX, AGE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from galaxy_user
+    where NAME = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from galaxy_user
+    where NAME = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dcits.galaxy.example.exp1.model.TestUser" >
+    insert into galaxy_user (NAME, SEX, AGE
+      )
+    values (#{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.galaxy.example.exp1.model.TestUser" >
+    update galaxy_user
+    set SEX = #{sex,jdbcType=CHAR},
+      AGE = #{age,jdbcType=INTEGER}
+    where NAME = #{name,jdbcType=VARCHAR},
+  </update>
+  
+</mapper>

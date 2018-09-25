@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 加载资源配置文件 -->
+	<bean id="propertyConfigurerBusiFtp"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="locations">
+			<list>
+				<value>classpath*:galaxy.ftp.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- ftp源0 -->
+	<bean id="ftp" class="com.dcits.galaxy.ftp.Configuration">
+		<property name="host" value="${galaxy.ftp.host}"/>
+		<property name="port" value="${galaxy.ftp.port}"/>
+		<property name="user" value="${galaxy.ftp.user}"/>
+		<property name="passwd" value="${galaxy.ftp.passwd}"/>
+		<property name="decrypt" value="false"/>
+	</bean>
+
+	<!-- sftp源0 -->
+	<bean id="sftp" class="com.dcits.galaxy.ftp.Configuration">
+		<property name="host" value="${galaxy.sftp.host}"/>
+		<property name="port" value="${galaxy.sftp.port}"/>
+		<property name="user" value="${galaxy.sftp.user}"/>
+		<property name="passwd" value="${galaxy.sftp.passwd}"/>
+		<property name="decrypt" value="false"/>
+	</bean>
+
+	<!-- 下载文件0 -->
+	<bean id="downFile0" class="com.dcits.galaxy.ftp.GroupFileForDownLoad$FileForDownLoad">
+		<property name="conf" ref="ftp"/>
+		<property name="ftpDir" value="${galaxy.ftp.download.file0.ftpDir}"/>
+		<property name="localDir" value="${galaxy.ftp.download.file0.localDir}"/>
+		<property name="file" value="${galaxy.ftp.download.file0.file}"/>
+	</bean>
+
+	<!-- 下载文件1 -->
+	<bean id="downFile1" class="com.dcits.galaxy.ftp.GroupFileForDownLoad$FileForDownLoad">
+		<property name="conf" ref="ftp"/>
+		<property name="ftpDir" value="${galaxy.ftp.download.file1.ftpDir}"/>
+		<property name="localDir" value="${galaxy.ftp.download.file1.localDir}"/>
+		<property name="file" value="${galaxy.ftp.download.file1.file}"/>
+	</bean>
+
+	<!-- 下载组配置 -->
+	<bean id="downLoadFileGroup0" class="com.dcits.galaxy.ftp.GroupFileForDownLoad">
+		<property name="fileGroup">
+			<list>
+				<ref bean="downFile0" />
+				<ref bean="downFile1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 上传文件0 -->
+	<bean id="upFile0" class="com.dcits.galaxy.ftp.GroupFileForUpload$FileForUpload">
+		<property name="conf" ref="ftp"/>
+		<property name="ftpDir" value="${galaxy.ftp.upload.file0.ftpDir}"/>
+		<property name="localDir" value="${galaxy.ftp.upload.file0.localDir}"/>
+		<property name="file" value="${galaxy.ftp.upload.file0.file}"/>
+	</bean>
+
+	<!-- 下载文件1 -->
+	<bean id="upFile1" class="com.dcits.galaxy.ftp.GroupFileForUpload$FileForUpload">
+		<property name="conf" ref="ftp"/>
+		<property name="ftpDir" value="${galaxy.ftp.upload.file1.ftpDir}"/>
+		<property name="localDir" value="${galaxy.ftp.upload.file1.localDir}"/>
+		<property name="file" value="${galaxy.ftp.upload.file1.file}"/>
+	</bean>
+
+	<!-- 下载组配置 -->
+	<bean id="upLoadFileGroup0" class="com.dcits.galaxy.ftp.GroupFileForUpload">
+		<property name="fileGroup">
+			<list>
+				<ref bean="upFile0" />
+				<!-- ref bean="upFile1" /-->
+			</list>
+		</property>
+	</bean>
+</beans>

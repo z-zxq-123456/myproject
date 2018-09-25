@@ -1,0 +1,17 @@
+
+BEGIN
+   EXECUTE IMMEDIATE 'alter table BATCH_RUN_TASK add (ROW_COUNT                 NUMBER)';
+EXCEPTION
+   WHEN OTHERS
+   THEN
+      NULL;
+END;
+/
+BEGIN
+   EXECUTE IMMEDIATE 'alter table BATCH_RUN_TASK_HIST add (ROW_COUNT                 NUMBER)';
+EXCEPTION
+   WHEN OTHERS
+   THEN
+      NULL;
+END;
+/

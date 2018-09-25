@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.galaxy.dal.demo1.entities.Employee" >
+
+	<insert id="insert" parameterType="Employee">
+		INSERT INTO EMPLOYEE (sid , employee_name , group_name , age, job)
+		VALUES( #{sid} , #{name} , #{groupName} , #{age}, #{job}) 
+	</insert>
+	
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO EMPLOYEE (sid , employee_name , group_name , age, job) VALUES
+		<foreach collection="list" item="EMPLOYEE" index="index" separator=",">
+			( #{EMPLOYEE.sid} , #{EMPLOYEE.name} , #{EMPLOYEE.groupName} , #{EMPLOYEE.age}, #{EMPLOYEE.job})
+		</foreach>
+	</insert>  
+	
+	<delete id="delete" parameterType="Employee">
+		DELETE FROM EMPLOYEE WHERE sid = #{sid}
+	</delete>
+
+	<delete id="deleteBatch" parameterType="java.util.List">
+		DELETE FROM EMPLOYEE WHERE sid IN
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.sid}
+		</foreach> 
+    </delete>
+    
+    <select id="queryBatch"  resultType="Employee" parameterType="java.util.List">
+		SELECT * FROM EMPLOYEE WHERE sid IN
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.sid}
+		</foreach> 
+    </select>
+    
+	<select id="findByCondition" resultType="Employee" parameterType="Employee">
+		select * FROM EMPLOYEE WHERE group_name = #{groupName}
+	</select>
+	
+	<select id="findMax" resultType="Employee" parameterType="Employee">
+		select max(sid) as sid from EMPLOYEE
+	</select>
+	
+	<select id="findAll" resultType="Employee" parameterType="Employee">
+		select * from EMPLOYEE where sid > #{sid}
+	</select>
+
+	<select id="findOne" resultType="Employee" parameterType="Employee">
+		select * from EMPLOYEE where sid=#{sid}
+	</select>
+	  
+	<select id="findMin" resultType="Employee" parameterType="Employee">
+		select min(sid) as sid from EMPLOYEE
+	</select>
+	
+	<select id="findCount" resultType="int" parameterType="Employee">
+		select count(sid) as sid from EMPLOYEE
+	</select>
+	
+	<select id="findSum" resultType="Employee" parameterType="Employee">
+		select sum(sid) as sid from EMPLOYEE
+	</select>
+	
+	<select id="findMulti" resultType="hashmap" parameterType="Employee">
+		select max(sid) as max, min(sid) as min ,sum(sid) as sum,count(sid) as count from EMPLOYEE
+	</select>
+	
+	<select id="findOrderBy" resultType="Employee" parameterType="Employee">
+		select sid , employee_name  , group_name , age, job from EMPLOYEE order by age,group_name desc
+	</select>
+	
+	<select id="findPage" resultType="Employee" parameterType="ParameterWrapper">
+		select * from EMPLOYEE where sid<![CDATA[>]]>#{baseParam.sid} order by sid ,age,group_name desc
+	</select>
+	
+	<select id="findPageOffset" resultType="hashmap" parameterType="ParameterWrapper">
+		select count(*) as shard_page_offset  from EMPLOYEE 
+		where 
+			( sid<![CDATA[>]]>#{baseParam.sid} ) and ( ( age<![CDATA[<]]>#{extParam.age} ) or
+		    ( age<![CDATA[=]]>#{extParam.age} and group_name<![CDATA[>]]>#{extParam.groupName}) ) 
+		
+	</select>
+	
+	<update id="update" parameterType="Employee">
+		UPDATE EMPLOYEE
+		<set>
+			<if test="job!=null">
+				job = #{job}
+			</if>
+		</set>
+		WHERE sid = #{sid}
+	</update>
+	
+</mapper>

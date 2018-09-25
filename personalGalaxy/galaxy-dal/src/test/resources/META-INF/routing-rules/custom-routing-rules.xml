@@ -1,0 +1,30 @@
+<rules>
+	<!-- 以下为通用规则 -->
+	<rule>
+		<namespace>com.dcits.galaxy.dal.demo.entities.Custom</namespace>
+		<shardingExpression>hash.apply(customId) == 1</shardingExpression>
+		<shards>partition1</shards>
+	</rule>
+
+	<rule>
+		<namespace>com.dcits.galaxy.dal.demo.entities.Custom</namespace>
+		<shardingExpression>hash.apply(customId) == 0</shardingExpression>
+		<shards>partition2</shards>
+	</rule>
+	<!-- 以上为通用规则 -->
+
+	<!-- 以下为特殊规则 -->
+	<rule>
+		<sqlmaps>
+			<sqlmap>com.dcits.galaxy.dal.demo.entities.Custom.findTotal</sqlmap>
+			<sqlmap>com.dcits.galaxy.dal.demo.entities.Custom.findPageTotal
+			</sqlmap>
+			<sqlmap>com.dcits.galaxy.dal.demo.entities.Custom.findConverge
+			</sqlmap>
+			<sqlmap>com.dcits.galaxy.dal.demo.entities.Custom.findOrderBy
+			</sqlmap>
+			<sqlmap>com.dcits.galaxy.dal.demo.entities.Custom.findPage</sqlmap>
+		</sqlmaps>
+		<shards>partition1,partition2</shards>
+	</rule>
+</rules>

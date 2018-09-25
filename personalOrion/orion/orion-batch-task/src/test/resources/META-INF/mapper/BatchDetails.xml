@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.orion.batch.dao.BatchDao1">
+
+    <select id="getTable" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from   #{TABLE,jdbcType=VARCHAR}
+    </select>
+    <insert id="insertBatchStatus" parameterType="java.util.Map">
+        insert into BATCH_STATUS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="RUN_DATE != null">
+                RUN_DATE,
+            </if>
+            <if test="BATCH_CLASS != null">
+                BATCH_CLASS,
+            </if>
+            <if test="BATCH_STATUS != null">
+                BATCH_STATUS,
+            </if>
+            <if test="STOP_BATCH != null">
+                STOP_BATCH,
+            </if>
+            <if test="START_TIME != null">
+                START_TIME,
+            </if>
+            <if test="END_TIME != null">
+                END_TIME,
+            </if>
+            <if test="BATCH_IND != null">
+                BATCH_IND,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="RUN_DATE != null">
+                #{RUN_DATE,jdbcType=VARCHAR},
+            </if>
+            <if test="BATCH_CLASS != null">
+                #{BATCH_CLASS,jdbcType=VARCHAR},
+            </if>
+            <if test="BATCH_STATUS != null">
+                #{BATCH_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="STOP_BATCH != null">
+                #{STOP_BATCH,jdbcType=VARCHAR},
+            </if>
+            <if test="START_TIME != null">
+                #{START_TIME,jdbcType=VARCHAR},
+            </if>
+            <if test="END_TIME != null">
+                #{END_TIME,jdbcType=VARCHAR},
+            </if>
+            <if test="BATCH_IND != null">
+                #{BATCH_IND,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateBatchStatus" parameterType="java.util.Map">
+        UPDATE BATCH_STATUS
+        <set>
+            BATCH_STATUS = #{BATCH_STATUS},
+            STOP_BATCH = #{STOP_BATCH},
+            START_TIME = #{START_TIME},
+            END_TIME = #{END_TIME},
+            BATCH_IND=#{BATCH_IND}
+        </set>
+        where BATCH_CLASS = #{BATCH_CLASS}
+    </update>
+    <delete id="deleteBatchStatus" parameterType="java.util.Map">
+        DELETE FROM BATCH_STATUS
+    </delete>
+    <select id="getBatchStatus" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_STATUS where BATCH_CLASS = #{BATCH_CLASS}
+    </select>
+    <select id="getStdJob" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_STD_JOB where JOB_ID = #{JOB_ID}
+    </select>
+    <select id="getStdJobs" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_STD_JOB where BATCH_CLASS = #{BATCH_CLASS}
+    </select>
+    <insert id="insertRunJob" parameterType="java.util.Map">
+        insert into BATCH_RUN_JOB
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                JOB_ID,
+            </if>
+            <if test="JOB_STATUS != null">
+                JOB_STATUS,
+            </if>
+            <if test="SPLIT_CNT != null">
+                SPLIT_CNT,
+            </if>
+            <if test="COMPLATE_CNT != null">
+                COMPLATE_CNT,
+            </if>
+            <if test="STRAT_TIME != null">
+                STRAT_TIME,
+            </if>
+            <if test="END_TIME != null">
+                END_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                #{JOB_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="JOB_STATUS != null">
+                #{JOB_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="SPLIT_CNT != null">
+                #{SPLIT_CNT,jdbcType=INTEGER},
+            </if>
+            <if test="COMPLATE_CNT != null">
+                #{COMPLATE_CNT,jdbcType=INTEGER},
+            </if>
+            <if test="STRAT_TIME != null">
+                #{STRAT_TIME,jdbcType=VARCHAR},
+            </if>
+            <if test="END_TIME != null">
+                #{END_TIME,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteRunJob" parameterType="java.util.Map">
+        DELETE FROM BATCH_RUN_JOB WHERE JOB_ID = #{JOB_ID}
+    </delete>
+    <delete id="deleteRunJobs" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_RUN_JOB
+        WHERE
+        JOB_ID IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_STD_JOB
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+    </delete>
+    <update id="updateRunJob" parameterType="java.util.Map">
+        UPDATE BATCH_RUN_JOB
+        <set>
+            JOB_STATUS = #{JOB_STATUS},
+            SPLIT_CNT = #{SPLIT_CNT},
+            FINISH_CNT = #{FINISH_CNT},
+            START_TIME = #{START_TIME},
+            END_TIME = #{END_TIME}
+        </set>
+        where JOB_ID=#{JOB_ID}
+    </update>
+    <select id="getToRunJobs" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        *
+        FROM
+        BATCH_run_job rj,
+        BATCH_std_job sj
+        WHERE
+        rj.JOB_ID = sj.JOB_ID
+        AND rj.JOB_ID NOT IN (
+        SELECT
+        fjd.DESCENDENT
+        FROM
+        BATCH_job_dependency fjd,
+        BATCH_std_job fsj
+        LEFT JOIN BATCH_run_job frj ON fsj.JOB_ID = frj.JOB_ID
+        WHERE
+        fjd.PREDECESSOR = fsj.JOB_ID
+        AND ((
+        fjd.DEPENDENCY_TYPE = 'S'
+        AND (frj.JOB_STATUS IN ('N', 'P', 'K')
+        OR frj.JOB_STATUS IS NULL)
+        OR (
+        fjd.DEPENDENCY_TYPE = 'P'
+        AND frj.JOB_STATUS IN ('N', 'P', 'K')
+        ))
+        )
+        )
+        AND rj.JOB_STATUS = 'N'
+        AND sj.BATCH_CLASS = #{BATCH_CLASS}
+    </select>
+    <select id="getRunJob" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_RUN_JOB where JOB_ID = #{JOB_ID}
+    </select>
+    <select id="getNoFinishJobCnt" parameterType="java.util.Map" resultType="java.util.Map">
+        select count(1) CNT from BATCH_RUN_JOB where JOB_STATUS not in('S','A','M') and JOB_ID in (select JOB_ID from
+        BATCH_std_job where BATCH_CLASS = #{BATCH_CLASS})
+    </select>
+    <select id="getRunningJobs" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_RUN_JOB where JOB_ID in (select JOB_ID from BATCH_std_job where BATCH_CLASS =
+        #{BATCH_CLASS}) and JOB_STATUS in('P','K')
+    </select>
+    <insert id="insertRunTask" parameterType="java.util.Map">
+        insert into BATCH_RUN_TASK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="TASK_ID != null">
+                TASK_ID,
+            </if>
+            <if test="JOB_ID != null">
+                JOB_ID,
+            </if>
+            <if test="TASK_STATUS != null">
+                TASK_STATUS,
+            </if>
+            <if test="SEQ_NO != null">
+                SEQ_NO,
+            </if>
+            <if test="START_ROW != null">
+                START_ROW,
+            </if>
+            <if test="END_ROW != null">
+                END_ROW,
+            </if>
+            <if test="SCHEMA_ID != null">
+                SCHEMA_ID,
+            </if>
+            <if test="NODE_IP != null">
+                NODE_IP,
+            </if>
+            <if test="ERROR_DESC != null">
+                ERROR_DESC,
+            </if>
+            <if test="START_TIME != null">
+                START_TIME,
+            </if>
+            <if test="END_TIME != null">
+                END_TIME,
+            </if>
+            <if test="SPLIT_JOB_ID != null">
+                SPLIT_JOB_ID,
+            </if>
+            <if test="SYSTEM_ID != null">
+                SYSTEM_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="TASK_ID != null">
+                #{TASK_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="JOB_ID != null">
+                #{JOB_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="TASK_STATUS != null">
+                #{TASK_STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="SEQ_NO != null">
+                #{SEQ_NO,jdbcType=INTEGER},
+            </if>
+            <if test="START_ROW != null">
+                #{START_ROW,jdbcType=INTEGER},
+            </if>
+            <if test="END_ROW != null">
+                #{END_ROW,jdbcType=INTEGER},
+            </if>
+            <if test="SCHEMA_ID != null">
+                #{SCHEMA_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="NODE_IP != null">
+                #{NODE_IP,jdbcType=VARCHAR},
+            </if>
+            <if test="ERROR_DESC != null">
+                #{ERROR_DESC,jdbcType=VARCHAR},
+            </if>
+            <if test="START_TIME != null">
+                #{START_TIME,jdbcType=VARCHAR},
+            </if>
+            <if test="END_TIME != null">
+                #{END_TIME,jdbcType=VARCHAR},
+            </if>
+            <if test="SPLIT_JOB_ID != null">
+                #{SPLIT_JOB_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="SYSTEM_ID != null">
+                #{SYSTEM_ID,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteAllRunTask" parameterType="java.util.Map">
+        DELETE FROM BATCH_RUN_TASK WHERE JOB_ID in
+        (select JOB_ID from BATCH_std_job where BATCH_CLASS = #{BATCH_CLASS}) or
+        SPLIT_JOB_ID in
+        (select JOB_ID from BATCH_std_job where BATCH_CLASS = #{BATCH_CLASS})
+    </delete>
+    <update id="updateRunTask" parameterType="java.util.Map">
+        UPDATE BATCH_RUN_TASK
+        <set>
+            TASK_STATUS = #{TASK_STATUS},
+            START_ROW = #{START_ROW},
+            END_ROW = #{END_ROW},
+            NODE_IP = #{NODE_IP},
+            ERROR_DESC = #{ERROR_DESC},
+            START_TIME = #{START_TIME},
+            END_TIME = #{END_TIME},
+            APP_ID = #{APP_ID},
+            TASK_IND = #{TASK_IND}
+        </set>
+        WHERE TASK_ID = #{TASK_ID}
+    </update>
+    <select id="getRunTasks" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_RUN_TASK where JOB_ID = #{JOB_ID}
+    </select>
+    <select id="getRunTask" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_RUN_TASK where TASK_ID = #{TASK_ID}
+    </select>
+    <select id="getToRunTasks" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_RUN_TASK where TASK_STATUS = 'N'
+        and
+        (
+        JOB_ID in (select JOB_ID from BATCH_std_job where BATCH_CLASS = #{BATCH_CLASS})
+        or
+        SPLIT_JOB_ID in (select JOB_ID from BATCH_std_job where BATCH_CLASS = #{BATCH_CLASS})
+        )
+    </select>
+    <select id="getRunningTasks" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        *
+        FROM
+        BATCH_RUN_TASK
+        WHERE
+        TASK_STATUS = 'R'
+        AND APP_ID IS NOT NULL
+        AND JOB_ID IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+    </select>
+    <select id="getFinishTaskCnt" parameterType="java.util.Map" resultType="java.util.Map">
+        select count(1) CNT from BATCH_RUN_TASK where TASK_STATUS in('S','A','M') and JOB_ID = #{JOB_ID}
+    </select>
+    <select id="getACnt" parameterType="java.util.Map" resultType="java.util.Map">
+        select count(1) CNT from BATCH_RUN_TASK where TASK_STATUS = 'A' and JOB_ID = #{JOB_ID}
+    </select>
+    <select id="getMCnt" parameterType="java.util.Map" resultType="java.util.Map">
+        select count(1) CNT from BATCH_RUN_TASK where TASK_STATUS = 'M' and JOB_ID = #{JOB_ID}
+    </select>
+    <select id="getJobSplitParam" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_JOB_SPLIT_PARAM where JOB_ID = #{JOB_ID}
+    </select>
+    <select id="testRowCount" parameterType="java.util.Map" resultType="java.util.Map">
+        select ROW_COUNT ROW_COUNT from test_split
+    </select>
+
+    <select id="getFmSystem" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from fm_system
+    </select>
+
+
+    <!--以下是图形化配置用到的-->
+
+    <select id="getBatchList" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from BATCH_DEF where BATCH_CLASS != 'COMM'
+    </select>
+
+
+    <insert id="insertJob" parameterType="java.util.Map">
+        insert into BATCH_STD_JOB
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                JOB_ID,
+            </if>
+            <if test="JOB_NAME != null">
+                JOB_NAME,
+            </if>
+            <if test="BATCH_CLASS != null">
+                BATCH_CLASS,
+            </if>
+            <if test="JOB_TYPE != null">
+                JOB_TYPE,
+            </if>
+            <if test="JOB_DESC != null">
+                JOB_DESC,
+            </if>
+            <if test="MODULE_ID != null">
+                MODULE_ID,
+            </if>
+            <if test="SYSTEM_ID != null">
+                SYSTEM_ID,
+            </if>
+            <if test="DAY_END != null">
+                DAY_END,
+            </if>
+            <if test="WEEK_END != null">
+                WEEK_END,
+            </if>
+            <if test="MTH_END != null">
+                MTH_END,
+            </if>
+            <if test="YR_END != null">
+                YR_END,
+            </if>
+            <if test="IS_SKIP != null">
+                IS_SKIP,
+            </if>
+            <if test="GX_CLASS_NAME != null">
+                GX_CLASS_NAME,
+            </if>
+            <if test="GX_METHOD != null">
+                GX_METHOD,
+            </if>
+            <if test="STATIC_PARAM != null">
+                STATIC_PARAM,
+            </if>
+            <if test="SHARD_MANAGER_ID != null">
+                SHARD_MANAGER_ID,
+            </if>
+            <if test="BY_SCHEMA != null">
+                BY_SCHEMA,
+            </if>
+            <if test="IS_SPLIT != null">
+                IS_SPLIT,
+            </if>
+            <if test="STATUS != null">
+                STATUS,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                #{JOB_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="JOB_NAME != null">
+                #{JOB_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="BATCH_CLASS != null">
+                #{BATCH_CLASS,jdbcType=VARCHAR},
+            </if>
+            <if test="JOB_TYPE != null">
+                #{JOB_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="JOB_DESC != null">
+                #{JOB_DESC,jdbcType=VARCHAR},
+            </if>
+            <if test="MODULE_ID != null">
+                #{MODULE_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="SYSTEM_ID != null">
+                #{SYSTEM_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="DAY_END != null">
+                #{DAY_END,jdbcType=VARCHAR},
+            </if>
+            <if test="WEEK_END != null">
+                #{WEEK_END,jdbcType=VARCHAR},
+            </if>
+            <if test="MTH_END != null">
+                #{MTH_END,jdbcType=VARCHAR},
+            </if>
+            <if test="YR_END != null">
+                #{YR_END,jdbcType=VARCHAR},
+            </if>
+            <if test="IS_SKIP != null">
+                #{IS_SKIP,jdbcType=VARCHAR},
+            </if>
+            <if test="GX_CLASS_NAME != null">
+                #{GX_CLASS_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="GX_METHOD != null">
+                #{GX_METHOD,jdbcType=VARCHAR},
+            </if>
+            <if test="STATIC_PARAM != null">
+                #{STATIC_PARAM,jdbcType=VARCHAR},
+            </if>
+            <if test="SHARD_MANAGER_ID != null">
+                #{SHARD_MANAGER_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="BY_SCHEMA != null">
+                #{BY_SCHEMA,jdbcType=VARCHAR},
+            </if>
+            <if test="IS_SPLIT != null">
+                #{IS_SPLIT,jdbcType=VARCHAR},
+            </if>
+            <if test="STATUS != null">
+                #{STATUS,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertJobPos" parameterType="java.util.Map">
+        insert into BATCH_JOB_POS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                JOB_ID,
+            </if>
+            <if test="TOP_POS != null">
+                TOP_POS,
+            </if>
+            <if test="LEFT_POS != null">
+                LEFT_POS,
+            </if>
+            <if test="WIDTH != null">
+                WIDTH,
+            </if>
+            <if test="HEIGHT != null">
+                HEIGHT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                #{JOB_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="TOP_POS != null">
+                #{TOP_POS,jdbcType=VARCHAR},
+            </if>
+            <if test="LEFT_POS != null">
+                #{LEFT_POS,jdbcType=VARCHAR},
+            </if>
+            <if test="WIDTH != null">
+                #{WIDTH,jdbcType=VARCHAR},
+            </if>
+            <if test="HEIGHT != null">
+                #{HEIGHT,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertLine" parameterType="java.util.Map">
+        insert into BATCH_JOB_DEPENDENCY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="DESCENDENT != null">
+                DESCENDENT,
+            </if>
+            <if test="PREDECESSOR != null">
+                PREDECESSOR,
+            </if>
+            <if test="DEPENDENCY_TYPE != null">
+                DEPENDENCY_TYPE,
+            </if>
+            <if test="STATUS != null">
+                STATUS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="DESCENDENT != null">
+                #{DESCENDENT,jdbcType=VARCHAR},
+            </if>
+            <if test="PREDECESSOR != null">
+                #{PREDECESSOR,jdbcType=VARCHAR},
+            </if>
+            <if test="DEPENDENCY_TYPE != null">
+                #{DEPENDENCY_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="STATUS != null">
+                #{STATUS,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertLineType" parameterType="java.util.Map">
+        insert into BATCH_JOB_LINE_TYPE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="DESCENDENT != null">
+                DESCENDENT,
+            </if>
+            <if test="PREDECESSOR != null">
+                PREDECESSOR,
+            </if>
+            <if test="LINE_TYPE != null">
+                LINE_TYPE,
+            </if>
+            <if test="M_VALUE != null">
+                M_VALUE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="DESCENDENT != null">
+                #{DESCENDENT,jdbcType=VARCHAR},
+            </if>
+            <if test="PREDECESSOR != null">
+                #{PREDECESSOR,jdbcType=VARCHAR},
+            </if>
+            <if test="LINE_TYPE != null">
+                #{LINE_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="M_VALUE != null">
+                #{M_VALUE,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteLine" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_JOB_DEPENDENCY
+        WHERE
+        DESCENDENT = #{DESCENDENT}
+        AND
+        PREDECESSOR=#{PREDECESSOR}
+    </delete>
+
+    <delete id="deleteLineType" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_JOB_LINE_TYPE
+        WHERE
+        DESCENDENT = #{DESCENDENT}
+        AND
+        PREDECESSOR=#{PREDECESSOR}
+    </delete>
+
+
+    <delete id="deleteLines" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_JOB_DEPENDENCY
+        WHERE
+        DESCENDENT IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+    </delete>
+
+    <delete id="deleteLineTypes" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_JOB_LINE_TYPE
+        WHERE
+        DESCENDENT IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+    </delete>
+
+
+
+
+    <delete id="deleteJobs" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS}
+    </delete>
+
+
+    <select id="getLines" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        SELECT
+        fjd.*, LINE_TYPE,
+        M_VALUE
+        FROM
+        BATCH_JOB_DEPENDENCY fjd
+        LEFT OUTER JOIN BATCH_JOB_LINE_TYPE fjlt ON fjd.DESCENDENT = fjlt.DESCENDENT
+        AND fjd.PREDECESSOR = fjlt.PREDECESSOR
+        WHERE
+        fjd.DESCENDENT IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+        AND fjd.PREDECESSOR IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+
+    </select>
+
+    <select id="getJobs" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        SELECT
+        *
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS}
+    </select>
+
+
+    <select id="getJobPos" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        SELECT
+        bsj.JOB_ID,
+        bjp.TOP_POS,
+        bjp.LEFT_POS,
+        bjp.WIDTH,
+        bjp.HEIGHT
+        FROM
+        BATCH_std_job bsj
+        LEFT OUTER JOIN BATCH_JOB_POS bjp ON bsj.JOB_ID = bjp.JOB_ID
+        WHERE
+        bsj.BATCH_CLASS = #{BATCH_CLASS}
+
+    </select>
+
+    <select id="getJobSplit" parameterType="java.util.Map"
+            resultType="java.util.Map">
+
+        SELECT *
+        FROM
+        BATCH_JOB_SPLIT_PARAM
+        WHERE
+        JOB_ID IN (
+        SELECT
+        JOB_ID
+        FROM
+        BATCH_std_job
+        WHERE
+        BATCH_CLASS = #{BATCH_CLASS})
+
+    </select>
+
+    <insert id="insertJobSplit" parameterType="java.util.Map">
+        insert into BATCH_JOB_SPLIT_PARAM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                JOB_ID,
+            </if>
+            <if test="SPLIT_CLASS != null">
+                SPLIT_CLASS,
+            </if>
+            <if test="SPLIT_TYPE != null">
+                SPLIT_TYPE,
+            </if>
+            <if test="SPLIT_CNT != null and SPLIT_CNT!=''">
+                SPLIT_CNT,
+            </if>
+            <if test="MAX_PER_SPLIT != null and MAX_PER_SPLIT != ''">
+                MAX_PER_SPLIT,
+            </if>
+            <if test="NAMESPACE != null">
+                NAMESPACE,
+            </if>
+            <if test="SQL_ID != null">
+                SQL_ID,
+            </if>
+            <if test="FILE_PATH != null">
+                FILE_PATH,
+            </if>
+            <if test="FILE_NAME != null">
+                FILE_NAME,
+            </if>
+            <if test="FILE_FORMAT != null">
+                FILE_FORMAT,
+            </if>
+            <if test="FILE_ROW_NAME != null">
+                FILE_ROW_NAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="JOB_ID != null">
+                #{JOB_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="SPLIT_CLASS != null">
+                #{SPLIT_CLASS,jdbcType=VARCHAR},
+            </if>
+            <if test="SPLIT_TYPE != null">
+                #{SPLIT_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="SPLIT_CNT != null and SPLIT_CNT!=''">
+                #{SPLIT_CNT,jdbcType=INTEGER},
+            </if>
+            <if test="MAX_PER_SPLIT != null and MAX_PER_SPLIT != ''">
+                #{MAX_PER_SPLIT,jdbcType=INTEGER},
+            </if>
+            <if test="NAMESPACE != null">
+                #{NAMESPACE,jdbcType=VARCHAR},
+            </if>
+            <if test="SQL_ID != null">
+                #{SQL_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="FILE_PATH != null">
+                #{FILE_PATH,jdbcType=VARCHAR},
+            </if>
+            <if test="FILE_NAME != null">
+                #{FILE_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="FILE_FORMAT != null">
+                #{FILE_FORMAT,jdbcType=VARCHAR},
+            </if>
+            <if test="FILE_ROW_NAME != null">
+                #{FILE_ROW_NAME,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateJobPos" parameterType="java.util.Map">
+        UPDATE BATCH_JOB_POS
+        <set>
+            JOB_ID = #{JOB_ID}
+        </set>
+        where JOB_ID = #{OLD_JOB_ID}
+    </update>
+
+    <update id="updateJobLineFrom" parameterType="java.util.Map">
+        UPDATE BATCH_JOB_LINE_TYPE
+        <set>
+            PREDECESSOR = #{JOB_ID}
+        </set>
+        where PREDECESSOR = #{OLD_JOB_ID}
+    </update>
+
+    <update id="updateJobLineTo" parameterType="java.util.Map">
+        UPDATE BATCH_JOB_LINE_TYPE
+        <set>
+            DESCENDENT = #{JOB_ID}
+        </set>
+        where DESCENDENT = #{OLD_JOB_ID}
+    </update>
+
+    <update id="updateJobDependencyFrom" parameterType="java.util.Map">
+        UPDATE BATCH_JOB_DEPENDENCY
+        <set>
+            PREDECESSOR = #{JOB_ID}
+        </set>
+        where PREDECESSOR = #{OLD_JOB_ID}
+    </update>
+
+    <update id="updateJobDependencyTo" parameterType="java.util.Map">
+        UPDATE BATCH_JOB_DEPENDENCY
+        <set>
+            DESCENDENT = #{JOB_ID}
+        </set>
+        where DESCENDENT = #{OLD_JOB_ID}
+    </update>
+
+
+    <delete id="deleteJobSplit" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_JOB_SPLIT_PARAM
+        WHERE
+        JOB_ID = #{OLD_JOB_ID}
+    </delete>
+    <delete id="deleteJob" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_STD_JOB
+        WHERE
+        JOB_ID = #{OLD_JOB_ID}
+    </delete>
+
+    <delete id="deleteJobPos" parameterType="java.util.Map">
+        DELETE
+        FROM
+        BATCH_JOB_POS
+        WHERE
+        JOB_ID =#{OLD_JOB_ID}
+    </delete>
+
+    <select id="getRunjobs" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        bsj.*, brj.JOB_STATUS,
+        brj.SPLIT_CNT,
+        brj.FINISH_CNT,
+        brj.START_TIME,
+        bjp.TOP_POS,
+        bjp.LEFT_POS,
+        bjp.WIDTH,
+        bjp.HEIGHT,
+        (
+        SELECT
+        count(1)
+        FROM
+        batch_run_task
+        WHERE
+        JOB_ID = brj.JOB_ID
+        AND TASK_STATUS = 'F'
+        )
+        FAIL_CNT,
+        (
+        SELECT
+        count(1)
+        FROM
+        batch_run_task
+        WHERE
+        SPLIT_JOB_ID = brj.JOB_ID
+        AND TASK_STATUS = 'F'
+        )
+        SPLIT_FAIL_CNT
+        FROM
+        batch_std_job bsj,
+        batch_run_job brj
+        LEFT JOIN batch_job_pos bjp ON bjp.JOB_ID = brj.JOB_ID
+        WHERE
+        brj.JOB_ID = bsj.JOB_ID
+        AND bsj.BATCH_CLASS = 'MAIN'
+    </select>
+
+    <select id="getRunJobLines" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        fjd.*, LINE_TYPE,
+        M_VALUE
+        FROM
+        BATCH_JOB_DEPENDENCY fjd
+        LEFT OUTER JOIN BATCH_JOB_LINE_TYPE fjlt ON fjd.DESCENDENT = fjlt.DESCENDENT
+        AND fjd.PREDECESSOR = fjlt.PREDECESSOR
+        WHERE
+        fjd.DESCENDENT IN (
+        SELECT
+        brj.JOB_ID
+        FROM
+        BATCH_std_job bsj,
+        batch_run_job brj
+        WHERE
+        brj.JOB_ID = bsj.JOB_ID
+        AND bsj.BATCH_CLASS = #{BATCH_CLASS})
+        AND fjd.PREDECESSOR IN (
+        SELECT
+        brj.JOB_ID
+        FROM
+        BATCH_std_job bsj,
+        batch_run_job brj
+        WHERE
+        brj.JOB_ID = bsj.JOB_ID
+        AND bsj.BATCH_CLASS = #{BATCH_CLASS})
+    </select>
+
+
+
+
+
+
+    <select id="selectTask" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM batch_run_task
+    </select>
+
+
+    <select id="selectMbTranHist" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM (
+        SELECT
+        rth.seq_no,
+        rth.REFERENCE tran_reference,
+        IFNULL(rth.EVENT_TYPE,'ALL') tran_event_type,
+        rth.branch tran_branch,
+        rth.tran_date,
+        rth.ccy tran_ccy,
+        IFNULL(rth.SOURCE_MODULE,'ALL') SOURCE_MODULE,
+        IFNULL(rth.BUSINESS_UNIT,'ALL') BUSINESS_UNIT,
+        IFNULL(rth.amt_type,'ALL') amt_type,
+        rth.TRAN_AMT amount,
+        IFNULL(rth.PROD_TYPE,'ALL') PROD_TYPE,
+        rth.BASE_ACCT_NO ,
+        rth.BRANCH ,
+        IFNULL(rth.PROFIT_CENTRE,'99') profit_centre,
+        IFNULL(rth.tran_status,'A') tran_status,
+        IFNULL(rth.ACCT_CCY,'ALL') ccy,
+        IFNULL(rth.client_type,'ALL') client_type,
+        rth.CLIENT_NO client_no,
+        IFNULL(rth.TRACE_ID,'ENSEMBLE') system_id,
+        IFNULL(source_type,'ALL') source_type,
+        IFNULL(rth.reversal,'N' ) reversal,
+        rth.narrative,
+        if(rth.AMT_TYPE='PRI',rth.tran_amt,null) priAmt,
+        if(rth.AMT_TYPE='INT',rth.tran_amt,null) intAmt,
+        if(rth.AMT_TYPE='ODP',rth.TRAN_AMT,null) odpAmt,
+        if(rth.AMT_TYPE='ODI',rth.TRAN_AMT,null) odiAmt
+        FROM
+        mb_tran_hist rth
+        where rth.EVENT_TYPE='WTD1' and rth.TRAN_AMT=5
+        ) temp
+
+    </select>
+
+    <insert id="insertTest" parameterType="java.util.List">
+        insert into test_task_record(task_id) values (#{TASK_ID})
+
+    </insert>
+
+    <select id="testCount" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT COUNT(1) ROW_COUNT
+        FROM irl_acct ia,irl_after_acct_int iai
+        WHERE ia.internal_key=iai.internal_key
+        AND (ia.acct_status != 'C' or (ia.acct_status = 'C' and ia.acct_close_date = #{runDate}))
+        AND iai.system_id = 'ENS'
+    </select>
+
+
+    <select id="mySqlSplit" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        MIN(internal_key) START_ROW,
+        MAX(internal_key) END_ROW
+        FROM
+        (
+        SELECT
+        internal_key + 0 internal_key,
+        @rownum :=@rownum + 1 AS rownum
+        FROM
+        mb_acct,
+        (SELECT @rownum := 0) t
+        ORDER BY
+        internal_key + 0
+        ) tt
+        GROUP BY
+        FLOOR(tt.rownum / #{maxPerCount})
+    </select>
+
+
+    <select id="split"  parameterType="ParameterWrapper">
+        SELECT seq_no
+        FROM GL_TRAN_HIST
+        ORDER BY seq_no
+    </select>
+
+
+    <!--<select id="split_count"  parameterType="xxxx"  resultType="java.lang.Long">-->
+        <!--select count(1)  from-->
+        <!--(-->
+        <!--SELECT seq_no-->
+        <!--FROM GL_TRAN_HIST-->
+        <!--ORDER BY seq_no)-->
+    <!--</select>-->
+    <!--<select id="splitSql"  parameterType="xxxx">-->
+        <!--<if test="_databaseId == 'mysql'">-->
+            <!--SELECT-->
+            <!--MIN(base_acct_no) START_KEY,-->
+            <!--MAX(base_acct_no) END_KEY-->
+            <!--FROM-->
+            <!--(-->
+            <!--SELECT-->
+            <!--seq_no,-->
+            <!--@rownum :=@rownum + 1 AS rownum-->
+            <!--FROM-->
+            <!--FROM GL_TRAN_HIST,-->
+            <!--(SELECT @rownum := 0) t-->
+            <!--ORDER BY-->
+            <!--seq_no-->
+            <!--) tt-->
+            <!--GROUP BY-->
+            <!--FLOOR(-->
+            <!--tt.rownum /#{maxPerCount} )-->
+
+        <!--</if>-->
+        <!--<if test="_databaseId == 'oracle'">-->
+            <!--SELECT   MIN (internal_key) START_ROW, MAX (internal_key) END_ROW-->
+            <!--FROM   (-->
+            <!--SELECT seq_no-->
+            <!--FROM GL_TRAN_HIST-->
+            <!--ORDER BY seq_no)-->
+            <!--GROUP BY   TRUNC (ROWNUM / 100) order by START_ROW-->
+        <!--</if>-->
+
+    <!--</select>-->
+
+
+
+
+    <select id="oracleSplit" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT   MIN (internal_key) START_ROW, MAX (internal_key) END_ROW
+        FROM   (  SELECT   TO_NUMBER (internal_key) internal_key,rownum
+        FROM   mb_acct
+        ORDER BY   TO_NUMBER (internal_key))
+        GROUP BY   TRUNC (ROWNUM / 100) order by START_ROW
+    </select>
+
+
+
+    <select id="splitByKey" parameterType="java.util.Map" resultType="java.util.Map">
+
+        <if test="_databaseId == 'mysql'">
+            SELECT
+            MIN(base_acct_no) START_KEY,
+            MAX(base_acct_no) END_KEY
+            FROM
+            (
+            SELECT
+            base_acct_no base_acct_no,
+            @rownum :=@rownum + 1 AS rownum
+            FROM
+            mb_acct,
+            (SELECT @rownum := 0) t
+            ORDER BY
+            base_acct_no
+            ) tt
+            GROUP BY
+            FLOOR(
+            tt.rownum /#{maxPerCount} )
+
+        </if>
+        <if test="_databaseId == 'oracle'">
+        </if>
+
+    </select>
+
+
+
+
+
+
+
+
+    <insert id="batchInsert">
+    <![CDATA[
+	insert into irl_after_acct_int
+             (internal_key, int_class, agg, int_amt, int_num_days,
+             int_rem_days, int_start_date, is_int, int_type, actual_rate,
+             float_rate, real_rate, spread_rate, spread_percent, int_appl_type,
+             next_roll_date, last_roll_date, roll_freq, roll_day, cycle_period_freq,
+             cycle_int_day, next_cycle_date, last_cycle_date, last_accr_date, int_accrued,
+             int_adj_ctd, int_adj, int_accrued_ctd, int_posted, int_posted_ctd,
+             tax_type, tax_rate, tax_accrued_ctd, tax_accrued, tax_posted_ctd,
+             company,system_id)
+            select
+            substr(internal_key,4), int_class, agg, int_amt, int_num_days,
+             int_rem_days, int_start_date, is_int, int_type, actual_rate,
+             float_rate, real_rate, spread_rate, spread_percent, int_appl_type,
+             next_roll_date, last_roll_date, roll_freq, roll_day, cycle_period_freq,
+             cycle_int_day, next_cycle_date, last_cycle_date, last_accr_date, int_accrued,
+             int_adj_ctd, int_adj, int_accrued_ctd, int_posted, int_posted_ctd,
+             tax_type, tax_rate, tax_accrued_ctd, tax_accrued, tax_posted_ctd,
+             company,substr(internal_key,1,3)
+             from irl_acct_int
+             where internal_key In (select internal_key from irl_acct where acct_status !='C')
+	]]>
+    </insert>
+
+
+    <update id="updateBatchTest" parameterType="java.util.Map">
+        UPDATE TEST_BATCH
+        <set>
+            CHAR_COL1 = #{CHAR_COL1},
+            CHAR_COL2 = #{CHAR_COL2}
+        </set>
+        where INT_COL = #{INT_COL}
+    </update>
+
+
+
+    <delete id="truncate" parameterType="java.util.Map">
+        alter table fw_tran_info truncate partition ${partition}
+    </delete>
+
+    <delete id="deleteTestBatch" parameterType="java.util.Map">
+        DELETE from test_batch
+    </delete>
+
+
+    <update id="insertTestBatch" parameterType="java.util.Map">
+        insert into TEST_BATCH(INT_COL,CHAR_COL1,CHAR_COL2) values(#{INT_COL},#{CHAR_COL1},#{CHAR_COL2})
+    </update>
+
+    <select id="splitTestForIfp" parameterType="java.util.Map" resultType="java.util.Map">
+    <![CDATA[select count(1) ROW_COUNT from EA_ACCT ea,EA_ACCT_BALANCE
+        eab
+        where (ea.acct_status != 'C' OR (ea.acct_status = 'C' and
+        ea.acct_close_date=#{lastRunDate}))
+        and
+        ea.internal_key=eab.internal_key and
+        eab.last_change_date >=
+        decode('Y','Y',eab.last_change_date,#{lastRunDate}) ]]>
+    </select>
+
+    <select id="splitTestForIfp1" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT   MIN (seq_no) START_KEY, MAX (seq_no) END_KEY
+        FROM   (  SELECT   seq_no
+        FROM   GL_TRAN_HIST
+        ORDER BY   seq_no)
+        GROUP BY   TRUNC ( (ROWNUM - 1) / #{maxPerCount})
+        ORDER BY   START_KEY
+    </select>
+
+
+    <select id="testForIfp1" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT   *
+        FROM   GL_TRAN_HIST where seq_no between #{START_KEY} and #{END_KEY}
+    </select>
+
+
+
+
+
+
+</mapper>

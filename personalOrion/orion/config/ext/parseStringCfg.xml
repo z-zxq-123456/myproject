@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parseStringCfg>
+    <type name="double" beanId="parseStringTest"/>
+    <type name="java.lang.Double" beanId="parseStringTest"/>
+</parseStringCfg>
+

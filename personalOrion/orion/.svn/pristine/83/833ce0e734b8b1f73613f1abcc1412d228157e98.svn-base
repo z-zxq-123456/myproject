@@ -1,0 +1,14 @@
+##
+# Copyright 2013-2014 DIGITAL CHINA INFORMATION SERVICE COMPANY LTD.
+#
+##
+#galaxy.container=log4j,spring
+
+galaxy.application.name=galaxy-batch
+galaxy.application.group=galaxy-batch
+#galaxy.registry.address=zookeeper://192.168.165.216:2181
+galaxy.registry.address=zookeeper://127.0.0.1:2181
+#galaxy.registry.address=zookeeper://192.168.165.216:2181?backup=192.168.165.219:2181,192.168.165.218:2181
+galaxy.protocol.name=dubbo
+galaxy.protocol.port=20885
+

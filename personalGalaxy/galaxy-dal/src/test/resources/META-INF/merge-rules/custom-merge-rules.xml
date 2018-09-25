@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merge-rules>
+	<merge-rule>
+		<sqlMap>com.dcits.galaxy.dal.demo.entities.Custom.findTotal</sqlMap>
+		<merger bean="aggregateMerger">
+			<columns>
+				<column alias="TOTAL" aggregate="count"/>
+			</columns>
+			<properties/>
+		</merger>
+	</merge-rule>
+	
+	<merge-rule>
+		<sqlMap>com.dcits.galaxy.dal.demo.entities.Custom.findConverge</sqlMap>
+		<merger bean="aggregateMerger">
+			<columns>
+				<column>MIN_AGE</column>
+				<column>MAX_AGE</column>
+				<column>AMT</column>
+				<column alias="MIN_AGE" aggregate="min"/>
+				<column alias="MAX_AGE" aggregate="max"/>
+				<column alias="AMT" aggregate="sum"/>
+			</columns>
+			<properties/>
+		</merger>
+	</merge-rule>
+	
+	<merge-rule>
+		<sqlMap>com.dcits.galaxy.dal.demo.entities.Custom.findOrderBy</sqlMap>
+		<merger bean="orderByMerger">
+			<columns>
+				<column alias="CUSTOM_ID" desc="false"/>
+				<column alias="AGE" desc="true"/>
+			</columns>
+			<properties/>
+		</merger>
+	</merge-rule>
+  
+	<merge-rule>
+		<sqlMap>com.dcits.galaxy.dal.demo.entities.Custom.findPage</sqlMap>
+		<proactor bean="pageProactor">
+			<columns>
+				<column alias="CUSTOM_ID" desc="false"/>
+			</columns>
+			<properties>
+				<property name="shard_page_offset_statement" value="com.dcits.galaxy.dal.demo.entities.Custom.findPageOffset" />
+				<property name="shard_page_offset_column"  value="num" />
+			</properties>
+		</proactor>
+	</merge-rule>
+	<merge-rule>
+		<sqlMap>com.dcits.galaxy.dal.demo.entities.Custom.findPageTotal</sqlMap>
+		<merger bean="aggregateMerger">
+			<columns>
+				<column alias="TOTAL" aggregate="sum"/>
+			</columns>
+			<properties/>
+		</merger>
+	</merge-rule>
+</merge-rules>
+

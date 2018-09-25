@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileformat name="formatExample" encoding="UTF-8">
+
+    <head sep="F" headind="H" >
+        <field name="HEAD" length="1" trim="Y"/>
+        <field name="SYSTEM_ID" length="8" trim="Y" type="int"/>
+        <field name="ROWCOUNT" length="8" trim="Y" type="int"/>
+        <field name="RUNDATE" length="8" trim="Y"/>
+    </head>
+
+    <body sep="S" sepby="@|$" bodyind="B" class="rb.eod.Tran">
+        <field name="BODY" trim="Y"/>
+        <field name="BASE_ACCT_NO" trim="Y"/>
+        <field name="ACCT_TYPE" trim="Y"/>
+        <field name="CCY" trim="Y"/>
+        <field name="AMOUNT"  type="double" format="+9,999,999,999,999,999.99"/>
+    </body>
+
+    <tail sep="F" tailind="T">
+        <field name="TAIL" length="1"/>
+        <field name="TOTAL_AMOUNT" length="25" type="double" format="+9,999,999,999,999,999.99"/>
+    </tail>
+</fileformat>

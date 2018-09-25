@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.orion.batch.service.BatchTableLoad">
+    <select id="selectRowCount" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT  count(1) ROW_COUNT
+        FROM batch_param_table_def
+        WHERE DATA_SOURCE = #{STATIC_PARAM}
+    </select>
+
+    <select id="selectJobDemoRowCount" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT  #{STATIC_PARAM}  ROW_COUNT
+        FROM dual
+    </select>
+    <select id="selectCommitData" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from batch_to_commit where TASK_ID = #{TASK_ID} and GROUP_ID = #{GROUP_ID}
+    </select>
+    <select id="getIdempoent" parameterType="java.util.Map" resultType="java.util.Map">
+        select * from stateinfo where ID = #{IDEM_ID}
+    </select>
+    <delete id="deleteCommitData" parameterType="java.util.Map">
+        delete from batch_to_commit where TASK_ID=#{TASK_ID}
+    </delete>
+</mapper>

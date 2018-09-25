@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileConvert name="excelFormatExample" type="excel" encoding="UTF-8" sheetName="Sheet1">
+    <head>
+        <field name="HEAD"  trim="Y"/>
+        <field name="SYSTEM_ID" trim="Y"/>
+        <field name="ROWCOUNT" trim="Y"/>
+        <field name="RUNDATE" trim="Y"/>
+    </head>
+    <body>
+        <field name="BODY" trim="Y"/>
+        <field name="BASE_ACCT_NO" trim="Y"/>
+        <field name="ACCT_TYPE" trim="Y"/>
+        <field name="CCY" trim="Y"/>
+        <field name="AMOUNT" type="double"/>
+    </body>
+    <tail>
+        <field name="TOTAL_AMOUNT"/>
+    </tail>
+</fileConvert>

@@ -1,0 +1,75 @@
+{
+    "SYS_HEAD": {
+        "BRANCH_ID": "1001",
+        "CUSTOMER_ID": "",
+        "DEST_BRANCH_NO": "",
+        "MODULE_ID": "RB",
+        "SEQ_NO": "1231231",
+        "SERVICE_CODE": "Financial",
+		"MESSAGE_TYPE": "1000",
+		"MESSAGE_CODE": "0101",
+		"USER_LANG": "CHINESE",
+        "SOURCE_BRANCH_NO": "",
+        "SOURCE_TYPE": "MT",
+        "TRAN_DATE": "20130125",
+        "TRAN_TIMESTAMP": "172023004",
+        "USER_ID": "CP0025",
+        "AUTH_FLAG":"N",
+        "AUTH_USER_ID":"",
+        "WS_ID": "",
+        "TRAN_CODE": "3101",
+        "TRAN_TYPE": "2131",
+        "SERVER_ID":"127.0.0.1",
+        "PROGRAM_ID":"RB31",
+        "SOURCE_MODULE":"RB"
+    },
+    "BODY": {
+        "BASE_ACCT_NO": "9901201000000026",
+        "CCY": "CNY",
+        "ACCT_TYPE": "201",
+        "EFFECT_DATE": "20130125",
+        "INPUT_BAL_TYPE": "CA",
+        "CLIENT_NO": "1000000006",
+        "PB_FLAG": "Y",
+        "NARRATIVE": "测试报文RB31提交服务,储物\"PB_FLAG\":adsfad_JDFj",
+        "TRAN_AMT": 500,
+        "SERV_DETAIL":[ {
+                    "SERV_TYPE": "S01",
+                    "SERV_TRAN_TYPE": "A1D1",
+                    "SERV_CCY": "CNY",
+                    "SERV_AMT": 10,
+                    "SERV_BO_IND": "O",
+                    "SERV_CONS": "",
+                    "CHARGE_TYPE": "A",
+                    "SERV_GL_CODE": "001",
+                    "PROFIT_CENTRE": "07",
+                    "TEST":[
+                        {
+                            "T1":"AA44",
+                            "T2":"AA33",
+                            "T3":"AA22",
+                            "T4":"AA11",
+                        }
+                    ]
+         },{
+                     "SERV_TYPE": "S02",
+                     "SERV_TRAN_TYPE": "A1D1",
+                     "SERV_CCY": "CNY",
+                     "SERV_AMT": 10,
+                     "SERV_BO_IND": "O",
+                      "SERV_CONS": "",
+                      "CHARGE_TYPE": "A",
+                      "SERV_GL_CODE": "001",
+                      "PROFIT_CENTRE": "07",
+                       "TEST":[
+                           {
+                               "T1":"bb44",
+                               "T2":"bb33",
+                               "T3":"bb22",
+                               "T4":"bb11",
+                           }
+                       ]
+                  }],
+        "POST_DATE": "20130125"
+    }
+}

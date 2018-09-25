@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connections>
+	<connection>
+		<description>存放Job执行结果状态数据库</description>
+		<connection_name>JobLog</connection_name>
+		<connection_url>jdbc:mysql://localhost:3306/job?characterEncoding=UTF-8</connection_url>
+		<jdbc_driver>com.mysql.jdbc.Driver</jdbc_driver>
+		<user_name>job</user_name>
+		<pass_word>/sDYtZJKKOI=</pass_word>
+	</connection>
+	
+	<connection>
+		<description>水平库1</description>
+		<connection_name>ensemble_level1</connection_name>
+		<connection_url>jdbc:mysql://slave5:3306/ensemble_level1</connection_url>
+		<jdbc_driver>com.mysql.jdbc.Driver</jdbc_driver>
+		<user_name>root</user_name>	
+		<pass_word>yD8qnQdyUDs=</pass_word>
+		<max_connections>0</max_connections>
+	</connection>
+	<connection>
+		<description>水平库2</description>
+		<connection_name>ensemble_level2</connection_name>
+		<connection_url>jdbc:mysql://slave6:3306/ensemble_level2</connection_url>
+		<jdbc_driver>com.mysql.jdbc.Driver</jdbc_driver>
+		<user_name>root</user_name>	
+		<pass_word>yD8qnQdyUDs=</pass_word>
+		<max_connections>0</max_connections>
+	</connection>
+	<connection>
+		<description>水平库2</description>
+		<connection_name>post</connection_name>
+		<connection_url>jdbc:mysql://192.168.165.220:3306/ensemble_level3</connection_url>
+		<jdbc_driver>com.mysql.jdbc.Driver</jdbc_driver>
+		<user_name>root</user_name>
+		<pass_word>yD8qnQdyUDs=</pass_word>
+		<max_connections>0</max_connections>
+	</connection>
+
+</connections>

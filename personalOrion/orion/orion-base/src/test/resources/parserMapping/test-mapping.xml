@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE mappings SYSTEM "http://www.dcits.com/xml/dtd/parserMapping.dtd">-->
+<mappings useMapping="global">
+    <mapping id="Financial-9999-0101">
+        <in ref="[in]">
+            <map name="BODY" ref="[in][BODY]" remove="SERV_DETAIL,SERV_DETAIL1">
+                <list name="SERR" alias="SERV_DETAIL" source="[in][BODY][SERV_DETAIL]" ref="#SERV_DETAIL" index="index" remove="AMOUNT">
+                    <item name="SEO_NO">#index+1</item>
+                    <item name="BASE_ACCT_NO">[in][BODY][SERV_DETAIL1][#index][BASE_ACCT_NO]</item>
+                </list>
+                <if test="[in][BODY][SER] != null">
+                    <item name="SEO_NO">'0'</item>
+                </if>
+                <if test="[in][BODY][SER] == null">
+                    <item name="SEO_NO">'1'</item>
+                </if>
+            </map>
+        </in>
+    </mapping>
+    <mapping id="Financial-9999-0102" useMapping="common">
+        <in ref="[in]">
+        </in>
+        <out ref="[out]">
+        </out>
+    </mapping>
+    <mapping id="Financial-9999-0103" useMapping="global">
+        <in ref="[in]">
+        </in>
+        <out ref="[out]">
+        </out>
+    </mapping>
+    <mapping id="Financial-9999-0104">
+        <in ref="[in]">
+        </in>
+        <out ref="[out]">
+        </out>
+    </mapping>
+    <mapping id="Financial-9999-0105" useMapping="">
+        <in ref="[in]">
+        </in>
+        <out ref="[out]">
+        </out>
+    </mapping>
+    <mapping id="Financial-9999-0106" useMapping="global">
+        <in ref="[in]" useMapping="">
+            <map name="BODY" ref="[in][BODY]" remove="ACCT_NO">
+                <item name="BASE_ACCT_NO">[in][BODY][ACCT_NO]</item>
+            </map>
+        </in>
+        <out ref="[out]" useMapping="">
+            <map name="BODY" ref="[in][BODY]" remove="BASE_ACCT_NO">
+                <item name="ACCT_NO">[in][BODY][BASE_ACCT_NO]</item>
+            </map>
+        </out>
+    </mapping>
+
+</mappings>
