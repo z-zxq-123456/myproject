@@ -16,9 +16,13 @@ public interface MySqlSession {
 
     int delete(String statement);
 
-    <T>List<T> selectList(T t);
+    <T>List<T> selectList(String statement);
 
-    <T>List<T> selectOne(T t);
+    <T>List<T> selectOne(String statement);
+
+    <T>List<T> selectList(String statement,Object parament);
+
+    <T>List<T> selectOne(String statement,Object parament);
 
     int update(String statement);
 
