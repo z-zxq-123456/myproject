@@ -45,7 +45,7 @@ public class MyDefaultSqlSession implements MySqlSession {
     public <T> List<T> selectList(String statement, Object parament) {
       try{
           MyMappedStatement mms = configuration.getMappedStatement(statement);
-          return null;
+          return executor.doQuery(mms,parament);
       }catch (Exception e){
           throw new RuntimeException("error in select list");
       }

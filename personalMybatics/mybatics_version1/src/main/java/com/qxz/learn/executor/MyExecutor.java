@@ -3,6 +3,7 @@ package com.qxz.learn.executor;
 import com.qxz.learn.exception.MySqlException;
 import com.qxz.learn.mapping.MyMappedStatement;
 
+import java.sql.SQLException;
 import java.util.List;
 /**
  * @Description :
@@ -17,7 +18,7 @@ public interface MyExecutor {
 
     void rollback(boolean required) throws MySqlException;
 
-    List doQuery(String boundSql) throws MySqlException;
+    <E> List<E> doQuery(MyMappedStatement ms, Object parameter) throws SQLException,MySqlException;
 
     int update(MyMappedStatement mappedStatement,Object params) throws MySqlException;
 }

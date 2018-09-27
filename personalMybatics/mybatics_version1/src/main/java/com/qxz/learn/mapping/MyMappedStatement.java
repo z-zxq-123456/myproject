@@ -1,6 +1,9 @@
 package com.qxz.learn.mapping;
 
 import com.qxz.learn.configuration.MyConfiguration;
+import com.qxz.learn.scripting.MyLanguageDriver;
+
+import java.util.List;
 
 /**
  * @Description :
@@ -19,6 +22,9 @@ public class MyMappedStatement {
     private String[] keyProperites;
     private String[] keyColumns;
     private boolean hasNestedResultMaps;
+    private MySqlSource sqlSource;
+    private MyStatementType statementType;
+    private MyLanguageDriver lang;
 
     public String getId() {
         return id;
@@ -98,5 +104,38 @@ public class MyMappedStatement {
 
     public void setHasNestedResultMaps(boolean hasNestedResultMaps) {
         this.hasNestedResultMaps = hasNestedResultMaps;
+    }
+
+    public MySqlSource getSqlSource() {
+        return sqlSource;
+    }
+
+    public void setSqlSource(MySqlSource sqlSource) {
+        this.sqlSource = sqlSource;
+    }
+
+    public MyStatementType getStatementType() {
+        return statementType;
+    }
+
+    public void setStatementType(MyStatementType statementType) {
+        this.statementType = statementType;
+    }
+
+    public MyLanguageDriver getLang() {
+        return lang;
+    }
+
+    public void setLang(MyLanguageDriver lang) {
+        this.lang = lang;
+    }
+
+    public MyBoundSql getBoundSql(Object parameterObject){
+        MyBoundSql boundSql = sqlSource.getBoundSql(parameterObject);
+        List<MyParameterMapping> parameterMappings = boundSql.getMyParameterMappings();
+        if (parameterMappings == null || parameterMappings.isEmpty()){
+            boundSql = new MyBoundSql(boundSql.getSql(),parameterObject,parameterMappings);
+        }
+        return boundSql;
     }
 }
