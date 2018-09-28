@@ -7,7 +7,7 @@ import com.qxz.learn.session.MyResultContext;
  * @Author :zhouxqh
  * @Date : Create on 2018/9/27
  */
-public interface MyResultHandler {
+public interface MyResultHandler<T> {
 
-    void handleResult(MyResultContext context);
+    void handleResult(MyResultContext<? extends T> context);
 }

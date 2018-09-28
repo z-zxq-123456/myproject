@@ -2,6 +2,7 @@ package com.qxz.learn.mapping;
 
 import com.qxz.learn.configuration.MyConfiguration;
 import com.qxz.learn.type.MyJdbcType;
+import com.qxz.learn.type.MyTypeHandler;
 
 import java.util.List;
 import java.util.Set;
@@ -25,7 +26,12 @@ public class MyResultMapping {
     private boolean lazy;
     private String columnPrefix;
     private String nestedResultMapId;
+    private MyTypeHandler typeHandler;
 
+
+    public MyTypeHandler getTypeHandler() {
+        return typeHandler;
+    }
 
     public MyConfiguration getConfiguration() {
         return configuration;

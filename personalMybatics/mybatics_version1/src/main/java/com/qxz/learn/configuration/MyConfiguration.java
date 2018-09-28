@@ -55,6 +55,10 @@ public class MyConfiguration {
         return resultMaps.get(id);
     }
 
+    public boolean hasResultMap(String id){
+        return resultMaps.containsKey(id);
+    }
+
     public boolean isUseColumnLabel() {
         return useColumnLabel;
     }

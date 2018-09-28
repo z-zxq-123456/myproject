@@ -28,8 +28,10 @@ public class MyResultSetWrapper {
     private Map<String, List<String>> mappedColumnNamesMap = new HashMap<String, List<String>>();
     private Map<String, List<String>> unMappedColumnNamesMap = new HashMap<String, List<String>>();
 
+
     public MyResultSetWrapper(MyConfiguration configuration, ResultSet resultSet) throws SQLException{
         this.configuration = configuration;
+        this.resultSet = resultSet;
         final ResultSetMetaData metaData = resultSet.getMetaData();
         final int columnCount = metaData.getColumnCount();
         for (int i = 0; i < columnCount; i++){
@@ -39,5 +41,31 @@ public class MyResultSetWrapper {
         }
     }
 
+    public MyConfiguration getConfiguration() {
+        return configuration;
+    }
 
+    public ResultSet getResultSet() {
+        return resultSet;
+    }
+
+    public List<String> getColumnNames() {
+        return columnNames;
+    }
+
+    public List<String> getClassNames() {
+        return classNames;
+    }
+
+    public List<MyJdbcType> getJdbcTypes() {
+        return jdbcTypes;
+    }
+
+    public Map<String, List<String>> getMappedColumnNamesMap() {
+        return mappedColumnNamesMap;
+    }
+
+    public Map<String, List<String>> getUnMappedColumnNamesMap() {
+        return unMappedColumnNamesMap;
+    }
 }

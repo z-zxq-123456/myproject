@@ -25,4 +25,8 @@ public class MyDefaultResultHandler implements MyResultHandler {
     public void handleResult(MyResultContext context) {
 
     }
+
+    public List<Object> getResultList() {
+        return list;
+    }
 }

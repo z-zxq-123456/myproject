@@ -20,7 +20,11 @@ public class MyResultMap {
     private List<MyResultMapping> idResultMappings;
     private List<MyResultMapping> constructorResultMappings;
     private List<MyResultMapping> propertyResultMappings;
+    private MyDiscriminator discriminator;
 
+    public MyDiscriminator getDiscriminator() {
+        return discriminator;
+    }
 
     public String getId() {
         return id;
