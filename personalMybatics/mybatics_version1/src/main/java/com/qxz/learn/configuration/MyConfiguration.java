@@ -6,12 +6,15 @@ import com.qxz.learn.executor.MyDefaultResultSetHandler;
 import com.qxz.learn.executor.MyExecutor;
 import com.qxz.learn.executor.MyResultSetHandler;
 import com.qxz.learn.executor.MySimpleExecutor;
+import com.qxz.learn.factory.MyDefaultObjectFactory;
+import com.qxz.learn.factory.MyObjectFactory;
 import com.qxz.learn.mapping.MyBoundSql;
 import com.qxz.learn.mapping.MyEnvironment;
 import com.qxz.learn.mapping.MyMappedStatement;
+import com.qxz.learn.mapping.MyResultMap;
 import com.qxz.learn.parameter.MyParameterHandler;
 import com.qxz.learn.session.MySqlSession;
-import com.qxz.learn.statement.MyResultHandler;
+import com.qxz.learn.result.MyResultHandler;
 import com.qxz.learn.statement.MyRoutingStatementHandler;
 import com.qxz.learn.statement.MyStatementHandler;
 
@@ -30,6 +33,35 @@ public class MyConfiguration {
     private Map<String,MyMappedStatement>  mappedStatement = new HashMap<>();
     protected Integer defaultStatementTimeout;
     protected Integer defaultFetchSize;
+    protected boolean useColumnLabel = true;
+    protected MyObjectFactory objectFactory = new MyDefaultObjectFactory();
+
+    protected final Map<String, MyResultMap> resultMaps = new StrictMap<>("Result Maps collection");
+
+
+    public MyObjectFactory getObjectFactory() {
+        return objectFactory;
+    }
+
+    public void setObjectFactory(MyObjectFactory objectFactory) {
+        this.objectFactory = objectFactory;
+    }
+
+    public void addResultMap(MyResultMap rm) {
+        resultMaps.put(rm.getId(), rm);
+    }
+
+    public MyResultMap getResultMap(String id) {
+        return resultMaps.get(id);
+    }
+
+    public boolean isUseColumnLabel() {
+        return useColumnLabel;
+    }
+
+    public void setUseColumnLabel(boolean useColumnLabel) {
+        this.useColumnLabel = useColumnLabel;
+    }
 
     public Integer getDefaultStatementTimeout() {
         return defaultStatementTimeout;
@@ -96,5 +128,29 @@ public class MyConfiguration {
     public MyResultSetHandler newResultSetHandler(MyExecutor executor,MyMappedStatement mappedStatement,MyParameterHandler parameterHandler,MyResultHandler resultHandler,MyBoundSql boundSql){
         MyResultSetHandler resultSetHandler = new MyDefaultResultSetHandler(executor,mappedStatement,parameterHandler,resultHandler,boundSql);
         return resultSetHandler;
+    }
+
+    protected static class StrictMap<V> extends HashMap<String,V>{
+        private static final long serialVersionUID = -4950446264854982944L;
+        private final String name;
+
+        public StrictMap(int initialCapacity, float loadFactor, String name) {
+            super(initialCapacity, loadFactor);
+            this.name = name;
+        }
+
+        public StrictMap(int initialCapacity, String name) {
+            super(initialCapacity);
+            this.name = name;
+        }
+
+        public StrictMap(String name) {
+            this.name = name;
+        }
+
+        public StrictMap(Map<? extends String, ? extends V> m, String name) {
+            super(m);
+            this.name = name;
+        }
     }
 }

@@ -62,4 +62,15 @@ public class MyErrorContext {
         LOCAL.remove();
         return this;
     }
+
+    public MyErrorContext activity(String activity){
+        this.activity = activity;
+        return this;
+    }
+
+    public MyErrorContext object(String obj){
+        this.object = obj;
+        return this;
+    }
+
 }

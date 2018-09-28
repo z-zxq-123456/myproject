@@ -5,7 +5,7 @@ import com.qxz.learn.executor.MyExecutor;
 import com.qxz.learn.mapping.MyBoundSql;
 import com.qxz.learn.mapping.MyMappedStatement;
 import com.qxz.learn.parameter.MyParameterHandler;
-import com.qxz.learn.session.MySqlSession;
+import com.qxz.learn.result.MyResultHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;

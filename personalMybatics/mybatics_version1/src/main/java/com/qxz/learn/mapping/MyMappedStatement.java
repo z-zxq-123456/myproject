@@ -25,6 +25,9 @@ public class MyMappedStatement {
     private MySqlSource sqlSource;
     private MyStatementType statementType;
     private MyLanguageDriver lang;
+    private List<MyResultMap> resultMaps;
+
+
 
     public String getId() {
         return id;
@@ -128,6 +131,10 @@ public class MyMappedStatement {
 
     public void setLang(MyLanguageDriver lang) {
         this.lang = lang;
+    }
+
+    public List<MyResultMap> getResultMaps() {
+        return resultMaps;
     }
 
     public MyBoundSql getBoundSql(Object parameterObject){
