@@ -17,6 +17,7 @@ import com.qxz.learn.session.MySqlSession;
 import com.qxz.learn.result.MyResultHandler;
 import com.qxz.learn.statement.MyRoutingStatementHandler;
 import com.qxz.learn.statement.MyStatementHandler;
+import com.qxz.learn.type.MyTypeHandlerRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,7 @@ public class MyConfiguration {
     protected Integer defaultFetchSize;
     protected boolean useColumnLabel = true;
     protected MyObjectFactory objectFactory = new MyDefaultObjectFactory();
+    protected MyTypeHandlerRegistry typeHandlerRegistry = new MyTypeHandlerRegistry();
 
     protected final Map<String, MyResultMap> resultMaps = new StrictMap<>("Result Maps collection");
 
@@ -132,6 +134,14 @@ public class MyConfiguration {
     public MyResultSetHandler newResultSetHandler(MyExecutor executor,MyMappedStatement mappedStatement,MyParameterHandler parameterHandler,MyResultHandler resultHandler,MyBoundSql boundSql){
         MyResultSetHandler resultSetHandler = new MyDefaultResultSetHandler(executor,mappedStatement,parameterHandler,resultHandler,boundSql);
         return resultSetHandler;
+    }
+
+    public MyTypeHandlerRegistry getTypeHandlerRegistry() {
+        return typeHandlerRegistry;
+    }
+
+    public void setTypeHandlerRegistry(MyTypeHandlerRegistry typeHandlerRegistry) {
+        this.typeHandlerRegistry = typeHandlerRegistry;
     }
 
     protected static class StrictMap<V> extends HashMap<String,V>{
