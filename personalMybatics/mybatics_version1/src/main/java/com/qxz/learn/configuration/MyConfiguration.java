@@ -18,6 +18,7 @@ import com.qxz.learn.result.MyResultHandler;
 import com.qxz.learn.statement.MyRoutingStatementHandler;
 import com.qxz.learn.statement.MyStatementHandler;
 import com.qxz.learn.type.MyTypeHandlerRegistry;
+import org.apache.ibatis.session.AutoMappingBehavior;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +40,7 @@ public class MyConfiguration {
     protected MyTypeHandlerRegistry typeHandlerRegistry = new MyTypeHandlerRegistry();
 
     protected final Map<String, MyResultMap> resultMaps = new StrictMap<>("Result Maps collection");
+    protected AutoMappingBehavior autoMappingBehavior = AutoMappingBehavior.PARTIAL;
 
 
     public MyObjectFactory getObjectFactory() {
@@ -47,6 +49,14 @@ public class MyConfiguration {
 
     public void setObjectFactory(MyObjectFactory objectFactory) {
         this.objectFactory = objectFactory;
+    }
+
+    public AutoMappingBehavior getAutoMappingBehavior() {
+        return autoMappingBehavior;
+    }
+
+    public void setAutoMappingBehavior(AutoMappingBehavior autoMappingBehavior) {
+        this.autoMappingBehavior = autoMappingBehavior;
     }
 
     public void addResultMap(MyResultMap rm) {

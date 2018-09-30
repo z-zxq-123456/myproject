@@ -23,7 +23,7 @@ public class MyDefaultResultHandler implements MyResultHandler {
 
     @Override
     public void handleResult(MyResultContext context) {
-
+        list.add(context.getResultObject());
     }
 
     public List<Object> getResultList() {

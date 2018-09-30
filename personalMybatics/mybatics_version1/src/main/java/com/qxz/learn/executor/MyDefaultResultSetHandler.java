@@ -11,7 +11,9 @@ import com.qxz.learn.result.MyResultHandler;
 import com.qxz.learn.session.MyDefaultResultContext;
 import com.qxz.learn.type.MyTypeHandler;
 import com.qxz.learn.type.MyTypeHandlerRegistry;
+import org.apache.ibatis.session.AutoMappingBehavior;
 
+import java.lang.reflect.Constructor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -144,14 +146,14 @@ public class MyDefaultResultSetHandler implements MyResultSetHandler {
         }
     }
 
-    private Object getRowValue(MyResultSetWrapper rsw,MyResultMap resultMap){
+    private Object getRowValue(MyResultSetWrapper rsw,MyResultMap resultMap)throws SQLException{
         //final ResultLoaderMap lazyLoader = new ResultLoaderMap();TODO ignored ResultLoaderMap
         Object resultObject = createResultObject(rsw, resultMap, null);
         //TODO ignored type handler
         return resultObject;
     }
 
-    private Object createResultObject(MyResultSetWrapper rsw,MyResultMap resultMap,String columnPrefix){
+    private Object createResultObject(MyResultSetWrapper rsw,MyResultMap resultMap,String columnPrefix)throws SQLException{
         final List<Class<?>> constructorArgsTypes = new ArrayList<>();
         final List<Object> constructorArgs = new ArrayList<>();
         final Object resultObject = createResultObject(rsw,resultMap,constructorArgsTypes,constructorArgs,columnPrefix);
@@ -196,16 +198,77 @@ public class MyDefaultResultSetHandler implements MyResultSetHandler {
         return typeHandler.getResult(rsw.getResultSet(), columnName);
     }
 
-    private Object createParameterizedResultObject(MyResultSetWrapper rsw,Class resultType,List<MyResultMapping> constructorMappings,List<Class<?>> constructorArgsTypes,List<Object> constructorArgs, String columnPrefix){
-
+    private Object createParameterizedResultObject(MyResultSetWrapper rsw,
+                                                   Class resultType,
+                                                   List<MyResultMapping> constructorMappings,
+                                                   List<Class<?>> constructorArgsTypes,List<Object> constructorArgs, String columnPrefix){
+        boolean foundValues = false;
+        for (MyResultMapping constructorMapping : constructorMappings) {
+            final Class<?> parameterType = constructorMapping.getJavaType();
+            final String column = constructorMapping.getColumn();
+            final Object value;
+            try {
+                //TODO ignored nested constructorMapping
+               /* if (constructorMapping.getNestedQueryId() != null) {
+                    value = getNestedQueryConstructorValue(rsw.getResultSet(), constructorMapping, columnPrefix);
+                } else if (constructorMapping.getNestedResultMapId() != null) {
+                    final MyResultMap resultMap = configuration.getResultMap(constructorMapping.getNestedResultMapId());
+                    value = getRowValue(rsw, resultMap);
+                } else {*/
+                    final MyTypeHandler<?> typeHandler = constructorMapping.getTypeHandler();
+                    value = typeHandler.getResult(rsw.getResultSet(), prependPrefix(column, columnPrefix));
+//                }
+            }catch (SQLException e) {
+                throw new MyExecutorException("Could not process result for mapping: " + constructorMapping, e);
+            }
+            constructorArgsTypes.add(parameterType);
+            constructorArgs.add(value);
+            foundValues = value != null || foundValues;
+        }
+        return foundValues ? objectFactory.create(resultType, constructorArgsTypes, constructorArgs) : null;
     }
+
 
     private boolean shouldApplyAutomaticMappings(MyResultMap resultMap,boolean isNested){
+        if (resultMap.getAutoMapping() != null){
+            return resultMap.getAutoMapping();
+        }else {
+            if (isNested){
+                return AutoMappingBehavior.FULL == configuration.getAutoMappingBehavior();
+            }else {
+                return AutoMappingBehavior.NONE != configuration.getAutoMappingBehavior();
+            }
+        }
+    }
+
+    private Object createByConstructorSignature(MyResultSetWrapper rsw,Class resultType,
+                                                List<Class<?>> constructorArgsTypes,
+                                                List<Object> constructorArgs, String columnPrefix)throws SQLException{
+        for (Constructor<?> constructor:resultType.getDeclaredConstructors()){
+            if (typeNames(constructor.getParameterTypes()).equals(rsw.getClassNames())){
+               boolean foundValues = false;
+               for (int i = 0; i < constructor.getParameterTypes().length; i++){
+                   Class<?> parameterType = constructor.getParameterTypes()[i];
+                   String columnName = rsw.getColumnNames().get(i);
+                   MyTypeHandler<?> typeHandler = rsw.getTypeHandler(parameterType, columnName);
+                   Object value = typeHandler.getResult(rsw.getResultSet(), prependPrefix(columnName, columnPrefix));
+                   constructorArgsTypes.add(parameterType);
+                   constructorArgs.add(value);
+                   foundValues = value != null || foundValues;
+               }
+                return foundValues ? objectFactory.create(resultType, constructorArgsTypes, constructorArgs) : null;
+            }
+        }
+        throw new MyExecutorException("No constructor found in " + resultType.getName() + " matching " + rsw.getClassNames());
 
     }
 
-    private Object createByConstructorSignature(MyResultSetWrapper rsw,Class resultType,List<Class<?>> constructorArgsTypes,List<Object> constructorArgs, String columnPrefix){
-
+    private List<String> typeNames(Class<?>[] parameterTypes){
+        List<String> names = new ArrayList<>();
+        for (Class<?> type:parameterTypes){
+            names.add(type.getName());
+        }
+        return names;
     }
 
     private MyResultMap resolveDiscriminatedResultMap(ResultSet rs,MyResultMap resultMap,String columnPrefix)throws SQLException{
@@ -255,6 +318,7 @@ public class MyDefaultResultSetHandler implements MyResultSetHandler {
 
     }
 
+    @SuppressWarnings("unchecked")
     private List<Object> collapseSingleResultList(List multipleResults){
         return multipleResults.size() == 1 ? (List<Object>) multipleResults.get(0) : multipleResults;
     }

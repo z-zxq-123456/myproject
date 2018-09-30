@@ -1,6 +1,7 @@
 package com.qxz.learn.executor;
 
 import com.qxz.learn.configuration.MyConfiguration;
+import com.qxz.learn.io.ResourcesUtils;
 import com.qxz.learn.type.*;
 import org.apache.ibatis.type.JdbcType;
 
@@ -114,10 +115,10 @@ public class MyResultSetWrapper {
         return handler;
     }
 
-    private <T>Class<T> resolveClass(String className){
+    private Class<?> resolveClass(String className){
         try {
             if (className != null) {
-                return Resources.classForName(className);
+                return ResourcesUtils.classForName(className);
             }
         } catch (ClassNotFoundException e) {
             // ignore

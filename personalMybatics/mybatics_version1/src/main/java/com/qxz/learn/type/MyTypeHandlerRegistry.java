@@ -4,7 +4,6 @@ import java.lang.reflect.Type;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
-
 public class MyTypeHandlerRegistry {
 
 
@@ -45,7 +44,7 @@ public class MyTypeHandlerRegistry {
         }
        /* if (handler == null && type != null && type instanceof Class && Enum.class.isAssignableFrom((Class<?>) type)) {
             handler = new EnumTypeHandler((Class<?>) type);
-        }*/
+        } TODO ignored enmuTypeHandler*/
         // type drives generics here
         return (MyTypeHandler<T>) handler;
     }

@@ -27,7 +27,15 @@ public class MyResultMapping {
     private String columnPrefix;
     private String nestedResultMapId;
     private MyTypeHandler typeHandler;
+    private String nestedQueryId;
 
+    public String getNestedQueryId() {
+        return nestedQueryId;
+    }
+
+    public void setNestedQueryId(String nestedQueryId) {
+        this.nestedQueryId = nestedQueryId;
+    }
 
     public MyTypeHandler getTypeHandler() {
         return typeHandler;
