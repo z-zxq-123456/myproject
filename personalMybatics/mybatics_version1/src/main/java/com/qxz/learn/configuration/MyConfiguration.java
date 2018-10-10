@@ -17,11 +17,13 @@ import com.qxz.learn.session.MySqlSession;
 import com.qxz.learn.result.MyResultHandler;
 import com.qxz.learn.statement.MyRoutingStatementHandler;
 import com.qxz.learn.statement.MyStatementHandler;
+import com.qxz.learn.type.MyTypeAliasRegistry;
 import com.qxz.learn.type.MyTypeHandlerRegistry;
 import org.apache.ibatis.session.AutoMappingBehavior;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @Description :
@@ -38,13 +40,20 @@ public class MyConfiguration {
     protected boolean useColumnLabel = true;
     protected MyObjectFactory objectFactory = new MyDefaultObjectFactory();
     protected MyTypeHandlerRegistry typeHandlerRegistry = new MyTypeHandlerRegistry();
-
+    protected final MyTypeAliasRegistry typeAliasRegistry = new MyTypeAliasRegistry();
     protected final Map<String, MyResultMap> resultMaps = new StrictMap<>("Result Maps collection");
     protected AutoMappingBehavior autoMappingBehavior = AutoMappingBehavior.PARTIAL;
-
-
+    protected Properties variables = new Properties();
     public MyObjectFactory getObjectFactory() {
         return objectFactory;
+    }
+
+    public Properties getVariables() {
+        return variables;
+    }
+
+    public void setVariables(Properties variables) {
+        this.variables = variables;
     }
 
     public void setObjectFactory(MyObjectFactory objectFactory) {
@@ -125,6 +134,10 @@ public class MyConfiguration {
 
     public void setEnvironment(MyEnvironment environment) {
         this.environment = environment;
+    }
+
+    public MyTypeAliasRegistry getTypeAliasRegistry() {
+        return typeAliasRegistry;
     }
 
     public MyExecutor newExecutor(){

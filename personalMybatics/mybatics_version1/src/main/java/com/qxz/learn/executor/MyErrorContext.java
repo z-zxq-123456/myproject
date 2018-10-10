@@ -1,6 +1,5 @@
 package com.qxz.learn.executor;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * @Description :
@@ -9,7 +8,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
  */
 public class MyErrorContext {
 
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator","\n");
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
 
     private static final ThreadLocal<MyErrorContext> LOCAL = ThreadLocal.withInitial(MyErrorContext::instance);
 
@@ -21,33 +20,34 @@ public class MyErrorContext {
     private String sql;
     private Throwable cause;
 
+
     public MyErrorContext() {
     }
 
-    public static MyErrorContext instance(){
+    public static MyErrorContext instance() {
         MyErrorContext context = LOCAL.get();
-        if (context==null){
+        if (context == null) {
             context = new MyErrorContext();
             LOCAL.set(context);
         }
         return context;
     }
 
-    public MyErrorContext sql(String sql){
+    public MyErrorContext sql(String sql) {
         this.sql = sql;
         return this;
     }
 
-    public MyErrorContext store(){
+    public MyErrorContext store() {
         stored = this;
         LOCAL.set(new MyErrorContext());
         return LOCAL.get();
     }
 
-    public MyErrorContext reCall(){
-        if (stored!=null){
+    public MyErrorContext reCall() {
+        if (stored != null) {
             LOCAL.set(stored);
-            stored=null;
+            stored = null;
         }
         return LOCAL.get();
     }
@@ -63,14 +63,18 @@ public class MyErrorContext {
         return this;
     }
 
-    public MyErrorContext activity(String activity){
+    public MyErrorContext activity(String activity) {
         this.activity = activity;
         return this;
     }
 
-    public MyErrorContext object(String obj){
+    public MyErrorContext object(String obj) {
         this.object = obj;
         return this;
     }
 
+    public MyErrorContext source(String source) {
+        this.resource = source;
+        return this;
+    }
 }
