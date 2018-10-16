@@ -9,7 +9,7 @@ import java.util.Properties;
  */
 public interface MyInterceptor {
 
-    Object intercept(Invocation invocation) throws Throwable;
+    Object intercept(MyInvocation invocation) throws Throwable;
 
     Object plugin(Object target);
 
