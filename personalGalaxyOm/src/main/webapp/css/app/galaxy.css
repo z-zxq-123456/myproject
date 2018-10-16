@@ -1,0 +1,1542 @@
+@charset "UTF-8";
+/*
+@名称：galaxy.scss
+@功能：galaxy开发平台页面样式
+@产权：神州信息 DCITS
+*/
+label.forInput{
+  height:30px;
+  line-height:30px;
+  text-align:right;
+}
+label.forSelect2{
+  height:30px;
+  line-height:30px;
+  text-align:right;
+}
+/* line 51, d:/sass/sassCore-master/core/_mixin.scss */
+.span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 { float: left; display: inline; }
+
+/*响应式栅格系统*/
+/* line 16, ../../../sass/app/galaxy.scss */
+.row { box-sizing: border-box; }
+
+/* line 17, ../../../sass/app/galaxy.scss */
+[class^="span"], [class*="span"] { box-sizing: border-box; float: left; min-height: 5px; position: relative; }
+
+/*循环输出grid*/
+/* line 91, d:/sass/sassCore-master/core/_grid.scss */
+.span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 { margin-right: 1.96078%; *margin-right: 1.91078%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span1 { width: 6.37255%; *width: 6.32255%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span2 { width: 14.70588%; *width: 14.65588%; }
+
+.span20 { width: 90%; *width: 14.65588%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span3 { width: 23.03922%; *width: 22.98922%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span4 { width: 31.37255%; *width: 31.32255%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span5 { width: 39.70588%; *width: 39.65588%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span6 { width: 48.03922%; *width: 47.98922%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span7 { width: 56.37255%; *width: 56.32255%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span8 { width: 64.70588%; *width: 64.65588%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span9 { width: 73.03922%; *width: 72.98922%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span10 { width: 81.37255%; *width: 81.32255%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span11 { width: 89.70588%; *width: 89.65588%; }
+
+/* line 170, d:/sass/sassCore-master/core/_grid.scss */
+.span12 { width: 98.03922%; *width: 97.98922%; }
+
+/*循环输出向右偏移*/
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-1 { margin-left: 8.33333%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-1 { margin-right: 8.33333%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-2 { margin-left: 16.66667%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-2 { margin-right: 16.66667%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-3 { margin-left: 25%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-3 { margin-right: 25%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-4 { margin-left: 33.33333%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-4 { margin-right: 33.33333%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-5 { margin-left: 41.66667%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-5 { margin-right: 41.66667%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-6 { margin-left: 50%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-6 { margin-right: 50%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-7 { margin-left: 58.33333%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-7 { margin-right: 58.33333%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-8 { margin-left: 66.66667%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-8 { margin-right: 66.66667%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-9 { margin-left: 75%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-9 { margin-right: 75%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-10 { margin-left: 83.33333%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-10 { margin-right: 83.33333%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-11 { margin-left: 91.66667%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-11 { margin-right: 91.66667%; }
+
+/* line 32, ../../../sass/app/galaxy.scss */
+.span-offset-12 { margin-left: 100%; }
+
+/* line 35, ../../../sass/app/galaxy.scss */
+.span-setoff-12 { margin-right: 100%; }
+
+/*响应式处理*/
+@media screen and (max-width: 800px) { /* line 42, ../../../sass/app/galaxy.scss */
+  .responsive [class^="span-"], .responsive [class*=" span-"] { float: none !important; width: auto !important; }
+  /* line 43, ../../../sass/app/galaxy.scss */
+  .responsive [class^="span-offset"], .responsive [class*=" span-offset"] { margin-left: 0px !important; }
+  /* line 44, ../../../sass/app/galaxy.scss */
+  .responsive [class^="span-setoff"], .responsive [class*=" span-setoff"] { float: none !important; margin-right: 0px !important; } }
+@media screen and (min-width: 801px) and (max-width: 1000px) { /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-1 { margin-left: 8.33333%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-1 { float: right; margin-right: 8.33333%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-1 { left: 8.33333%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-1 { right: 8.33333%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-2 { margin-left: 16.66667%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-2 { float: right; margin-right: 16.66667%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-2 { left: 16.66667%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-2 { right: 16.66667%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-3 { margin-left: 25%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-3 { float: right; margin-right: 25%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-3 { left: 25%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-3 { right: 25%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-4 { margin-left: 33.33333%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-4 { float: right; margin-right: 33.33333%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-4 { left: 33.33333%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-4 { right: 33.33333%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-5 { margin-left: 41.66667%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-5 { float: right; margin-right: 41.66667%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-5 { left: 41.66667%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-5 { right: 41.66667%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-6 { margin-left: 50%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-6 { float: right; margin-right: 50%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-6 { left: 50%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-6 { right: 50%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-7 { margin-left: 58.33333%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-7 { float: right; margin-right: 58.33333%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-7 { left: 58.33333%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-7 { right: 58.33333%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-8 { margin-left: 66.66667%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-8 { float: right; margin-right: 66.66667%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-8 { left: 66.66667%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-8 { right: 66.66667%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-9 { margin-left: 75%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-9 { float: right; margin-right: 75%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-9 { left: 75%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-9 { right: 75%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-10 { margin-left: 83.33333%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-10 { float: right; margin-right: 83.33333%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-10 { left: 83.33333%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-10 { right: 83.33333%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-11 { margin-left: 91.66667%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-11 { float: right; margin-right: 91.66667%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-11 { left: 91.66667%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-11 { right: 91.66667%; }
+  /* line 48, ../../../sass/app/galaxy.scss */
+  .span-offset-small-12 { margin-left: 100%; }
+  /* line 51, ../../../sass/app/galaxy.scss */
+  .span-setoff-small-12 { float: right; margin-right: 100%; }
+  /* line 55, ../../../sass/app/galaxy.scss */
+  .span-push-small-12 { left: 100%; }
+  /* line 58, ../../../sass/app/galaxy.scss */
+  .span-pull-small-12 { right: 100%; } }
+@media screen and (min-width: 1001px) { /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-1 { margin-left: 8.33333%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-1 { margin-right: 8.33333%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-1 { left: 8.33333%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-1 { right: 8.33333%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-2 { margin-left: 16.66667%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-2 { margin-right: 16.66667%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-2 { left: 16.66667%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-2 { right: 16.66667%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-3 { margin-left: 25%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-3 { margin-right: 25%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-3 { left: 25%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-3 { right: 25%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-4 { margin-left: 33.33333%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-4 { margin-right: 33.33333%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-4 { left: 33.33333%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-4 { right: 33.33333%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-5 { margin-left: 41.66667%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-5 { margin-right: 41.66667%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-5 { left: 41.66667%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-5 { right: 41.66667%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-6 { margin-left: 50%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-6 { margin-right: 50%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-6 { left: 50%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-6 { right: 50%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-7 { margin-left: 58.33333%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-7 { margin-right: 58.33333%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-7 { left: 58.33333%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-7 { right: 58.33333%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-8 { margin-left: 66.66667%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-8 { margin-right: 66.66667%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-8 { left: 66.66667%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-8 { right: 66.66667%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-9 { margin-left: 75%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-9 { margin-right: 75%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-9 { left: 75%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-9 { right: 75%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-10 { margin-left: 83.33333%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-10 { margin-right: 83.33333%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-10 { left: 83.33333%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-10 { right: 83.33333%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-11 { margin-left: 91.66667%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-11 { margin-right: 91.66667%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-11 { left: 91.66667%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-11 { right: 91.66667%; }
+  /* line 65, ../../../sass/app/galaxy.scss */
+  .span-offset-large-12 { margin-left: 100%; }
+  /* line 68, ../../../sass/app/galaxy.scss */
+  .span-setoff-large-12 { margin-right: 100%; }
+  /* line 71, ../../../sass/app/galaxy.scss */
+  .span-push-large-12 { left: 100%; }
+  /* line 74, ../../../sass/app/galaxy.scss */
+  .span-pull-large-12 { right: 100%; } }
+/*清理浮动*/
+/* line 80, ../../../sass/app/galaxy.scss */
+.cl, .clearfix { zoom: 1; }
+/* line 81, ../../../sass/app/galaxy.scss */
+.cl:after, .clearfix:after { content: "\20"; display: block; height: 0; width: 0; clear: both; visibility: hidden; }
+
+/* line 91, ../../../sass/app/galaxy.scss */
+.l { float: left; }
+
+/* line 94, ../../../sass/app/galaxy.scss */
+.r { float: right; }
+
+/*面包屑导航*/
+/* line 98, ../../../sass/app/galaxy.scss */
+.breadcrumb { border-bottom: 1px solid #E6E6E6; line-height: 20px; height: 20px; padding-left: 20px; overflow: hidden; }
+/* line 104, ../../../sass/app/galaxy.scss */
+.breadcrumb span { padding: 0 5px; }
+
+/*布局*/
+/*基础样式*/
+/* line 110, ../../../sass/app/galaxy.scss */
+h1 { font-weight: 500; line-height: 1.1; color: inherit; }
+
+/* line 115, ../../../sass/app/galaxy.scss */
+h1 small, h1 .small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 125, ../../../sass/app/galaxy.scss */
+h1 small, h1 .small { font-size: 65%; }
+
+/* line 129, ../../../sass/app/galaxy.scss */
+h1 { font-size: 36px; }
+
+/* line 110, ../../../sass/app/galaxy.scss */
+h2 { font-weight: 500; line-height: 1.1; color: inherit; }
+
+/* line 115, ../../../sass/app/galaxy.scss */
+h2 small, h2 .small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 125, ../../../sass/app/galaxy.scss */
+h2 small, h2 .small { font-size: 65%; }
+
+/* line 129, ../../../sass/app/galaxy.scss */
+h2 { font-size: 30px; }
+
+/* line 110, ../../../sass/app/galaxy.scss */
+h3 { font-weight: 500; line-height: 1.1; color: inherit; }
+
+/* line 115, ../../../sass/app/galaxy.scss */
+h3 small, h3 .small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 125, ../../../sass/app/galaxy.scss */
+h3 small, h3 .small { font-size: 65%; }
+
+/* line 129, ../../../sass/app/galaxy.scss */
+h3 { font-size: 24px; }
+
+/* line 110, ../../../sass/app/galaxy.scss */
+h4 { font-weight: 500; line-height: 1.1; color: inherit; }
+
+/* line 115, ../../../sass/app/galaxy.scss */
+h4 small, h4 .small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 121, ../../../sass/app/galaxy.scss */
+h4 small, h4 .small { font-size: 75%; }
+
+/* line 129, ../../../sass/app/galaxy.scss */
+h4 { font-size: 18px; }
+
+/* line 110, ../../../sass/app/galaxy.scss */
+h5 { font-weight: 500; line-height: 1.1; color: inherit; }
+
+/* line 115, ../../../sass/app/galaxy.scss */
+h5 small, h5 .small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 121, ../../../sass/app/galaxy.scss */
+h5 small, h5 .small { font-size: 75%; }
+
+/* line 129, ../../../sass/app/galaxy.scss */
+h5 { font-size: 12px; }
+
+/* line 110, ../../../sass/app/galaxy.scss */
+h6 { font-weight: 500; line-height: 1.1; color: inherit; }
+
+/* line 115, ../../../sass/app/galaxy.scss */
+h6 small, h6 .small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 121, ../../../sass/app/galaxy.scss */
+h6 small, h6 .small { font-size: 75%; }
+
+/* line 129, ../../../sass/app/galaxy.scss */
+h6 { font-size: 6px; }
+
+/*按钮  20160119*/
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-select { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #39a9bf; border: 2px solid #39a9bf; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-select:hover { background-color: #2d8698; border: 2px solid #0d6c80; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-select.active { background-color: #0d6c80; border: 2px solid #0d6c80; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-select.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-select i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-add { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #59b359; border: 2px solid #59b359; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-add:hover { background-color: #449544; border: 2px solid #268026; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-add.active { background-color: #268026; border: 2px solid #268026; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-add.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-add i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-edit { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #ffa526; border: 2px solid #ffa526; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-edit:hover { background-color: #f28e00; border: 2px solid #b36800; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-edit.active { background-color: #b36800; border: 2px solid #b36800; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-edit.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-edit i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-del { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #e65050; border: 2px solid #e65050; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-del:hover { background-color: #e02323; border: 2px solid #991f1f; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-del.active { background-color: #991f1f; border: 2px solid #991f1f; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-del.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-del i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-sure { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #217dd9; border: 2px solid #217dd9; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-sure:hover { background-color: #1a64ad; border: 2px solid #004d99; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-sure.active { background-color: #004d99; border: 2px solid #004d99; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-sure.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-sure i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-cancle { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #a1a1a1; border: 2px solid #a1a1a1; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-cancle:hover { background-color: #888888; border: 2px solid #808080; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-cancle.active { background-color: #808080; border: 2px solid #808080; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-cancle.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-cancle i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-reset { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #4d4d4d; border: 2px solid #4d4d4d; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-reset:hover { background-color: #343434; border: 2px solid #000000; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-reset.active { background-color: #000000; border: 2px solid #000000; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-reset.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-reset i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 135, ../../../sass/app/galaxy.scss */
+.button-check { display: inline-block; height: 23px; line-height: 23px; text-decoration: none; width: auto; cursor: pointer; padding: 0 15px 0 15px; color: #ffffff; background-color: #b5b5b5; border: 2px solid #b5b5b5; font-size: 12px; font-family: Microsoft Yahei; border-radius: 5px; }
+/* line 149, ../../../sass/app/galaxy.scss */
+.button-check:hover { background-color: #9c9c9c; border: 2px solid #217dd9; }
+/* line 153, ../../../sass/app/galaxy.scss */
+.button-check.active { background-color: #217dd9; border: 2px solid #217dd9; }
+/* line 157, ../../../sass/app/galaxy.scss */
+.button-check.disabled { background-color: #acacac; border: 2px solid #acacac; cursor: not-allowed; }
+/* line 162, ../../../sass/app/galaxy.scss */
+.button-check i { width: 16px; height: 16px; margin-right: 10px; color: #ffffff; z-index: 999; }
+
+/* line 172, ../../../sass/app/galaxy.scss */
+.btnNoRadius[class*="button-"] { border-radius: 0; }
+
+/*大尺寸按钮*/
+/* line 176, ../../../sass/app/galaxy.scss */
+.smartButton[class*="button-"] { width: 100%; text-align: center; }
+
+/*galaxy尺寸统一*/
+/* line 182, ../../../sass/app/galaxy.scss */
+a.S { height: 23px; line-height: 23px; font-family: Microsoft Yahei; font-size: 11px; /*统一 <a>按钮中图标与文本*/ }
+/* line 188, ../../../sass/app/galaxy.scss */
+a.S i { height: 23px; line-height: 23px; font-size: 11px; }
+
+/*统一各类html所做的按钮尺寸*/
+/* line 196, ../../../sass/app/galaxy.scss */
+input[type="submit"].S, input[type="reset"].S, button.S { height: 27px; font-family: Microsoft Yahei; }
+
+/* line 182, ../../../sass/app/galaxy.scss */
+a.M { height: 27px; line-height: 27px; font-family: Microsoft Yahei; font-size: 12px; /*统一 <a>按钮中图标与文本*/ }
+/* line 188, ../../../sass/app/galaxy.scss */
+a.M i { height: 27px; line-height: 27px; font-size: 12px; }
+
+/*统一各类html所做的按钮尺寸*/
+/* line 196, ../../../sass/app/galaxy.scss */
+input[type="submit"].M, input[type="reset"].M, button.M { height: 31px; font-family: Microsoft Yahei; }
+
+/* line 182, ../../../sass/app/galaxy.scss */
+a.L { height: 31px; line-height: 31px; font-family: Microsoft Yahei; font-size: 13px; /*统一 <a>按钮中图标与文本*/ }
+/* line 188, ../../../sass/app/galaxy.scss */
+a.L i { height: 31px; line-height: 31px; font-size: 13px; }
+
+/*统一各类html所做的按钮尺寸*/
+/* line 196, ../../../sass/app/galaxy.scss */
+input[type="submit"].L, input[type="reset"].L, button.L { height: 35px; font-family: Microsoft Yahei; }
+
+/* line 182, ../../../sass/app/galaxy.scss */
+a.XL { height: 35px; line-height: 35px; font-family: Microsoft Yahei; font-size: 14px; /*统一 <a>按钮中图标与文本*/ }
+/* line 188, ../../../sass/app/galaxy.scss */
+a.XL i { height: 35px; line-height: 35px; font-size: 14px; }
+
+/*统一各类html所做的按钮尺寸*/
+/* line 196, ../../../sass/app/galaxy.scss */
+input[type="submit"].XL, input[type="reset"].XL, button.XL { height: 39px; font-family: Microsoft Yahei; }
+
+/* line 182, ../../../sass/app/galaxy.scss */
+a.XXL { height: 39px; line-height: 39px; font-family: Microsoft Yahei; font-size: 15px; /*统一 <a>按钮中图标与文本*/ }
+/* line 188, ../../../sass/app/galaxy.scss */
+a.XXL i { height: 39px; line-height: 39px; font-size: 15px; }
+
+/*统一各类html所做的按钮尺寸*/
+/* line 196, ../../../sass/app/galaxy.scss */
+input[type="submit"].XXL, input[type="reset"].XXL, button.XXL { height: 43px; font-family: Microsoft Yahei; }
+
+/*表单*/
+/* line 202, ../../../sass/app/galaxy.scss */
+label, .placeholder { float: left; }
+
+/* line 203, ../../../sass/app/galaxy.scss */
+.placeholder { position: absolute; left: 4px; top: 4px; color: #c6c6c6; cursor: text; }
+
+/*表单默认值*/
+/* line 204, ../../../sass/app/galaxy.scss */
+.form { /*表单名称*/ /*表单行*/ }
+/* line 205, ../../../sass/app/galaxy.scss */
+.form legend { font-size: 20px; }
+/* line 206, ../../../sass/app/galaxy.scss */
+.form .row { margin-top: 15px; }
+
+/* line 208, ../../../sass/app/galaxy.scss */
+.form-label { display: block; color: #555; }
+
+/*表单标题*/
+/* line 213, ../../../sass/app/galaxy.scss */
+.form-horizontal .row { display: table; width: 100%; }
+/* line 214, ../../../sass/app/galaxy.scss */
+.form-horizontal .form-label { height: 32px; line-height: 32px; cursor: text; text-align: right; padding-right: 10px; font-family: Microsoft Yahei; }
+/* line 215, ../../../sass/app/galaxy.scss */
+.form-horizontal .formControls { padding-right: 10px; }
+/* line 216, ../../../sass/app/galaxy.scss */
+.form-horizontal .Validform_checktip { margin-top: 5px; }
+
+/* line 218, ../../../sass/app/galaxy.scss */
+.formControls { position: relative; }
+/* line 220, ../../../sass/app/galaxy.scss */
+.formControls > * { vertical-align: middle; }
+/* line 221, ../../../sass/app/galaxy.scss */
+.formControls i.right { position: absolute; left: 200px; height: 32px; line-height: 32px; width: 32px; background-color: #dfdfdf; color: #ffa526; text-align: center; z-index: 999; boder-left: solid 1px #ddd; }
+/* line 233, ../../../sass/app/galaxy.scss */
+.formControls i.left { position: absolute; left: 0; height: 32px; line-height: 32px; width: 32px; background-color: #dfdfdf; color: #ffa526; text-align: center; z-index: 999; boder-left: solid 1px #ddd; }
+/* line 245, ../../../sass/app/galaxy.scss */
+.formControls i.inner-right { position: absolute; left: 175px; height: 32px; line-height: 32px; font-size: inherit; color: #ffa526; z-index: 999; }
+/* line 255, ../../../sass/app/galaxy.scss */
+.formControls i.inner-left { position: absolute; height: 32px; line-height: 32px; left: 8px; font-size: inherit; color: #ffa526; z-index: 999; }
+/* line 265, ../../../sass/app/galaxy.scss */
+.formControls i.out-right { position: absolute; left: 208px; height: 32px; line-height: 32px; font-size: inherit; color: #ffa526; z-index: 999; }
+/* line 275, ../../../sass/app/galaxy.scss */
+.formControls i.out-left { position: absolute; left: 8px; height: 32px; line-height: 32px; color: #ffa526; font-size: inherit; z-index: 999; }
+
+/*表单控制区*/
+/*设置placeholder颜色*/
+/* line 286, ../../../sass/app/galaxy.scss */
+::-webkit-input-placeholder { color: #b3b3b3; }
+
+/* WebKit browsers */
+/* line 287, ../../../sass/app/galaxy.scss */
+:-moz-placeholder { color: #b3b3b3; }
+
+/* Mozilla Firefox 4 to 18 */
+/* line 288, ../../../sass/app/galaxy.scss */
+::-moz-placeholder { color: #b3b3b3; }
+
+/* Mozilla Firefox 19+ */
+/* line 289, ../../../sass/app/galaxy.scss */
+:-ms-input-placeholder { color: #b3b3b3; }
+
+/* Internet Explorer 10+ */
+/* line 290, ../../../sass/app/galaxy.scss */
+.placeholder { color: #adb0be; position: absolute; z-index: 9; }
+
+/*不兼容placeholder属性的浏览器，可使用<span class="placeholder">表单默认值</span>*/
+/*表单文本框*/
+/* line 292, ../../../sass/app/galaxy.scss */
+.input-text, .textarea { font-size: 14px; height: 30px; line-height: 30px; padding: 0 10px; box-sizing: border-box; border: solid 1px #b3b3b3; }
+/* line 299, ../../../sass/app/galaxy.scss */
+.input-text:hover, .textarea:hover { border-color: gray; }
+/* line 302, ../../../sass/app/galaxy.scss */
+.input-text.focus, .input-text.active, .textarea.focus, .textarea.active { border-color: #ffa526;  -webkit-box-shadow:0 0 5px #ccc;
+  -moz-box-shadow:0 0 5px #ccc;
+  box-shadow:0 0 5px #ccc;}
+/* line 305, ../../../sass/app/galaxy.scss */
+.input-text.disabled, .textarea.disabled { background-color: #e6e6e6; cursor: default; }
+/* line 309, ../../../sass/app/galaxy.scss */
+.input-text.left, .textarea.left { margin-left: 32px; }
+/* line 312, ../../../sass/app/galaxy.scss */
+.input-text.inner-left, .textarea.inner-left { padding-left: 32px; }
+/* line 315, ../../../sass/app/galaxy.scss */
+.input-text.inner-right, .textarea.inner-right { padding-right: 32px; }
+
+/* line 320, ../../../sass/app/galaxy.scss */
+.input-text, .textarea { width: 200px; }
+
+/* line 324, ../../../sass/app/galaxy.scss */
+.input-text.grid, .textarea.grid { width: 100%; }
+
+/* line 327, ../../../sass/app/galaxy.scss */
+.textarea { height: 100px; resize: none; font-size: 14px; padding: 4px; }
+
+/* line 328, ../../../sass/app/galaxy.scss */
+.textarea-numberbar { position: absolute; right: 20px; bottom: 5px; z-index: 1; margin-bottom: 0; color: #bbb; }
+
+/* line 329, ../../../sass/app/galaxy.scss */
+.textarea-length { font-style: normal; }
+
+/*checkbox radio  单选 多选*/
+/* line 331, ../../../sass/app/galaxy.scss */
+input[type="radio"], input[type="checkbox"] { line-height: normal; }
+
+/* line 332, ../../../sass/app/galaxy.scss */
+.check-box, .radio-box { box-sizing: border-box; cursor: pointer; position: relative; height: 32px; line-height: 32px; padding-left: 10px; padding-right: 20px; }
+/* line 340, ../../../sass/app/galaxy.scss */
+.column .check-box, .column .radio-box { display: block; }
+/* line 343, ../../../sass/app/galaxy.scss */
+.side .check-box, .side .radio-box { display: inline-block; }
+
+/*按钮组*/
+/* line 349, ../../../sass/app/galaxy.scss */
+.btn-group { font-size: 0; }
+/* line 351, ../../../sass/app/galaxy.scss */
+.btn-group .btn { margin-left: -1px; }
+/* line 353, ../../../sass/app/galaxy.scss */
+.btn-group .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) { border-radius: 0; }
+/* line 354, ../../../sass/app/galaxy.scss */
+.btn-group .btn:first-child:not(:last-child):not(.dropdown-toggle) { border-bottom-right-radius: 0; border-top-right-radius: 0; }
+/* line 355, ../../../sass/app/galaxy.scss */
+.btn-group .btn:last-child:not(:first-child) { border-bottom-left-radius: 0; border-top-left-radius: 0; }
+/* line 357, ../../../sass/app/galaxy.scss */
+.btn-group > .dropdown-toggle:not(:first-child) { border-bottom-left-radius: 0; border-top-left-radius: 0; }
+
+/*下拉框*/
+/*select是个奇葩的表单组件，是表单元素中通过css最难美化的一个，各个浏览器显示都存在很大差异。
+1、为select外层嵌套个select-box标签，设置边框,隐藏掉select本身的表框。*/
+/* line 362, ../../../sass/app/galaxy.scss */
+.select-box { border: solid 1px #bfbfbf; box-sizing: border-box; vertical-align: middle; width: 100%; display: inline-block; }
+/* line 368, ../../../sass/app/galaxy.scss */
+.select-box .inline, .select-box .select-box.inline .select { width: auto; }
+
+/* line 370, ../../../sass/app/galaxy.scss */
+.select {  box-sizing: border-box; color: #333; box-sizing: border-box; cursor: pointer; line-height: normal; font-weight: normal; width: 100%; }
+/* line 379, ../../../sass/app/galaxy.scss */
+.select-box .select { border: none; }
+
+/*2.优化插件select2,颜色以及其他属性根据实际需求优化*/
+/* line 384, ../../../sass/app/galaxy.scss */
+.select2 { width: 100%; }
+
+/* line 389, ../../../sass/app/galaxy.scss */
+.select-box.size-S { height: 23px; line-height: 23px; }
+
+/* line 393, ../../../sass/app/galaxy.scss */
+.size-S .select { padding: auto 5px; font-size: 13.2px; }
+
+/* line 389, ../../../sass/app/galaxy.scss */
+.select-box.size-M { height: 27px; line-height: 27px; }
+
+/* line 393, ../../../sass/app/galaxy.scss */
+.size-M .select { padding: auto 5px; font-size: 14.4px; }
+
+/* line 389, ../../../sass/app/galaxy.scss */
+.select-box.size-L { height: 31px; line-height: 31px; }
+
+/* line 393, ../../../sass/app/galaxy.scss */
+.size-L .select { padding: auto 5px; font-size: 15.6px; }
+
+/* line 389, ../../../sass/app/galaxy.scss */
+.select-box.size-XL { height: 35px; line-height: 35px; }
+
+/* line 393, ../../../sass/app/galaxy.scss */
+.size-XL .select { padding: auto 5px; font-size: 16.8px; }
+
+/* line 389, ../../../sass/app/galaxy.scss */
+.select-box.size-XXL { height: 39px; line-height: 39px; }
+
+/* line 393, ../../../sass/app/galaxy.scss */
+.size-XXL .select { padding: auto 5px; font-size: 18px; }
+
+/*文件上传
+input file 是另一个奇葩组件，原生的基本无法通过CSS美化。基于原生的做法：把文件选择域设为透明,通过绝对定位覆盖在长的好看的按钮上面。优点：完全源生。兼容性好，统一浏览器显示效果。*/
+/* line 400, ../../../sass/app/galaxy.scss */
+.btn-upload { position: relative; display: inline-block; height: 32px; *display: inline; overflow: hidden; vertical-align: middle; cursor: pointer; }
+/* line 408, ../../../sass/app/galaxy.scss */
+.form-group .btn-upload { margin-left: -1px; }
+/* line 411, ../../../sass/app/galaxy.scss */
+.btn-upload .icon-add, .btn-upload .icon-minus { cursor: pointer; display: inline-block; font-family: Microsoft Yahei; font-size: 30px; height: 31px; line-height: 31px; text-align: center; vertical-align: middle; width: 36px; }
+
+/* line 423, ../../../sass/app/galaxy.scss */
+.upload-url { cursor: pointer; width: 100%; height: 31px; margin-top: 1px; }
+
+/* line 424, ../../../sass/app/galaxy.scss */
+.input-file { position: absolute; right: 0; top: 0; cursor: pointer; z-index: 1; font-size: 30em; opacity: 0; filter: alpha(opacity=0); }
+
+/*表单校验，对应输入框各种状态*/
+/* line 429, ../../../sass/app/galaxy.scss */
+.Validform_error { background-color: #fbe2e2; border-color: #c66161; color: #c00; }
+
+/* line 430, ../../../sass/app/galaxy.scss */
+.Validform_wrong, .Validform_right, .Validform_warning { display: inline-block; height: 20px; line-height: 20px; font-size: 12px; vertical-align: middle; padding-left: 25px; }
+
+/*错误*/
+/* line 432, ../../../sass/app/galaxy.scss */
+.Validform_wrong { background: url('../../images/valiform/icon_error_s.png?1406758420') no-repeat 0 center; color: #ef392b; }
+
+/* 方块提示
+.Validform_wrong{
+	color:#fff;padding:5px;background-color:$triangle-c; border-radius:3px;	
+}
+*/
+/*正确*/
+/* line 439, ../../../sass/app/galaxy.scss */
+.Validform_right { background: url('../../images/valiform/icon_right_s.png?1406758424') no-repeat 0 center; }
+
+/*警告*/
+/* line 441, ../../../sass/app/galaxy.scss */
+.Validform_warning { background: url('../../images/valiform/icon_warning_s.png?1406758404') no-repeat 0 center; color: #777; }
+
+/*提示信息框*/
+/* line 443, ../../../sass/app/galaxy.scss */
+#Validform_msg { font-size: 14px; width: 300px; -webkit-box-shadow: 2px 2px 3px #aaa; -moz-box-shadow: 2px 2px 3px #aaa; background: #fff; position: absolute; top: 0px; right: 50px; z-index: 99999; display: none; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999'); box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1); }
+/* line 456, ../../../sass/app/galaxy.scss */
+#Validform_msg .iframe { position: absolute; left: 0px; top: -1px; z-index: -1; }
+/* line 462, ../../../sass/app/galaxy.scss */
+#Validform_msg .Validform_title { font-size: 20px; padding: 10px; text-align: left; color: #fff; position: relative; background-color: #fcc900; }
+/* line 471, ../../../sass/app/galaxy.scss */
+#Validform_msg a.Validform_close：hover { color: #fff; }
+/* line 472, ../../../sass/app/galaxy.scss */
+#Validform_msg a.Validform_close:link, #Validform_msg a.Validform_close:visited { position: absolute; right: 8px; top: 6px; color: #fff; text-decoration: none; font-family: Microsoft Yahei; }
+/* line 481, ../../../sass/app/galaxy.scss */
+#Validform_msg .Validform_info { padding: 10px; border: 1px solid #bbb; border-top: none; text-align: left; }
+
+/*面包屑导航*/
+/*<nav class="breadcrumb">
+<i class="iconfont">&#xf012b;</i>
+	<a href="/">首页</a>
+<span>&gt;</span>
+	<a href="#">组件</a>
+<span >&gt;</span>
+<span >当前页面</span>
+</nav>*/
+/* line 497, ../../../sass/app/galaxy.scss */
+.breadcrumb { line-height: 39px; height: 39px; font-size: 12px; font-weight: 500; font-family: Microsoft Yahei; color: #666; padding-left: 20px; overflow: hidden; }
+/* line 507, ../../../sass/app/galaxy.scss */
+.breadcrumb span { color: #bfbfbf; padding: 0 10px; font-size: 12px;}
+/* line 513, ../../../sass/app/galaxy.scss */
+.breadcrumb i:first-child { font-size: 13px; height: 13px; line-height: 13px;margin-right:12px; }
+/* line 518, ../../../sass/app/galaxy.scss */
+.breadcrumb i:last-child { float: right !important;margin-right:20px;margin-top: 12px; cursor: pointer; font-size: 22px; height: 19px; vertical-align: center; line-height: 19px; color: #39A9BF; }
+/* line 528, ../../../sass/app/galaxy.scss */
+.breadcrumb i:last-child:hover { color: #000; }
+/* line 534, ../../../sass/app/galaxy.scss */
+.breadcrumb a { margin-left: 5px; color: #666; text-decoration: none; font-size:12px;}
+/* line 538, ../../../sass/app/galaxy.scss */
+.breadcrumb a:hover, .breadcrumb a:active { color: #000; }
+
+/*页面基本布局*/
+/* line 545, ../../../sass/app/galaxy.scss */
+.pl-5 { padding-left: 5px; }
+
+/* line 548, ../../../sass/app/galaxy.scss */
+.pr-5 { padding-right: 5px; }
+
+/* line 551, ../../../sass/app/galaxy.scss */
+.pt-5 { padding-top: 5px; }
+
+/* line 554, ../../../sass/app/galaxy.scss */
+.pb-5 { padding-bottom: 5px; }
+
+/* line 557, ../../../sass/app/galaxy.scss */
+.padding-5 { padding: 5px; }
+
+/* line 560, ../../../sass/app/galaxy.scss */
+.ml-5 { margin-left: 5px; }
+
+/* line 563, ../../../sass/app/galaxy.scss */
+.mr-5 { margin-right: 5px; }
+
+/* line 566, ../../../sass/app/galaxy.scss */
+.mt-5 { margin-top: 5px; }
+
+/* line 569, ../../../sass/app/galaxy.scss */
+.mb-5 { margin-bottom: 5px; }
+
+/* line 572, ../../../sass/app/galaxy.scss */
+.margin-5 { margin: 5px; }
+
+/* line 545, ../../../sass/app/galaxy.scss */
+.pl-10 { padding-left: 10px; }
+
+/* line 548, ../../../sass/app/galaxy.scss */
+.pr-10 { padding-right: 10px; }
+
+/* line 551, ../../../sass/app/galaxy.scss */
+.pt-10 { padding-top: 10px; }
+
+/* line 554, ../../../sass/app/galaxy.scss */
+.pb-10 { padding-bottom: 10px; }
+
+/* line 557, ../../../sass/app/galaxy.scss */
+.padding-10 { padding: 10px; }
+
+/* line 560, ../../../sass/app/galaxy.scss */
+.ml-10 { margin-left: 10px; }
+
+/* line 563, ../../../sass/app/galaxy.scss */
+.mr-10 { margin-right: 10px; }
+
+/* line 566, ../../../sass/app/galaxy.scss */
+.mt-10 { margin-top: 10px; }
+
+/* line 569, ../../../sass/app/galaxy.scss */
+.mb-10 { margin-bottom: 10px; }
+
+/* line 572, ../../../sass/app/galaxy.scss */
+.margin-10 { margin: 10px; }
+
+/* line 545, ../../../sass/app/galaxy.scss */
+.pl-15 { padding-left: 15px; }
+
+/* line 548, ../../../sass/app/galaxy.scss */
+.pr-15 { padding-right: 15px; }
+
+/* line 551, ../../../sass/app/galaxy.scss */
+.pt-15 { padding-top: 15px; }
+
+/* line 554, ../../../sass/app/galaxy.scss */
+.pb-15 { padding-bottom: 15px; }
+
+/* line 557, ../../../sass/app/galaxy.scss */
+.padding-15 { padding: 15px; }
+
+/* line 560, ../../../sass/app/galaxy.scss */
+.ml-15 { margin-left: 15px; }
+
+/* line 563, ../../../sass/app/galaxy.scss */
+.mr-15 { margin-right: 15px; }
+
+/* line 566, ../../../sass/app/galaxy.scss */
+.mt-15 { margin-top: 15px; }
+
+/* line 569, ../../../sass/app/galaxy.scss */
+.mb-15 { margin-bottom: 15px; }
+
+/* line 572, ../../../sass/app/galaxy.scss */
+.margin-15 { margin: 15px; }
+
+/* line 545, ../../../sass/app/galaxy.scss */
+.pl-20 { padding-left: 20px; }
+
+/* line 548, ../../../sass/app/galaxy.scss */
+.pr-20 { padding-right: 20px; }
+
+/* line 551, ../../../sass/app/galaxy.scss */
+.pt-20 { padding-top: 20px; }
+
+/* line 554, ../../../sass/app/galaxy.scss */
+.pb-20 { padding-bottom: 20px; }
+
+/* line 557, ../../../sass/app/galaxy.scss */
+.padding-20 { padding: 20px; }
+
+/* line 560, ../../../sass/app/galaxy.scss */
+.ml-20 { margin-left: 20px; }
+
+/* line 563, ../../../sass/app/galaxy.scss */
+.mr-20 { margin-right: 20px; }
+
+/* line 566, ../../../sass/app/galaxy.scss */
+.mt-20 { margin-top: 20px; }
+
+/* line 569, ../../../sass/app/galaxy.scss */
+.mb-20 { margin-bottom: 20px; }
+
+/* line 572, ../../../sass/app/galaxy.scss */
+.margin-20 { margin: 20px; }
+
+/*浮动*/
+/* line 577, ../../../sass/app/galaxy.scss */
+.f-l { float: left !important; _display: inline; }
+
+/* line 580, ../../../sass/app/galaxy.scss */
+.f-r { float: right !important; _display: inline; }
+
+/*控制元素位置*/
+/* line 584, ../../../sass/app/galaxy.scss */
+.left { left: 0; right: auto; }
+
+/* line 585, ../../../sass/app/galaxy.scss */
+.right { right: 0; left: auto; }
+
+/* line 586, ../../../sass/app/galaxy.scss */
+.top { top: 0; bottom: auto; }
+
+/* line 587, ../../../sass/app/galaxy.scss */
+.bottom { top: auto; bottom: 0; }
+
+/*标题*/
+/* line 590, ../../../sass/app/galaxy.scss */
+h1 { font-weight: 500; line-height: 1.1; color: inherit; }
+/* line 594, ../../../sass/app/galaxy.scss */
+h1 small, h1.small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 601, ../../../sass/app/galaxy.scss */
+h1 { padding-top: 20px; padding-bottom: 10px; }
+
+/* line 590, ../../../sass/app/galaxy.scss */
+h2 { font-weight: 500; line-height: 1.1; color: inherit; }
+/* line 594, ../../../sass/app/galaxy.scss */
+h2 small, h2.small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 601, ../../../sass/app/galaxy.scss */
+h2 { padding-top: 20px; padding-bottom: 10px; }
+
+/* line 590, ../../../sass/app/galaxy.scss */
+h3 { font-weight: 500; line-height: 1.1; color: inherit; }
+/* line 594, ../../../sass/app/galaxy.scss */
+h3 small, h3.small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 601, ../../../sass/app/galaxy.scss */
+h3 { padding-top: 20px; padding-bottom: 10px; }
+
+/* line 590, ../../../sass/app/galaxy.scss */
+h4 { font-weight: 500; line-height: 1.1; color: inherit; }
+/* line 594, ../../../sass/app/galaxy.scss */
+h4 small, h4.small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 606, ../../../sass/app/galaxy.scss */
+h4 { padding-top: 10px; padding-bottom: 10px; }
+
+/* line 590, ../../../sass/app/galaxy.scss */
+h5 { font-weight: 500; line-height: 1.1; color: inherit; }
+/* line 594, ../../../sass/app/galaxy.scss */
+h5 small, h5.small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 606, ../../../sass/app/galaxy.scss */
+h5 { padding-top: 10px; padding-bottom: 10px; }
+
+/* line 590, ../../../sass/app/galaxy.scss */
+h6 { font-weight: 500; line-height: 1.1; color: inherit; }
+/* line 594, ../../../sass/app/galaxy.scss */
+h6 small, h6.small { font-weight: 400; line-height: 1; color: #999; }
+
+/* line 606, ../../../sass/app/galaxy.scss */
+h6 { padding-top: 10px; padding-bottom: 10px; }
+
+/*字体大小*/
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-12 { font-size: 12px; }
+
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-14 { font-size: 14px; }
+
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-16 { font-size: 16px; }
+
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-18 { font-size: 18px; }
+
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-24 { font-size: 24px; }
+
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-30 { font-size: 30px; }
+
+/* line 614, ../../../sass/app/galaxy.scss */
+.fs-36 { font-size: 36px; }
+
+/*强调*/
+/* line 619, ../../../sass/app/galaxy.scss */
+p { margin-bottom: 10px; }
+
+/*段落*/
+/* line 620, ../../../sass/app/galaxy.scss */
+small { font-size: 85%; }
+
+/*小型文本*/
+/* line 621, ../../../sass/app/galaxy.scss */
+b, strong { font-weight: bold; }
+
+/*重要的文本，加粗*/
+/* line 622, ../../../sass/app/galaxy.scss */
+em { font-style: italic; }
+
+/*被强调的文本*/
+/*斜体*/
+/*加下划线*/
+/* line 625, ../../../sass/app/galaxy.scss */
+cite { font-style: normal; }
+
+/*引用*/
+/* line 626, ../../../sass/app/galaxy.scss */
+mark { color: #000; background: #ff0; }
+
+/*突出显示文本*/
+/*变量*/
+/*键盘文本*/
+/*计算机代码文本*/
+/* line 630, ../../../sass/app/galaxy.scss */
+dfn { font-style: italic; }
+
+/*一个定义项目*/
+/* line 631, ../../../sass/app/galaxy.scss */
+del { font-family: Simsun; }
+
+/*删除线*/
+/* line 632, ../../../sass/app/galaxy.scss */
+code, kbd, pre, samp { font-family: Microsoft Yahei; font-size: 1em; }
+
+/* line 633, ../../../sass/app/galaxy.scss */
+pre { white-space: pre-wrap; }
+
+/*预格式化的文本*/
+/* line 634, ../../../sass/app/galaxy.scss */
+.uppercase { text-transform: uppercase; }
+
+/*文字大写*/
+/* line 635, ../../../sass/app/galaxy.scss */
+.lowercase { text-transform: lowercase; }
+
+/*文字小写*/
+/* line 636, ../../../sass/app/galaxy.scss */
+.capitalize { text-transform: capitalize; }
+
+/*首字母大写*/
+/* line 637, ../../../sass/app/galaxy.scss */
+.en { font-family: Arial !important; }
+
+/*文本对齐*/
+/* line 639, ../../../sass/app/galaxy.scss */
+.text-l { text-align: left; }
+
+/* line 639, ../../../sass/app/galaxy.scss */
+.text-r { text-align: right; }
+
+/* line 639, ../../../sass/app/galaxy.scss */
+.text-c { text-align: center; }
+
+/* line 640, ../../../sass/app/galaxy.scss */
+.va-t { vertical-align: top !important; }
+
+/* line 640, ../../../sass/app/galaxy.scss */
+.va-m { vertical-align: middle !important; }
+
+/* line 640, ../../../sass/app/galaxy.scss */
+.va-b { vertical-align: bottom !important; }
+
+/*字体颜色封装*/
+/* line 643, ../../../sass/app/galaxy.scss */
+.c-blue { color: #39a9bf; }
+
+/* line 643, ../../../sass/app/galaxy.scss */
+.c-green { color: #59b359; }
+
+/* line 643, ../../../sass/app/galaxy.scss */
+.c-orange { color: #ffa526; }
+
+/* line 643, ../../../sass/app/galaxy.scss */
+.c-red { color: #e65050; }
+
+/* line 643, ../../../sass/app/galaxy.scss */
+.c-gray { color: #b3b3b3; }
+
+/*背景颜色封装*/
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-blue { background-color: #39a9bf; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-green { background-color: #59b359; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-orange { background-color: #ffa526; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-red { background-color: #e65050; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-gray-b { background-color: #b3b3b3; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-gray-e { background-color: #eee; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-gray-c { background-color: #ccc; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-gray-f { background-color: #fff; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-gray-a { background-color: #aaa; }
+
+/* line 649, ../../../sass/app/galaxy.scss */
+.bg-gray-b { background-color: #bbb; }
+
+/*源生table样式定义*/
+/*默认table*/
+/* line 656, ../../../sass/app/galaxy.scss */
+table { width: 100%; empty-cells: show; background-color: transparent; border-collapse: separate; border-spacing: 0; font-family: Microsoft Yahei; }
+/* line 663, ../../../sass/app/galaxy.scss */
+table th { text-align: left; font-weight: 400; }
+table tr {border-left:2px solid #c3ced9;border-right: 2px solid #c3ced9;}
+/*带水平线*/
+/* line 670, ../../../sass/app/galaxy.scss */
+.table th { padding: 8px 19px 8px 8px; line-height: 20px; font-size: 14px; color: #000000; }
+/* line 677, ../../../sass/app/galaxy.scss */
+.table td { font-weight: 400; text-align: left; line-height: 30px; padding-left: 8px; font-size: 13px; color: #4d4d4d;background-color:#fff; }
+/* line 687, ../../../sass/app/galaxy.scss */
+.table tbody tr.success > td { background-color: #dff0d8; }
+/* line 690, ../../../sass/app/galaxy.scss */
+.table tbody tr.error > td { background-color: #f2dede; }
+/* line 693, ../../../sass/app/galaxy.scss */
+.table tbody tr.warning > td { background-color: #fcf8e3; }
+/* line 696, ../../../sass/app/galaxy.scss */
+.table tbody tr.info > td { background-color: #d9edf7; }
+/* line 700, ../../../sass/app/galaxy.scss */
+.table tbody + tbody { border-top: 2px solid #ddd; }
+/* line 704, ../../../sass/app/galaxy.scss */
+.table .table { background-color: #fff; }
+
+/*带横向分割线*/
+/* line 709, ../../../sass/app/galaxy.scss */
+.table-border { border-top: 1px solid #e6e6e6; }
+/* line 711, ../../../sass/app/galaxy.scss */
+.table-border th, .table-border td { border-bottom: 1px solid #e6e6e6; }
+/* line 714, ../../../sass/app/galaxy.scss */
+.table-border.table-bordered { border-bottom: 0; }
+
+/*th带背景*/
+/* line 717, ../../../sass/app/galaxy.scss */
+.table-bg thead th { background-color: #f2f2f2; }
+
+/*带外边框*/
+/* line 719, ../../../sass/app/galaxy.scss */
+.table-bordered { border: 1px solid #e6e6e6; border-collapse: separate; border-collapse: collapse; border-left: 0; border-top:0;}
+/* line 724, ../../../sass/app/galaxy.scss */
+.table-bordered th, .table-bordered td { border: 1px solid #e6e6e6; border-left: 0;}
+
+/*奇数行背景*/
+/* line 730, ../../../sass/app/galaxy.scss */
+.table-spriped tbody > tr:ntn-child(odd) > td, .table-spriped tbody > tr:ntn-child(odd) > th { background-color: #f2f2f2; }
+
+/*竖直方向padding缩减一半*/
+/* line 736, ../../../sass/app/galaxy.scss */
+.table-condensed th, .table-condensed td { padding: 4px 5px; }
+
+/* line 742, ../../../sass/app/galaxy.scss */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th { background-color: #FDF7E6; }
+
+/*鼠标选择整行样式*/
+/* line 748, ../../../sass/app/galaxy.scss */
+.table tbody tr.selected td { background-color: #FFDF7F; }
+
+/*定义颜色*/
+/* line 750, ../../../sass/app/galaxy.scss */
+.table tbody { /*悬停在行*/ /*成功或积极*/ /*警告或出错*/ /*危险*/ }
+/* line 752, ../../../sass/app/galaxy.scss */
+.table tbody tr.active, .table tbody tr.active > td .table tbodytr.active > th, .table tbody tr .active { background-color: #F5F5F5 !important; }
+/* line 754, ../../../sass/app/galaxy.scss */
+.table tbody tr.success, .table tbody tr.success > td .table tbodytr.success > th, .table tbody tr .success { background-color: #DFF0D8 !important; }
+/* line 756, ../../../sass/app/galaxy.scss */
+.table tbody tr.warning, .table tbody tr.warning > td .table tbodytr.warning > th, .table tbody tr .warning { background-color: #FCF8E3 !important; }
+/* line 758, ../../../sass/app/galaxy.scss */
+.table tbody tr.danger, .table tbody tr.danger > td .table tbodytr.danger > th, .table tbody tr .active { background-color: #F2DEDE !important; }
+
+/*表格文字对齐方式，默认是居左对齐*/
+/* line 764, ../../../sass/app/galaxy.scss */
+.table .text-c th, .table .text-c td { text-align: center; }
+/* line 769, ../../../sass/app/galaxy.scss */
+.table .text-r th, .table .text-r td { text-align: right; }
+/* line 774, ../../../sass/app/galaxy.scss */
+.table th.text-c, .table td.text-c { text-align: center !important; }
+/* line 775, ../../../sass/app/galaxy.scss */
+.table th.text-l, .table td.text-l { text-align: left !important; }
+/* line 776, ../../../sass/app/galaxy.scss */
+.table th.text-r, .table td.text-r { text-align: right !important; }
+
+/*dataTable 数据表格 */
+/* line 781, ../../../sass/app/galaxy.scss */
+.dataTable td.sorting_1 { background-color: #f2f2f2; }
+.dataTable td.highlight {
+  font-weight: bold;
+  color: blue;
+}
+.dataTable td.danger {
+  font-weight: bold;
+  color: red;
+}
+.dataTable td.newFace {
+  font-weight: bold;
+  color: green;
+}
+/* line 783, ../../../sass/app/galaxy.scss */
+.table { clear: both; }
+
+/* line 788, ../../../sass/app/galaxy.scss */
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc { cursor: pointer; background-repeat: no-repeat; background-position: right center; }
+/* line 793, ../../../sass/app/galaxy.scss */
+table.dataTable thead .sorting { background-image: url('../../images/dataTable/sort_both.png?1418774076'); }
+/* line 797, ../../../sass/app/galaxy.scss */
+table.dataTable thead .sorting_asc { background-image: url('../../images/dataTable/sort_asc.png?1418774116'); }
+/* line 801, ../../../sass/app/galaxy.scss */
+table.dataTable thead .sorting_desc { background-image: url('../../images/dataTable/sort_desc.png?1418774098'); }
+
+/* line 809, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_length { float: right; }
+/* line 811, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_length .select { width: 55px; height: 30px; }
+/* line 815, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_length label { font-family: Microsoft Yahei; font-size: 13px; }
+/* line 820, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_filter { float: right; text-align: right; }
+/* line 824, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_filter .input-text{ width: 150px; height: 30px; line-height: 30px; margin-left: 10px; padding-left: 5px; padding-right: 35px; background: url('../../images/dataTable/icon-search.png?1381934798') no-repeat 123px center  #fff;}
+/* line 838, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_filter label { font-family: Microsoft Yahei; font-size: 13px; }
+/* line 844, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_info { float: left; height:50px;line-height:50px; font-family: Microsoft Yahei; font-size: 13px; color: #000; }
+/* line 852, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_paginate { float: right; height:50px;line-height:50px;  text-align: right; }
+/* line 856, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_paginate .paginate_button { border: 1px solid #ccc; cursor: pointer; display: inline-block; margin-left: 2px; text-align: center; text-decoration: none; color: #000; height: 26px; line-height: 26px; text-decoration: none; margin: 0 0px 6px 6px; padding: 0 10px; font-family: Microsoft Yahei; font-size: 13px; }
+/* line 871, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {  color:#333 !important;border:1px solid #979797; background-color:white;background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #dcdcdc));background:-webkit-linear-gradient(top, #fff 0%, #dcdcdc 100%);background:-moz-linear-gradient(top, #fff 0%, #dcdcdc 100%);}
+/* line 875, ../../../sass/app/galaxy.scss */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover { border: 1px solid #ff9f19; }
+
+/*对组件datatables头部以及footer进行样式重写*/
+/* line 882, ../../../sass/app/galaxy.scss */
+.table-header { display: block; height: 40px; line-height: 40px; padding-left: 20px; padding-right: 20px; border-top-left-radius: 5px; border-top-right-radius: 5px; background-color: #c3ced9; border-bottom: 1px solid #fff; /*表格中的按钮*/ }
+/* line 893, ../../../sass/app/galaxy.scss */
+.table-header a.table-btn { margin-right: 10px; padding: 5px 20px; border: 1px solid #acb6af; border-radius: 3px; background-color: #fff; font-family: Microsoft Yahei; font-size: 14px; color: #4d4d4d;cursor:pointer; }
+/* line 902, ../../../sass/app/galaxy.scss */
+.table-header a.table-btn:hover { background-color: #f2f2f2; }
+
+/* line 907, ../../../sass/app/galaxy.scss */
+.table-footer { height: 50px; border-bottom: 1px solid #c3ced9; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; background-color: #fff; padding: 0 20px;border-left: 2px solid #c3ced9; border-right: 2px solid #c3ced9;}
+
+/*树ZTREE*/
+/* line 919, ../../../sass/app/galaxy.scss */
+.tree { min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: #fbfbfb; border: 1px solid #999; border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); }
+/* line 929, ../../../sass/app/galaxy.scss */
+.tree > ul > li::before, .tree > ul > li::after { border: 0; }
+/* line 932, ../../../sass/app/galaxy.scss */
+.tree li { list-style-type: none; margin: 0; padding: 10px 5px 0 5px; position: relative; }
+/* line 937, ../../../sass/app/galaxy.scss */
+.tree li a { color: #b3b3b3; text-decoration: none; }
+/* line 940, ../../../sass/app/galaxy.scss */
+.tree li a:hover { color: #000; }
+/* line 944, ../../../sass/app/galaxy.scss */
+.tree li::after, .tree li::before { content: ''; left: -20px; position: absolute; right: auto; }
+/* line 950, ../../../sass/app/galaxy.scss */
+.tree li::before { border-left: 1px solid #999; bottom: 50px; height: 100%; top: 0; width: 1px; }
+/* line 957, ../../../sass/app/galaxy.scss */
+.tree li::after { border-top: 1px solid #999; height: 20px; top: 25px; width: 25px; }
+/* line 963, ../../../sass/app/galaxy.scss */
+.tree li span { border-radius: 5px; border: 1px solid #999; display: inline-block; padding: 3px 8px; text-decoration: none; }
+/* line 969, ../../../sass/app/galaxy.scss */
+.tree li span i { color: #000; }
+/* line 973, ../../../sass/app/galaxy.scss */
+.tree li.parent_li > span { cursor: pointer; }
+/* line 976, ../../../sass/app/galaxy.scss */
+.tree li:last-child::before { height: 30px; }
+/* line 979, ../../../sass/app/galaxy.scss */
+.tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span { background: eee; border: 1px solid #94a0b4; color: #000; }
+
+/*代码语法高亮*/
+/* line 987, ../../../sass/app/galaxy.scss */
+pre { display: block; background-color: #333; padding: 20px; font-family: Microsoft Yahei; /* string  - 粉色 */ /* comment - 天空蓝 */ /* type    - lightgreen */ /* literal - darkred */ /* punctuation */ /* plaintext */ /* html/xml tag    - lightyellow */ /* attribute name  - khaki */ /* attribute value - pink */ /* decimal         - lightgreen */ }
+/* line 992, ../../../sass/app/galaxy.scss */
+pre .nocode { color: #000; }
+/* line 993, ../../../sass/app/galaxy.scss */
+pre .str { color: #ffa0a0; }
+/* line 994, ../../../sass/app/galaxy.scss */
+pre .kwd { color: #f0e68c; font-weight: bold; }
+/* line 995, ../../../sass/app/galaxy.scss */
+pre .com { color: #87ceeb; }
+/* line 996, ../../../sass/app/galaxy.scss */
+pre .typ { color: #98fb98; }
+/* line 997, ../../../sass/app/galaxy.scss */
+pre .lit { color: #cd5c5c; }
+/* line 998, ../../../sass/app/galaxy.scss */
+pre .pun { color: #fff; }
+/* line 999, ../../../sass/app/galaxy.scss */
+pre .pln { color: #fff; }
+/* line 1000, ../../../sass/app/galaxy.scss */
+pre .tag { color: #f0e68c; font-weight: bold; }
+/* line 1001, ../../../sass/app/galaxy.scss */
+pre .atn { color: #bdb76b; font-weight: bold; }
+/* line 1002, ../../../sass/app/galaxy.scss */
+pre .atv { color: #ffa0a0; }
+/* line 1003, ../../../sass/app/galaxy.scss */
+pre .dec { color: #98fb98; }
+
+/* line 1005, ../../../sass/app/galaxy.scss */
+li.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; }
+
+/* IE indents via margin-left */
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L0 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L1 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L2 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L3 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L4 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L5 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L6 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L7 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L8 { list-style-type: none; }
+
+/* line 1007, ../../../sass/app/galaxy.scss */
+li.L9 { list-style-type: none; }
+
+/*横纵页签navtable  列表样式重定义成横排放置*/
+/* line 1015, ../../../sass/app/galaxy.scss */
+.nav::after, .nav::before { content: ""; display: table; clear: both; }
+
+/* line 1020, ../../../sass/app/galaxy.scss */
+ul.nav { margin-top: 0; }
+
+/* line 1023, ../../../sass/app/galaxy.scss */
+.nav { list-style: outside none none; padding-left: 0; }
+/* line 1026, ../../../sass/app/galaxy.scss */
+.nav > li { position: relative; display: block; }
+/* line 1029, ../../../sass/app/galaxy.scss */
+.nav > li > a { position: relative; display: block; padding: 10px 15px; }
+/* line 1031, ../../../sass/app/galaxy.scss */
+.nav > li > a > img { max-width: none; }
+/* line 1035, ../../../sass/app/galaxy.scss */
+.nav > li > a:focus, .nav > li > a:hover { text-decoration: none; background-color: #eee; }
+/* line 1036, ../../../sass/app/galaxy.scss */
+.nav > li.disabled > a { color: #777; }
+/* line 1038, ../../../sass/app/galaxy.scss */
+.nav > li.disabled > a:hover, .nav > li.disabled > a:focus { color: #777; text-decoration: none; cursor: not-allowed; background-color: transparent; }
+/* line 1046, ../../../sass/app/galaxy.scss */
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus { background-color: #eee; border-color: #337ab7; }
+/* line 1047, ../../../sass/app/galaxy.scss */
+.nav .nav-divider { height: 1px; margin: 9px 0; overflow: hidden; background-color: #e5e5e5; }
+
+/* line 1049, ../../../sass/app/galaxy.scss */
+.nav-tabs { border-bottom: 1px solid #ddd; }
+/* line 1051, ../../../sass/app/galaxy.scss */
+.nav-tabs > li { float: left; margin-bottom: -1px; margin-left: 0; }
+/* line 1055, ../../../sass/app/galaxy.scss */
+.nav-tabs > li > a { margin-right: 2px; line-height: 1.42857143; border: 1px solid transparent; border-radius: 4px 4px 0 0; text-decoration: none; }
+/* line 1061, ../../../sass/app/galaxy.scss */
+.nav-tabs > li > a:hover { border-color: #eee #eee #ddd; }
+/* line 1065, ../../../sass/app/galaxy.scss */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { color: #555; cursor: default; background-color: #fff; border: 1px solid #ddd; border-bottom-color: transparent; }
+/* line 1073, ../../../sass/app/galaxy.scss */
+.nav-tabs.nav-justified { width: 100%; border-bottom: 0; }
+/* line 1075, ../../../sass/app/galaxy.scss */
+.nav-tabs.nav-justified > li { float: none; }
+/* line 1077, ../../../sass/app/galaxy.scss */
+.nav-tabs.nav-justified > li > a { margin-bottom: 5px; text-align: center; }
+/* line 1081, ../../../sass/app/galaxy.scss */
+.nav-tabs.nav-justified > .dropdown .dorpdown-menu { top: auto; left: auto; }
+/* line 1086, ../../../sass/app/galaxy.scss */
+.nav-tabs .dropdown-menu { margin-top: -1px; border-top-left-radius: 0; border-top-right-radius: 0; }
+
+/* line 1090, ../../../sass/app/galaxy.scss */
+.tab-content { padding: 0px; overflow: hidden; }
+/* line 1091, ../../../sass/app/galaxy.scss */
+.tab-content > .tab-pane { display: none; }
+/* line 1092, ../../../sass/app/galaxy.scss */
+.tab-content > .active { display: block; }
+
+/*横向页签折叠*/
+/* line 1097, ../../../sass/app/galaxy.scss */
+.collapse { display: none; }
+/* line 1099, ../../../sass/app/galaxy.scss */
+.collapse.in { display: block; }
+
+/* line 1104, ../../../sass/app/galaxy.scss */
+.collapsing { position: relative; height: 0; overflow: hidden; -webkit-transition-property: height, visibility; transition-property: height, visibility; -webkit-transition-duration: 0.35s; transition-duration: 0.35s; -webkit-transition-timing-function: ease; transition-timing-function: ease; }
+
+/* line 1113, ../../../sass/app/galaxy.scss */
+.tabbable-custom { border-radius: 0; margin-bottom: 15px; }
+/* line 1116, ../../../sass/app/galaxy.scss */
+.widget .row-fluid:last-child .tabbable-custom { margin-bottom: 0px; }
+/* line 1119, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs { border: none; margin: 0px; }
+/* line 1122, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs > li { margin-right: 2px; border-top: 2px solid transparent; }
+/* line 1125, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs > li > a { border-radius: 2px; margin-right: 0; padding: 5px 10px; color: gray; }
+/* line 1130, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs > li > a:hover { background: none; border-color: transparent; }
+/* line 1135, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs > li.active { border-top: 3px solid #00ff00; margin-top: 0; position: relative; }
+/* line 1139, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs > li.active > a { border-top: none; font-weight: 400; }
+/* line 1142, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .nav-tabs > li.active > a:hover { background: #e5e5e5; border-color: #d4d4d4 #d4d4d4 transparent; }
+/* line 1150, ../../../sass/app/galaxy.scss */
+.tabbable-custom > .tab-content { background-color: #ffffff; border: 1px solid #ddd; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; padding: 20px; }
+/* line 1158, ../../../sass/app/galaxy.scss */
+.tabbable-custom.boxless > .tab-content { padding: 15px 0; border-left: none; border-right: none; border-bottom: none; }
+
+/* line 1166, ../../../sass/app/galaxy.scss */
+.tabs-below.tabbable-custom .nav-tabs > li { border-top: none; border-bottom: 2px solid transparent; margin-top: -1px; }
+/* line 1170, ../../../sass/app/galaxy.scss */
+.tabs-below.tabbable-custom .nav-tabs > li.active { border-top: none; border-bottom: 3px solid #00ff00; margin-bottom: 0; position: relative; }
+/* line 1174, ../../../sass/app/galaxy.scss */
+.tabs-below.tabbable-custom .nav-tabs > li.active > a { border-bottom: none; }
+/* line 1176, ../../../sass/app/galaxy.scss */
+.tabs-below.tabbable-custom .nav-tabs > li.active > a:hover { background: #fff; border-color: #d4d4d4 #d4d4d4 transparent; }
+
+/*内容区无边框 content-no-border */
+/* line 1187, ../../../sass/app/galaxy.scss */
+.tabbable-custom.content-no-border > .tab-content { padding: 27px 0; border-left: none; border-right: none; border-bottom: none; }
+/* line 1193, ../../../sass/app/galaxy.scss */
+.tabbable-custom.content-no-border .nav-tabs > li > a { color: #424242; font-size: 15px; padding: 9px 15px; }
+
+/* line 1201, ../../../sass/app/galaxy.scss */
+.accordion-heading { min-width: 150px; background: #f3f3f3; height: 28px; border: 1px solid #c3c3c3; line-height: 28px; margin-top: -1px; border-bottom: none; }
+
+/* line 1211, ../../../sass/app/galaxy.scss */
+.accordion-heading a { padding: 5px 10px; text-decoration: none; color: #333; }
+/* line 1215, ../../../sass/app/galaxy.scss */
+.accordion-heading a:hover { text-decoration: none; color: #009900; }
+/* line 1221, ../../../sass/app/galaxy.scss */
+.accordion-heading i:hover { color: #00cc00; }
+
+/* line 1226, ../../../sass/app/galaxy.scss */
+.accordion-inner { padding: 3px 20px; min-height: 20px; border-left: 1px solid #c3c3c3; border-right: 1px solid #c3c3c3; }
+
+/* line 1235, ../../../sass/app/galaxy.scss */
+.accordion-group:first-child .accordion-heading { border-top-left-radius: 3px; border-top-right-radius: 3px; }
+/* line 1240, ../../../sass/app/galaxy.scss */
+.accordion-group:last-child .accordion-heading { border-bottom: 1px solid #c3c3c3; }
+/* line 1243, ../../../sass/app/galaxy.scss */
+.accordion-group:last-child .accordion-inner { border-bottom: 1px solid #c3c3c3; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
+
+/*返回顶部*/
+/* line 1250, ../../../sass/app/galaxy.scss */
+a { text-decoration: none; }
+/* line 1252, ../../../sass/app/galaxy.scss */
+a:hover, a:active { text-decoration: none; }
+/* line 1255, ../../../sass/app/galaxy.scss */
+a.toTop { position: absolute; bottom: 50px; right: 50px; height: 32px; line-height: 32px; font-size: 26px; font-weight: blod; width: 32px; color: #fff; text-align: center; background-color: #ddd; z-index: 999; }
+
+/*layer部分不可覆盖样式在插件中更改*/
+/* line 1272, ../../../sass/app/galaxy.scss */
+.layui-layer-dialog .layui-layer-content { font-family: Microsoft Yahei; text-align: center; }
+
+/* line 1274, ../../../sass/app/galaxy.scss */
+.layui-layer-btn a, .layui-layer-dialog .layui-layer-ico, .layui-layer-setwin a { font-family: Microsoft Yahei; font-size: 14px; }
+
+/* line 1275, ../../../sass/app/galaxy.scss */
+.layui-layer-btn .layui-layer-btn0 { font-family: Microsoft Yahei; font-size: 14px; }
+
+/* line 1277, ../../../sass/app/galaxy.scss */
+.layui-layer-title { font-family: Microsoft Yahei; text-align: center; padding: 0; }
+
+/*表单大按钮往下放置*/
+.formBtnArea { position: absolute; left: 0; right: 0; bottom:20px; }
+
+.lw-100 {width:100px;}
+
+.lw-150 {width:150px;}

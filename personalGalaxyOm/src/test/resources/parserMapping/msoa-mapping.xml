@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+	<baseDefine id="msoa2orion">
+		<globalMappingId>msoa2orion</globalMappingId>
+		<!-- <mappingIdSpel>[in][SYS_HEAD][SERVICE_CODE]+'-'+[in][SYS_HEAD][MESSAGE_TYPE]+'-'+[in][SYS_HEAD][MESSAGE_CODE]</mappingIdSpel> -->
+	</baseDefine>
+
+	<baseDefine id="orion2msoa">
+		<globalMappingId>orion2msoa</globalMappingId>
+		<!-- <mappingIdSpel>[in][SYS_HEAD][SERVICE_CODE]+'-'+[in][SYS_HEAD][MESSAGE_TYPE]+'-'+[in][SYS_HEAD][MESSAGE_CODE]</mappingIdSpel> -->
+	</baseDefine>
+
+	<mapping id="msoa2orion">
+		<in><!--输入数据映射 -->
+			<map name="BODY"
+				ref="[in].?[!(key.equals('HEAD') OR key.equals('APP_HEAD')  OR key.equals('SERVICE_MAPPING'))]">
+			</map>
+			<map name="SYS_HEAD" ref="[in][HEAD]">
+				<item name="SEQ_NO">[in][HEAD][TRANS_ID]</item>
+				<item name="TRAN_DATE">[in][HEAD][SYS_DATE]</item>
+				<item name="TRAN_TIMESTAMP">[in][HEAD][SYS_TIMESTAMP].substring(9)</item>
+				<item name="TRAN_MODE">[in][HEAD][ASYNC] == true ? "ASYNC" : "ONLINE"</item>
+				<item name="USER_LANG">[in][USER_LANG]</item>
+				<item name="MAC_VALUE">[in][MAC_VALUE]</item>
+				<item name="FILE_PATH">[in][FILE_PATH]</item>
+				<item name="COMPANY">[in][COMPANY]</item>
+				<item name="SERVICE_CODE">[in][SERVICE_MAPPING].serviceCode</item>
+				<item name="MESSAGE_TYPE">[in][SERVICE_MAPPING].messageType</item>
+				<item name="MESSAGE_CODE">[in][SERVICE_MAPPING].messageCode</item>
+			</map>
+			<map name="APP_HEAD" ref="[in][APP_HEAD]" />
+		</in>
+		<out>
+			<map name="BODY"
+				ref="[in].?[!(key.equals('HEAD') OR key.equals('APP_HEAD'))]">
+			</map>
+			<map name="SYS_HEAD" ref="[out][HEAD]">
+				<item name="RETS">[out][HEAD][RET_RESULT]</item>
+			</map>
+			<map name="APP_HEAD" ref="[in][APP_HEAD]" />
+		</out>
+	</mapping>
+
+	<mapping id="orion2msoa">
+		<in ref="[in][BODY]"><!--输入数据映射 -->
+			<map name="HEAD" ref="[in][SYS_HEAD]">
+				<item name="SYS_DATE">[in][SYS_HEAD][TRAN_DATE]</item>
+				<item name="SYS_TIMESTAMP">[in][SYS_HEAD][TRAN_DATE] + ' ' + [in][SYS_HEAD][TRAN_TIMESTAMP]</item>
+				<item name="TRANS_ID">[in][SYS_HEAD][SEQ_NO]</item>
+				<item name="SUB_TRANS_SEQ">T(com.dcits.baixin.msoa.support.MsoaConstants).DEFAULT_SUB_TRANS_SEQ</item>
+				<item name="ASYNC">"ASYNC".equals([in][SYS_HEAD][TRAN_MODE])</item>
+			</map>
+			<item name="COMPANY">[in][SYS_HEAD][COMPANY]</item>
+			<item name="FILE_PATH">[in][SYS_HEAD][FILE_PATH]</item>
+			<item name="MAC_VALUE">[in][SYS_HEAD][MAC_VALUE]</item>
+			<item name="USER_LANG">[in][SYS_HEAD][USER_LANG]</item>
+			<map name="APP_HEAD" ref="[in][APP_HEAD]" />
+		</in>
+		<out ref="[out][BODY]">
+			<map name="HEAD" ref="[out][SYS_HEAD]">
+				<item name="RET_RESULT">[out][SYS_HEAD][RETS]</item>
+			</map>
+			<map name="APP_HEAD" ref="[in][APP_HEAD]" />
+		</out>
+	</mapping>
+</mappings>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmUpgndBtnDao">
+  <!-- Created by oms on 2016/02/25 15:47:29. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn" resultType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn">
+    select *
+    from ECM_UPGND_BTN
+    where UPGND_BTN_ID = #{upgndBtnId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn" resultType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn">
+    select a.*,b.UPGFLOW_NODE_NAME
+    from ECM_UPGND_BTN a ,  ECM_UPGFLOW_NODE b
+    where a.UPGFLOW_NODE_ID = b.UPGFLOW_NODE_ID 
+    <if test="upgndBtnIsview != null">
+      AND  a.UPGND_BTN_ISVIEW = #{upgndBtnIsview,jdbcType=VARCHAR}
+      </if>
+    order by a.UPGFLOW_NODE_ID , a.UPGND_BTN_SEQ
+  </select>
+  <select id="findByNodeId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn">
+    select *
+    from ECM_UPGND_BTN 
+    where 
+    <if test="upgflowNodeId != null">
+        UPGFLOW_NODE_ID = #{upgflowNodeId,jdbcType=INTEGER}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn">
+    delete from ECM_UPGND_BTN
+    where UPGND_BTN_ID = #{upgndBtnId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn">
+    update ECM_UPGND_BTN
+    <set>
+      <if test="upgflowNodeId != null">
+        UPGFLOW_NODE_ID = #{upgflowNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="upgndBtnName != null">
+        UPGND_BTN_NAME = #{upgndBtnName,jdbcType=VARCHAR},
+      </if>
+      <if test="upgndBtnSeq != null">
+        UPGND_BTN_SEQ = #{upgndBtnSeq,jdbcType=INTEGER},
+      </if>
+      <if test="upgndBtnClass != null">
+        UPGND_BTN_CLASS = #{upgndBtnClass,jdbcType=VARCHAR},
+      </if>
+      <if test="upgndBtnDirnodeid != null">
+        UPGND_BTN_DIRNODEID = #{upgndBtnDirnodeid,jdbcType=INTEGER},
+      </if>
+      <if test="upgndBtnFunc != null">
+        UPGND_BTN_FUNC = #{upgndBtnFunc,jdbcType=VARCHAR},
+      </if>
+      <if test="upgndBtnIsview != null">
+       UPGND_BTN_ISVIEW= #{upgndBtnIsview,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UPGND_BTN_ID = #{upgndBtnId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgndBtn">
+    insert into ECM_UPGND_BTN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="upgndBtnId != null">
+        UPGND_BTN_ID,
+      </if>
+      <if test="upgflowNodeId != null">
+        UPGFLOW_NODE_ID,
+      </if>
+      <if test="upgndBtnName != null">
+        UPGND_BTN_NAME,
+      </if>
+      <if test="upgndBtnSeq != null">
+        UPGND_BTN_SEQ,
+      </if>
+      <if test="upgndBtnClass != null">
+        UPGND_BTN_CLASS,
+      </if>
+      <if test="upgndBtnDirnodeid != null">
+        UPGND_BTN_DIRNODEID,
+      </if>
+      <if test="upgndBtnFunc != null">
+        UPGND_BTN_FUNC,
+      </if>
+      <if test="upgndBtnIsview != null">
+       UPGND_BTN_ISVIEW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="upgndBtnId != null">
+        #{upgndBtnId,jdbcType=INTEGER},
+      </if>
+      <if test="upgflowNodeId != null">
+        #{upgflowNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="upgndBtnName != null">
+        #{upgndBtnName,jdbcType=VARCHAR},
+      </if>
+      <if test="upgndBtnSeq != null">
+        #{upgndBtnSeq,jdbcType=INTEGER},
+      </if>
+      <if test="upgndBtnClass != null">
+        #{upgndBtnClass,jdbcType=VARCHAR},
+      </if>
+      <if test="upgndBtnDirnodeid != null">
+        #{upgndBtnDirnodeid,jdbcType=INTEGER},
+      </if>
+      <if test="upgndBtnFunc != null">
+       #{upgndBtnFunc,jdbcType=VARCHAR},
+      </if>
+      <if test="upgndBtnIsview != null">
+       #{upgndBtnIsview,jdbcType=VARCHAR},
+    </if>
+    </trim>
+  </insert>
+</mapper>

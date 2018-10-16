@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.IrlProdIntPfDao">
+  <!-- Created by admin on 2016/08/25 10:35:58. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf" resultType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf">
+    select *
+    from irl_prod_int
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    <if test="intClass != null">
+      AND INT_CLASS = #{intClass,jdbcType=VARCHAR}
+    </if>
+    <if test="eventType != null">
+      AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getAll" parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf">
+    select * from irl_prod_int
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBase" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf" resultType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf">
+    select *
+    from irl_prod_int
+    where '1' = '1'
+    <if test="prodType != null">
+      AND PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    </if>
+    <if test="intClass != null">
+      AND INT_CLASS = #{intClass,jdbcType=VARCHAR}
+    </if>
+    <if test="eventType != null">
+      AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf">
+    delete from irl_prod_int
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    <if test="intClass != null">
+      AND INT_CLASS = #{intClass,jdbcType=VARCHAR}
+    </if>
+    <if test="eventType != null">
+      AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf">
+    update irl_prod_int
+    <set>
+      <if test="intType != null">
+        INT_TYPE = #{intType,jdbcType=VARCHAR},
+      </if>
+      <if test="taxType != null">
+        TAX_TYPE = #{taxType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateAmtId != null">
+        RATE_AMT_ID = #{rateAmtId,jdbcType=VARCHAR},
+      </if>
+      <if test="intAmtId != null">
+        INT_AMT_ID = #{intAmtId,jdbcType=VARCHAR},
+      </if>
+      <if test="recalMethod != null">
+        RECAL_METHOD = #{recalMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="intStart != null">
+        INT_START = #{intStart,jdbcType=VARCHAR},
+      </if>
+      <if test="intDaysType != null">
+        INT_DAYS_TYPE = #{intDaysType,jdbcType=VARCHAR},
+      </if>
+      <if test="intCalcBal != null">
+        INT_CALC_BAL = #{intCalcBal,jdbcType=VARCHAR},
+      </if>
+      <if test="intApplType != null">
+        INT_APPL_TYPE = #{intApplType,jdbcType=VARCHAR},
+      </if>
+      <if test="rollFreq != null">
+        ROLL_FREQ = #{rollFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="rollDay != null">
+        ROLL_DAY = #{rollDay,jdbcType=VARCHAR},
+      </if>
+      <if test="minRate != null">
+        MIN_RATE = #{minRate,jdbcType=BIGINT},
+      </if>
+      <if test="maxRate != null">
+        MAX_RATE = #{maxRate,jdbcType=BIGINT},
+      </if>
+      <if test="intRateInd != null">
+        INT_RATE_IND = #{intRateInd,jdbcType=VARCHAR},
+      </if>
+      <if test="monthBasis != null">
+        MONTH_BASIS = #{monthBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="prodMatchType != null">
+        PROD_MATCH_TYPE = #{prodMatchType,jdbcType=CHAR}
+      </if>
+    </set>
+    where EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+    AND INT_CLASS = #{intClass,jdbcType=VARCHAR}
+    AND PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.IrlProdIntPf">
+    insert into irl_prod_int
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        PROD_TYPE,
+      </if>
+      <if test="eventType != null">
+        EVENT_TYPE,
+      </if>
+      <if test="intType != null">
+        INT_TYPE,
+      </if>
+      <if test="intClass != null">
+        INT_CLASS,
+      </if>
+      <if test="taxType != null">
+        TAX_TYPE,
+      </if>
+      <if test="rateAmtId != null">
+        RATE_AMT_ID,
+      </if>
+      <if test="intAmtId != null">
+        INT_AMT_ID,
+      </if>
+      <if test="recalMethod != null">
+        RECAL_METHOD,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+      <if test="intStart != null">
+        INT_START,
+      </if>
+      <if test="intDaysType != null">
+        INT_DAYS_TYPE,
+      </if>
+      <if test="intCalcBal != null">
+        INT_CALC_BAL,
+      </if>
+      <if test="intApplType != null">
+        INT_APPL_TYPE,
+      </if>
+      <if test="rollFreq != null">
+        ROLL_FREQ,
+      </if>
+      <if test="rollDay != null">
+        ROLL_DAY,
+      </if>
+      <if test="minRate != null">
+        MIN_RATE,
+      </if>
+      <if test="maxRate != null">
+        MAX_RATE,
+      </if>
+      <if test="intRateInd != null">
+        INT_RATE_IND,
+      </if>
+      <if test="monthBasis != null">
+        MONTH_BASIS,
+      </if>
+      <if test="prodMatchType != null">
+        PROD_MATCH_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="intType != null">
+        #{intType,jdbcType=VARCHAR},
+      </if>
+      <if test="intClass != null">
+        #{intClass,jdbcType=VARCHAR},
+      </if>
+      <if test="taxType != null">
+        #{taxType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateAmtId != null">
+        #{rateAmtId,jdbcType=VARCHAR},
+      </if>
+      <if test="intAmtId != null">
+        #{intAmtId,jdbcType=VARCHAR},
+      </if>
+      <if test="recalMethod != null">
+        #{recalMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="intStart != null">
+        #{intStart,jdbcType=VARCHAR},
+      </if>
+      <if test="intDaysType != null">
+        #{intDaysType,jdbcType=VARCHAR},
+      </if>
+      <if test="intCalcBal != null">
+        #{intCalcBal,jdbcType=VARCHAR},
+      </if>
+      <if test="intApplType != null">
+        #{intApplType,jdbcType=VARCHAR},
+      </if>
+      <if test="rollFreq != null">
+        #{rollFreq,jdbcType=VARCHAR},
+      </if>
+      <if test="rollDay != null">
+        #{rollDay,jdbcType=VARCHAR},
+      </if>
+      <if test="minRate != null">
+        #{minRate,jdbcType=BIGINT},
+      </if>
+      <if test="maxRate != null">
+        #{maxRate,jdbcType=BIGINT},
+      </if>
+      <if test="intRateInd != null">
+        #{intRateInd,jdbcType=VARCHAR},
+      </if>
+      <if test="monthBasis != null">
+        #{monthBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="prodMatchType != null">
+        #{prodMatchType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

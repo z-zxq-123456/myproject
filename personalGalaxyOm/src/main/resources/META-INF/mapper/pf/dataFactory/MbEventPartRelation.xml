@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbEventPartRelationDao">
+  <!-- Created by admin on 2016/04/23 11:25:55. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventPartRelation" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventPartRelation">
+    select *
+    from mb_event_part_relation
+    where EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      <if test="assembleType != null">
+        AND ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR}
+      </if>
+      <if test="assembleId != null">
+        AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventPartRelation">
+    delete from mb_event_part_relation
+    where EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      <if test="assembleType != null">
+        AND ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR}
+      </if>
+      <if test="assembleId != null">
+        AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventPartRelation">
+    update mb_event_part_relation
+    <set>
+      <if test="partDesc != null">
+        PART_DESC = #{partDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+        AND ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR}
+        AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventPartRelation">
+    insert into mb_event_part_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventType != null">
+        EVENT_TYPE,
+      </if>
+      <if test="assembleType != null">
+        ASSEMBLE_TYPE,
+      </if>
+      <if test="assembleId != null">
+        ASSEMBLE_ID,
+      </if>
+      <if test="partDesc != null">
+        PART_DESC,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventType != null">
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleType != null">
+        #{assembleType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleId != null">
+        #{assembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="partDesc != null">
+        #{partDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.shshpoc.EcmAppmoniIndexDao">
+  <select id="findList" parameterType="com.dcits.ensemble.om.oms.module.shshpoc.EcmAppmoniIndex" resultType="com.dcits.ensemble.om.oms.module.shshpoc.EcmAppmoniIndex">
+    select *
+    from ECM_APPMONI_INDEX 
+     where 1 = 1
+      <if test="appIndexIsview != null">
+        AND  APP_INDEX_ISVIEW = #{appIndexIsview,jdbcType=VARCHAR}
+      </if>
+    order by APP_INDEX_NO
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.shshpoc.EcmAppmoniIndex">
+    delete from ECM_APPMONI_INDEX
+    where APP_INDEX_ID = #{appIndexId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.shshpoc.EcmAppmoniIndex">
+    update ECM_APPMONI_INDEX
+    <set>
+      <if test="appIndexName != null">
+        APP_INDEX_NAME = #{appIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="appIndexNo != null">
+        APP_INDEX_NO = #{appIndexNo,jdbcType=INTEGER},
+      </if>      
+      <if test="appIndexIsview != null">
+        APP_INDEX_ISVIEW = #{appIndexIsview,jdbcType=VARCHAR},
+      </if>
+      <if test="appIndexFac != null">
+        APP_INDEX_FAC = #{appIndexFac,jdbcType=VARCHAR},
+      </if>
+      <if test="appIndexDesc != null">
+        APP_INDEX_DESC = #{appIndexDesc,jdbcType=VARCHAR},
+      </if>      
+    </set>
+    where APP_INDEX_ID = #{appIndexId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.shshpoc.EcmAppmoniIndex">
+    insert into ECM_APPMONI_INDEX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appIndexId != null">
+        APP_INDEX_ID,
+      </if>
+      <if test="appIndexName != null">
+        APP_INDEX_NAME,
+      </if>
+      <if test="appIndexNo != null">
+        APP_INDEX_NO,
+      </if>     
+      <if test="appIndexIsview != null">
+        APP_INDEX_ISVIEW,
+      </if>
+      <if test="appIndexFac != null">
+        APP_INDEX_FAC,
+      </if>
+      <if test="appIndexDesc != null">
+        APP_INDEX_DESC,
+      </if>    
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appIndexId != null">
+        #{appIndexId,jdbcType=INTEGER},
+      </if>
+      <if test="appIndexName != null">
+        #{appIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="appIndexNo != null">
+        #{appIndexNo,jdbcType=INTEGER},
+      </if>     
+      <if test="appIndexIsview != null">
+        #{appIndexIsview,jdbcType=VARCHAR},
+      </if>
+      <if test="appIndexFac != null">
+        #{appIndexFac,jdbcType=VARCHAR},
+      </if>
+      <if test="appIndexDesc != null">
+       #{appIndexDesc,jdbcType=VARCHAR},
+      </if>     
+    </trim>
+  </insert>
+</mapper>

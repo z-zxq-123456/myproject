@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pm.dao.paraSetting.ParaDifferenceCheckPublishDao">
+  <!-- Created by maruie on 2016/05/20 15:08:28. -->
+  <select id="getAllDataByTbReqKv" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    select *
+    from PARA_DIFFERENCE_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+    AND TABLE_FULL_NAME = #{tableFullName,jdbcType=VARCHAR}
+    ORDER BY  TRAN_TIMESTAMP
+  </select>
+  <select id="getDifferenceByTbReqKv" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    select *
+    from PARA_DIFFERENCE_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+          AND TABLE_FULL_NAME = #{tableFullName,jdbcType=VARCHAR}
+          AND PRIMARY_KEYVALUE = #{primaryKeyvalue,jdbcType=VARCHAR}
+          AND OPERATE_TYPE = #{operateType,jdbcType=VARCHAR}
+      <if test="tranTimestamp != null">
+          AND SERIES_NUM = #{seriesNum,jdbcType=DECIMAL}
+      </if>
+  </select>
+  <delete id="deleteByTbReqKv" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    delete from PARA_DIFFERENCE_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+      AND TABLE_FULL_NAME = #{tableFullName,jdbcType=VARCHAR}
+      AND PRIMARY_KEYVALUE = #{primaryKeyvalue,jdbcType=VARCHAR}
+      <if test="seriesNum != null">
+          AND SERIES_NUM = #{seriesNum,jdbcType=DECIMAL}
+      </if>
+  </delete>
+  <delete id="deleteByTableReqNo" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    delete from PARA_DIFFERENCE_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+    AND TABLE_FULL_NAME = #{tableFullName,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    select *
+    from PARA_DIFFERENCE_CHECK_PUBLISH
+    where TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR}
+      <if test="seriesNum != null">
+        AND SERIES_NUM = #{seriesNum,jdbcType=DECIMAL}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    delete from PARA_DIFFERENCE_CHECK_PUBLISH
+    where TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR}
+      <if test="tranTimestamp != null">
+        AND SERIES_NUM = #{seriesNum,jdbcType=DECIMAL}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    update PARA_DIFFERENCE_CHECK_PUBLISH
+    <set>
+      <if test="reqNo != null">
+        REQ_NO = #{reqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tableFullName != null">
+        TABLE_FULL_NAME = #{tableFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKeyvalue != null">
+        PRIMARY_KEYVALUE = #{primaryKeyvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue != null">
+        KEY_VALUE = #{keyValue,jdbcType=BLOB},
+      </if>
+      <if test="operateType != null">
+        OPERATE_TYPE = #{operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDui != null">
+        DATA_DUI = #{dataDui,jdbcType=BLOB},
+      </if>
+      <if test="olddataUpd != null">
+        OLDDATA_UPD = #{olddataUpd,jdbcType=BLOB}
+      </if>
+    </set>
+    where SERIES_NUM = #{seriesNum,jdbcType=DECIMAL}
+    AND TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaDifferenceCheckPublish">
+    insert into PARA_DIFFERENCE_CHECK_PUBLISH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tranTimestamp != null">
+        TRAN_TIMESTAMP,
+      </if>
+      <if test="seriesNum != null">
+        SERIES_NUM,
+      </if>
+      <if test="reqNo != null">
+        REQ_NO,
+      </if>
+      <if test="tableFullName != null">
+        TABLE_FULL_NAME,
+      </if>
+      <if test="primaryKeyvalue != null">
+        PRIMARY_KEYVALUE,
+      </if>
+      <if test="keyValue != null">
+        KEY_VALUE,
+      </if>
+      <if test="operateType != null">
+        OPERATE_TYPE,
+      </if>
+      <if test="dataDui != null">
+        DATA_DUI,
+      </if>
+      <if test="olddataUpd != null">
+        OLDDATA_UPD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tranTimestamp != null">
+        #{tranTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesNum != null">
+        #{seriesNum,jdbcType=DECIMAL},
+      </if>
+      <if test="reqNo != null">
+        #{reqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tableFullName != null">
+        #{tableFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKeyvalue != null">
+        #{primaryKeyvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue != null">
+        #{keyValue,jdbcType=BLOB},
+      </if>
+      <if test="operateType != null">
+        #{operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDui != null">
+        #{dataDui,jdbcType=BLOB},
+      </if>
+      <if test="olddataUpd != null">
+        #{olddataUpd,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+</mapper>

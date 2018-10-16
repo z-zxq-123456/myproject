@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pm.dao.paraSetting.ParaApplyCheckPublishDao">
+  <!-- Created by maruie on 2016/04/07 13:57:00. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish">
+    select *
+    from PARA_APPLY_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+      <if test="tranTimestamp != null">
+        AND TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="applyCheckProdList"  resultType="com.dcits.ensemble.om.pf.bean.DbProdCheckList">
+    select
+   a.REQ_NO, b.OPERATE_TYPE ,a.CHECK_TEXT ,a.OPERATOR_ID, a.CURRENTSYSTEM_TIME PUBLISH_TIME,b.TABLE_FULL_NAME  ,b.KEY_VALUE ,b.OLDDATA_UPD ,b.DATA_DUI
+    from PARA_APPLY_CHECK_PUBLISH a,PARA_DIFFERENCE_CHECK_PUBLISH b
+    where a.req_no=b.req_no and TABLE_FULL_NAME like 'PROD_%' and OPERATOR_TYPE='P'
+        order by CONCAT(CONCAT(substr(a.CURRENTSYSTEM_TIME,1,4),substr(a.CURRENTSYSTEM_TIME,6,2)),substr(a.CURRENTSYSTEM_TIME,9,2))  DESC
+  </select>
+  <select id="getOperator"  resultType="java.util.Map" parameterType="java.lang.String">
+    select
+    OPERATOR_ID OPERATOR_CURRENTSYSTEM, CURRENTSYSTEM_TIME CURRENTSYSTEM_TIME
+    from PARA_APPLY_CHECK_PUBLISH
+    where req_no=#{reqNo,jdbcType=VARCHAR} AND OPERATOR_TYPE='A'
+  </select>
+  <select id="getOperatorPublish"  resultType="java.util.Map" parameterType="java.lang.String">
+    select
+    OPERATOR_ID OPERATOR_CHECK, CURRENTSYSTEM_TIME CHECK_TIME
+    from PARA_APPLY_CHECK_PUBLISH
+    where req_no=#{reqNo,jdbcType=VARCHAR} AND OPERATOR_TYPE='C'
+  </select>
+  <select id="byProdTypeList"   parameterType="java.util.Map" resultType="com.dcits.ensemble.om.pf.bean.DbProdCheckList">
+    select
+    a.REQ_NO, b.OPERATE_TYPE ,a.CHECK_TEXT ,a.OPERATOR_ID, a.CURRENTSYSTEM_TIME PUBLISH_TIME,b.TABLE_FULL_NAME  ,b.KEY_VALUE ,b.OLDDATA_UPD ,b.DATA_DUI
+    from PARA_APPLY_CHECK_PUBLISH a,PARA_DIFFERENCE_CHECK_PUBLISH b
+    where a.req_no=b.req_no and PRIMARY_KEYVALUE like '%${prodType}%' and TABLE_FULL_NAME like 'PROD_%' and OPERATOR_TYPE='P'
+       <if test="startTime != null">
+         and
+   CONCAT(CONCAT(substr(a.CURRENTSYSTEM_TIME,1,4),substr(a.CURRENTSYSTEM_TIME,6,2)),substr(a.CURRENTSYSTEM_TIME,9,2))
+     between  #{startTime,jdbcType=VARCHAR} and #{endTime,jdbcType=VARCHAR}
+    </if>
+    order by CONCAT(CONCAT(substr(a.CURRENTSYSTEM_TIME,1,4),substr(a.CURRENTSYSTEM_TIME,6,2)),substr(a.CURRENTSYSTEM_TIME,9,2))  DESC
+  </select>
+  <select id="getList"  resultType="java.util.Map">
+    select appCheck.*,circle.TRANSACTION_DESC,circle.TRANSACTION_ID
+    from PARA_APPLY_CHECK_PUBLISH appCheck,PARA_CIRCLE_FLOW circle
+    where appCheck.REQ_NO = circle.REQ_NO
+  </select>
+  <select id="findByDate" parameterType="java.util.Map" resultType="java.util.Map">
+    select 	appCheck.*,circle.TRANSACTION_DESC,circle.TRANSACTION_ID
+    from PARA_APPLY_CHECK_PUBLISH appCheck,PARA_CIRCLE_FLOW circle
+    where  appCheck.REQ_NO = circle.REQ_NO and CONCAT(CONCAT(substr(appCheck.CURRENTSYSTEM_TIME,1,4),substr(appCheck.CURRENTSYSTEM_TIME,6,2)),substr(appCheck.CURRENTSYSTEM_TIME,9,2))
+     between  #{startDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish">
+    delete from PARA_APPLY_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+      <if test="tranTimestamp != null">
+        AND TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish">
+    update PARA_APPLY_CHECK_PUBLISH
+    <set>
+      <if test="operatorType != null">
+        OPERATOR_TYPE = #{operatorType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkText != null">
+        CHECK_TEXT = #{checkText,jdbcType=VARCHAR},
+      </if>
+      <if test="approve != null">
+        APPROVE = #{approve,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        OPERATOR_ID = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="currentsystemTime != null">
+        CURRENTSYSTEM_TIME = #{currentsystemTime,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        CLIENT_IP = #{clientIp,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+        AND TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish">
+    insert into PARA_APPLY_CHECK_PUBLISH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reqNo != null">
+        REQ_NO,
+      </if>
+      <if test="tranTimestamp != null">
+        TRAN_TIMESTAMP,
+      </if>
+      <if test="operatorType != null">
+        OPERATOR_TYPE,
+      </if>
+      <if test="checkText != null">
+        CHECK_TEXT,
+      </if>
+      <if test="approve != null">
+        APPROVE,
+      </if>
+      <if test="operatorId != null">
+        OPERATOR_ID,
+      </if>
+      <if test="currentsystemTime != null">
+        CURRENTSYSTEM_TIME,
+      </if>
+      <if test="clientIp != null">
+        CLIENT_IP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reqNo != null">
+        #{reqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tranTimestamp != null">
+        #{tranTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorType != null">
+        #{operatorType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkText != null">
+        #{checkText,jdbcType=VARCHAR},
+      </if>
+      <if test="approve != null">
+        #{approve,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="currentsystemTime != null">
+        #{currentsystemTime,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="needCheckOrPublishInfoList" parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish">
+    select *
+    from PARA_APPLY_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+  </select>
+  <select id="checkIfAnotherPublisher" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaApplyCheckPublish" resultType="java.lang.String">
+    select OPERATOR_ID
+    from PARA_APPLY_CHECK_PUBLISH
+    where REQ_NO = #{reqNo,jdbcType=VARCHAR}
+    and OPERATOR_TYPE = 'C'
+    order by TRAN_TIMESTAMP DESC
+  </select>
+</mapper>

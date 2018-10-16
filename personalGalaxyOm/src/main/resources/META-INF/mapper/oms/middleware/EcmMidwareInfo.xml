@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.middleware.EcmMidwareInfoDao">
+  <!-- Created by oms on 2016/02/16 10:54:34. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo" resultType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    select *
+    from ECM_MIDWARE_INFO
+    where MIDWARE_ID = #{midwareId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    select a.*,b.MIDWARE_VER_NO
+    from ECM_MIDWARE_INFO a LEFT JOIN ECM_MIDWARE_VER b
+    on a.MIDWARE_VER_ID = b.MIDWARE_VER_ID
+    <where>
+     <if test="baseParam.midwareType!= null">
+     a.MIDWARE_TYPE = #{baseParam.midwareType,jdbcType=INTEGER}
+   </if>
+    <if test="baseParam.kfkZksId!= null">
+      a.KFK_ZKS_ID = #{baseParam.kfkZksId,jdbcType=INTEGER}
+    </if>
+    </where>
+  </select>
+  
+   <select id="findMidwareList" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    select *
+    from ECM_MIDWARE_INFO 
+    order by ECM_MIDWARE_INFO.MIDWARE_ID
+  </select>
+  <select id="findCombList" parameterType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo" resultType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    select a.*,b.MIDWARE_VER_NO
+    from ECM_MIDWARE_INFO a LEFT JOIN ECM_MIDWARE_VER b
+    on a.MIDWARE_VER_ID = b.MIDWARE_VER_ID  
+    where a.MIDWARE_TYPE=#{midwareType,jdbcType=INTEGER}
+  </select> 
+  
+  <select id="findIsDefaultList" parameterType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo" resultType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    select * 
+    from ECM_MIDWARE_INFO  
+    where IS_DEFAULT=#{isDefault,jdbcType=VARCHAR}
+  </select> 
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    delete from ECM_MIDWARE_INFO
+    where MIDWARE_ID = #{midwareId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    update ECM_MIDWARE_INFO
+    <set>
+      <if test="midwareVerId != null">
+        MIDWARE_VER_ID = #{midwareVerId,jdbcType=INTEGER},
+      </if>
+      <if test="midwareName != null">
+        MIDWARE_NAME = #{midwareName,jdbcType=VARCHAR},
+      </if>
+      <if test="midwareType != null">
+        MIDWARE_TYPE = #{midwareType,jdbcType=VARCHAR},
+      </if>
+      <if test="midwarePath != null">
+        MIDWARE_PATH = #{midwarePath,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+      </if>
+        KFK_ZKS_ID = #{kfkZksId,jdbcType=VARCHAR}
+    </set>
+    where MIDWARE_ID = #{midwareId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.middleware.EcmMidwareInfo">
+    insert into ECM_MIDWARE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="midwareId != null">
+        MIDWARE_ID,
+      </if>
+      <if test="midwareVerId != null">
+        MIDWARE_VER_ID,
+      </if>
+      <if test="midwareName != null">
+        MIDWARE_NAME,
+      </if>
+      <if test="midwareType != null">
+        MIDWARE_TYPE,
+      </if>
+      <if test="midwarePath != null">
+        MIDWARE_PATH,
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT,
+      </if>
+      <if test="kfkZksId != null">
+        KFK_ZKS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="midwareId != null">
+        #{midwareId,jdbcType=INTEGER},
+      </if>
+      <if test="midwareVerId != null">
+        #{midwareVerId,jdbcType=INTEGER},
+      </if>
+      <if test="midwareName != null">
+        #{midwareName,jdbcType=VARCHAR},
+      </if>
+      <if test="midwareType != null">
+        #{midwareType,jdbcType=VARCHAR},
+      </if>
+      <if test="midwarePath != null">
+        #{midwarePath,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="kfkZksId != null">
+        #{kfkZksId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

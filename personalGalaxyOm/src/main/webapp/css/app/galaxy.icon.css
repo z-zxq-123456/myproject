@@ -1,0 +1,1137 @@
+@charset "UTF-8";
+/*
+@名称：galaxy.icon.scss
+@功能：galaxy开发平台图标样式
+@产权：Copyright  神州信息 DCITS
+*/
+/* line 284, d:/sass/sassCore-master/core/_mixin.scss */
+.galaxy-icon-glass:before, .galaxy-icon-music:before, .galaxy-icon-search:before, .galaxy-icon-envelope-o:before, .galaxy-icon-heart:before, .galaxy-icon-star:before, .galaxy-icon-star-o:before, .galaxy-icon-user:before, .galaxy-icon-film:before, .galaxy-icon-th-large:before, .galaxy-icon-th:before, .galaxy-icon-th-list:before, .galaxy-icon-check:before, .galaxy-icon-times:before, .galaxy-icon-search-plus:before, .galaxy-icon-search-minus:before, .galaxy-icon-power-off:before, .galaxy-icon-signal:before, .galaxy-icon-cog:before, .galaxy-icon-trash-o:before, .galaxy-icon-home:before, .galaxy-icon-file-o:before, .galaxy-icon-clock-o:before, .galaxy-icon-road:before, .galaxy-icon-download:before, .galaxy-icon-arrow-circle-o-down:before, .galaxy-icon-arrow-circle-o-up:before, .galaxy-icon-inbox:before, .galaxy-icon-play-circle-o:before, .galaxy-icon-repeat:before, .galaxy-icon-refresh:before, .galaxy-icon-list-alt:before, .galaxy-icon-lock:before, .galaxy-icon-flag:before, .galaxy-icon-headphones:before, .galaxy-icon-volume-off:before, .galaxy-icon-volume-down:before, .galaxy-icon-volume-up:before, .galaxy-icon-qrcode:before, .galaxy-icon-barcode:before, .galaxy-icon-tag:before, .galaxy-icon-tags:before, .galaxy-icon-book:before, .galaxy-icon-bookmark:before, .galaxy-icon-print:before, .galaxy-icon-camera:before, .galaxy-icon-font:before, .galaxy-icon-bold:before, .galaxy-icon-italic:before, .galaxy-icon-text-height:before, .galaxy-icon-text-width:before, .galaxy-icon-align-left:before, .galaxy-icon-align-center:before, .galaxy-icon-align-right:before, .galaxy-icon-align-justify:before, .galaxy-icon-list:before, .galaxy-icon-outdent:before, .galaxy-icon-indent:before, .galaxy-icon-video-camera:before, .galaxy-icon-picture-o:before, .galaxy-icon-pencil:before, .galaxy-icon-map-marker:before, .galaxy-icon-adjust:before, .galaxy-icon-tint:before, .galaxy-icon-pencil-square-o:before, .galaxy-icon-share-square-o:before, .galaxy-icon-check-square-o:before, .galaxy-icon-arrows:before, .galaxy-icon-step-backward:before, .galaxy-icon-fast-backward:before, .galaxy-icon-backward:before, .galaxy-icon-play:before, .galaxy-icon-pause:before, .galaxy-icon-stop:before, .galaxy-icon-forward:before, .galaxy-icon-fast-forward:before, .galaxy-icon-step-forward:before, .galaxy-icon-eject:before, .galaxy-icon-chevron-left:before, .galaxy-icon-chevron-right:before, .galaxy-icon-plus-circle:before, .galaxy-icon-minus-circle:before, .galaxy-icon-times-circle:before, .galaxy-icon-check-circle:before, .galaxy-icon-question-circle:before, .galaxy-icon-info-circle:before, .galaxy-icon-crosshairs:before, .galaxy-icon-times-circle-o:before, .galaxy-icon-check-circle-o:before, .galaxy-icon-ban:before, .galaxy-icon-arrow-left:before, .galaxy-icon-arrow-right:before, .galaxy-icon-arrow-up:before, .galaxy-icon-arrow-down:before, .galaxy-icon-share:before, .galaxy-icon-expand:before, .galaxy-icon-compress:before, .galaxy-icon-plus:before, .galaxy-icon-minus:before, .galaxy-icon-asterisk:before, .galaxy-icon-exclamation-circle:before, .galaxy-icon-gift:before, .galaxy-icon-leaf:before, .galaxy-icon-fire:before, .galaxy-icon-eye:before, .galaxy-icon-eye-slash:before, .galaxy-icon-exclamation-triangle:before, .galaxy-icon-plane:before, .galaxy-icon-calendar:before, .galaxy-icon-random:before, .galaxy-icon-comment:before, .galaxy-icon-magnet:before, .galaxy-icon-chevron-up:before, .galaxy-icon-chevron-down:before, .galaxy-icon-retweet:before, .galaxy-icon-shopping-cart:before, .galaxy-icon-folder:before, .galaxy-icon-folder-open:before, .galaxy-icon-arrows-v:before, .galaxy-icon-arrows-h:before, .galaxy-icon-bar-chart-o:before, .galaxy-icon-twitter-square:before, .galaxy-icon-facebook-square:before, .galaxy-icon-camera-retro:before, .galaxy-icon-key:before, .galaxy-icon-cogs:before, .galaxy-icon-comments:before, .galaxy-icon-thumbs-o-up:before, .galaxy-icon-thumbs-o-down:before, .galaxy-icon-star-half:before, .galaxy-icon-heart-o:before, .galaxy-icon-sign-out:before, .galaxy-icon-linkedin-square:before, .galaxy-icon-thumb-tack:before, .galaxy-icon-external-link:before, .galaxy-icon-sign-in:before, .galaxy-icon-trophy:before, .galaxy-icon-github-square:before, .galaxy-icon-upload:before, .galaxy-icon-lemon-o:before, .galaxy-icon-phone:before, .galaxy-icon-square-o:before, .galaxy-icon-bookmark-o:before, .galaxy-icon-phone-square:before, .galaxy-icon-twitter:before, .galaxy-icon-facebook:before, .galaxy-icon-github:before, .galaxy-icon-unlock:before, .galaxy-icon-credit-card:before, .galaxy-icon-rss:before, .galaxy-icon-hdd-o:before, .galaxy-icon-bullhorn:before, .galaxy-icon-bell:before, .galaxy-icon-certificate:before, .galaxy-icon-hand-o-right:before, .galaxy-icon-hand-o-left:before, .galaxy-icon-hand-o-up:before, .galaxy-icon-hand-o-down:before, .galaxy-icon-arrow-circle-left:before, .galaxy-icon-arrow-circle-right:before, .galaxy-icon-arrow-circle-up:before, .galaxy-icon-arrow-circle-down:before, .galaxy-icon-globe:before, .galaxy-icon-wrench:before, .galaxy-icon-tasks:before, .galaxy-icon-filter:before, .galaxy-icon-briefcase:before, .galaxy-icon-arrows-alt:before, .galaxy-icon-users:before, .galaxy-icon-link:before, .galaxy-icon-cloud:before, .galaxy-icon-flask:before, .galaxy-icon-scissors:before, .galaxy-icon-files-o:before, .galaxy-icon-paperclip:before, .galaxy-icon-floppy-o:before, .galaxy-icon-square:before, .galaxy-icon-bars:before, .galaxy-icon-list-ul:before, .galaxy-icon-list-ol:before, .galaxy-icon-strikethrough:before, .galaxy-icon-underline:before, .galaxy-icon-table:before, .galaxy-icon-magic:before, .galaxy-icon-truck:before, .galaxy-icon-pinterest:before, .galaxy-icon-pinterest-square:before, .galaxy-icon-google-plus-square:before, .galaxy-icon-google-plus:before, .galaxy-icon-money:before, .galaxy-icon-caret-down:before, .galaxy-icon-caret-up:before, .galaxy-icon-caret-left:before, .galaxy-icon-caret-right:before, .galaxy-icon-columns:before, .galaxy-icon-sort:before, .galaxy-icon-sort-down:before, .galaxy-icon-sort-asc:before, .galaxy-icon-sort-desc:before, .galaxy-icon-envelope:before, .galaxy-icon-linkedin:before, .galaxy-icon-undo:before, .galaxy-icon-gavel:before, .galaxy-icon-tachometer:before, .galaxy-icon-dashboard:before, .galaxy-icon-comment-o:before, .galaxy-icon-comments-o:before, .galaxy-icon-bolt:before, .galaxy-icon-sitemap:before, .galaxy-icon-umbrella:before, .galaxy-icon-clipboard:before, .galaxy-icon-lightbulb-o:before, .galaxy-icon-exchange:before, .galaxy-icon-cloud-download:before, .galaxy-icon-cloud-upload:before, .galaxy-icon-user-md:before, .galaxy-icon-stethoscope:before, .galaxy-icon-suitcase:before, .galaxy-icon-bell-o:before, .galaxy-icon-coffee:before, .galaxy-icon-cutlery:before, .galaxy-icon-file-text-o:before, .galaxy-icon-building-o:before, .galaxy-icon-hospital-o:before, .galaxy-icon-ambulance:before, .galaxy-icon-medkit:before, .galaxy-icon-fighter-jet:before, .galaxy-icon-beer:before, .galaxy-icon-h-square:before, .galaxy-icon-plus-square:before, .galaxy-icon-angle-double-left:before, .galaxy-icon-angle-double-right:before, .galaxy-icon-angle-double-up:before, .galaxy-icon-angle-double-down:before, .galaxy-icon-angle-left:before, .galaxy-icon-angle-right:before, .galaxy-icon-angle-up:before, .galaxy-icon-angle-down:before, .galaxy-icon-desktop:before, .galaxy-icon-laptop:before, .galaxy-icon-tablet:before, .galaxy-icon-mobile:before, .galaxy-icon-mobile-phone:before, .galaxy-icon-circle-o:before, .galaxy-icon-quote-left:before, .galaxy-icon-quote-right:before, .galaxy-icon-spinner:before, .galaxy-icon-circle:before, .galaxy-icon-reply:before, .galaxy-icon-github-alt:before, .galaxy-icon-folder-o:before, .galaxy-icon-folder-open-o:before, .galaxy-icon-smile-o:before, .galaxy-icon-frown-o:before, .galaxy-icon-meh-o:before, .galaxy-icon-gamepad:before, .galaxy-icon-keyboard-o:before, .galaxy-icon-flag-o:before, .galaxy-icon-flag-checkered:before, .galaxy-icon-terminal:before, .galaxy-icon-code:before, .galaxy-icon-reply-all:before, .galaxy-icon-mail-reply-all:before, .galaxy-icon-star-half-o:before, .galaxy-icon-location-arrow:before, .galaxy-icon-crop:before, .galaxy-icon-code-fork:before, .galaxy-icon-chain-broken:before, .galaxy-icon-question:before, .galaxy-icon-info:before, .galaxy-icon-exclamation:before, .galaxy-icon-superscript:before, .galaxy-icon-subscript:before, .galaxy-icon-eraser:before, .galaxy-icon-puzzle-piece:before, .galaxy-icon-microphone:before, .galaxy-icon-microphone-slash:before, .galaxy-icon-shield:before, .galaxy-icon-calendar-o:before, .galaxy-icon-fire-extinguisher:before, .galaxy-icon-rocket:before, .galaxy-icon-maxcdn:before, .galaxy-icon-chevron-circle-left:before, .galaxy-icon-chevron-circle-right:before, .galaxy-icon-chevron-circle-up:before, .galaxy-icon-chevron-circle-down:before, .galaxy-icon-html5:before, .galaxy-icon-css3:before, .galaxy-icon-anchor:before, .galaxy-icon-unlock-alt:before, .galaxy-icon-bullseye:before, .galaxy-icon-ellipsis-h:before, .galaxy-icon-ellipsis-v:before, .galaxy-icon-rss-square:before, .galaxy-icon-play-circle:before, .galaxy-icon-ticket:before, .galaxy-icon-minus-square:before, .galaxy-icon-minus-square-o:before, .galaxy-icon-level-up:before, .galaxy-icon-level-down:before, .galaxy-icon-check-square:before, .galaxy-icon-pencil-square:before, .galaxy-icon-external-link-square:before, .galaxy-icon-share-square:before, .galaxy-icon-compass:before, .galaxy-icon-caret-square-o-down:before, .galaxy-icon-caret-square-o-up:before, .galaxy-icon-caret-square-o-right:before, .galaxy-icon-eur:before, .galaxy-icon-gbp:before, .galaxy-icon-usd:before, .galaxy-icon-inr:before, .galaxy-icon-jpy:before, .galaxy-icon-rub:before, .galaxy-icon-ruble:before, .galaxy-icon-rouble:before, .galaxy-icon-krw:before, .galaxy-icon-btc:before, .galaxy-icon-file:before, .galaxy-icon-file-text:before, .galaxy-icon-sort-alpha-asc:before, .galaxy-icon-sort-alpha-desc:before, .galaxy-icon-sort-amount-asc:before, .galaxy-icon-sort-amount-desc:before, .galaxy-icon-sort-numeric-asc:before, .galaxy-icon-sort-numeric-desc:before, .galaxy-icon-thumbs-up:before, .galaxy-icon-thumbs-down:before, .galaxy-icon-youtube-square:before, .galaxy-icon-youtube:before, .galaxy-icon-xing:before, .galaxy-icon-xing-square:before, .galaxy-icon-youtube-play:before, .galaxy-icon-dropbox:before, .galaxy-icon-stack-overflow:before, .galaxy-icon-instagram:before, .galaxy-icon-flickr:before, .galaxy-icon-adn:before, .galaxy-icon-bitbucket:before, .galaxy-icon-bitbucket-square:before, .galaxy-icon-tumblr:before, .galaxy-icon-tumblr-square:before, .galaxy-icon-long-arrow-down:before, .galaxy-icon-long-arrow-up:before, .galaxy-icon-long-arrow-left:before, .galaxy-icon-long-arrow-right:before, .galaxy-icon-apple:before, .galaxy-icon-windows:before, .galaxy-icon-android:before, .galaxy-icon-linux:before, .galaxy-icon-dribbble:before, .galaxy-icon-skype:before, .galaxy-icon-foursquare:before, .galaxy-icon-trello:before, .galaxy-icon-female:before, .galaxy-icon-male:before, .galaxy-icon-gittip:before, .galaxy-icon-sun-o:before, .galaxy-icon-moon-o:before, .galaxy-icon-archive:before, .galaxy-icon-bug:before, .galaxy-icon-vk:before, .galaxy-icon-weibo:before, .galaxy-icon-renren:before, .galaxy-icon-pagelines:before, .galaxy-icon-stack-exchange:before, .galaxy-icon-arrow-circle-o-right:before, .galaxy-icon-arrow-circle-o-left:before, .galaxy-icon-caret-square-o-left:before, .galaxy-icon-toggle-left:before, .galaxy-icon-dot-circle-o:before, .galaxy-icon-wheelchair:before, .galaxy-icon-vimeo-square:before, .galaxy-icon-try:before, .galaxy-icon-plus-square-o:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+@font-face { font-family: Galaxy-icon; font-weight: normal; font-style: normal; src: url("../lib/fonts/fontawesome-webfont.eot"); src: url("../lib/fonts/fontawesome-webfont.eot?#iefix") format("eot"), url("../lib/fonts/fontawesome-webfont.svg#Galaxy-icon") format("svg"), url("../lib/fonts/fontawesome-webfont.woff") format("woff"), url("../lib/fonts/fontawesome-webfont.ttf") format("truetype"); }
+/* line 28, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-glass, .galaxy-icon-music, .galaxy-icon-search, .galaxy-icon-envelope-o, .galaxy-icon-heart, .galaxy-icon-star, .galaxy-icon-star-o, .galaxy-icon-user, .galaxy-icon-film, .galaxy-icon-th-large, .galaxy-icon-th, .galaxy-icon-th-list, .galaxy-icon-check, .galaxy-icon-times, .galaxy-icon-search-plus, .galaxy-icon-search-minus, .galaxy-icon-power-off, .galaxy-icon-signal, .galaxy-icon-cog, .galaxy-icon-trash-o, .galaxy-icon-home, .galaxy-icon-file-o, .galaxy-icon-clock-o, .galaxy-icon-road, .galaxy-icon-download, .galaxy-icon-arrow-circle-o-down, .galaxy-icon-arrow-circle-o-up, .galaxy-icon-inbox, .galaxy-icon-play-circle-o, .galaxy-icon-repeat, .galaxy-icon-refresh, .galaxy-icon-list-alt, .galaxy-icon-lock, .galaxy-icon-flag, .galaxy-icon-headphones, .galaxy-icon-volume-off, .galaxy-icon-volume-down, .galaxy-icon-volume-up, .galaxy-icon-qrcode, .galaxy-icon-barcode, .galaxy-icon-tag, .galaxy-icon-tags, .galaxy-icon-book, .galaxy-icon-bookmark, .galaxy-icon-print, .galaxy-icon-camera, .galaxy-icon-font, .galaxy-icon-bold, .galaxy-icon-italic, .galaxy-icon-text-height, .galaxy-icon-text-width, .galaxy-icon-align-left, .galaxy-icon-align-center, .galaxy-icon-align-right, .galaxy-icon-align-justify, .galaxy-icon-list, .galaxy-icon-outdent, .galaxy-icon-indent, .galaxy-icon-video-camera, .galaxy-icon-picture-o, .galaxy-icon-pencil, .galaxy-icon-map-marker, .galaxy-icon-adjust, .galaxy-icon-tint, .galaxy-icon-pencil-square-o, .galaxy-icon-share-square-o, .galaxy-icon-check-square-o, .galaxy-icon-arrows, .galaxy-icon-step-backward, .galaxy-icon-fast-backward, .galaxy-icon-backward, .galaxy-icon-play, .galaxy-icon-pause, .galaxy-icon-stop, .galaxy-icon-forward, .galaxy-icon-fast-forward, .galaxy-icon-step-forward, .galaxy-icon-eject, .galaxy-icon-chevron-left, .galaxy-icon-chevron-right, .galaxy-icon-plus-circle, .galaxy-icon-minus-circle, .galaxy-icon-times-circle, .galaxy-icon-check-circle, .galaxy-icon-question-circle, .galaxy-icon-info-circle, .galaxy-icon-crosshairs, .galaxy-icon-times-circle-o, .galaxy-icon-check-circle-o, .galaxy-icon-ban, .galaxy-icon-arrow-left, .galaxy-icon-arrow-right, .galaxy-icon-arrow-up, .galaxy-icon-arrow-down, .galaxy-icon-share, .galaxy-icon-expand, .galaxy-icon-compress, .galaxy-icon-plus, .galaxy-icon-minus, .galaxy-icon-asterisk, .galaxy-icon-exclamation-circle, .galaxy-icon-gift, .galaxy-icon-leaf, .galaxy-icon-fire, .galaxy-icon-eye, .galaxy-icon-eye-slash, .galaxy-icon-exclamation-triangle, .galaxy-icon-plane, .galaxy-icon-calendar, .galaxy-icon-random, .galaxy-icon-comment, .galaxy-icon-magnet, .galaxy-icon-chevron-up, .galaxy-icon-chevron-down, .galaxy-icon-retweet, .galaxy-icon-shopping-cart, .galaxy-icon-folder, .galaxy-icon-folder-open, .galaxy-icon-arrows-v, .galaxy-icon-arrows-h, .galaxy-icon-bar-chart-o, .galaxy-icon-twitter-square, .galaxy-icon-facebook-square, .galaxy-icon-camera-retro, .galaxy-icon-key, .galaxy-icon-cogs, .galaxy-icon-comments, .galaxy-icon-thumbs-o-up, .galaxy-icon-thumbs-o-down, .galaxy-icon-star-half, .galaxy-icon-heart-o, .galaxy-icon-sign-out, .galaxy-icon-linkedin-square, .galaxy-icon-thumb-tack, .galaxy-icon-external-link, .galaxy-icon-sign-in, .galaxy-icon-trophy, .galaxy-icon-github-square, .galaxy-icon-upload, .galaxy-icon-lemon-o, .galaxy-icon-phone, .galaxy-icon-square-o, .galaxy-icon-bookmark-o, .galaxy-icon-phone-square, .galaxy-icon-twitter, .galaxy-icon-facebook, .galaxy-icon-github, .galaxy-icon-unlock, .galaxy-icon-credit-card, .galaxy-icon-rss, .galaxy-icon-hdd-o, .galaxy-icon-bullhorn, .galaxy-icon-bell, .galaxy-icon-certificate, .galaxy-icon-hand-o-right, .galaxy-icon-hand-o-left, .galaxy-icon-hand-o-up, .galaxy-icon-hand-o-down, .galaxy-icon-arrow-circle-left, .galaxy-icon-arrow-circle-right, .galaxy-icon-arrow-circle-up, .galaxy-icon-arrow-circle-down, .galaxy-icon-globe, .galaxy-icon-wrench, .galaxy-icon-tasks, .galaxy-icon-filter, .galaxy-icon-briefcase, .galaxy-icon-arrows-alt, .galaxy-icon-users, .galaxy-icon-link, .galaxy-icon-cloud, .galaxy-icon-flask, .galaxy-icon-scissors, .galaxy-icon-files-o, .galaxy-icon-paperclip, .galaxy-icon-floppy-o, .galaxy-icon-square, .galaxy-icon-bars, .galaxy-icon-list-ul, .galaxy-icon-list-ol, .galaxy-icon-strikethrough, .galaxy-icon-underline, .galaxy-icon-table, .galaxy-icon-magic, .galaxy-icon-truck, .galaxy-icon-pinterest, .galaxy-icon-pinterest-square, .galaxy-icon-google-plus-square, .galaxy-icon-google-plus, .galaxy-icon-money, .galaxy-icon-caret-down, .galaxy-icon-caret-up, .galaxy-icon-caret-left, .galaxy-icon-caret-right, .galaxy-icon-columns, .galaxy-icon-sort, .galaxy-icon-sort-down, .galaxy-icon-sort-asc, .galaxy-icon-sort-desc, .galaxy-icon-envelope, .galaxy-icon-linkedin, .galaxy-icon-undo, .galaxy-icon-gavel, .galaxy-icon-tachometer, .galaxy-icon-dashboard, .galaxy-icon-comment-o, .galaxy-icon-comments-o, .galaxy-icon-bolt, .galaxy-icon-sitemap, .galaxy-icon-umbrella, .galaxy-icon-clipboard, .galaxy-icon-lightbulb-o, .galaxy-icon-exchange, .galaxy-icon-cloud-download, .galaxy-icon-cloud-upload, .galaxy-icon-user-md, .galaxy-icon-stethoscope, .galaxy-icon-suitcase, .galaxy-icon-bell-o, .galaxy-icon-coffee, .galaxy-icon-cutlery, .galaxy-icon-file-text-o, .galaxy-icon-building-o, .galaxy-icon-hospital-o, .galaxy-icon-ambulance, .galaxy-icon-medkit, .galaxy-icon-fighter-jet, .galaxy-icon-beer, .galaxy-icon-h-square, .galaxy-icon-plus-square, .galaxy-icon-angle-double-left, .galaxy-icon-angle-double-right, .galaxy-icon-angle-double-up, .galaxy-icon-angle-double-down, .galaxy-icon-angle-left, .galaxy-icon-angle-right, .galaxy-icon-angle-up, .galaxy-icon-angle-down, .galaxy-icon-desktop, .galaxy-icon-laptop, .galaxy-icon-tablet, .galaxy-icon-mobile, .galaxy-icon-mobile-phone, .galaxy-icon-circle-o, .galaxy-icon-quote-left, .galaxy-icon-quote-right, .galaxy-icon-spinner, .galaxy-icon-circle, .galaxy-icon-reply, .galaxy-icon-github-alt, .galaxy-icon-folder-o, .galaxy-icon-folder-open-o, .galaxy-icon-smile-o, .galaxy-icon-frown-o, .galaxy-icon-meh-o, .galaxy-icon-gamepad, .galaxy-icon-keyboard-o, .galaxy-icon-flag-o, .galaxy-icon-flag-checkered, .galaxy-icon-terminal, .galaxy-icon-code, .galaxy-icon-reply-all, .galaxy-icon-mail-reply-all, .galaxy-icon-star-half-o, .galaxy-icon-location-arrow, .galaxy-icon-crop, .galaxy-icon-code-fork, .galaxy-icon-chain-broken, .galaxy-icon-question, .galaxy-icon-info, .galaxy-icon-exclamation, .galaxy-icon-superscript, .galaxy-icon-subscript, .galaxy-icon-eraser, .galaxy-icon-puzzle-piece, .galaxy-icon-microphone, .galaxy-icon-microphone-slash, .galaxy-icon-shield, .galaxy-icon-calendar-o, .galaxy-icon-fire-extinguisher, .galaxy-icon-rocket, .galaxy-icon-maxcdn, .galaxy-icon-chevron-circle-left, .galaxy-icon-chevron-circle-right, .galaxy-icon-chevron-circle-up, .galaxy-icon-chevron-circle-down, .galaxy-icon-html5, .galaxy-icon-css3, .galaxy-icon-anchor, .galaxy-icon-unlock-alt, .galaxy-icon-bullseye, .galaxy-icon-ellipsis-h, .galaxy-icon-ellipsis-v, .galaxy-icon-rss-square, .galaxy-icon-play-circle, .galaxy-icon-ticket, .galaxy-icon-minus-square, .galaxy-icon-minus-square-o, .galaxy-icon-level-up, .galaxy-icon-level-down, .galaxy-icon-check-square, .galaxy-icon-pencil-square, .galaxy-icon-external-link-square, .galaxy-icon-share-square, .galaxy-icon-compass, .galaxy-icon-caret-square-o-down, .galaxy-icon-caret-square-o-up, .galaxy-icon-caret-square-o-right, .galaxy-icon-eur, .galaxy-icon-gbp, .galaxy-icon-usd, .galaxy-icon-inr, .galaxy-icon-jpy, .galaxy-icon-rub, .galaxy-icon-ruble, .galaxy-icon-rouble, .galaxy-icon-krw, .galaxy-icon-btc, .galaxy-icon-file, .galaxy-icon-file-text, .galaxy-icon-sort-alpha-asc, .galaxy-icon-sort-alpha-desc, .galaxy-icon-sort-amount-asc, .galaxy-icon-sort-amount-desc, .galaxy-icon-sort-numeric-asc, .galaxy-icon-sort-numeric-desc, .galaxy-icon-thumbs-up, .galaxy-icon-thumbs-down, .galaxy-icon-youtube-square, .galaxy-icon-youtube, .galaxy-icon-xing, .galaxy-icon-xing-square, .galaxy-icon-youtube-play, .galaxy-icon-dropbox, .galaxy-icon-stack-overflow, .galaxy-icon-instagram, .galaxy-icon-flickr, .galaxy-icon-adn, .galaxy-icon-bitbucket, .galaxy-icon-bitbucket-square, .galaxy-icon-tumblr, .galaxy-icon-tumblr-square, .galaxy-icon-long-arrow-down, .galaxy-icon-long-arrow-up, .galaxy-icon-long-arrow-left, .galaxy-icon-long-arrow-right, .galaxy-icon-apple, .galaxy-icon-windows, .galaxy-icon-android, .galaxy-icon-linux, .galaxy-icon-dribbble, .galaxy-icon-skype, .galaxy-icon-foursquare, .galaxy-icon-trello, .galaxy-icon-female, .galaxy-icon-male, .galaxy-icon-gittip, .galaxy-icon-sun-o, .galaxy-icon-moon-o, .galaxy-icon-archive, .galaxy-icon-bug, .galaxy-icon-vk, .galaxy-icon-weibo, .galaxy-icon-renren, .galaxy-icon-pagelines, .galaxy-icon-stack-exchange, .galaxy-icon-arrow-circle-o-right, .galaxy-icon-arrow-circle-o-left, .galaxy-icon-caret-square-o-left, .galaxy-icon-toggle-left, .galaxy-icon-dot-circle-o, .galaxy-icon-wheelchair, .galaxy-icon-vimeo-square, .galaxy-icon-try, .galaxy-icon-plus-square-o { display: inline-block; font-family: Galaxy-icon; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-glass:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-music:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-search:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-envelope-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-heart:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-star:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-star-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-user:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-film:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-th-large:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-th:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-th-list:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-check:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-times:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-search-plus:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-search-minus:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-power-off:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-signal:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-cog:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-trash-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-home:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-file-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-clock-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-road:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-download:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-o-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-o-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-inbox:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-play-circle-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-repeat:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-refresh:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-list-alt:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-lock:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-flag:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-headphones:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-volume-off:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-volume-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-volume-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-qrcode:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-barcode:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tag:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tags:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-book:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bookmark:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-print:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-camera:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-font:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bold:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-italic:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-text-height:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-text-width:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-align-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-align-center:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-align-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-align-justify:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-list:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-outdent:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-indent:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-video-camera:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-picture-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pencil:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-map-marker:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-adjust:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tint:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pencil-square-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-share-square-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-check-square-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrows:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-step-backward:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-fast-backward:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-backward:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-play:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pause:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-stop:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-forward:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-fast-forward:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-step-forward:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-eject:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-plus-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-minus-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-times-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-check-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-question-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-info-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-crosshairs:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-times-circle-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-check-circle-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-ban:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-share:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-expand:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-compress:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-plus:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-minus:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-asterisk:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-exclamation-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-gift:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-leaf:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-fire:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-eye:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-eye-slash:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-exclamation-triangle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-plane:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-calendar:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-random:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-comment:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-magnet:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-retweet:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-shopping-cart:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-folder:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-folder-open:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrows-v:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrows-h:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bar-chart-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-twitter-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-facebook-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-camera-retro:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-key:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-cogs:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-comments:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-thumbs-o-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-thumbs-o-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-star-half:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-heart-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sign-out:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-linkedin-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-thumb-tack:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-external-link:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sign-in:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-trophy:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-github-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-upload:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-lemon-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-phone:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-square-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bookmark-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-phone-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-twitter:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-facebook:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-github:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-unlock:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-credit-card:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-rss:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-hdd-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bullhorn:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bell:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-certificate:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-hand-o-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-hand-o-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-hand-o-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-hand-o-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-globe:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-wrench:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tasks:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-filter:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-briefcase:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrows-alt:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-users:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-link:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-cloud:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-flask:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-scissors:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-files-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-paperclip:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-floppy-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bars:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-list-ul:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-list-ol:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-strikethrough:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-underline:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-table:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-magic:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-truck:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pinterest:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pinterest-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-google-plus-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-google-plus:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-money:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-columns:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-asc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-desc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-envelope:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-linkedin:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-undo:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-gavel:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tachometer:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-dashboard:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-comment-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-comments-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bolt:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sitemap:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-umbrella:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-clipboard:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-lightbulb-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-exchange:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-cloud-download:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-cloud-upload:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-user-md:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-stethoscope:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-suitcase:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bell-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-coffee:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-cutlery:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-file-text-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-building-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-hospital-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-ambulance:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-medkit:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-fighter-jet:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-beer:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-h-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-plus-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-double-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-double-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-double-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-double-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-angle-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-desktop:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-laptop:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tablet:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-mobile:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-mobile-phone:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-circle-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-quote-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-quote-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-spinner:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-reply:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-github-alt:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-folder-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-folder-open-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-smile-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-frown-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-meh-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-gamepad:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-keyboard-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-flag-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-flag-checkered:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-terminal:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-code:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-reply-all:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-mail-reply-all:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-star-half-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-location-arrow:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-crop:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-code-fork:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chain-broken:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-question:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-info:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-exclamation:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-superscript:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-subscript:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-eraser:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-puzzle-piece:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-microphone:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-microphone-slash:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-shield:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-calendar-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-fire-extinguisher:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-rocket:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-maxcdn:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-circle-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-circle-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-circle-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-chevron-circle-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-html5:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-css3:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-anchor:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-unlock-alt:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bullseye:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-ellipsis-h:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-ellipsis-v:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-rss-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-play-circle:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-ticket:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-minus-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-minus-square-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-level-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-level-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-check-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pencil-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-external-link-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-share-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-compass:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-square-o-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-square-o-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-square-o-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-eur:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-gbp:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-usd:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-inr:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-jpy:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-rub:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-ruble:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-rouble:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-krw:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-btc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-file:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-file-text:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-alpha-asc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-alpha-desc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-amount-asc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-amount-desc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-numeric-asc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sort-numeric-desc:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-thumbs-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-thumbs-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-youtube-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-youtube:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-xing:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-xing-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-youtube-play:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-dropbox:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-stack-overflow:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-instagram:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-flickr:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-adn:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bitbucket:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bitbucket-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tumblr:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-tumblr-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-long-arrow-down:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-long-arrow-up:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-long-arrow-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-long-arrow-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-apple:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-windows:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-android:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-linux:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-dribbble:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-skype:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-foursquare:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-trello:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-female:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-male:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-gittip:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-sun-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-moon-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-archive:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-bug:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-vk:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-weibo:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-renren:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-pagelines:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-stack-exchange:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-o-right:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-arrow-circle-o-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-caret-square-o-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-toggle-left:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-dot-circle-o:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-wheelchair:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-vimeo-square:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-try:before { content: ""; }
+
+/* line 60, d:/sass/sassCore-master/ext/font-face/_font-face.scss */
+.galaxy-icon-plus-square-o:before { content: ""; }

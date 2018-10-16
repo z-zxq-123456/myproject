@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.ensemble.om.pm.util.dao.LimCheckExpressionDao">
+	<select id="findAmtType" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT FIELD_VALUE FROM ${tableName}
+		WHERE REF_LANG = 'CHINESE'
+		AND DOMAIN = 'AMT_TYPE'
+	</select>
+</mapper>

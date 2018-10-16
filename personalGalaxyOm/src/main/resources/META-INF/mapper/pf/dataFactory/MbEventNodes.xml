@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbEventNodesDao">
+  <!-- Created by lixue on 2015/11/30 16:59:11. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventNodes" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventNodes">
+    select *
+    from mb_event_nodes
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+      <if test="eventType != null">
+        AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      </if>
+      <if test="eventNode != null">
+        AND EVENT_NODE = #{eventNode,jdbcType=VARCHAR}
+      </if>
+      <if test="methodType != null">
+        AND METHOD_TYPE = #{methodType,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="getEventNodeforPklist" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventNodes" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select  distinct event_node pk_value,event_node_desc pk_desc from mb_event_nodes where PROD_TYPE = #{prodType,jdbcType=VARCHAR} AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventNodes">
+    delete from mb_event_nodes
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+      <if test="eventType != null">
+        AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      </if>
+      <if test="eventNode != null">
+        AND EVENT_NODE = #{eventNode,jdbcType=VARCHAR}
+      </if>
+      <if test="methodType != null">
+        AND METHOD_TYPE = #{methodType,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventNodes">
+    update mb_event_nodes
+    <set>
+      <if test="eventNodeDesc != null">
+        EVENT_NODE_DESC = #{eventNodeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        ALIAS = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="clazz != null">
+        CLAZZ = #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        METHOD_NAME = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="args != null">
+        ARGS = #{args,jdbcType=VARCHAR},
+      </if>
+      <if test="argClazz != null">
+        ARG_CLAZZ = #{argClazz,jdbcType=VARCHAR},
+      </if>
+      <if test="var != null">
+        VAR = #{var,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+        AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+        AND EVENT_NODE = #{eventNode,jdbcType=VARCHAR}
+        AND METHOD_TYPE = #{methodType,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventNodes">
+    insert into mb_event_nodes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        PROD_TYPE,
+      </if>
+      <if test="eventType != null">
+        EVENT_TYPE,
+      </if>
+      <if test="eventNode != null">
+        EVENT_NODE,
+      </if>
+      <if test="eventNodeDesc != null">
+        EVENT_NODE_DESC,
+      </if>
+      <if test="alias != null">
+        ALIAS,
+      </if>
+      <if test="clazz != null">
+        CLAZZ,
+      </if>
+      <if test="methodName != null">
+        METHOD_NAME,
+      </if>
+      <if test="methodType != null">
+        METHOD_TYPE,
+      </if>
+      <if test="args != null">
+        ARGS,
+      </if>
+      <if test="argClazz != null">
+        ARG_CLAZZ,
+      </if>
+      <if test="var != null">
+        VAR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventNode != null">
+        #{eventNode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventNodeDesc != null">
+        #{eventNodeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="clazz != null">
+        #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodType != null">
+        #{methodType,jdbcType=VARCHAR},
+      </if>
+      <if test="args != null">
+        #{args,jdbcType=VARCHAR},
+      </if>
+      <if test="argClazz != null">
+        #{argClazz,jdbcType=VARCHAR},
+      </if>
+      <if test="var != null">
+        #{var,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

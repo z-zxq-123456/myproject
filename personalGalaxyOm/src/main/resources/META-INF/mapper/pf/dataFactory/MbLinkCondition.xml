@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbLinkConditionDao">
+  <!-- Created by admin on 2016/05/05 15:18:13. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition">
+    select *
+    from mb_link_condition
+    where CONDITION_ID = #{conditionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition">
+    delete from mb_link_condition
+    where CONDITION_ID = #{conditionId,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition">
+    update mb_link_condition
+    <set>
+      <if test="conditionDesc != null">
+        CONDITION_DESC = #{conditionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionRule != null">
+        CONDITION_RULE = #{conditionRule,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where CONDITION_ID = #{conditionId,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition">
+    insert into mb_link_condition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="conditionId != null">
+        CONDITION_ID,
+      </if>
+      <if test="conditionDesc != null">
+        CONDITION_DESC,
+      </if>
+      <if test="conditionRule != null">
+        CONDITION_RULE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="conditionId != null">
+        #{conditionId,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionDesc != null">
+        #{conditionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionRule != null">
+        #{conditionRule,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getAll" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbLinkCondition">
+    select *
+    from mb_link_condition
+  </select>
+</mapper>

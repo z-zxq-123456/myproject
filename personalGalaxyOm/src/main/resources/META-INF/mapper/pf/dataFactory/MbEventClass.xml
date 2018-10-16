@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbEventClassDao">
+  <!-- Created by zhangyjw on 2015/09/24 10:04:26. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass">
+    select *
+    from mb_event_class
+    where EVENT_CLASS = #{eventClass,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getAll" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" >
+    select * from mb_event_class
+    where COLUMN_STATUS !='W'
+  </select>
+  <select id="getByParentEventClass" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass">
+    select *
+    from mb_event_class
+    where PARENT_EVENT_CLASS LIKE #{parentEventClass,jdbcType=VARCHAR}
+  </select>
+  <select id="getTree" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" >
+    select * from mb_event_class
+    where EVENT_CLASS_LEVEL = '2'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass">
+    delete from mb_event_class
+    where EVENT_CLASS = #{eventClass,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass">
+    update mb_event_class
+    <set>
+      <if test="eventClassDesc != null">
+        EVENT_CLASS_DESC = #{eventClassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="eventClassLevel != null">
+        EVENT_CLASS_LEVEL = #{eventClassLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentEventClass != null">
+        PARENT_EVENT_CLASS = #{parentEventClass,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where EVENT_CLASS = #{eventClass,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass">
+    insert into mb_event_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventClass != null">
+        EVENT_CLASS,
+      </if>
+      <if test="eventClassDesc != null">
+        EVENT_CLASS_DESC,
+      </if>
+      <if test="eventClassLevel != null">
+        EVENT_CLASS_LEVEL,
+      </if>
+      <if test="parentEventClass != null">
+        PARENT_EVENT_CLASS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventClass != null">
+        #{eventClass,jdbcType=VARCHAR},
+      </if>
+      <if test="eventClassDesc != null">
+        #{eventClassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="eventClassLevel != null">
+        #{eventClassLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentEventClass != null">
+        #{parentEventClass,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+      　#{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getForPkList"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      EVENT_CLASS pk_value, EVENT_CLASS || ' ' || EVENT_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      EVENT_CLASS pk_value,concat(EVENT_CLASS,' ',EVENT_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_event_class
+  </select>
+  <select id="getBmodule"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      EVENT_CLASS pk_value, EVENT_CLASS || ' ' || EVENT_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      EVENT_CLASS pk_value,concat(EVENT_CLASS,' ',EVENT_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_event_class
+    where EVENT_CLASS_LEVEL = '1'
+  </select>
+  <select id="getparentEventClass" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      EVENT_CLASS pk_value, EVENT_CLASS || ' ' || EVENT_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      EVENT_CLASS pk_value,concat(EVENT_CLASS,' ',EVENT_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_event_class
+    where EVENT_CLASS_LEVEL = #{eventClassLevel,jdbcType=VARCHAR}
+  </select>
+  <select id="geteventClass"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      EVENT_CLASS pk_value, EVENT_CLASS || ' ' || EVENT_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      EVENT_CLASS pk_value,concat(EVENT_CLASS,' ',EVENT_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_event_class
+    <if test="parentEventClass != null">
+      where PARENT_EVENT_CLASS LIKE #{parentEventClass,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getTreeByBmodule" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventClass">
+    select * from mb_event_class
+    where  PARENT_EVENT_CLASS LIKE #{parentEventClass,jdbcType=VARCHAR}
+  </select>
+</mapper>

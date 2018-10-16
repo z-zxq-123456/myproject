@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/*
+@名称：galaxy.skin.scss
+@功能：galaxy开发平台整体风格肤色
+@产权：Copyright  神州信息 DCITS
+*/
+/*左侧菜单*/
+/* line 11, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown dt {background-color: #fff; color: #4d4d4d; }
+/* line 15, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown dt:hover { color: #cc8200; }
+/* line 18, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown dt i:hover { color: #999999; }
+/* line 23, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown li a { color: #4d4d4d; }
+/* line 25, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown li a:hover { color: #cc8200; }
+.Galaxy-aside .menu_dropdown dl dt:hover { background-color: #f2f2f2; }
+.Galaxy-aside .menu_dropdown dl dt.selected { background-color: #d9d9d9; }
+.Galaxy-aside .menu_dropdown dd>ul>li>a:hover { background-color: #ffecb2; }
+/* line 29, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown li .current a { color: #cc8200; }
+/* line 34, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown dt .menu_dropdown-arrow { color: #4d4d4d; }
+/* line 38, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-aside .menu_dropdown dd a.current {background-color: #ffdf7f; color: #cc8820; }
+
+/*左侧菜单功能按钮位置*/
+/* line 46, ../../../sass/app/galaxy.skin.scss */
+.displayArrow a { background: url('../../images/aside_normal.png?1456383839') no-repeat center; }
+
+/* line 48, ../../../sass/app/galaxy.skin.scss */
+a { color: #333; }
+/* line 50, ../../../sass/app/galaxy.skin.scss */
+a:hover, a:focus, .maincolor a { color: lawngreen; }
+
+/* line 54, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-logo, .Galaxy-logo-m, .Galaxy-subtitle, .Galaxy-userbox, .Galaxy-header { color: #fff; }
+
+/*头部颜色 logo 及 用户信息文字颜色*/
+/* line 55, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-logo:hover, .Galaxy-logo-m:hover { color: #fff; text-decoration: none; }
+
+/* line 56, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-header { background-color: #febc48; }
+
+/*顶部导航*/
+/*中间头部鼠标悬停状态*/
+/* line 59, ../../../sass/app/galaxy.skin.scss */
+#Galaxy-nav > ul > li > a { color: #ffffff; }
+/* line 60, ../../../sass/app/galaxy.skin.scss */
+#Galaxy-nav > ul > li > a:hover { color: #d43f3a; background-color: #B6D76F; }
+/*用户信息条高亮*/
+/* line 67, ../../../sass/app/galaxy.skin.scss */
+.Galaxy-userbar li a:hover, .Galaxy-userbar li .current { color: #000; text-decoration: none; }
+.Galaxy-userbar_narrow li a:hover, .Galaxy-userbar li .current { color: #000; text-decoration: none; }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmUpgflowNodeDao">
+  <!-- Created by oms on 2016/02/25 15:47:29. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode" resultType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode">
+    select *
+    from ECM_UPGFLOW_NODE
+    where UPGFLOW_NODE_ID = #{upgflowNodeId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode">
+    select *
+    from ECM_UPGFLOW_NODE   
+  </select>
+  <select id="findUpdateNode" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode">
+    select  b.*
+    from  ECM_APP_UPGINFO  a,ECM_UPGFLOW_NODE b
+    where  a.UPGFLOW_NODE_ID=b.UPGFLOW_NODE_ID 
+    <if test="appId != null">
+      AND   a.APP_ID = #{appId,jdbcType=INTEGER}
+    </if>
+    <if test="appUpgStatus != null">
+     AND  a.APP_UPG_STATUS = #{appUpgStatus,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode">
+    delete from ECM_UPGFLOW_NODE
+    where UPGFLOW_NODE_ID = #{upgflowNodeId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode">
+    update ECM_UPGFLOW_NODE
+    <set>
+      <if test="upgflowNodeName != null">
+        UPGFLOW_NODE_NAME = #{upgflowNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="upgflowNodeSeq != null">
+        UPGFLOW_NODE_SEQ = #{upgflowNodeSeq,jdbcType=INTEGER},
+      </if>
+      <if test="upgflowNodeUrl != null">
+        UPGFLOW_NODE_URL = #{upgflowNodeUrl,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where UPGFLOW_NODE_ID = #{upgflowNodeId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmUpgflowNode">
+    insert into ECM_UPGFLOW_NODE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="upgflowNodeId != null">
+        UPGFLOW_NODE_ID,
+      </if>
+      <if test="upgflowNodeName != null">
+        UPGFLOW_NODE_NAME,
+      </if>
+      <if test="upgflowNodeSeq != null">
+        UPGFLOW_NODE_SEQ,
+      </if>
+      <if test="upgflowNodeUrl != null">
+        UPGFLOW_NODE_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="upgflowNodeId != null">
+        #{upgflowNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="upgflowNodeName != null">
+        #{upgflowNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="upgflowNodeSeq != null">
+        #{upgflowNodeSeq,jdbcType=INTEGER},
+      </if>
+      <if test="upgflowNodeUrl != null">
+        #{upgflowNodeUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

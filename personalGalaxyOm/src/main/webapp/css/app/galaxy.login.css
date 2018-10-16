@@ -1,0 +1,185 @@
+@charset "UTF-8";
+/*
+@名称：login
+@功能：galaxy开发平台登录页面样式
+@产权：神州信息 DCITS
+*/
+/*好多基本混入暂时没有调到，但是依旧引入*/
+/*好多基本混入暂时没有调用，但是依旧引入*/
+/* line 26, d:/sass/sassCore-master/core/_mixin.scss */
+.form-captcha, .form-file-wrap, .btn-right, .btn, .formbtn { display: inline-block; *display: inline; *zoom: 1; }
+
+/* line 74, d:/sass/sassCore-master/core/_mixin.scss */
+.form-field-rc, .form .form-item { *zoom: 1; }
+/* line 64, d:/sass/sassCore-master/core/_mixin.scss */
+.form-field-rc:before, .form .form-item:before, .form-field-rc:after, .form .form-item:after { content: ""; display: table; }
+/* line 69, d:/sass/sassCore-master/core/_mixin.scss */
+.form-field-rc:after, .form .form-item:after { clear: both; }
+
+/* line 85, d:/sass/sassCore-master/ext/_form.scss */
+.form-label { font-size: 14px; line-height: 28px; }
+
+/* line 89, d:/sass/sassCore-master/ext/_form.scss */
+.form-text { vertical-align: middle; width: 200px; height: 18px; }
+
+/* line 94, d:/sass/sassCore-master/ext/_form.scss */
+.form-textarea { resize: none; vertical-align: top; overflow: auto; width: 500px; height: 80px; }
+
+/* line 101, d:/sass/sassCore-master/ext/_form.scss */
+.form-text, .form-textarea { border: 1px solid #CCCCCC; -webkit-transition: border linear 0.2s, box-shadow linear 0.2s; transition: border linear 0.2s, box-shadow linear 0.2s; -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+/* line 76, d:/sass/sassCore-master/ext/_form.scss */
+.form-text:focus, .form-textarea:focus { border-color: rgba(82, 168, 236, 0.8); -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6); }
+
+/* line 104, d:/sass/sassCore-master/ext/_form.scss */
+.form-select { border: 1px solid #CCCCCC; *margin-top: 5px; *margin-bottom: 5px; *vertical-align: top; }
+
+/* line 114, d:/sass/sassCore-master/ext/_form.scss */
+.form-text:focus, .form-textarea:focus, .form-select:focus { outline: 0 none; }
+
+/* line 119, d:/sass/sassCore-master/ext/_form.scss */
+.form-radio, .form-checkbox { margin: 0 5px 0 0; padding: 0; font-size: 13px; width: 13px; height: 13px; }
+
+/* line 127, d:/sass/sassCore-master/ext/_form.scss */
+.form-label-rc { display: inline; float: left; font-size: 12px; margin-right: 10px; line-height: 18px; }
+/* line 134, d:/sass/sassCore-master/ext/_form.scss */
+.form-label-rc .form-radio, .form-label-rc .form-checkbox, .form-label-rc span { float: left; display: inline; }
+/* line 139, d:/sass/sassCore-master/ext/_form.scss */
+.form-label-rc .form-radio, .form-label-rc .form-checkbox { margin-top: 2.5px; }
+
+/* line 145, d:/sass/sassCore-master/ext/_form.scss */
+.field-rc-block .form-label-rc { display: block; float: none; margin: 0 0 5px; overflow: auto; padding-left: 20px; *zoom: 1; _padding-left: 17px; }
+/* line 157, d:/sass/sassCore-master/ext/_form.scss */
+.field-rc-block .form-label-rc .form-radio, .field-rc-block .form-label-rc .form-checkbox { margin-left: -20px; *margin-left: -17px; }
+
+/* line 166, d:/sass/sassCore-master/ext/_form.scss */
+.text-captcha { width: 130px; }
+
+/* line 169, d:/sass/sassCore-master/ext/_form.scss */
+.form-captcha { border: 1px solid #CCCCCC; cursor: pointer; margin-left: 10px; }
+/* line 174, d:/sass/sassCore-master/ext/_form.scss */
+.form-captcha img { height: 26px; vertical-align: middle; }
+
+/* line 181, d:/sass/sassCore-master/ext/_form.scss */
+.form-file-wrap { padding: 0px; width: 70px; height: 28px; background-color: #0078E7; position: relative; overflow: hidden; }
+/* line 193, d:/sass/sassCore-master/ext/_form.scss */
+.form-file-wrap .form-file-replace-text { display: block; line-height: 28px; cursor: pointer; color: #fff; text-align: center; }
+/* line 200, d:/sass/sassCore-master/ext/_form.scss */
+.form-file-wrap .form-file { opacity: 0; filter: alpha(opacity=0); width: 70px; height: 28px; left: 0; top: 0; display: block; cursor: pointer; position: absolute; z-index: 1; }
+/* line 212, d:/sass/sassCore-master/ext/_form.scss */
+.form-file-wrap:hover { background-color: #005eb4; }
+
+/* line 222, d:/sass/sassCore-master/ext/_form.scss */
+.form-des { color: #999; margin-left: 10px; }
+
+/* line 227, d:/sass/sassCore-master/ext/_form.scss */
+p.form-des { margin: 0; line-height: 28px; }
+
+/* line 232, d:/sass/sassCore-master/ext/_form.scss */
+.form-disabled { background-color: #e6e6e6 !important; color: #ababab !important; cursor: not-allowed !important; }
+/* line 234, d:/sass/sassCore-master/ext/_form.scss */
+.form-disabled.form-text, .form-disabled.form-textarea { border-color: #bbb !important; }
+
+/* line 240, d:/sass/sassCore-master/ext/_form.scss */
+.form-required { color: #cc3300; margin-right: 5px; }
+
+/* line 245, d:/sass/sassCore-master/ext/_form.scss */
+.form-prefix { margin-right: 5px; }
+
+/* line 248, d:/sass/sassCore-master/ext/_form.scss */
+.form-suffix { margin-left: 5px; }
+
+/* line 251, d:/sass/sassCore-master/ext/_form.scss */
+.form-join { margin: 0 5px; }
+
+/* line 255, d:/sass/sassCore-master/ext/_form.scss */
+.btn-right { vertical-align: middle; line-height: 28px; margin-left: 10px; }
+
+/* line 290, d:/sass/sassCore-master/ext/_form.scss */
+.form { font-size: 12px; margin-bottom: 10px; }
+/* line 293, d:/sass/sassCore-master/ext/_form.scss */
+.form fieldset { padding: 0; margin: 0; border: 0; }
+/* line 298, d:/sass/sassCore-master/ext/_form.scss */
+.form legend { display: block; width: 100%; padding: 0; margin-bottom: 10px; font-size: 21px; line-height: 3; color: #999; border: 0; border-bottom: 1px solid #e5e5e5; }
+/* line 309, d:/sass/sassCore-master/ext/_form.scss */
+.form .form-item { margin-bottom: 10px; clear: both; }
+/* line 316, d:/sass/sassCore-master/ext/_form.scss */
+.form .form-action { clear: both; text-align: center; }
+/* line 320, d:/sass/sassCore-master/ext/_form.scss */
+.form .action-left { text-align: left; }
+/* line 325, d:/sass/sassCore-master/ext/_form.scss */
+.form .inline-ele { margin-right: 10px; }
+/* line 328, d:/sass/sassCore-master/ext/_form.scss */
+.form .inline-item { float: left; display: inline; clear: none; }
+
+/* ------------------------------------------------- btn scss -------------------------------------------------
+*/
+/* line 26, d:/sass/sassCore-master/ext/_btn.scss */
+.btn, .formbtn { cursor: pointer; text-align: center; border: 0 none; }
+
+/* line 74, d:/sass/sassCore-master/ext/_btn.scss */
+.btn { padding: 0 16px; font-size: 14px; line-height: 28px; background-color: #e6e6e6; }
+/* line 64, d:/sass/sassCore-master/ext/_btn.scss */
+.btn:hover { background-color: #d9d9d9; }
+
+/* line 79, d:/sass/sassCore-master/ext/_btn.scss */
+.formbtn { padding: 0 16px; font-size: 14px; height: 28px; color: #333; background-color: #e6e6e6; }
+/* line 64, d:/sass/sassCore-master/ext/_btn.scss */
+.formbtn:hover { background-color: #d9d9d9; color: #333; }
+
+/* line 125, d:/sass/sassCore-master/ext/_btn.scss */
+.btn-primary { color: #fff; background-color: #0078E7; }
+/* line 64, d:/sass/sassCore-master/ext/_btn.scss */
+.btn-primary:hover { background-color: #006bce; color: #fff; }
+
+/* line 16, ../../../sass/app/galaxy.login.scss */
+body { background: #ffffff url('../../images/login-bg.jpg?1450926236') no-repeat center center fixed; -webkit-background-size: cover; background-size: cover; padding-top: 0; }
+
+/*因登录页面尺寸变化较小，登录页面的尺寸为固定值*/
+/* line 22, ../../../sass/app/galaxy.login.scss */
+form { width: 300px; height: 350px; padding: 57px 30px 57px 30px; position: absolute; top: 50%; left: 50%;margin-top:-240px;margin-left:-180px;border-radius: 10px; -webkit-background-clip: padding-box; background-clip: padding-box; background: rgba(0, 0, 0, 0.3); overflow: hidden; text-align: center; -webkit-transition: border linear 0.2s, box-shadow linear 0.2s; transition: border linear 0.2s, box-shadow linear 0.2s; -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+/* line 76, d:/sass/sassCore-master/ext/_form.scss */
+form:focus { border-color: rgba(82, 168, 236, 0.8); -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6); }
+
+/*用户名以及密码输入框*/
+/* line 40, ../../../sass/app/galaxy.login.scss */
+input { width: 200px; height: 40px; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px; -webkit-background-clip: padding-box; background-clip: padding-box; font-size: 18px; color: #fff; padding-left: 0px; padding-right: 0px; margin-top: 15px; margin-bottom: 25px; }
+/* line 52, ../../../sass/app/galaxy.login.scss */
+input[type=submit] { cursor: pointer; }
+/* line 55, ../../../sass/app/galaxy.login.scss */
+input.name { padding-left: 54px; background: rgba(0, 0, 0, 0.2) url('../../images/input-userName.png?1450926236') no-repeat scroll 13px 6px;margin-bottom: 15px;background-color: #ffffff;color: #000000; }
+/* line 59, ../../../sass/app/galaxy.login.scss */
+input.password { background: rgba(0, 0, 0, 0.2) url('../../images/input-password.png?1450926236') no-repeat scroll 13px 6px; padding-left: 54px; background-color: #ffffff;color: #000000;}
+/* line 63, ../../../sass/app/galaxy.login.scss */
+input:focus { background-color: #ffffff; -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); overflow: hidden; }
+
+/*默认输出*/
+/* line 70, ../../../sass/app/galaxy.login.scss */
+::-webkit-input-placeholder, :-moz-placeholder, ::-moz-placeholder, :-ms-input-placeholder { color: #bfbfbf; }
+
+/* line 73, ../../../sass/app/galaxy.login.scss */
+.btn { width: 254px; height: 40px; border: 1px solid #805100; border-radius: 5px; background: #805100; background-image: -webkit-linear-gradient(top, #ffcc00 70%, #ff9933); background-image: -o-linear-gradient(top, #ffcc00 70%, #ff9933); background-image: linear-gradient(to bottom, #ffcc00 70%, #ff9933); padding: auto; font-size: 24px; font-family: Microsoft YaHei; color: #ffffff; -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+/* line 85, ../../../sass/app/galaxy.login.scss */
+.btn:hover { border: 1px solid #805100; text-shadow: #333333 0 1px 0; background: #805100; background-image: -webkit-linear-gradient(top, #ffcc00 80%, #ff9933); background-image: -o-linear-gradient(top, #ffcc00 80%, #ff9933); background-image: linear-gradient(to bottom, #ffcc00 80%, #ff9933); font-family: Microsoft YaHei; color: #ffffff; }
+/* line 93, ../../../sass/app/galaxy.login.scss */
+.btn:active { text-shadow: #333333 0 -1px 0; border: 1px solid #253737; background: #805100; background-image: -webkit-linear-gradient(top, #ff9900 80%, #ff9933); background-image: -o-linear-gradient(top, #ff9900 80%, #ff9933); background-image: linear-gradient(to bottom, #ff9900 80%, #ff9933); font-family: Microsoft YaHei; color: #ffffff; -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.7); box-shadow: 0 0 5px rgba(255, 255, 255, 0.7); }
+
+/* line 103, ../../../sass/app/galaxy.login.scss */
+p span.version { border: none; height: 20px; padding-left: 10px; padding-right: 10px; border-radius: 10px; font-size: 13px; color: #ffffff; background-color: #88ccff; }
+
+/* line 113, ../../../sass/app/galaxy.login.scss */
+.copyright { width: 300px; font-family: "Microsoft YaHei"; text-align: center; padding: auto; color: #ffffff; font-size: 13px; font-weight: 700; margin-top: 5px; margin-bottom: 45px; }
+
+/* line 125, ../../../sass/app/galaxy.login.scss */
+.text { width: 300px; font-family: "Microsoft YaHei"; text-align: center; font-size: 20px; color: #ffffff; font-size: 25px; font-weight: 900; margin: 0 auto; }
+
+/* line 136, ../../../sass/app/galaxy.login.scss */
+.logoContent { position: absolute; top: 30px; left: 0; height: 48px; width: 100%; padding: 0; margin: 30px 0 0 0; border: none; }
+
+/* line 146, ../../../sass/app/galaxy.login.scss */
+.logo { position: absolute; height: 48px; width: 147px; margin: 0; padding: 0; top: 30px; left: 30px; border: none; float: left; }
+
+/* line 158, ../../../sass/app/galaxy.login.scss */
+.msg { height: 38px; width: 358px; display: table; text-align: center; font-family: "宋体"; border: 1px solid rgba(0, 0, 0, 0.4); border-radius: 10px; background: rgba(0, 0, 0, 0.3); position: absolute; top: 100%; left: 50%; margin-top: -75px; /*根据具体情况调整高度*/ margin-left: -180px; }
+
+/* line 173, ../../../sass/app/galaxy.login.scss */
+span.textMsg { height: 14px; font-size: 14px; line-height: 14px; vertical-align: middle; display: inline-block; color: #ffffff; margin: 13px auto;font-size: 14px; }

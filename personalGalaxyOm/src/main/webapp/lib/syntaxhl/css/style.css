@@ -1,0 +1,18 @@
+body{
+	font-size:12px;
+	font-family: arial;
+	margin:20px;
+}
+
+#codedemo{
+	margin: 0px auto;
+	width: 960px;
+	padding: 15px;
+	line-height: 18px;
+	background: #202020;
+	border: 2px solid #555;
+}
+
+h1, h3{
+	color: #000;
+}

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbAttrValueDao">
+  <!-- Created by zhangyjw on 2015/09/24 16:54:51. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    select *
+    from mb_attr_value
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    <if test="attrValue != null">
+      AND ATTR_VALUE = #{attrValue,jdbcType=VARCHAR}
+    </if>
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="selectByPrimaryKey1" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    select *
+    from mb_attr_value
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    <if test="attrValue != null">
+      AND ATTR_VALUE = #{attrValue,jdbcType=VARCHAR}
+    </if>
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getAll" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    select a.ATTR_KEY,b.ATTR_DESC,a.ATTR_VALUE,a.VALUE_DESC,a.REF_TABLE,a.REF_CONDITION,a.REF_COLUMNS
+    from mb_attr_value a,MB_ATTR_TYPE b
+    where a.ATTR_KEY = b.ATTR_KEY
+  </select>
+  <select id="getValueList"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    select * from mb_attr_value
+    where  ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    delete from mb_attr_value
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+      <if test="attrValue != null">
+        AND ATTR_VALUE = #{attrValue,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    update mb_attr_value
+    <set>
+      <if test="valueDesc != null">
+        VALUE_DESC = #{valueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="refTable != null">
+        REF_TABLE = #{refTable,jdbcType=VARCHAR},
+      </if>
+      <if test="refCondition != null">
+        REF_CONDITION = #{refCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="refColumns != null">
+        REF_COLUMNS = #{refColumns,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    AND ATTR_VALUE = #{attrValue,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    insert into mb_attr_value
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attrKey != null">
+        ATTR_KEY,
+      </if>
+      <if test="attrValue != null">
+        ATTR_VALUE,
+      </if>
+      <if test="valueDesc != null">
+        VALUE_DESC,
+      </if>
+      <if test="refTable != null">
+        REF_TABLE,
+      </if>
+      <if test="refCondition != null">
+        REF_CONDITION,
+      </if>
+      <if test="refColumns != null">
+        REF_COLUMNS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attrKey != null">
+        #{attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="valueDesc != null">
+        #{valueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="refTable != null">
+        #{refTable,jdbcType=VARCHAR},
+      </if>
+      <if test="refCondition != null">
+        #{refCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="refColumns != null">
+        #{refColumns,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+       #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getAttrValueDesc" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="java.lang.String">
+    select VALUE_DESC from mb_attr_value
+    WHERE ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    AND  ATTR_VALUE = #{attrValue,jdbcType=VARCHAR}
+  </select>
+  <select id="getAttrValue" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="java.lang.String">
+    select ATTR_VALUE from mb_attr_value
+    WHERE ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    AND  ATTR_VALUE = #{attrValue,jdbcType=VARCHAR}
+  </select>
+  <select id="getAttrValueByKey"  parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      ATTR_VALUE pk_value, ATTR_VALUE || ' ' || VALUE_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      ATTR_VALUE pk_value,concat(ATTR_VALUE,' ',VALUE_DESC) pk_desc
+    </if>
+    FROM mb_attr_value
+    WHERE ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getRfValueList"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    select #{attrDesc,jdbcType=VARCHAR}
+    from #{refTable,jdbcType=VARCHAR}
+    WHERE  #{refCondition,jdbcType=VARCHAR} order by 1
+  </select>
+  <select id="getRfValueList1"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrValue">
+    select ${attrDesc}
+    from ${refTable}
+    WHERE  ${refCondition}
+  </select>
+</mapper>

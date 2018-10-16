@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmAppValruleDao">
+  <!-- Created by oms on 2016/02/25 15:47:29. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    select *
+    from ecm_app_valrule
+    where APP_VALRULE_ID = #{appValruleId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    select *
+    from ecm_app_valrule a 
+  </select>
+  <select id="findValruleByUpgId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    select a.* ,b.*,c.ROUTER_COND_NAME,c.ROUTER_COND_VAL,d.SER_MTD_CNM,d.SER_MTD_ENM,e.APP_SER_CLSNM,e.APP_SER_NAME,g.ROUTER_COL_CN
+    from    ecm_app_valrule a ,
+            ECM_SERV_RULE b LEFT  JOIN ECM_ROUTER_COND c  on b.ROUTER_COND_ID  =c.ROUTER_COND_ID
+            LEFT  JOIN ECM_ROUTER_COL g on c.ROUTER_COL_ID=g.ROUTER_COL_ID,ECM_SER_MTDINFO d ,ECM_APP_SERINFO e
+    where  b.SER_MTD_ID  =d.SER_MTD_ID AND d. APP_SER_ID =e.APP_SER_ID   
+      AND  a.APP_UPG_ID = #{appUpgId,jdbcType=INTEGER}   AND a.SERV_RULE_ID=b.SERV_RULE_ID  
+  </select>
+  <select id="findByValrule" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    select *
+    from ecm_app_valrule 
+   <where>
+      <if test="appUpgId != null">
+       AND  APP_UPG_ID = #{appUpgId,jdbcType=INTEGER}
+      </if>
+      <if test="appValruleType != null">
+       AND APP_VALRULE_TYPE = #{appValruleType,jdbcType=VARCHAR}
+     </if> 
+     </where> 
+  </select>
+   <select id="findByValruleType" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    select a.* ,b.*,c.ROUTER_COND_NAME,c.ROUTER_COND_VAL,d.SER_MTD_CNM,d.SER_MTD_ENM,e.APP_SER_CLSNM,e.APP_SER_NAME,g.ROUTER_COL_CN
+    from    ecm_app_valrule a ,ECM_APP_UPGINFO f,
+            ECM_SERV_RULE b LEFT  JOIN ECM_ROUTER_COND c  on b.ROUTER_COND_ID  =c.ROUTER_COND_ID
+            LEFT  JOIN ECM_ROUTER_COL g on c.ROUTER_COL_ID=g.ROUTER_COL_ID,ECM_SER_MTDINFO d ,ECM_APP_SERINFO e
+    where  b.SER_MTD_ID  =d.SER_MTD_ID AND d. APP_SER_ID =e.APP_SER_ID AND APP_SER_TYPE=#{appSerType,jdbcType=VARCHAR}  
+     <if test="appUpgId != null">
+      AND  f.APP_UPG_ID = #{appUpgId,jdbcType=INTEGER}  AND  f.APP_UPG_ID =a.APP_UPG_ID AND a.SERV_RULE_ID=b.SERV_RULE_ID  
+    </if>
+    <if test="appValruleType != null">
+      AND  a.APP_VALRULE_TYPE = #{appValruleType,jdbcType=INTEGER}  
+    </if>
+  </select>
+   <select id="findAllRule" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    select distinct  b.*,c.ROUTER_COND_NAME,c.ROUTER_COND_VAL,d.SER_MTD_ENM,d.SER_MTD_CNM,e.APP_SER_CLSNM,e.APP_SER_NAME,g.ROUTER_COL_CN
+    from    ECM_SERV_RULE b LEFT  JOIN ECM_ROUTER_COND c  on b.ROUTER_COND_ID  =c.ROUTER_COND_ID
+            LEFT  JOIN ECM_ROUTER_COL g on c.ROUTER_COL_ID=g.ROUTER_COL_ID,ECM_SER_MTDINFO d ,ECM_APP_SERINFO e
+           <if test="lastAppUpgId != null">
+            ,ecm_app_valrule a ,ECM_APP_UPGINFO f
+           </if>
+    where  b.SER_MTD_ID  =d.SER_MTD_ID AND  d. APP_SER_ID =e.APP_SER_ID AND APP_SER_TYPE=#{appSerType,jdbcType=VARCHAR}   
+    <if test="appValRuleList != null">
+      AND  b.SERV_RULE_ID  NOT in (${appValRuleList})  
+    </if>
+     <if test="appSerClassName != null">
+      AND  e.APP_SER_CLSNM like '%${appSerClassName}%' 
+    </if>
+    <if test="lastAppUpgId != null">
+      AND  f.APP_UPG_ID = #{lastAppUpgId,jdbcType=INTEGER} AND a.SERV_RULE_ID=b.SERV_RULE_ID  AND  f.APP_UPG_ID =a.APP_UPG_ID
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    delete from ecm_app_valrule
+    where APP_VALRULE_ID = #{appValruleId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    update ecm_app_valrule
+    <set>
+      <if test="servRuleId != null">
+        SERV_RULE_ID = #{servRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="appUpgId != null">
+        APP_UPG_ID = #{appUpgId,jdbcType=INTEGER},
+      </if>
+      <if test="appValruleType != null">
+        APP_VALRULE_TYPE = #{appValruleType,jdbcType=VARCHAR}
+      </if>
+    </set>
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppValrule">
+    insert into ecm_app_valrule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appValruleId != null">
+        APP_VALRULE_ID,
+      </if>
+      <if test="servRuleId != null">
+        SERV_RULE_ID,
+      </if>
+      <if test="appUpgId != null">
+        APP_UPG_ID,
+      </if>
+      <if test="appValruleType != null">
+        APP_VALRULE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appValruleId != null">
+        #{appValruleId,jdbcType=INTEGER},
+      </if>
+      <if test="servRuleId != null">
+        #{servRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="appUpgId != null">
+        #{appUpgId,jdbcType=INTEGER},
+      </if>
+      <if test="appValruleType != null">
+        #{appValruleType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

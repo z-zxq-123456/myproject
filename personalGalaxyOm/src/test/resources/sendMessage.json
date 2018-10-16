@@ -1,0 +1,45 @@
+{
+  "APP_HEAD": {
+    "CURRENT_NUM": "0",
+    "PAGE_END": "0",
+    "PAGE_START": "0",
+    "PGUP_OR_PGDN": "0",
+    "TOTAL_NUM": "-1"
+  },
+  "BODY": {
+    "CARD_NO": "6236431666500003879",
+    "CHECK_OPTION": "0000000000",
+    "CVN2": "332",
+    "CARD_PASSWORD": "955973FFFFFF",
+    "CLIENT_NO": "",
+    "CARD_TRAN_TYPE": "00",
+    "TRAN_KIND": "001",
+    "CHANNEL_TYPE": "00",
+    "TRAN_CCY": "CNY",
+    "TRAN_AMT": "5.5"
+  },
+  "LOCAL_HEAD": {},
+  "SYS_HEAD": {
+    "ID": "CardPreAuthAPI.cardPreAuth",
+    "AUTH_FLAG": "N",
+    "BRANCH_ID": "900001",
+    "SUB_TRANS_ID": "900001",
+    "DEST_BRANCH_NO": "900001",
+    "MESSAGE_CODE": "0208",
+    "MESSAGE_TYPE": "1400",
+    "MODULE_ID": "RB",
+    "OPER_CODE": "20104",
+    "SEQ_NO": "7427EABE3BF9691015",
+    "SUB_TRANS_SEQ": "17110915404232177",
+    "SERVER_ID": "127.0.0.1",
+    "SERVICE_CODE": "MbsdCard",
+    "SOURCE_BRANCH_NO": "900001",
+    "SOURCE_TYPE": "4001",
+    "TRAN_DATE": "20210721",
+    "TRAN_MODE": "ONLINE",
+    "TRAN_TIMESTAMP": "152851420",
+    "USER_ID": "CP9107",
+    "USER_LANG": "CHINESE",
+    "WS_ID": "05"
+  }
+}

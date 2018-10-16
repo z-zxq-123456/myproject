@@ -1,0 +1,32 @@
+<configuration scan="true" scanPeriod="30 seconds">
+	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/dm-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy	class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %level [%thread] %logger.%class{0}#%method[%file:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- 
+			<pattern>%date %level [%thread] %logger.%class{0}#%method[%file:%line] %msg%n</pattern>
+			 -->
+			<pattern>[%file:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ROLLING" />
+	</root>
+	<logger name="com.dcits.galaxy.business" level="warn" />
+	<logger name="com.dcits.galaxy" level="warn" />
+	<logger name="com.dcits.ensemble.om" level="trace" />
+
+</configuration>

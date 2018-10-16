@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pm.dao.paraSetting.ParaFieldsTableDao">
+  <!-- Created by maruie on 2016/04/05 18:38:19. -->
+  <select id="getFieldsByPK" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds">
+    select *
+    from PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+    <if test="columnName != null">
+      AND COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+    </if>
+    order by IS_PRIMARY DESC,IS_NULL
+  </select>
+  <select id="getCulumnDescByTableName" parameterType="java.lang.String" resultType="java.lang.String">
+    select b.column_desc
+    from para_table_fields a,para_fields_column b
+    where  a.column_name=b.column_name and a.table_name= #{tableName,jdbcType=VARCHAR}
+    order by a.IS_PRIMARY DESC,a.IS_NULL
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds">
+    select *
+    from PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      <if test="columnName != null">
+        AND COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="selectPrimaryNum" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds" resultType="java.lang.Integer">
+    select count(*)
+    from PARA_TABLE_FIELDS
+    where IS_PRIMARY = 'Y' AND TABLE_NAME=#{tableName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds">
+    delete from PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+      <if test="columnName != null">
+        AND COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds">
+    update PARA_TABLE_FIELDS
+    <set>
+      <if test="isNull != null">
+        IS_NULL = #{isNull,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrimary != null">
+        IS_PRIMARY = #{isPrimary,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+        AND COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds">
+    insert into PARA_TABLE_FIELDS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+  <if test="tableName != null">
+    TABLE_NAME,
+  </if>
+  <if test="columnName != null">
+    COLUMN_NAME,
+  </if>
+  <if test="isNull != null">
+    IS_NULL,
+  </if>
+  <if test="isPrimary != null">
+    IS_PRIMARY,
+  </if>
+</trim>
+<trim prefix="values (" suffix=")" suffixOverrides=",">
+<if test="tableName != null">
+  #{tableName,jdbcType=VARCHAR},
+</if>
+<if test="columnName != null">
+  #{columnName,jdbcType=VARCHAR},
+</if>
+<if test="isNull != null">
+  #{isNull,jdbcType=VARCHAR},
+</if>
+<if test="isPrimary != null">
+  #{isPrimary,jdbcType=VARCHAR},
+</if>
+</trim>
+        </insert>
+<select id="findList" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds" resultType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds">
+SELECT * FROM PARA_TABLE_FIELDS
+</select>
+<select id="selectColumnForPklist" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.ParaTableFileds" resultType="com.dcits.dynamic.web.mapper.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      COLUMN_NAME pk_value, TABLE_NAME || ' ' || COLUMN_NAME pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      COLUMN_NAME pk_value, concat(TABLE_NAME,' ', COLUMN_NAME) pk_desc
+    </if>
+    FROM PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </select>
+  <select id="getPKCulumnsByTableName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT COLUMN_NAME FROM PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+    and IS_PRIMARY = 'Y'
+  </select>
+  <select id="getNonPkCulumnsByTableName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT COLUMN_NAME FROM PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+    and IS_PRIMARY != 'Y'
+  </select>
+  <select id="getAllCulumnsByTableName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT COLUMN_NAME FROM PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+   </select>
+  <select id="getTableByColumn" parameterType="java.lang.String" resultType="com.dcits.dynamic.web.mapper.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      TABLE_NAME pk_value , TABLE_NAME || ', ' || COLUMN_NAME pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      TABLE_NAME pk_value,concat(TABLE_NAME,', ',COLUMN_NAME) pk_desc
+    </if>
+    from PARA_TABLE_FIELDS
+    WHERE COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+  </select>
+  <select id="getTableByTable" parameterType="java.lang.String"  resultType="com.dcits.dynamic.web.mapper.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      TABLE_NAME pk_value , TABLE_NAME || ', ' || COLUMN_NAME pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      TABLE_NAME pk_value,concat(TABLE_NAME,', ',COLUMN_NAME) pk_desc
+    </if>
+    from PARA_TABLE_FIELDS
+    WHERE TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </select>
+  <select id="findColumnDesc" parameterType="java.lang.String" resultType="java.lang.String">
+    select FIELDS_DESC
+    from PARA_TABLE_FIELDS
+    where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
+  </select>
+</mapper>

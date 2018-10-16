@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.serv.EcmSerMtdinfoDao">
+  <!-- Created by oms on 2016/02/29 10:09:40. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo" resultType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo">
+    select *
+    from ECM_SER_MTDINFO
+    where SER_MTD_ID = #{serMtdId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo">
+    select a.*,b.APP_SER_NAME
+    from ECM_SER_MTDINFO a ,ECM_APP_SERINFO b  
+    where a.APP_SER_ID = b.APP_SER_ID
+  </select>
+  <select id="findComboxList" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo" resultType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo">
+    select a.*
+    from ECM_SER_MTDINFO a   
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo">
+    delete from ECM_SER_MTDINFO
+    where SER_MTD_ID = #{serMtdId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo">
+    update ECM_SER_MTDINFO
+    <set>
+      <if test="appSerId != null">
+        APP_SER_ID = #{appSerId,jdbcType=INTEGER},
+      </if>
+      <if test="serMtdCnm != null">
+        SER_MTD_CNM = #{serMtdCnm,jdbcType=VARCHAR},
+      </if>
+      <if test="serMtdEnm != null">
+        SER_MTD_ENM = #{serMtdEnm,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where SER_MTD_ID = #{serMtdId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmSerMtdinfo">
+    insert into ECM_SER_MTDINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serMtdId != null">
+        SER_MTD_ID,
+      </if>
+      <if test="appSerId != null">
+        APP_SER_ID,
+      </if>
+      <if test="serMtdCnm != null">
+        SER_MTD_CNM,
+      </if>
+      <if test="serMtdEnm != null">
+        SER_MTD_ENM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serMtdId != null">
+        #{serMtdId,jdbcType=INTEGER},
+      </if>
+      <if test="appSerId != null">
+        #{appSerId,jdbcType=INTEGER},
+      </if>
+      <if test="serMtdCnm != null">
+        #{serMtdCnm,jdbcType=VARCHAR},
+      </if>
+      <if test="serMtdEnm != null">
+        #{serMtdEnm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

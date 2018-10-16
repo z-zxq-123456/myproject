@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmAppoperInfoDao">
+  <!-- Created by tangxl on 2015/08/27 14:19:17. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppoperInfo" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppoperInfo">
+    select *
+    from ecm_appoper_info
+    where ECM_APPOPER_ID = #{ecmAppoperId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppoperInfo">
+      select a.APP_NAME,a.APP_PATH,a.APP_PORT,b.SER_IP,c.APP_INTANT_NAME,c.APP_INTANT_VER,d.ECM_APPOPER_TIME, d.ECM_APPOPER_TYPE,f.USER_NAME
+      from  ecm_app_info a ,ecm_server_info b,ecm_app_intant c,ecm_appoper_info d,ecm_param e,web_user f
+      where d.APP_INTANT_ID=c.APP_INTANT_ID and c.APP_ID=a.APP_ID and c.SER_ID=b.SER_ID and d.ECM_APPOPER_USERID=f.USER_ID and d.ECM_APPOPER_TYPE=e.PARA_CODE
+      <if test="baseParam.appId != null">
+       AND a.APP_ID= #{baseParam.appId ,jdbcType=INTEGER}
+      </if>
+      <if test="baseParam.paraCode != null">
+       AND d.ECM_APPOPER_TYPE= #{baseParam.paraCode ,jdbcType=VARCHAR}
+      </if>
+      <if test="baseParam.userId!= null">
+        AND d.ECM_APPOPER_USERID = #{baseParam.userId,jdbcType=INTEGER}
+      </if>
+      <if test="baseParam.startTime!=null">
+      <if test="baseParam.endTime!=null">
+      AND <![CDATA[
+      d.ecm_appoper_time >= #{baseParam.startTime,jdbcType=VARCHAR} and d.ECM_APPOPER_TIME<= #{baseParam.endTime,jdbcType=VARCHAR}
+      ]]>
+      </if>
+      </if>
+      order by d.ECM_APPOPER_TIME  DESC
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppoperInfo">
+    delete from ecm_appoper_info
+    where ECM_APPOPER_ID = #{ecmAppoperId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppoperInfo">
+    update ecm_appoper_info
+    <set>
+      <if test="appIntantId != null">
+        APP_INTANT_ID = #{appIntantId,jdbcType=INTEGER},
+      </if>
+      <if test="ecmAppoperType != null">
+        ECM_APPOPER_TYPE = #{ecmAppoperType,jdbcType=VARCHAR},
+      </if>
+      <if test="ecmAppoperTime != null">
+        ECM_APPOPER_TIME = #{ecmAppoperTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ecmAppoperUserid != null">
+        ECM_APPOPER_USERID = #{ecmAppoperUserid,jdbcType=INTEGER}
+      </if>
+    </set>
+    where ECM_APPOPER_ID = #{ecmAppoperId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppoperInfo">
+    insert into ecm_appoper_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ecmAppoperId != null">
+        ECM_APPOPER_ID,
+      </if>
+      <if test="appIntantId != null">
+        APP_INTANT_ID,
+      </if>
+      <if test="ecmAppoperType != null">
+        ECM_APPOPER_TYPE,
+      </if>
+      <if test="ecmAppoperTime != null">
+        ECM_APPOPER_TIME,
+      </if>
+      <if test="ecmAppoperUserid != null">
+        ECM_APPOPER_USERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ecmAppoperId != null">
+        #{ecmAppoperId,jdbcType=INTEGER},
+      </if>
+      <if test="appIntantId != null">
+        #{appIntantId,jdbcType=INTEGER},
+      </if>
+      <if test="ecmAppoperType != null">
+        #{ecmAppoperType,jdbcType=VARCHAR},
+      </if>
+      <if test="ecmAppoperTime != null">
+        #{ecmAppoperTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ecmAppoperUserid != null">
+        #{ecmAppoperUserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

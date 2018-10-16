@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmAppIntantDao">
+  <!-- Created by tangxl on 2015/08/18 09:58:01. -->
+  <select id="selectByPrimaryKey" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    select *
+    from ecm_app_intant
+    where APP_INTANT_ID = #{appIntantId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    select INTANT.*,SERINFO.SER_IP,SERINFO.SER_USER,SERINFO.SER_PWD,SERINFO.SER_OS,APPINFO.APP_PATH,APPINFO.APP_PORT,APPINFO.APP_WORK,APPINFO.APP_SIMPEN_NM,APPINFO.APP_TYPE,APPINFO.APP_NAME 
+    from   ecm_app_intant INTANT,ecm_server_info SERINFO,ecm_app_info APPINFO
+    where  INTANT.SER_ID=SERINFO.SER_ID AND INTANT.APP_ID= APPINFO.APP_ID  
+    <if test="appId != null">
+      AND  INTANT.APP_ID=#{appId,jdbcType=INTEGER}
+     </if>
+    <if test="appIntantId != null">
+      AND  INTANT.APP_INTANT_ID=#{appIntantId,jdbcType=INTEGER}
+    </if>
+    <if test="serId != null">
+      AND  INTANT.SER_ID=#{serId,jdbcType=INTEGER}
+    </if>
+     <if test="appIntantVer != null">
+      AND  APP_INTANT_VER != #{appIntantVer,jdbcType=INTEGER} 
+    </if>
+    <if test="serIp != null">
+      AND  SER_IP = #{serIp,jdbcType=VARCHAR}
+    </if>
+    <if test="appIntantStatus != null">
+      AND  APP_INTANT_STATUS != #{appIntantStatus,jdbcType=VARCHAR}
+    </if>
+    order by APPINFO.APP_ID,SERINFO.SER_IP
+  </select>
+  
+  <select id="findUpgList" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    select INTANT.*,SERINFO.SER_IP,SERINFO.SER_USER,SERINFO.SER_PWD,SERINFO.SER_OS,APPINFO.APP_PATH,APPINFO.APP_PORT,APPINFO.APP_WORK,APPINFO.APP_SIMPEN_NM,APPINFO.APP_TYPE,APPINFO.APP_NAME 
+    from   ecm_app_intant INTANT,ecm_server_info SERINFO,ecm_app_info APPINFO
+    where  INTANT.SER_ID=SERINFO.SER_ID AND INTANT.APP_ID= APPINFO.APP_ID 
+    AND  INTANT.APP_INTANT_ID in (${appIntantIdList})
+  </select>
+  
+  <select id="findCount" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+  SELECT APP_ID ,COUNT(APP_INTANT_ID) AS appNumber
+  FROM  ecm_app_intant
+  GROUP BY APP_ID
+  </select>
+ <select id="findIntantList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    select a.APP_INTANT_ID,a.APP_ID,a.SER_ID, a.APP_INTANT_NAME,a.APP_INTANT_DESC,a.APP_INTANT_STATUS,a.APP_INTANT_VER,b.APP_NAME,c.SER_NAME,c.SER_IP 
+    from ecm_app_intant a,ecm_app_info b,ecm_server_info c
+    where a.APP_ID=b.APP_ID  and a.SER_ID=c.SER_ID  
+      <if test="baseParam.appId != null">
+       AND a.APP_ID = #{baseParam.appId,jdbcType=INTEGER}
+      </if>
+      <if test="baseParam.serId!= null">
+        AND a.SER_ID = #{baseParam.serId,jdbcType=INTEGER}
+      </if>
+    </select>
+  <select id="findVerList" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    select a.*
+    from ecm_app_intant a,ecm_app_info b,ecm_appinst_deploy c
+    where a.APP_ID=b.APP_ID  and a.APP_INTANT_ID=c.APP_INTANT_ID  
+      <if test="appId != null">
+       AND a.APP_ID = #{appId,jdbcType=INTEGER}
+      </if>
+    order by  c.APP_DEPLOY_DATE   DESC
+ </select> 
+  <select id="findByMidwareDBId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    select a.*
+    from ecm_app_intant a,ecm_app_info b
+    where a.APP_ID=b.APP_ID  
+      <if test="midwareDBId != null">
+       AND b.MIDWARE_DB_ID = #{midwareDBId,jdbcType=INTEGER}
+      </if>
+ </select>     
+    
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    delete from ecm_app_intant
+    where APP_INTANT_ID = #{appIntantId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    update ecm_app_intant
+    <set>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="serId != null">
+        SER_ID = #{serId,jdbcType=INTEGER},
+      </if>
+      <if test="appIntantName != null">
+        APP_INTANT_NAME = #{appIntantName,jdbcType=VARCHAR},
+      </if>
+      <if test="appIntantDesc != null">
+        APP_INTANT_DESC = #{appIntantDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="appIntantStatus != null">
+        APP_INTANT_STATUS = #{appIntantStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="appIntantVer != '' ">
+        APP_INTANT_VER = #{appIntantVer,jdbcType=INTEGER},
+      </if>
+      
+    </set>
+    where APP_INTANT_ID = #{appIntantId,jdbcType=INTEGER}
+  </update>  
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppIntant">
+    insert into ecm_app_intant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appIntantId != null">
+        APP_INTANT_ID,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="serId != null">
+        SER_ID,
+      </if>
+      <if test="appIntantName != null">
+        APP_INTANT_NAME,
+      </if>
+      <if test="appIntantDesc != null">
+        APP_INTANT_DESC,
+      </if>
+      <if test="appIntantStatus != null">
+        APP_INTANT_STATUS,
+      </if>
+      <if test="appIntantVer != null">
+        APP_INTANT_VER,
+      </if>     
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appIntantId != null">
+        #{appIntantId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="serId != null">
+        #{serId,jdbcType=INTEGER},
+      </if>
+      <if test="appIntantName != null">
+        #{appIntantName,jdbcType=VARCHAR},
+      </if>
+      <if test="appIntantDesc != null">
+        #{appIntantDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="appIntantStatus != null">
+        #{appIntantStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="appIntantVer != null">
+        #{appIntantVer,jdbcType=INTEGER},
+      </if>     
+    </trim>
+  </insert>
+</mapper>

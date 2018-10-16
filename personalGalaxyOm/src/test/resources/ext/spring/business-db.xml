@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!-- 加载资源配置文件 -->
+    <bean id="propertyConfigurerBusiDb"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:galaxy.db.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 配置数据源 -->
+    <bean id="shardManager" class="com.dcits.galaxy.dal.mybatis.shard.ShardManager">
+        <property name="shards">
+            <set>
+                <ref bean="shardUpright"></ref>
+                <ref bean="shardEnsemble"></ref>
+            </set>
+        </property>
+        <property name="defaultShard" ref="shardUpright"/>
+    </bean>
+
+    <bean id="shardUpright" class="com.dcits.galaxy.dal.mybatis.shard.Shard">
+        <property name="id" value="partition0"/>
+        <property name="dataSource" ref="dataSource0"/>
+    </bean>
+
+    <bean id="shardEnsemble" class="com.dcits.galaxy.dal.mybatis.shard.Shard">
+        <property name="id" value="partition1"/>
+        <property name="dataSource" ref="dataSource1"/>
+    </bean>
+    <!-- 垂直数据库数据源 -->
+    <bean id="dataSource0" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="${db0.jdbcUrl}"/>
+        <property name="username" value="${db0.username}"/>
+        <property name="password" value="${db0.password}"/>
+        <property name="initialSize" value="${db.pool.initialSize}"/>
+        <property name="maxActive" value="${db.pool.maxActive}"/>
+        <property name="minIdle" value="${db.pool.minIdle}"/>
+        <property name="poolPreparedStatements" value="${db.pool.poolPreparedStatements}"/>
+        <property name="maxOpenPreparedStatements" value="${db.pool.maxOpenPreparedStatements}"/>
+        <property name="validationQuery" value="${db.pool.validationQuery}"/>
+        <property name="testOnBorrow" value="${db.pool.testOnBorrow}"/>
+        <property name="testOnReturn" value="${db.pool.testOnReturn}"/>
+        <property name="testWhileIdle" value="${db.pool.testWhileIdle}"/>
+        <property name="filters" value="${db.pool.filters}"/>
+        <property name="connectionProperties" value="config.decrypt=false"/>
+    </bean>
+    <!-- 数据源2 -->
+    <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="${db1.jdbcUrl}" />
+        <property name="username" value="${db1.username}" />
+        <property name="password" value="${db1.password}" />
+        <property name="initialSize" value="${db.pool.initialSize}" />
+        <property name="maxActive" value="${db.pool.maxActive}" />
+        <property name="minIdle" value="${db.pool.minIdle}" />
+        <property name="poolPreparedStatements" value="${db.pool.poolPreparedStatements}" />
+        <property name="maxOpenPreparedStatements" value="${db.pool.maxOpenPreparedStatements}" />
+        <property name="validationQuery" value="${db.pool.validationQuery}" />
+        <property name="testOnBorrow" value="${db.pool.testOnBorrow}" />
+        <property name="testOnReturn" value="${db.pool.testOnReturn}" />
+        <property name="testWhileIdle" value="${db.pool.testWhileIdle}" />
+        <property name="filters" value="${db.pool.filters}" />
+        <property name="connectionProperties" value="config.decrypt=false" />
+    </bean>
+
+    <!-- 路由函数配置 -->
+    <bean class="com.dcits.galaxy.dal.route.HashFunction" id="hashFunction"/>
+    <!-- 按月份路由 -->
+    <bean class="com.dcits.galaxy.dal.route.HashFunction" id="monthRouter"/>
+    <!-- 按时间段路由 -->
+    <bean class="com.dcits.galaxy.dal.route.HashFunction" id="timeRouter">
+        <!-- <property name="pattern" value="yyyy-MM-dd HH:mm:ss" /> -->
+    </bean>
+    <!-- 配置路由规则开始 -->
+    <bean class="com.dcits.galaxy.dal.mybatis.router.config.SimpleRouterXmlFactoryBean" id="internalRouter">
+        <!-- functionsMap是在使用自定义路由规则函数的时候使用 -->
+        <property name="functionsMap">
+            <map>
+                <entry key="router" value-ref="hashFunction"/>
+            </map>
+        </property>
+        <property name="configLocations" value="classpath*:META-INF/dbrule/**/*.xml"/>
+        <property name="shardManager" ref="shardManager"/>
+    </bean>
+    <!-- 配置路由规则结束 -->
+    <!-- ============================== 查询处理 start ============================== -->
+    <bean id="mergeRulesFactory"
+          class="com.dcits.galaxy.dal.mybatis.merger.config.MergeRulesFactoryBean">
+        <property name="locations" value="classpath*:META-INF/merge-rules/**/*.xml"/>
+    </bean>
+    <!-- ============================== 查询处理 end ============================== -->
+
+    <!-- 集成mybatis，统一在此加载，对业务开发而言约定：其配置文件在各个jar包中的/META-INF/mapper/**/*.xml -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource0"/>
+        <property name="databaseIdProvider" ref="databaseIdProvider"/>
+        <property name="transactionFactory" ref="transactionFactory"/>
+        <property name="configLocation"
+                  value="classpath:META-INF/mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:META-INF/mapper/**/*.xml"/>
+        <property name="typeAliasesPackage" value="${typeAliasesPackage}"/>
+    </bean>
+
+    <!-- 配置ShardSqlSessionTemplate；分区表操作必须使用此对象-->
+    <bean id="shardSqlSessionTemplate" class="com.dcits.galaxy.dal.mybatis.ShardSqlSessionTemplate"
+          init-method="init">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="shardManager" ref="shardManager"/>
+        <property name="router" ref="internalRouter"/>
+        <property name="mergeExecutor" ref="mergeExecutor"/>
+        <property name="proactorExecutor" ref="proactorExecutor"/>
+        <property name="idempotentUtil" ref="idempotentUtil"/>
+        <property name="defaultShardPolicy" value="route_noshard_error"/>
+    </bean>
+    <bean id="idempotentDao" class="com.dcits.galaxy.dal.mybatis.idempotent.dao.impl.IdempotentDaoImpl"/>
+
+    <bean id="tableMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.dcits.ensemble.om.cmc.dao.BaseDbTableDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!--
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+          <property name="basePackage" value="com.dcits.ensemble.om.**.dao"/>
+          <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
+      </bean>-->
+</beans>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.serv.EcmAppSerinfoDao">
+  <!-- Created by oms on 2016/02/25 15:38:17. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo" resultType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo">
+    select *
+    from ECM_APP_SERINFO
+    where APP_SER_ID = #{appSerId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo">
+    select *
+    from ECM_APP_SERINFO   
+   <if test="baseParam.appSerType != null">
+   where APP_SER_TYPE = #{baseParam.appSerType,jdbcType=VARCHAR}
+   </if>
+  </select>
+   <select id="findComboxList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo">
+    select *
+    from ECM_APP_SERINFO   
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo">
+    delete from ECM_APP_SERINFO
+    where APP_SER_ID = #{appSerId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo">
+    update ECM_APP_SERINFO
+    <set>
+      <if test="appSerName != null">
+        APP_SER_NAME = #{appSerName,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerClsnm != null">
+        APP_SER_CLSNM = #{appSerClsnm,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerType != null">
+        APP_SER_TYPE = #{appSerType,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerDesc != null">
+        APP_SER_DESC = #{appSerDesc,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where APP_SER_ID = #{appSerId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmAppSerinfo">
+    insert into ECM_APP_SERINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appSerId != null">
+        APP_SER_ID,
+      </if>
+      <if test="appSerName != null">
+        APP_SER_NAME,
+      </if>
+      <if test="appSerClsnm != null">
+        APP_SER_CLSNM,
+      </if>
+      <if test="appSerType != null">
+        APP_SER_TYPE,
+      </if>
+      <if test="appSerDesc != null">
+        APP_SER_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appSerId != null">
+        #{appSerId,jdbcType=INTEGER},
+      </if>
+      <if test="appSerName != null">
+        #{appSerName,jdbcType=INTEGER},
+      </if>
+      <if test="appSerClsnm != null">
+        #{appSerClsnm,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerType != null">
+        #{appSerType,jdbcType=VARCHAR},
+      </if>
+      <if test="appSerDesc != null">
+        #{appSerDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

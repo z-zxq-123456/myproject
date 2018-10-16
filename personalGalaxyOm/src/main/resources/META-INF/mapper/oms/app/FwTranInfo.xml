@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.FwTranInfoDao">
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.FwTranInfo">
+    select *
+    from FW_TRAN_INFO
+     where 1=1 
+     <if test="baseParam.startTime!=null">
+      <if test="baseParam.endTime!=null">  
+      AND <![CDATA[
+      TRAN_DATE >= #{baseParam.startTime,jdbcType=VARCHAR} and TRAN_DATE<= #{baseParam.endTime,jdbcType=VARCHAR}
+      ]]>
+      </if>
+     </if>
+      order by TRAN_TIME  DESC
+  </select>
+</mapper>

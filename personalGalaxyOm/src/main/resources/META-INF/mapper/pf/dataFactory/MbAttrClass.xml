@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbAttrClassDao">
+  <!-- Created by zhangyjw on 2015/09/22 11:33:48. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    select *
+    from mb_attr_class
+    where ATTR_CLASS = #{attrClass,jdbcType=VARCHAR}
+    and COLUMN_STATUS !='W'
+  </select>
+  <select id="getAll" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    select * from mb_attr_class
+    WHERE COLUMN_STATUS !='W'
+  </select>
+  <select id="getByBmodule" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    select * from mb_attr_class
+    where ATTR_CLASS = #{attrClass,jdbcType=VARCHAR}
+    and COLUMN_STATUS !='W'
+  </select>
+  <select id="getList" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+          select * from mb_attr_class where PARENT_ATTR_CLASS = #{parentAttrClass,jdbcType=VARCHAR}
+  </select>
+  <select id="getByAttrClass" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    select * from mb_attr_class where PARENT_ATTR_CLASS = #{attrClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    delete from mb_attr_class
+    where ATTR_CLASS = #{attrClass,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    update mb_attr_class
+    <set>
+      <if test="attrClassDesc != null">
+        ATTR_CLASS_DESC = #{attrClassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="attrClassLevel != null">
+        ATTR_CLASS_LEVEL = #{attrClassLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAttrClass != null">
+        PARENT_ATTR_CLASS = #{parentAttrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ATTR_CLASS = #{attrClass,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass">
+    insert into mb_attr_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attrClass != null">
+        ATTR_CLASS,
+      </if>
+      <if test="attrClassDesc != null">
+        ATTR_CLASS_DESC,
+      </if>
+      <if test="attrClassLevel != null">
+        ATTR_CLASS_LEVEL,
+      </if>
+      <if test="parentAttrClass != null">
+        PARENT_ATTR_CLASS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attrClass != null">
+        #{attrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="attrClassDesc != null">
+        #{attrClassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="attrClassLevel != null">
+        #{attrClassLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAttrClass != null">
+        #{parentAttrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getDescByType" parameterType="java.lang.String" resultType="java.lang.String">
+    select ATTR_CLASS_DESC
+    from mb_attr_class
+    WHERE ATTR_CLASS =  #{attrClass,jdbcType=VARCHAR}
+  </select>
+  <select id="getForPkList"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+  select
+  <if test="_databaseId == 'oracle'">
+    ATTR_CLASS pk_value, ATTR_CLASS || ' ' || ATTR_CLASS_DESC pk_desc
+  </if>
+  <if test="_databaseId == 'mysql'">
+    ATTR_CLASS pk_value,concat(ATTR_CLASS,' ',ATTR_CLASS_DESC) pk_desc
+  </if>
+    FROM mb_attr_class
+  </select>
+  <select id="getBmodule"  parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      ATTR_CLASS pk_value, ATTR_CLASS || ' ' || ATTR_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      ATTR_CLASS pk_value,concat(ATTR_CLASS,' ',ATTR_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_attr_class
+    where ATTR_CLASS_LEVEL = #{attrClassLevel,jdbcType=VARCHAR}
+  </select>
+  <select id="getparentAttrClass"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      ATTR_CLASS pk_value, ATTR_CLASS || ' ' || ATTR_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      ATTR_CLASS pk_value,concat(ATTR_CLASS,' ',ATTR_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_attr_class
+    where ATTR_CLASS_LEVEL = #{attrClassLevel,jdbcType=VARCHAR}
+  </select>
+</mapper>

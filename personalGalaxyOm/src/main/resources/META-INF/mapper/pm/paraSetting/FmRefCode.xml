@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pm.dao.paraSetting.FmRefCodeDao">
+  <!-- Created by admin on 2017/03/29 20:35:31. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.FmRefCode" resultType="com.dcits.ensemble.om.pm.module.paraSetting.FmRefCode">
+    select *
+    from FM_REF_CODE
+    where REF_LANG = #{refLang,jdbcType=VARCHAR}
+      <if test="domain != null">
+        AND DOMAIN = #{domain,jdbcType=VARCHAR}
+      </if>
+      <if test="fieldValue != null">
+        AND FIELD_VALUE = #{fieldValue,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.FmRefCode">
+    delete from FM_REF_CODE
+    where REF_LANG = #{refLang,jdbcType=VARCHAR}
+      <if test="domain != null">
+        AND DOMAIN = #{domain,jdbcType=VARCHAR}
+      </if>
+      <if test="fieldValue != null">
+        AND FIELD_VALUE = #{fieldValue,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.FmRefCode">
+    update FM_REF_CODE
+    <set>
+      <if test="abbreviation != null">
+        ABBREVIATION = #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        MEANING = #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="tranTimestamp != null">
+        TRAN_TIMESTAMP = #{tranTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="tranTime != null">
+        TRAN_TIME = #{tranTime,jdbcType=BIGINT}
+      </if>
+    </set>
+    where REF_LANG = #{refLang,jdbcType=VARCHAR}
+        AND DOMAIN = #{domain,jdbcType=VARCHAR}
+        AND FIELD_VALUE = #{fieldValue,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pm.module.paraSetting.FmRefCode">
+    insert into FM_REF_CODE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="refLang != null">
+        REF_LANG,
+      </if>
+      <if test="domain != null">
+        DOMAIN,
+      </if>
+      <if test="fieldValue != null">
+        FIELD_VALUE,
+      </if>
+      <if test="abbreviation != null">
+        ABBREVIATION,
+      </if>
+      <if test="meaning != null">
+        MEANING,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+      <if test="tranTimestamp != null">
+        TRAN_TIMESTAMP,
+      </if>
+      <if test="tranTime != null">
+        TRAN_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="refLang != null">
+        #{refLang,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldValue != null">
+        #{fieldValue,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null">
+        #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="tranTimestamp != null">
+        #{tranTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="tranTime != null">
+        #{tranTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="getCtrlValue" resultType="com.dcits.dynamic.web.mapper.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      FIELD_VALUE pk_value, FIELD_VALUE || ' ' || MEANING  pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      FIELD_VALUE pk_value,concat(FIELD_VALUE,' ',MEANING) pk_desc
+    </if>
+    FROM FM_REF_CODE
+    WHERE DOMAIN='TB_VOUCHER_DEF.DOC_CLASS'
+  </select>
+</mapper>

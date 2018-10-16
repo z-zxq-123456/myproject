@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbAttrTypeDao">
+  <!-- Created by zhangyjw on 2015/10/26 14:03:12. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    select *
+    from mb_attr_type
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getAll" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    select * from mb_attr_type
+    WHERE COLUMN_STATUS !='W'
+  </select>
+  <select id="getAttrKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    select *  from mb_attr_type
+    where ATTR_CLASS =  #{attrClass,jdbcType=VARCHAR}
+  </select>
+  <select id="getAttrKey11" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    select *  from mb_attr_type
+    where ATTR_CLASS =  #{attrClass,jdbcType=VARCHAR}
+    and BUSI_CATEGORY LIKE #{busiCategory,jdbcType=VARCHAR}
+  </select>
+  <select id="getAttrDesc" parameterType="java.lang.String" resultType="java.lang.String">
+    select ATTR_DESC from mb_attr_type
+    where ATTR_KEY =  #{attrKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    delete from mb_attr_type
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    update mb_attr_type
+    <set>
+      <if test="attrDesc != null">
+        ATTR_DESC = #{attrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="attrClass != null">
+        ATTR_CLASS = #{attrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="useMethod != null">
+        USE_METHOD = #{useMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="valueMethod != null">
+        VALUE_METHOD = #{valueMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="setValueFlag != null">
+        SET_VALUE_FLAG = #{setValueFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCategory != null">
+        BUSI_CATEGORY = #{busiCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbAttrType">
+    insert into mb_attr_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attrKey != null">
+        ATTR_KEY,
+      </if>
+      <if test="attrDesc != null">
+        ATTR_DESC,
+      </if>
+      <if test="attrClass != null">
+        ATTR_CLASS,
+      </if>
+      <if test="useMethod != null">
+        USE_METHOD,
+      </if>
+      <if test="valueMethod != null">
+        VALUE_METHOD,
+      </if>
+      <if test="setValueFlag != null">
+        SET_VALUE_FLAG,
+      </if>
+      <if test="busiCategory != null">
+        BUSI_CATEGORY,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attrKey != null">
+        #{attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="attrDesc != null">
+        #{attrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="attrClass != null">
+        #{attrClass,jdbcType=VARCHAR},
+      </if>
+      <if test="useMethod != null">
+        #{useMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="valueMethod != null">
+        #{valueMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="setValueFlag != null">
+        #{setValueFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCategory != null">
+        #{busiCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getValueMethod" parameterType="java.lang.String" resultType="java.lang.String">
+    select VALUE_METHOD from mb_attr_type
+    where ATTR_KEY =  #{attrKey,jdbcType=VARCHAR}
+  </select>
+  <select id="getUseMethod" parameterType="java.lang.String" resultType="java.lang.String">
+    select USE_METHOD from mb_attr_type
+    where ATTR_KEY =  #{attrKey,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getattrClass"  parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      ATTR_CLASS pk_value, ATTR_CLASS || ' ' || ATTR_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      ATTR_CLASS pk_value,concat(ATTR_CLASS,' ',ATTR_CLASS_DESC) pk_desc
+    </if>
+    FROM MB_ATTR_CLASS
+    where PARENT_ATTR_CLASS = #{parentAttrClass,jdbcType=VARCHAR}
+  </select>
+  <select id="getattrKey1"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      ATTR_KEY pk_value, ATTR_KEY || ' ' || ATTR_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      ATTR_KEY pk_value,concat(ATTR_KEY,' ',ATTR_DESC) pk_desc
+    </if>
+    FROM mb_attr_type
+    where  VALUE_METHOD = 'VL' OR VALUE_METHOD = 'RF'
+  </select>
+  <select id="getAttrType"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      ATTR_KEY pk_value, ATTR_KEY || ' ' || ATTR_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      ATTR_KEY pk_value,concat(ATTR_KEY,' ',ATTR_DESC) pk_desc
+    </if>
+    FROM mb_attr_type
+    where  USE_METHOD = 'DESC'
+  </select>
+</mapper>

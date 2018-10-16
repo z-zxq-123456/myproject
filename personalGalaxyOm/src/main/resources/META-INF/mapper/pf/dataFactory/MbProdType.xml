@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbProdTypeDao">
+  <!-- Created by zhangyjw on 2015/09/28 10:32:46. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    select *
+    from mb_prod_type
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getAll" parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    select *
+    from mb_prod_type
+    where PROD_GROUP = #{prodGroup,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getAllContrast" parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    select *
+    from mb_prod_type
+    where PROD_GROUP = #{prodGroup,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='Y'
+  </select>
+  <select id="getByProdClass" parameterType="java.lang.String" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    select *
+    from mb_prod_type
+    where PROD_CLASS = #{prodClass,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    delete from mb_prod_type
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPrimaryKeyProd" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    delete from mb_prod_type
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    update mb_prod_type
+    <set>
+      <if test="prodDesc != null">
+        PROD_DESC = #{prodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="prodClass != null">
+        PROD_CLASS = #{prodClass,jdbcType=VARCHAR},
+      </if>
+      <if test="prodGroup != null">
+        PROD_GROUP = #{prodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="prodRange != null">
+        PROD_RANGE = #{prodRange,jdbcType=VARCHAR},
+      </if>
+      <if test="baseProdType != null">
+        BASE_PROD_TYPE = #{baseProdType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    insert into mb_prod_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        PROD_TYPE,
+      </if>
+      <if test="prodDesc != null">
+        PROD_DESC,
+      </if>
+      <if test="prodClass != null">
+        PROD_CLASS,
+      </if>
+      <if test="prodGroup != null">
+        PROD_GROUP,
+      </if>
+      <if test="prodRange != null">
+        PROD_RANGE,
+      </if>
+      <if test="baseProdType != null">
+        BASE_PROD_TYPE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="prodDesc != null">
+        #{prodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="prodClass != null">
+        #{prodClass,jdbcType=VARCHAR},
+      </if>
+      <if test="prodGroup != null">
+        #{prodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="prodRange != null">
+        #{prodRange,jdbcType=VARCHAR},
+      </if>
+      <if test="baseProdType != null">
+        #{baseProdType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByProdClass" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    select *
+    from mb_prod_type
+    where PROD_CLASS = #{prodClass,jdbcType=VARCHAR}
+    AND PROD_GROUP = #{prodGroup,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="selectByProdClass2" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType">
+    select *
+    from mb_prod_type
+    where PROD_CLASS = #{prodClass,jdbcType=VARCHAR}
+  </select>
+  <select id="getbaseProd" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      PROD_TYPE pk_value, PROD_TYPE || ' ' || PROD_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      PROD_TYPE pk_value,concat(PROD_TYPE,' ',PROD_DESC) pk_desc
+    </if>
+    FROM mb_prod_type
+    <if test="prodClass != null">
+      where PROD_CLASS LIKE #{prodClass,jdbcType=VARCHAR}
+    </if>
+    <if test="prodRange != null">
+      AND PROD_RANGE = #{prodRange,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getChildProd" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdType" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      PROD_TYPE pk_value, PROD_TYPE || ' ' || PROD_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      PROD_TYPE pk_value,concat(PROD_TYPE,' ',PROD_DESC) pk_desc
+    </if>
+    FROM mb_prod_type
+  </select>
+  <select id="getProdDesc" parameterType="java.lang.String" resultType="java.lang.String">
+    select PROD_DESC from mb_prod_type
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,1107 @@
+@charset "UTF-8";
+/*
+@名称：galaxy.admin.scss
+@功能：galaxy开发平台框架样式
+@产权：Copyright  神州信息 DCITS
+*/
+/* line 13, ../../../sass/app/galaxy.admin.scss */
+html {
+    height: 100%;
+}
+
+/*全局字体设置*/
+* {
+    font-family: Microsoft Yahei;
+}
+
+/* line 16, ../../../sass/app/galaxy.admin.scss */
+body {
+    min-height: 100%;
+    position: relative;
+    font-size: 14px;
+    color: #333;
+    background-color: #ffffff;
+    font-family: Microsoft Yahei;
+}
+
+/* line 24, ../../../sass/app/galaxy.admin.scss */
+a {
+    color: #333;
+}
+
+/* line 26, ../../../sass/app/galaxy.admin.scss */
+a:hover, a:focus, .miancolor a {
+    color: black;
+}
+
+/* line 30, ../../../sass/app/galaxy.admin.scss */
+.maincolor {
+    color: black;
+}
+
+/* line 33, ../../../sass/app/galaxy.admin.scss */
+h4 {
+    line-height: 30px;
+}
+
+/*页面框架*/
+/*页面头部*/
+/* line 36, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 74px;
+}
+
+/*页面头部重构 20160302*/
+/* line 46, ../../../sass/app/galaxy.admin.scss */
+.logoArea {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 74px;
+    z-index: 999;
+    width: 225px;
+    background-color: #febc48;
+}
+
+/* line 57, ../../../sass/app/galaxy.admin.scss */
+.header-top {
+    diaplay: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 225px;
+    height: 48px;
+}
+
+/* line 65, ../../../sass/app/galaxy.admin.scss */
+.header-bottom {
+    display: block;
+    position: absolute;
+    top: 48px;
+    right: 0;
+    left: 225px;
+}
+
+/*左侧菜单*/
+/* line 73, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside {
+    position: absolute;
+    top: 74px;
+    bottom: 0;
+    left: 0;
+    width: 225px;
+    z-index: 99;
+    overflow: auto;
+    background-color: #fff;
+    border-right: 1px solid #d8d8d8;
+}
+
+/*logo下半部分*/
+/* line 85, ../../../sass/app/galaxy.admin.scss */
+.logo-bottom {
+    display: block;
+    height: 26px;
+    width: 225px;
+    background-color: #febc48;
+    color: #fff;
+    text-align: center;
+    z-index: 999;
+    font-size: 14px;
+    font-weight: blod;
+    border-bottom: #fbb233;
+}
+
+/*section框架选项卡部分*/
+/* line 98, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-article-box {
+    position: absolute;
+    top: 74px;
+    right: 0;
+    bottom: 0;
+    left: 226px;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #f3f3f3;
+    border-left: 1px solid #e9e9e9;
+}
+
+/*section框架frameBOx部分*/
+/* line 109, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-article {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    z-index: 1;
+}
+
+/* line 118, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-container {
+    padding: 45px 0 0;
+}
+
+/* line 121, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside, .Galaxy-article-box, .displayArrow {
+    -webkit-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+}
+
+/*定义菜单隐藏，向左移动*/
+/* line 126, ../../../sass/app/galaxy.admin.scss */
+.big-page .Galaxy-article-box {
+    left: 0px;
+}
+
+/* line 127, ../../../sass/app/galaxy.admin.scss */
+.big-page .displayArrow {
+    left: 10px;
+}
+
+/*重新定义大页面菜单样式zhongwh20160123*/
+/* line 130, ../../../sass/app/galaxy.admin.scss */
+.big-page .Galaxy-aside {
+    left: -226px;
+}
+
+/*组件*/
+/*logo*/
+/*平台名称*/
+/* line 139, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-logo, .Galaxy-logo-m {
+    height: 74px;
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 74px;
+}
+
+/* line 147, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-logo {
+    display: inline-block;
+    padding-right: 5px;
+}
+
+/* line 151, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-logo:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* line 156, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-logo-m {
+    display: none;
+    width: 45px;
+    margin-left: 10px;
+}
+
+/* line 161, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-logo-m:hover {
+    text-decoration: none;
+    color: #0C0;
+}
+
+/*版本号*/
+/* line 167, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-subtitle {
+    font-size: 12px;
+    color: #eee;
+    padding-top: 24px;
+}
+
+/*左侧菜单具体参数，没有和上面的基本样式嵌套，层数太多*/
+/* line 175, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dl {
+    margin-bottom: 0px;
+}
+
+/* line 178, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd {
+    display: none;
+}
+
+/* line 180, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd.selected {
+    display: block;
+    margin-left: 0px;
+}
+
+/* line 185, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dt {
+    display: block;
+    line-height: 40px;
+    height: 40px;
+    padding-left: 46px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+/* line 195, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dt .menu_dropdown-arrow {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 15px;
+    transition-duration: 0.3s;
+    transition-property: all;
+}
+
+/* line 203, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dt i {
+    font-size: 18px;
+    position: absolute;
+    color: #999999;
+    margin-left: -31px;
+    width: 16px;
+    line-height: 40px;
+    height: 40px;
+    font-size: 16px;
+}
+
+/* line 213, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dt.selected {
+    border-bottom: 5px solid #febc48;
+}
+
+/* line 214, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dt.selected .menu_dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* line 218, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown ul {
+    padding: 0px;
+}
+
+/* line 221, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown li { /*取消掉border-bottom: 1px solid #e5e5e5;  给后代元素造成border混乱*/
+    line-height: 35px;
+    overflow: hidden;
+    zoom: 1;
+    position: relative;
+}
+
+/* line 226, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown li a {
+    display: block;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* line 230, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown li a i {
+    font-weight: normal;
+}
+
+/* line 233, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown li a:hover {
+    text-decoration: none;
+}
+
+/* line 238, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd ul { /*取消掉border-bottom: 1px solid #e5e5e5;  给后代元素造成border混乱*/
+    padding: 0px 0px;
+    position: relative;
+}
+
+/* line 241, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li {
+    line-height: 28px;
+    border-bottom: 1px solid #fef3d5;
+    border-top: 1px solid #fffaee;
+}
+
+/* line 245, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a { /*取消掉border-bottom: 1px solid #e5e5e5;  给后代元素造成border混乱*/
+    font-weight: normal;
+    text-align: left;
+    padding-left: 46px;
+    font-size: 12px;
+    background-color: #fdf7e6;
+}
+
+/* line 251, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a > i {
+    font-size: 14px;
+    position: absolute;
+    right: 15px;
+    line-height: 28px;
+    height: 28px;
+}
+
+/* line 257, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a > i:before {
+    content: "";
+}
+
+/* line 261, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a > i.nothree {
+    font-size: 14px;
+    position: absolute;
+    right: 15px;
+    line-height: 28px;
+    height: 28px;
+}
+
+/* line 267, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a > i.nothree:before {
+    content: "";
+}
+
+/* line 271, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a.selected {
+    height: 32px;
+    line-height: 32px;
+}
+
+/* line 274, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a.selected i:last-child:before {
+    content: "";
+}
+
+/* line 275, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd li a.selected i.nothree:last-child:before {
+    content: "";
+}
+
+/* line 281, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown li.current a, .menu_dropdown li.current a:hover {
+    background-color: #febc48;
+}
+
+/*菜单层级扩展 从第二层级开始*/
+/* line 285, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three {
+    display: none;
+}
+
+/* line 287, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three.selected {
+    display: block;
+}
+
+/* line 291, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a {
+    line-height: 28px;
+    padding-left: 71px;
+    font-size: 12px;
+}
+
+/* line 296, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a > i {
+    font-size: 12px;
+    position: absolute;
+    right: 15px;
+    height: 28px;
+    line-height: 28px;
+}
+
+/* line 302, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a > i:before {
+    content: "";
+}
+
+/* line 306, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a > i.nofour {
+    font-size: 12px;
+    position: absolute;
+    right: 15px;
+    line-height: 28px;
+    height: 28px;
+}
+
+/* line 312, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a > i.nofour:before {
+    content: "";
+}
+
+/* line 317, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a.selected > i:last-child:before {
+    content: "";
+}
+
+/* line 319, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a.nofour.selected { /*弥补三级菜单无子产生的缺陷，菜单css待优化*/
+}
+
+/* line 320, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > a.nofour.selected > i:last-child:before {
+    content: "";
+}
+
+/* line 323, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > ul.galaxy-menu-four {
+    display: none;
+}
+
+/* line 325, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > ul.galaxy-menu-four.selected {
+    display: block;
+}
+
+/* line 328, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > ul.galaxy-menu-four > li {
+    background-color: #fdf7e6;
+    line-height: 28px;
+}
+
+/* line 331, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > ul.galaxy-menu-four > li > a {
+    line-height: 28px;
+    padding-left: 96px;
+    font-size: 11px;
+}
+
+/* line 335, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > ul.galaxy-menu-four > li > a > i {
+    font-size: 11px;
+    position: absolute;
+    right: 15px;
+    line-height: 28px;
+    height: 28px;
+}
+
+/* line 341, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-aside .menu_dropdown dd > ul > li > ul.galaxy-menu-three > li > ul.galaxy-menu-four > li > a > i:before {
+    content: "";
+}
+
+/*菜单收缩,背景图片在skin中定义*/
+/* line 355, ../../../sass/app/galaxy.admin.scss */
+.displayArrow {
+    position: fixed;
+    bottom: 27px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    z-index: 999;
+}
+
+/* line 362, ../../../sass/app/galaxy.admin.scss */
+.displayArrow a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: url('../../images/aside_normal.png?1456383839') no-repeat center;
+}
+
+/* line 368, ../../../sass/app/galaxy.admin.scss */
+.displayArrow a.open {
+    background: url('../../images/aside_normal.png?1456383839') no-repeat center;
+    transform: rotate(180deg);
+}
+
+/* line 371, ../../../sass/app/galaxy.admin.scss */
+.displayArrow a.open:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* line 375, ../../../sass/app/galaxy.admin.scss */
+.displayArrow a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/*选项卡导航*/
+/* line 383, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav {
+    height: 26px;
+    padding-right: 75px;
+    overflow: hidden;
+    position: relative;
+    background: #8f8f8f;
+}
+
+/* line 389, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav .acrossTab {
+    position: absolute;
+    height: 26px;
+    line-height: 26px;
+    background: none;
+    top: 0px;
+    left: 0;
+    padding-top: 0;
+}
+
+/* line 401, ../../../sass/app/galaxy.admin.scss */
+#min_title_list {
+    left: 3px;
+}
+
+/* line 402, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-wp {
+    position: relative;
+    height: 26px;
+    overflow: hidden;
+}
+
+/*frame填充全部*/
+/* line 409, ../../../sass/app/galaxy.admin.scss */
+.show_iframe iframe {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/*选项卡右部溢出操作区域*/
+/* line 418, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-more {
+    position: absolute;
+    right: 0px;
+    width: 70px;
+    top: 0px;
+    display: none;
+    height: 26px;
+    vertical-align: center;
+    background-color: #8f8f8f;
+}
+
+/* line 427, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-more i {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+}
+
+/* line 432, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-more a {
+    color: #333;
+    text-align: center;
+    width: 32px;
+    height: 18px;
+    line-height: 18px;
+    margin-top: 4px;
+    float: left;
+}
+
+/* line 441, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-more a:first-child {
+    border-right: 2px solid #8f8f8f;
+    background: url('../../images/pre.png') center no-repeat;
+}
+
+/* line 444, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-more a:last-child {
+    border-left: 2px solid #8f8f8f;
+    background: url('../../images/pre.png') center no-repeat;
+    transform: rotate(180deg);
+}
+
+/* line 447, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-tabNav-more a:hover, .Galaxy-tabNav-more a:active {
+    text-decoration: none;
+    color: #fff;
+}
+
+/*头部中部信息区*/
+/* line 454, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-headerMid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 216px;
+}
+
+/*头部右侧用户信息区*/
+/* line 461, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar_narrow {
+    position: absolute;
+    top: 0px;
+    width: 216px;
+    right: 0;
+}
+
+.Galaxy-userbar_narrow > li {
+    float: left;
+    display: inline-block;
+    position: relative;
+    line-height: 48px;
+    text-align: center;
+}
+
+/* line 472, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar_narrow > li .current > a {
+    text-decoration: none;
+}
+
+/* line 475, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar_narrow > li > a {
+    display: inline-block;
+    height: 48px;
+    line-height: 48px;
+}
+
+/* line 479, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar_narrow > li > a:hover {
+    text-decoration: none;
+}
+
+/* line 482, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar_narrow > li > a i:first-child {
+    margin-right: 8px;
+    font-size: 19px;
+    height: 19px;
+    width: 19px;
+    color: #fff;
+}
+
+.Galaxy-userbar_narrow > li > a i:last-child {
+    margin-left: 20px;
+    font-size: 12px;
+    height: 12px;
+    width: 12px;
+    color: #fff;
+}
+
+/*头部右侧用户信息区*/
+/* line 461, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar {
+    position: absolute;
+    top: 0px;
+    width: 360px;
+    right: 0;
+}
+
+/* line 466, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar > li {
+    float: left;
+    display: inline-block;
+    position: relative;
+    line-height: 48px;
+    text-align: center;
+}
+
+/* line 472, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar > li .current > a {
+    text-decoration: none;
+}
+
+/* line 475, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar > li > a {
+    display: inline-block;
+    height: 48px;
+    line-height: 48px;
+}
+
+/* line 479, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar > li > a:hover {
+    text-decoration: none;
+}
+
+/* line 482, ../../../sass/app/galaxy.admin.scss */
+.Galaxy-userbar > li > a i:first-child {
+    margin-right: 8px;
+    font-size: 19px;
+    height: 19px;
+    width: 19px;
+    color: #fff;
+}
+
+.Galaxy-userbar > li > a i:last-child {
+    margin-left: 20px;
+    font-size: 12px;
+    height: 12px;
+    width: 12px;
+    color: #fff;
+}
+
+/*头部右边角*/
+/* line 494, ../../../sass/app/galaxy.admin.scss */
+#Galaxy-nav {
+    z-index: 1;
+    margin-top: -74px;
+    margin-left: 226px;
+    margin-right: 216px;
+}
+
+/* line 499, ../../../sass/app/galaxy.admin.scss */
+#Galaxy-nav > ul > li {
+    height: 48px;
+    line-height: 48px;
+}
+
+/* line 502, ../../../sass/app/galaxy.admin.scss */
+#Galaxy-nav > ul > li > a {
+    height: 48px;
+    line-height: 48px;
+}
+
+/* line 505, ../../../sass/app/galaxy.admin.scss */
+#Galaxy-nav > ul > li > a:hover {
+    text-decoration: none;
+}
+
+/* line 510, ../../../sass/app/galaxy.admin.scss */
+#Galaxy-nav > ul:first-child {
+    color: #ffff00;
+    background-color: #3d3d3d;
+    margin-left: 10px;
+}
+
+/* line 515, ../../../sass/app/galaxy.admin.scss */
+#Galaxy-nav > ul:last-child {
+    color: #ffffff;
+    background-color: #1e2327;
+    margin-right: auto;
+}
+
+#Galaxy-nav > ul > li > a::selection {
+    color: #ffff00;
+    background-color: #3d3d3d;
+}
+    /*页脚*/
+/* line 524, ../../../sass/app/galaxy.admin.scss */
+.footer {
+    border-top: 1px solid #E8E8E8;
+    margin-top: 20px;
+    font-family: Microsoft Yahei;
+    font-size: 12px;
+    color: #333;
+    line-height: 22px;
+    text-align: center;
+}
+
+/* line 532, ../../../sass/app/galaxy.admin.scss */
+.footer p {
+    padding-top: 15px;
+}
+
+/* line 533, ../../../sass/app/galaxy.admin.scss */
+.footer a, .footer a:hover {
+    color: #999;
+}
+
+/*下拉菜单
+	Name:			menu_dropDown
+	Example:		<span class="dropDown "><a class="dropDown_G" href="#">下拉菜单</a><span class="dropDown-menu box-shadow"><ul><li><a href="#">菜单一</a></li><li><a href="#">菜单二</a></li></ul></span>span>
+	Explain:		如需要在不同的地方显示不同的样式，请在<span class="dropDown"> 追加class，采用覆盖的方式重写默认样式。
+*/
+/* line 543, ../../../sass/app/galaxy.admin.scss */
+.dropDown {
+    display: inline-block;
+}
+
+/* line 545, ../../../sass/app/galaxy.admin.scss */
+.dropDown :focus {
+    outline: 0;
+}
+
+/* line 547, ../../../sass/app/galaxy.admin.scss */
+.dropDown-menu {
+    display: none;
+    transition: all 0.3s ease 0s;
+}
+
+/* line 551, ../../../sass/app/galaxy.admin.scss */
+.dropDown-menu li.arrow {
+    position: absolute;
+    display: block;
+    width: 12px;
+    height: 8px;
+    margin-top: -13px;
+    margin-left: 20%;
+    line-height: 0;
+}
+
+/* line 563, ../../../sass/app/galaxy.admin.scss */
+.dropDown_G {
+    display: inline-block;
+}
+
+/* line 565, ../../../sass/app/galaxy.admin.scss */
+.dropDown_G i {
+    transition-duration: 0.3s;
+    transition-property: all;
+}
+
+/* line 569, ../../../sass/app/galaxy.admin.scss */
+.dropDown_G:focus {
+    outline: 0;
+}
+
+/*鼠标经过*/
+/* line 573, ../../../sass/app/galaxy.admin.scss */
+.dropDown.hover .dropDown_G, .dropDown.open .dropDown_G {
+    text-decoration: none;
+}
+
+/* line 576, ../../../sass/app/galaxy.admin.scss */
+.dropDown.hover .dropDown_G i, .dropDown.open .dropDown_G i { /*头部图标180度旋转，取消该特效transform: rotate(180deg);*/
+    transition-duration: 0.3s;
+    transition-property: all;
+    _background-position: 0 0;
+}
+
+/*打开菜单*/
+/* line 583, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open {
+    position: relative;
+    z-index: 990;
+}
+
+/* line 586, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .dropDown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: inline-block;
+    top: 100%;
+    left: -1px;
+    min-width: 100%;
+    background-color: #ffe1ad;
+    border: solid 1px #bfbfbf;
+    -webkit-box-shadow: 0 1px 5px #e5e5e5;
+    -moz-box-shadow: 0 1px 5px #e5e5e5;
+    box-shadow: 0 1px 5px #e5e5e5;
+}
+
+/* line 594, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .dropDown-menu .box-shadow {
+    border-radius: 5px;
+}
+
+/* line 595, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .dropDown-menu .radius {
+    border-top: none;
+}
+
+/* line 596, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .dropDown-menu li {
+    float: none;
+    display: inline;
+}
+
+/* line 598, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .dropDown-menu li .divider {
+    display: block;
+    height: 0px;
+    line-height: 0px;
+    margin: 9px 0;
+    overflow: hidden;
+    border-top: solid 1px #eee;
+}
+
+/* line 607, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .dropDown-menu .disabled a, .dropDown.open .dropDown-menu .disabled a:hover, .dropDown.open .dropDown-menu .disabled:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: no-drop;
+    background-color: transparent;
+}
+
+/* line 612, ../../../sass/app/galaxy.admin.scss */
+.dropDown.open .right.dropDown-menu {
+    right: -1px !important;
+    left: auto !important;
+}
+
+/* line 617, ../../../sass/app/galaxy.admin.scss */
+.dropDown-menu li a {
+    background-color: #ffffff;
+    display: block;
+    clear: both;
+    padding: 0 20px 0 70px;
+    height: 48px;
+    line-height: 48px;
+    width: 125px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    white-space: nowrap;
+    color: #4d4d4d;
+}
+
+/* line 618, ../../../sass/app/galaxy.admin.scss */
+.dropDown-menu li a i {
+    position: absolute;
+    left: 20px;
+    margin-right: 30px;
+    font-size: 19px;
+    height: 19px;
+    width: 19px;
+    color: #1e2327;
+}
+
+/* line 639, ../../../sass/app/galaxy.admin.scss */
+.dropDown-menu li a:hover, .dropDown-menu li a:focus {
+    background-color: #fff2cc;
+    text-decoration: none;
+}
+
+/*选项卡具体实现*/
+/* line 648, ../../../sass/app/galaxy.admin.scss */
+.acrossTab li {
+    position: relative;
+    float: left;
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    width: 118px;
+    margin-right: 3px;
+    margin-top: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    color: #666;
+    background-color: #c7c7c7;
+}
+
+/* line 663, ../../../sass/app/galaxy.admin.scss */
+.acrossTab li:hover {
+    background-color: #d4d4d4;
+    color: #000000;
+}
+
+/* line 667, ../../../sass/app/galaxy.admin.scss */
+.acrossTab li.active {
+    margin-top: 0;
+    height: 26px;
+    line-height: 26px;
+    background-color: #f3f3f3;
+    color: #000;
+}
+
+/* line 674, ../../../sass/app/galaxy.admin.scss */
+.acrossTab li i {
+    position: absolute;
+    display: block;
+    width: 13px;
+    height: 13px;
+    top: 50%;
+    margin-top: -6px;
+    right: 5px;
+    font-size: 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+/* line 686, ../../../sass/app/galaxy.admin.scss */
+.acrossTab li:hover i {
+    background: url('../../images/acrossTab-close.png?57056504') no-repeat 0 0;
+}
+
+.acrossTab li:hover i:hover {
+    background-position: 0 bottom;
+}
+
+/* line 690, ../../../sass/app/galaxy.admin.scss */
+.loading {
+    background: url('../../images/loading.gif?1450085404') no-repeat center;
+    height: 100px;
+}
+
+/* line 691, ../../../sass/app/galaxy.admin.scss */
+.Hui-tabNav-more {
+    position: absolute;
+    right: 0px;
+    width: 70px;
+    top: 0px;
+    display: none;
+}
+
+/*头部分块*/
+/* line 693, ../../../sass/app/galaxy.admin.scss */
+.cl::after, .clearfix::after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+/* line 700, ../../../sass/app/galaxy.admin.scss */
+.mainnav > ul > li.current > a, .mainnav > ul > li > a:hover {
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: background-color 0.3s ease 0s;
+    transition: background-color 0.3s ease 0s;
+}
+
+/*导航条*/
+/* line 706, ../../../sass/app/galaxy.admin.scss */
+.mainnav {
+    z-index: 1;
+    background-color: #febc48;
+}
+
+/* line 709, ../../../sass/app/galaxy.admin.scss */
+.mainnav > ul > li {
+    height: 74px;
+    line-height: 74px;
+    display: inline-block;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* line 720, ../../../sass/app/galaxy.admin.scss */
+.mainnav > ul > li > a {
+    display: inline-block;
+    padding: 0 18px;
+    color: #000;
+    text-align: center;
+}
+
+/*主题肤色模块*/
+/* line 731, ../../../sass/app/galaxy.admin.scss */
+.skin {
+    position: fixed;
+    right: 0;
+    top: 140px;
+    background-color: #FEC86B;
+    border: 1px solid #e5e5e5;
+    transition: all 300ms ease 0s;
+    white-space: nowrap;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    z-index: 1000;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+/* line 747, ../../../sass/app/galaxy.admin.scss */
+.skin > li > a {
+    color: #fff;
+    margin-right: 18px;
+}
+
+/* line 751, ../../../sass/app/galaxy.admin.scss */
+.skin > li i {
+    padding-right: 20px;
+    color: #fff;
+}
+
+/* line 756, ../../../sass/app/galaxy.admin.scss */
+.skin:hover {
+    width: 100px;
+}
+
+/*图标抗锯齿化*/
+/* line 761, ../../../sass/app/galaxy.admin.scss */
+*[class="iconfont"] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*选项卡超出部分使用省略号*/
+.ellipsis {
+    display: block;
+    width: 91px; /*可以用em,控制字符个数*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 8px;
+}

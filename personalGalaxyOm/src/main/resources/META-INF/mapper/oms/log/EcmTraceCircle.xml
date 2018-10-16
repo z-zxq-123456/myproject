@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.log.EcmTraceCircleDao">
+
+
+  <select id="findTcecirList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.log.EcmTraceCircle">
+    select *  from ECM_TCECIR_CS
+    left join ECM_TCECIR_SR on ECM_TCECIR_CS.CIR_ID = ECM_TCECIR_SR.CIR_ID
+    left join ECM_TCECIR_SS on ECM_TCECIR_CS.CIR_ID = ECM_TCECIR_SS.CIR_ID
+    left join ECM_TCECIR_CR on ECM_TCECIR_CS.CIR_ID = ECM_TCECIR_CR.CIR_ID
+    where ECM_TCECIR_CS.TRACE_ID = #{traceId,jdbcType=VARCHAR}
+    order by ECM_TCECIR_CS.CIR_CLIENT_STTM
+  </select>
+
+  <select id="findCircle" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.log.EcmTraceCircle">
+    select *  from ECM_TCECIR_CS
+    left join ECM_TCECIR_SR on ECM_TCECIR_CS.CIR_ID = ECM_TCECIR_SR.CIR_ID
+    left join ECM_TCECIR_SS on ECM_TCECIR_CS.CIR_ID = ECM_TCECIR_SS.CIR_ID
+    left join ECM_TCECIR_CR on ECM_TCECIR_CS.CIR_ID = ECM_TCECIR_CR.CIR_ID
+    where ECM_TCECIR_CS.CIR_ID = #{cirId,jdbcType=VARCHAR}
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.log.EcmTcecirStatDao">
+  <!-- Created by admin on 2016/10/24 09:43:20. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat">
+    select *
+    from ECM_TCECIR_STAT
+    where CIR_STAT_ID = #{cirStatId,jdbcType=INTEGER}
+  </select>
+    <select id="findPageList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat">
+        select   *
+        from ECM_TCECIR_STAT
+        <where>
+            <if test="baseParam.cirServerSer != null">
+                AND  CIR_SERVER_SER= #{baseParam.cirServerSer ,jdbcType=INTEGER}
+            </if>
+            <if test="baseParam.cirServerMtd!= null">
+                AND CIR_SERVER_MTD = #{baseParam.cirServerMtd,jdbcType=INTEGER}
+            </if>
+            <if test="baseParam.startTime!=null">
+                <if test="baseParam.endTime!=null">
+                    AND <![CDATA[
+          CIR_STAT_DATE >= #{baseParam.startTime,jdbcType=VARCHAR} and CIR_STAT_DATE<= #{baseParam.endTime,jdbcType=VARCHAR}
+      ]]>
+                </if>
+            </if>
+        </where>
+        order by CIR_STAT_DATE  DESC
+    </select>
+    <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat">
+        select   *
+        from ECM_TCECIR_STAT
+        <where>
+        <if test="baseParam.cirServerSer != null">
+            AND  CIR_SERVER_SER= #{baseParam.cirServerSer ,jdbcType=INTEGER}
+        </if>
+        <if test="baseParam.cirServerMtd!= null">
+            AND CIR_SERVER_MTD = #{baseParam.cirServerMtd,jdbcType=INTEGER}
+        </if>
+        <if test="baseParam.startTime!=null">
+            <if test="baseParam.endTime!=null">
+                AND <![CDATA[
+          CIR_STAT_DATE >= #{baseParam.startTime,jdbcType=VARCHAR} and CIR_STAT_DATE<= #{baseParam.endTime,jdbcType=VARCHAR}
+      ]]>
+            </if>
+      </if>
+        </where>
+        group by CIR_SERVER_SER,CIR_SERVER_MTD,CIR_STAT_ID
+        order by CIR_STAT_DATE  DESC
+    </select>
+
+    <select id="findListByTime" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat">
+        select   *
+        from ECM_TCECIR_STAT
+        <where>
+            <if test="cirServerSer != null">
+                AND  CIR_SERVER_SER= #{cirServerSer ,jdbcType=INTEGER}
+            </if>
+            <if test="cirServerMtd!= null">
+                AND CIR_SERVER_MTD = #{cirServerMtd,jdbcType=INTEGER}
+            </if>
+            <if test="startTime!=null">
+                <if test="endTime!=null">
+                    AND <![CDATA[
+          CIR_STAT_DATE >= #{startTime,jdbcType=VARCHAR} and CIR_STAT_DATE<= #{endTime,jdbcType=VARCHAR}
+      ]]>
+                </if>
+            </if>
+        </where>
+        order by CIR_STAT_DATE  DESC
+    </select>
+
+    <select id="findTopList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat">
+        select   CIR_STAT_ID,CIR_STAT_DATE,CIR_SERVER_SER, CIR_SERVER_MTD,  CIR_STAT_AMOUNT,  CIR_STAT_OKNUM, CIR_STAT_OKPERC, CIR_STAT_AVERTIME,  CIR_STAT_PEAKNUM,
+                 CIR_STAT_AVEREXUTIME,(100-(substring_index( CIR_STAT_OKPERC,'%',1)+0))  as cirStatFailperc,(CIR_STAT_AMOUNT-CIR_STAT_OKNUM) as cirStatFailnum
+        from ECM_TCECIR_STAT
+        <where>
+            <if test="startTime!=null">
+                <if test="endTime!=null">
+                    AND <![CDATA[
+          CIR_STAT_DATE >= #{startTime,jdbcType=VARCHAR} and CIR_STAT_DATE<= #{endTime,jdbcType=VARCHAR}
+      ]]>
+                </if>
+            </if>
+        </where>
+        <if test="cirStatAmount!=null">
+            order by substring_index( CIR_STAT_AMOUNT,'ms',1)+0  desc
+        </if>
+        <if test="cirStatAvertime!=null">
+            order by substring_index( CIR_STAT_AVERTIME,'ms',1)+0  desc
+        </if>
+        <if test="cirStatAverexutime!=null">
+            order by substring_index( CIR_STAT_AVEREXUTIME,'ms',1)+0  desc
+        </if>
+        <if test="cirStatPeaknum!=null">
+            order by substring_index( CIR_STAT_PEAKNUM,'ms',1)+0  desc
+        </if>
+        <if test="cirStatOkperc!=null">
+            order by substring_index( CIR_STAT_OKPERC,'ms',1)+0
+        </if>
+        <if test="cirStatFailperc!=null">
+            order by substring_index( CIR_STAT_OKPERC,'ms',1)+0
+        </if>
+        <if test="cirStatOknum!=null">
+            order by substring_index( CIR_STAT_OKNUM,'ms',1)+0  desc
+        </if>
+        <if test="cirStatFailnum!=null">
+            order by substring_index( CIR_STAT_OKNUM,'ms',1)+0
+        </if>
+    </select>
+    <select id="findTcecirStat" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat"  databaseId="mysql">
+        select  a.CIR_SERVER_SER,a.CIR_SERVER_MTD,count(b.CIR_ID) AS cirStatAmount,
+        sum(if(b.CIR_CLIENT_STATUS='0015001',1,0)) cirStatOknum,
+        sum(if(b.CIR_CLIENT_STATUS='0015001',1,0))/count(b.CIR_ID)   AS  cirStatOkperc,
+        floor(max((UNIX_TIMESTAMP(if(b.CIR_CLIENT_STATUS='0015001',b.CIR_CLIENT_ENTM,0))-UNIX_TIMESTAMP(if(b.CIR_CLIENT_STATUS='0015001',a.CIR_CLIENT_STTM,0)))*1000))
+        AS  cirStatPeaknum,
+        floor(avg((UNIX_TIMESTAMP(b.CIR_CLIENT_ENTM)-UNIX_TIMESTAMP(a.CIR_CLIENT_STTM))*1000)) AS cirStatAvertime,
+        floor(avg((UNIX_TIMESTAMP(coalesce(d.CIR_SERVER_ENTM, b.CIR_CLIENT_ENTM))-UNIX_TIMESTAMP(coalesce(c.CIR_SERVER_STTM,a.CIR_CLIENT_STTM)))*1000))    AS cirStatAverexutime
+        from
+        ECM_TCECIR_CS a
+        left join   ECM_TCECIR_SR  c   on a.CIR_ID = c.CIR_ID
+        left join   ECM_TCECIR_SS  d   on a.CIR_ID = d.CIR_ID
+        left join   ECM_TCECIR_CR  b   on a.CIR_ID = b.CIR_ID
+        where
+        <![CDATA[
+                 a.CIR_CLIENT_STTM like '%${traceStatDate}%'
+           ]]>
+        GROUP BY  a.CIR_SERVER_SER,  a.CIR_SERVER_MTD
+    </select>
+  <select id="findTcecirStat" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat"  databaseId="oracle">
+    select  a.CIR_SERVER_SER,a.CIR_SERVER_MTD,count(b.CIR_ID) AS cirStatAmount,
+           sum  (decode(b.CIR_CLIENT_STATUS,'0015001',1,0))   AS cirStatOknum,
+           sum  (decode(b.CIR_CLIENT_STATUS,'0015001',1,0))/count(b.CIR_ID)   AS  cirStatOkperc,
+          floor( avg( abs((( trunc ( to_timestamp ( b.CIR_CLIENT_ENTM , 'yyyy-mm-dd hh24:mi:ss.ff3' ) - 0 , 'mi' ) -
+                 trunc (( to_timestamp ( a.CIR_CLIENT_STTM , 'yyyy-mm-dd hh24:mi:ss.ff3' ) - 0 ), 'mi' )) * 24 * 60 * 60 +
+                 extract ( second from to_timestamp ( b.CIR_CLIENT_ENTM , 'yyyy-mm-dd hh24:mi:ss.ff3' ) -
+                 to_timestamp ( a.CIR_CLIENT_STTM , 'yyyy-mm-dd hh24:mi:ss.ff3' ))))*1000))   AS cirStatAvertime,
+          floor( avg( abs((( trunc ( to_timestamp ( coalesce(d.CIR_SERVER_ENTM, b.CIR_CLIENT_ENTM) , 'yyyy-mm-dd hh24:mi:ss.ff3' ) - 0 , 'mi' ) -
+                 trunc (( to_timestamp ( coalesce(c.CIR_SERVER_STTM,a.CIR_CLIENT_STTM) , 'yyyy-mm-dd hh24:mi:ss.ff3' ) - 0 ), 'mi' )) * 24 * 60 * 60 +
+                 extract ( second from to_timestamp ( coalesce(d.CIR_SERVER_ENTM, b.CIR_CLIENT_ENTM) , 'yyyy-mm-dd hh24:mi:ss.ff3' ) -
+                 to_timestamp ( coalesce(c.CIR_SERVER_STTM,a.CIR_CLIENT_STTM) , 'yyyy-mm-dd hh24:mi:ss.ff3' ))))*1000))   AS cirStatAverexutime,
+          floor( max( abs(((  trunc (  to_timestamp(DECODE(b.CIR_CLIENT_STATUS,'0015001', b.CIR_CLIENT_ENTM,
+          '2017-02-24 10:54:24.410'  ),'yyyy-mm-dd hh24:mi:ss.ff3' )-0,'mi') -
+          trunc (  to_timestamp(DECODE(b.CIR_CLIENT_STATUS,'0015001',a.CIR_CLIENT_STTM,
+          '2017-02-24 10:54:24.410'  ),'yyyy-mm-dd hh24:mi:ss.ff3' )-0,'mi') ) * 24 * 60 * 60
+          +
+          extract ( second from to_timestamp(DECODE(b.CIR_CLIENT_STATUS,'0015001', b.CIR_CLIENT_ENTM,
+          '2017-02-24 10:54:24.410'  ),'yyyy-mm-dd hh24:mi:ss.ff3' ) -
+          to_timestamp(DECODE(b.CIR_CLIENT_STATUS,'0015001', a.CIR_CLIENT_STTM,
+          '2017-02-24 10:54:24.410'  ),'yyyy-mm-dd hh24:mi:ss.ff3' ))))*1000))   AS cirStatPeaknum
+
+    from
+      ECM_TCECIR_CS a
+      left join   ECM_TCECIR_SR  c   on a.CIR_ID = c.CIR_ID
+      left join   ECM_TCECIR_SS  d   on a.CIR_ID = d.CIR_ID
+      left join   ECM_TCECIR_CR  b   on a.CIR_ID = b.CIR_ID
+    where
+      <![CDATA[
+                 a.CIR_CLIENT_STTM like '%${traceStatDate}%'
+           ]]>
+    GROUP BY  a.CIR_SERVER_SER,  a.CIR_SERVER_MTD
+  </select>
+
+    <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.log.EcmTcecirStat">
+        insert into ECM_TCECIR_STAT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cirStatId != null">
+                CIR_STAT_ID,
+            </if>
+            <if test="cirStatDate != null">
+                CIR_STAT_DATE,
+            </if>
+            <if test="cirServerSer != null">
+                CIR_SERVER_SER,
+            </if>
+            <if test="cirServerMtd != null">
+                CIR_SERVER_MTD,
+            </if>
+            <if test="cirStatAmount != null">
+                CIR_STAT_AMOUNT,
+            </if>
+            <if test="cirStatOknum != null">
+                CIR_STAT_OKNUM,
+            </if>
+            <if test="cirStatOkperc != null">
+                CIR_STAT_OKPERC,
+            </if>
+            <if test="cirStatAvertime != null">
+                CIR_STAT_AVERTIME,
+            </if>
+            <if test="cirStatAverexutime != null">
+                CIR_STAT_AVEREXUTIME,
+            </if>
+            <if test="cirStatPeaknum != null">
+                CIR_STAT_PEAKNUM,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cirStatId != null">
+                #{cirStatId,jdbcType=INTEGER},
+            </if>
+            <if test="cirStatDate != null">
+                #{cirStatDate,jdbcType=VARCHAR},
+            </if>
+            <if test="cirServerSer != null">
+                #{cirServerSer,jdbcType=VARCHAR},
+            </if>
+            <if test="cirServerMtd != null">
+                #{cirServerMtd,jdbcType=VARCHAR},
+            </if>
+            <if test="cirStatAmount != null">
+                #{cirStatAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="cirStatOknum != null">
+                #{cirStatOknum,jdbcType=VARCHAR},
+            </if>
+            <if test="cirStatOkperc != null">
+                #{cirStatOkperc,jdbcType=VARCHAR},
+            </if>
+            <if test="cirStatAvertime != null">
+                #{cirStatAvertime,jdbcType=VARCHAR},
+            </if>
+            <if test="cirStatAverexutime != null">
+                #{cirStatAverexutime,jdbcType=VARCHAR},
+            </if>
+            <if test="cirStatPeaknum != null">
+                #{cirStatPeaknum,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmAppUpginfoDao">
+  <!-- Created by oms on 2016/02/25 15:47:29. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    select *
+    from ecm_app_upginfo
+    where APP_UPG_ID = #{appUpgId,jdbcType=INTEGER}
+  </select>
+  <select id="findByAppId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    select *
+    from ecm_app_upginfo
+    where  APP_ID = #{appId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    select a.*
+    from ecm_app_upginfo a
+    where APP_UPG_ID = #{appUpgId ,jdbcType=INTEGER}
+  </select>
+   <select id="findUpgList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    select a.*,b.APP_NAME
+    from ecm_app_upginfo a,ECM_APP_INFO b
+    where a.APP_ID = b.APP_ID and a.APP_UPG_STATUS != #{baseParam.appUpgStatus ,jdbcType=VARCHAR}
+    <if test="baseParam.appId != null">
+    AND a.APP_ID= #{baseParam.appId ,jdbcType=INTEGER}
+    </if>
+    <if test="baseParam.startTime!=null">
+    <if test="baseParam.endTime!=null">
+      AND <![CDATA[
+       APP_UPG_OPERTIME >= #{baseParam.startTime,jdbcType=VARCHAR} and APP_UPG_OPERTIME<= #{baseParam.endTime,jdbcType=VARCHAR}
+      ]]>
+      </if>
+      </if>
+  </select>
+  
+  
+  <select id="findListByServRuleId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+  select a.*
+  from ecm_app_upginfo a, ECM_APP_VALRULE b
+  where b.SERV_RULE_ID = #{servRuleId,jdbcType=INTEGER} and b.APP_UPG_ID=a.APP_UPG_ID
+  </select>
+  <select id="findListByRouterCondId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+  select a.*
+  from ecm_app_upginfo a, ECM_APP_VALRULE b,ECM_SERV_RULE c
+  where c.ROUTER_COND_ID = #{routerCondId,jdbcType=INTEGER} and c.SERV_RULE_ID =b.SERV_RULE_ID AND b.APP_UPG_ID=a.APP_UPG_ID
+  </select>
+  <select id="findListByRouterColId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+  select a.*
+  from ecm_app_upginfo a, ECM_APP_VALRULE b,ECM_SERV_RULE c, ECM_ROUTER_COND d
+  where d.ROUTER_COL_ID = #{routerColId,jdbcType=INTEGER} and d.ROUTER_COND_ID = c.ROUTER_COND_ID and c.SERV_RULE_ID =b.SERV_RULE_ID AND b.APP_UPG_ID=a.APP_UPG_ID
+  </select>
+  <select id="findListBySerMtdId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+  select a.*
+  from ecm_app_upginfo a, ECM_APP_VALRULE b,ECM_SERV_RULE c
+  where c.SER_MTD_ID = #{serMtdId,jdbcType=INTEGER} and c.SERV_RULE_ID =b.SERV_RULE_ID AND b.APP_UPG_ID=a.APP_UPG_ID
+  </select>
+  <select id="findListByAppSerId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+  select a.*
+  from ecm_app_upginfo a, ECM_APP_VALRULE b,ECM_SERV_RULE c,ECM_SER_MTDINFO f
+  where f.APP_SER_ID= #{appSerId,jdbcType=INTEGER} and f.SER_MTD_ID = c.SER_MTD_ID and c.SERV_RULE_ID =b.SERV_RULE_ID AND b.APP_UPG_ID=a.APP_UPG_ID
+  </select>
+  
+  <select id="findUpdateNode" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    select  *
+    from  ecm_app_upginfo  
+    <where>
+    <if test="appId != null">
+      APP_ID = #{appId,jdbcType=INTEGER}
+    </if>
+    <if test="appUpgStatus != null">
+     AND  APP_UPG_STATUS = #{appUpgStatus,jdbcType=VARCHAR}
+    </if>
+    <if test="appUpgNewverno != null">
+     AND  APP_UPG_NEWVERNO = #{appUpgNewverno,jdbcType=INTEGER}
+   </if>
+    order by APP_UPG_ID DESC
+    </where>  
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    delete from ecm_app_upginfo
+    where APP_UPG_ID = #{appUpgId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    update ecm_app_upginfo
+    <set>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="upgflowNodeId != null">
+        UPGFLOW_NODE_ID = #{upgflowNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="appUpgStatus != null">
+        APP_UPG_STATUS = #{appUpgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpgNewverno != null">
+        APP_UPG_NEWVERNO = #{appUpgNewverno,jdbcType=INTEGER},
+      </if>
+      <if test="appUpgOldverno != null">
+        APP_UPG_OLDVERNO = #{appUpgOldverno,jdbcType=INTEGER},
+      </if>
+       <if test="appUpgInstidstr != null">
+        APP_UPG_INSTIDSTR =#{appUpgInstidstr,jdbcType=VARCHAR},
+      </if>
+       <if test="appUpgOpertime != null">
+        APP_UPG_OPERTIME = #{appUpgOpertime,jdbcType=INTEGER}
+      </if>
+    </set>
+    where APP_UPG_ID = #{appUpgId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppUpginfo">
+    insert into ecm_app_upginfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appUpgId != null">
+        APP_UPG_ID,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="upgflowNodeId != null">
+        UPGFLOW_NODE_ID,
+      </if>
+      <if test="appUpgStatus != null">
+        APP_UPG_STATUS,
+      </if>
+      <if test="appUpgNewverno != null">
+        APP_UPG_NEWVERNO,
+      </if>
+      <if test="appUpgOldverno != null">
+        APP_UPG_OLDVERNO,
+      </if>
+      <if test="appUpgInstidstr != null">
+        APP_UPG_INSTIDSTR,
+      </if>
+      <if test="appUpgOpertime != null">
+        APP_UPG_OPERTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appUpgId != null">
+        #{appUpgId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="upgflowNodeId != null">
+        #{upgflowNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="appUpgStatus != null">
+        #{appUpgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpgNewverno != null">
+        #{appUpgNewverno,jdbcType=INTEGER},
+      </if>
+      <if test="appUpgOldverno != null">
+        #{appUpgOldverno,jdbcType=INTEGER},
+      </if>
+       <if test="appUpgInstidstr != null">
+        #{appUpgInstidstr,jdbcType=VARCHAR},
+      </if>
+      <if test="appUpgOpertime != null">
+        #{appUpgOpertime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

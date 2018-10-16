@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbPartClassDao">
+  <!-- Created by zhangyjw on 2015/09/24 14:36:28. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    select *
+    from mb_part_class
+    where PART_CLASS = #{partClass,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getAll" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    select * from  mb_part_class
+    WHERE COLUMN_STATUS !='W'
+  </select>
+  <select id="getByPartClass" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    select * from  mb_part_class
+    where PARENT_PART_CLASS = #{partClass,jdbcType=VARCHAR}
+    AND COLUMN_STATUS !='W'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    delete from mb_part_class
+    where PART_CLASS = #{partClass,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    update mb_part_class
+    <set>
+      <if test="partClassDesc != null">
+        PART_CLASS_DESC = #{partClassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="partClassLevel != null">
+        PART_CLASS_LEVEL = #{partClassLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPartClass != null">
+        PARENT_PART_CLASS = #{parentPartClass,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where PART_CLASS = #{partClass,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    insert into mb_part_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partClass != null">
+        PART_CLASS,
+      </if>
+      <if test="partClassDesc != null">
+        PART_CLASS_DESC,
+      </if>
+      <if test="partClassLevel != null">
+        PART_CLASS_LEVEL,
+      </if>
+      <if test="parentPartClass != null">
+        PARENT_PART_CLASS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partClass != null">
+        #{partClass,jdbcType=VARCHAR},
+      </if>
+      <if test="partClassDesc != null">
+        #{partClassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="partClassLevel != null">
+        #{partClassLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPartClass != null">
+        #{parentPartClass,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getForPkList"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      PART_CLASS pk_value, PART_CLASS || ' ' || PART_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      PART_CLASS pk_value,concat(PART_CLASS,' ',PART_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_part_class
+  </select>
+
+  <select id="getBmodule"  parameterType="java.lang.String"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      PART_CLASS pk_value, PART_CLASS || ' ' || PART_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      PART_CLASS pk_value,concat(PART_CLASS,' ',PART_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_part_class
+    where PART_CLASS_LEVEL = #{partClassLevel,jdbcType=VARCHAR}
+  </select>
+  <select id="getpartClass" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass"  resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      PART_CLASS pk_value, PART_CLASS || ' ' || PART_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      PART_CLASS pk_value,concat(PART_CLASS,' ',PART_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_part_class
+    <if test="parentPartClass != null">
+    where PARENT_PART_CLASS = #{parentPartClass,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getparentPartClass"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      PART_CLASS pk_value, PART_CLASS || ' ' || PART_CLASS_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      PART_CLASS pk_value,concat(PART_CLASS,' ',PART_CLASS_DESC) pk_desc
+    </if>
+    FROM mb_part_class
+    where PART_CLASS_LEVEL = #{partClassLevel,jdbcType=VARCHAR}
+  </select>
+  <select id="getByBmodule" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbPartClass">
+    select * from  mb_part_class
+    where PART_CLASS = #{partClass,jdbcType=VARCHAR}
+  </select>
+</mapper>

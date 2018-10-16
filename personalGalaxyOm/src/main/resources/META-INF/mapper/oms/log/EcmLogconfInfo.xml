@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.log.EcmLogconfInfoDao">
+
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.log.EcmLogconfInfo" resultType="com.dcits.ensemble.om.oms.module.log.EcmLogconfInfo">
+    select *
+    from ECM_LOGCONF_INFO
+    where LOG_CONF_ID = #{logconfId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.log.EcmLogconfInfo">
+    select *  from ECM_LOGCONF_INFO
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.log.EcmLogconfInfo">
+    delete from ECM_LOGCONF_INFO
+    where LOG_CONF_ID = #{logconfId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.log.EcmLogconfInfo">
+    update ECM_LOGCONF_INFO
+    <set>
+      <if test="midwareId != null">
+        MIDWARE_ID = #{midwareId,jdbcType=INTEGER},
+      </if>
+      <if test="logPlatMode != null">
+        LOG_PLAT_MODE = #{logPlatMode,jdbcType=VARCHAR},
+      </if>
+      <if test="outPrtnMode != null">
+        OUT_PRTN_MODE = #{outPrtnMode,jdbcType=VARCHAR},
+      </if>
+      <if test="logLevel != null">
+        LOG_LEVEL = #{logLevel,jdbcType=VARCHAR},
+      </if>
+       <if test="isScan != null">
+         IS_SCAN = #{isScan,jdbcType=VARCHAR},
+      </if>
+      <if test="scanPeriod != null">
+        SCAN_PERIOD = #{scanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="queueLen != null">
+        QUEUE_LEN = #{queueLen,jdbcType=VARCHAR},
+      </if>
+      <if test="queueStartLen != null">
+        QUEUE_STARTLEN = #{queueStartLen,jdbcType=VARCHAR},
+      </if>
+      <if test="queueStopLen != null">
+        QUEUE_STOPLEN = #{queueStopLen,jdbcType=VARCHAR},
+      </if>
+        QUEUE_BATCHSIZE = #{queueBatchSize,jdbcType=VARCHAR},
+        EXPIRED_TIME = #{expiredTime,jdbcType=INTEGER},
+        KK_MIDWARE_ID = #{kkMidwareId,jdbcType=INTEGER},
+    </set>
+    where LOG_CONF_ID = #{logconfId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.log.EcmLogconfInfo">
+    insert into ECM_LOGCONF_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logconfId != null">
+        LOG_CONF_ID,
+      </if>
+      <if test="midwareId != null">
+        MIDWARE_ID,
+      </if>
+      <if test="logPlatMode != null">
+        LOG_PLAT_MODE,
+      </if>
+      <if test="outPrtnMode != null">
+        OUT_PRTN_MODE,
+      </if>
+      <if test="logLevel != null">
+        LOG_LEVEL,
+      </if>
+       <if test="isScan != null">
+         IS_SCAN,
+      </if>
+      <if test="scanPeriod != null">
+        SCAN_PERIOD,
+      </if>
+      <if test="queueLen != null">
+        QUEUE_LEN,
+      </if>
+      <if test="queueStartLen != null">
+        QUEUE_STARTLEN,
+      </if>
+      <if test="queueStopLen != null">
+        QUEUE_STOPLEN ,
+      </if>
+      <if test="queueBatchSize != null">
+        QUEUE_BATCHSIZE,
+      </if>
+      <if test="expiredTime != null">
+        EXPIRED_TIME,
+      </if>
+      <if test="kkMidwareId != null">
+        KK_MIDWARE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logconfId != null">
+        #{logconfId,jdbcType=INTEGER},
+      </if>
+      <if test="midwareId != null">
+        #{midwareId,jdbcType=INTEGER},
+      </if>
+      <if test="logPlatMode != null">
+        #{logPlatMode,jdbcType=VARCHAR},
+      </if>
+      <if test="outPrtnMode != null">
+        #{outPrtnMode,jdbcType=VARCHAR},
+      </if>
+      <if test="logLevel != null">
+        #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isScan != null">
+        #{isScan,jdbcType=VARCHAR},
+      </if>
+      <if test="scanPeriod != null">
+        #{scanPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="queueLen != null">
+        #{queueLen,jdbcType=VARCHAR},
+      </if>
+      <if test="queueStartLen != null">
+        #{queueStartLen,jdbcType=VARCHAR},
+      </if>
+      <if test="queueStopLen != null">
+         #{queueStopLen,jdbcType=VARCHAR},
+      </if>
+      <if test="queueBatchSize != null">
+        #{queueBatchSize,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredTime != null">
+        #{expiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="kkMidwareId != null">
+        #{kkMidwareId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dcits.ensemble.om.pm.util.dao.PkCreateInDao">
+    <!-- SELECT查询 最大主键值 -->
+    <select id="createPk" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        SELECT MAX(${PKCOLNAME}+0) AS MAX_ID FROM ${TABNAME}
+    </select>
+    <!-- SELECT查询 带条件最大值 -->
+    <select id="createMaxByCon" parameterType="java.util.HashMap" resultType="java.lang.String">
+        SELECT MAX(${MAXCOLNAME}+0) AS MAX_VALUE FROM ${TABNAME} WHERE ${TABCON}
+    </select>
+</mapper>

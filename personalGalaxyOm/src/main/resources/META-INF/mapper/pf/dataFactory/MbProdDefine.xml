@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbProdDefineDao">
+  <!-- Created by wujuan on 2015/10/21 10:16:06. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    select *
+    from mb_prod_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    <if test="seqNo != null">
+      AND SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+    </if>
+    AND COLUMN_STATUS !='W'
+  </select>
+  <select id="getMaxSeqNo" parameterType="java.lang.String" resultType="java.lang.String">
+    select MAX(SEQ_NO+0)
+    from mb_prod_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByProdType" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    select *
+    from mb_prod_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    and COLUMN_STATUS !='W'
+    order by SEQ_NO + 0
+  </select>
+  <select id="selectByProdTypeContrast" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    select *
+    from mb_prod_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    and COLUMN_STATUS !='Y'
+    order by SEQ_NO + 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    delete from mb_prod_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+      <if test="seqNo != null">
+        AND SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <delete id="deleteByAssembleId" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    delete from mb_prod_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    update mb_prod_define
+    <set>
+      <if test="assembleType != null">
+        ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleId != null">
+        ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventDefault != null">
+        EVENT_DEFAULT = #{eventDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="attrKey != null">
+        ATTR_KEY = #{attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    AND SEQ_NO = #{seqNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByAssembleId" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    update mb_prod_define
+    <set>
+      <if test="assembleType != null">
+        ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleId != null">
+        ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="attrKey != null">
+        ATTR_KEY = #{attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    insert into mb_prod_define
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        PROD_TYPE,
+      </if>
+      <if test="seqNo != null">
+        SEQ_NO,
+      </if>
+      <if test="assembleType != null">
+        ASSEMBLE_TYPE,
+      </if>
+      <if test="assembleId != null">
+        ASSEMBLE_ID,
+      </if>
+      <if test="eventDefault != null">
+        EVENT_DEFAULT,
+      </if>
+      <if test="attrKey != null">
+        ATTR_KEY,
+      </if>
+      <if test="attrValue != null">
+        ATTR_VALUE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        #{seqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleType != null">
+        #{assembleType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleId != null">
+        #{assembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventDefault != null">
+        #{eventDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="attrKey != null">
+        #{attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectAll"  resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    select *
+    from mb_prod_define
+  </select>
+  <select id="selectByCondition"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    select *
+    from mb_prod_define
+    WHERE
+    PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    <if test="assembleType != null">
+      AND ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR}
+    </if>
+    <if test="assembleId != null">
+      AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+    </if>
+    order by SEQ_NO
+  </select>
+  <select id="selectByConditionFourth"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine">
+    select *
+    from mb_prod_define
+    WHERE
+    PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    AND   ATTR_KEY = #{attrKey,jdbcType=VARCHAR}
+    order by SEQ_NO
+  </select>
+
+  <select id="getEventByprod"  parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdDefine" resultType="com.dcits.ensemble.om.pf.module.PkList">
+    select
+    <if test="_databaseId == 'oracle'">
+      EVENT_TYPE pk_value, EVENT_TYPE || ' ' || EVENT_DESC pk_desc
+    </if>
+    <if test="_databaseId == 'mysql'">
+      EVENT_TYPE pk_value,concat(EVENT_TYPE,' ',EVENT_DESC) pk_desc
+    </if>
+    FROM mb_prod_define a,mb_event_type b
+    WHERE a.ASSEMBLE_ID = b.EVENT_TYPE
+    <if test="prodType != null">
+      AND PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getCprod"  resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbEventPartRelation">
+    SELECT *
+    FROM mb_event_part_relation
+  </select>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmAppVerDao">
+  <!-- Created by tangxl on 2015/08/11 10:00:01. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppInfo" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+    select *
+    from ecm_app_ver
+    where APP_VER_ID = #{appVerId,jdbcType=INTEGER}
+  </select>
+   <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+  select VER.*,USER1.USER_NAME,INFO.APP_NAME,INFO.APP_SIMPEN_NM
+   from ecm_app_ver VER,web_user USER1,ecm_app_info INFO
+   where VER.APP_ID=INFO.APP_ID AND VER.APP_VER_USERID = USER1.USER_ID
+   <if test="baseParam.appId != null">
+    AND VER.APP_ID = #{baseParam.appId,jdbcType=INTEGER}
+   </if>
+    order by APP_VER_NUM  DESC
+  </select>
+  <select id="findVerList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+    select VER.*,USER1.USER_NAME,INFO.APP_NAME,INFO.APP_SIMPEN_NM
+    from ecm_app_ver VER,web_user USER1,ecm_app_info INFO
+    where VER.APP_ID = #{baseParam.appId,jdbcType=INTEGER} AND USER1.USER_ID=VER.APP_VER_USERID AND VER.APP_ID=INFO.APP_ID
+    order by APP_VER_NUM  DESC
+  </select>
+   <select id="findVerInfo" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+   select *
+    from ecm_app_ver 
+    where APP_ID = #{appId,jdbcType=INTEGER}
+    order by APP_VER_NUM  DESC
+  </select>
+   <select id="findByVer" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+    select b.*
+    from   ecm_app_upginfo  a,ecm_app_ver b
+    where  a. APP_UPG_NEWVERNO=b.APP_VER_NUM AND a.APP_ID=b.APP_ID	AND APP_UPG_STATUS = #{appUpgStatus,jdbcType=INTEGER}
+    <if test="appId != null">
+      AND   a.APP_ID = #{appId,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+    delete from ecm_app_ver
+    where APP_VER_ID = #{appVerId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+    update ecm_app_ver
+    <set>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="appVerNum != null">
+        APP_VER_NUM = #{appVerNum,jdbcType=INTEGER},
+      </if>
+      <if test="appVerDesc != null">
+        APP_VER_DESC = #{appVerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="appVerDate != null">
+        APP_VER_DATE = #{appVerDate,jdbcType=VARCHAR},
+      </if>
+      <if test="appVerUserid != null">
+        APP_VER_USERID = #{appVerUserid,jdbcType=INTEGER},
+      </if>
+      <if test="appVerPath != null">
+        APP_VER_PATH = #{appVerPath,jdbcType=VARCHAR}
+      </if>
+      <if test="appVerType != null">
+        APP_VER_TYPE = #{appVerType,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where APP_VER_ID = #{appVerId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppVer">
+    insert into ecm_app_ver
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appVerId != null">
+        APP_VER_ID,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="appVerNum != null">
+        APP_VER_NUM,
+      </if>
+      <if test="appVerDesc != null">
+        APP_VER_DESC,
+      </if>
+      <if test="appVerDate != null">
+        APP_VER_DATE,
+      </if>
+      <if test="appVerUserid != null">
+        APP_VER_USERID,
+      </if>
+      <if test="appVerPath != null">
+        APP_VER_PATH,
+      </if>
+      <if test="appVerType != null">
+        APP_VER_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appVerId != null">
+        #{appVerId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="appVerNum != null">
+        #{appVerNum,jdbcType=INTEGER},
+      </if>
+      <if test="appVerDesc != null">
+        #{appVerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="appVerDate != null">
+        #{appVerDate,jdbcType=VARCHAR},
+      </if>
+      <if test="appVerUserid != null">
+        #{appVerUserid,jdbcType=INTEGER},
+      </if>
+      <if test="appVerPath != null">
+        #{appVerPath,jdbcType=VARCHAR},
+      </if>
+      <if test="appVerType != null">
+        #{appVerType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

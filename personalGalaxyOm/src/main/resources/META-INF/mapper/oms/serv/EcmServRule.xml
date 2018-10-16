@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.serv.EcmServRuleDao">
+  <!-- Created by oms on 2016/02/29 10:09:40. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmServRule" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select *
+    from ECM_SERV_RULE
+    where SERV_RULE_ID = #{servRuleId,jdbcType=INTEGER}
+  </select>
+  <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select a.*,b.ROUTER_COND_NAME,c.SER_MTD_CNM,c.SER_MTD_ENM
+    from ECM_SERV_RULE a LEFT  JOIN ECM_ROUTER_COND b on a.ROUTER_COND_ID = b.ROUTER_COND_ID, ECM_SER_MTDINFO c
+    where  a.SER_MTD_ID = c.SER_MTD_ID
+    <if test="baseParam.servRuleType != null">
+    AND SERV_RULE_TYPE = #{baseParam.servRuleType,jdbcType=VARCHAR}
+   </if>
+  </select>
+  <select id="findSerRuleList" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select a.*,b.ROUTER_COND_OPER,b.ROUTER_COND_VAL,c.SER_MTD_ENM,e.ROUTER_COL_CDN,e.ROUTER_COL_TYPE,f.APP_SER_CLSNM
+    from ECM_SERV_RULE a LEFT  JOIN ECM_ROUTER_COND b on a.ROUTER_COND_ID = b.ROUTER_COND_ID 
+    LEFT  JOIN ECM_ROUTER_COL e on b.ROUTER_COL_ID = e.ROUTER_COL_ID, ECM_SER_MTDINFO c,ECM_APP_SERINFO f
+    where  a.SER_MTD_ID = c.SER_MTD_ID  and  c.APP_SER_ID = f.APP_SER_ID  
+    AND a.SERV_RULE_ID in (${servRuleList}) 
+  </select>
+  <select id="findClearSerRuleList" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select distinct a.*,b.ROUTER_COND_OPER,b.ROUTER_COND_VAL,c.SER_MTD_ENM,e.ROUTER_COL_CDN,e.ROUTER_COL_TYPE,f.APP_SER_CLSNM
+    from ECM_SERV_RULE a LEFT  JOIN ECM_ROUTER_COND b on a.ROUTER_COND_ID = b.ROUTER_COND_ID 
+    LEFT  JOIN ECM_ROUTER_COL e on b.ROUTER_COL_ID = e.ROUTER_COL_ID,ECM_SER_MTDINFO c,ECM_APP_VALRULE d,ECM_APP_SERINFO f,ECM_APP_UPGINFO g
+    where  a.SER_MTD_ID = c.SER_MTD_ID and a.SERV_RULE_ID = d.SERV_RULE_ID and  c.APP_SER_ID = f.APP_SER_ID and d.APP_UPG_ID = g.APP_UPG_ID   
+    <if test="appId != null">
+       AND g.APP_ID = #{appId,jdbcType=VARCHAR}
+    </if>
+    <if test="appUpgStatus != null">
+      AND g.APP_UPG_STATUS = #{appUpgStatus,jdbcType=VARCHAR}
+    </if>
+    <if test="appValruleType != null">
+      AND d.APP_VALRULE_TYPE = #{appValruleType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="findInServuleId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select *
+    from ECM_SERV_RULE 
+    where SERV_RULE_ID in (${appValRuleList})  
+  </select>
+  <select id="findNotinServuleId" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select *
+    from ECM_SERV_RULE 
+    where SERV_RULE_ID  NOT in (${appValRuleList})  
+  </select>
+  <select id="findAllList" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    select *
+    from ECM_SERV_RULE 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    delete from ECM_SERV_RULE
+    where SERV_RULE_ID = #{servRuleId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    update ECM_SERV_RULE
+    <set>
+      <if test="servRuleType != null">
+        SERV_RULE_TYPE = #{servRuleType,jdbcType=VARCHAR},
+      </if>
+      <if test="routerCondId != null">
+        ROUTER_COND_ID = #{routerCondId,jdbcType=INTEGER},
+      </if>
+      <if test="serMtdId != null">
+        SER_MTD_ID = #{serMtdId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleStatus != null">
+        RULE_STATUS = #{ruleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="routerArgsPos != null">
+        ROUTER_ARGS_POS = #{routerArgsPos,jdbcType=INTEGER},
+      </if>
+      <if test="routerArgsType != null">
+        ROUTER_ARGS_TYPE = #{routerArgsType,jdbcType=VARCHAR},
+      </if>
+      <if test="servRuleSelf != null">
+        SERV_RULE_SELF = #{servRuleSelf,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where SERV_RULE_ID = #{servRuleId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.serv.EcmServRule">
+    insert into ECM_SERV_RULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="servRuleId != null">
+        SERV_RULE_ID,
+      </if>
+      <if test="servRuleType != null">
+        SERV_RULE_TYPE,
+      </if>
+      <if test="routerCondId != null">
+        ROUTER_COND_ID,
+      </if>
+      <if test="serMtdId != null">
+        SER_MTD_ID,
+      </if>
+      <if test="ruleStatus != null">
+        RULE_STATUS,
+      </if>
+      <if test="routerArgsPos != null">
+        ROUTER_ARGS_POS,
+      </if>
+      <if test="routerArgsType != null">
+        ROUTER_ARGS_TYPE,
+      </if>
+      <if test="servRuleSelf != null">
+        SERV_RULE_SELF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="servRuleId != null">
+        #{servRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="servRuleType != null">
+        #{servRuleType,jdbcType=VARCHAR},
+      </if>
+      <if test="routerCondId != null">
+        #{routerCondId,jdbcType=INTEGER},
+      </if>
+      <if test="serMtdId != null">
+        #{serMtdId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleStatus != null">
+        #{ruleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="routerArgsPos != null">
+        #{routerArgsPos,jdbcType=INTEGER},
+      </if>
+      <if test="routerArgsType != null">
+        #{routerArgsType,jdbcType=VARCHAR},
+      </if>
+      <if test="servRuleSelf != null">
+        #{servRuleSelf,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dcits="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <bean id="propertyConfigurerCache"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:galaxy.cache.properties</value>
+                <value>classpath*:galaxy.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- pool config -->
+    <bean id="jedisConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--
+         <property name="maxActive" value="${redis.pool.maxActive}" />
+         <property name="maxWait" value="${redis.pool.maxWait}" />
+         <property name="whenExhaustedAction" value="${redis.pool.whenExhaustedAction}" />
+         -->
+        <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <property name="minIdle" value="${redis.pool.minIdle}"/>
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+        <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+        <property name="testWhileIdle" value="${redis.pool.testWhileIdle}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${redis.pool.timeBetweenEvictionRunsMillis}"/>
+        <property name="numTestsPerEvictionRun" value="${redis.pool.numTestsPerEvictionRun}"/>
+    </bean>
+
+	<bean id="redisTemplate"
+		class="com.dcits.galaxy.cache.template.factory.JedisTemplateFactory">
+		<property name="forceSharded" value="false" />
+		<property name="poolConfig" ref="jedisConfig" />
+		<property name="type" value="${redis.type}" />
+		<property name="masters" value="${redis.servers.names}" />
+		<property name="timeout" value="${redus.cluster.timeout}" />
+		<property name="sentinels" value="${redis.Sentinel.servers}" />
+		<property name="clusters" value="${redis.cluster.address}" />
+		<property name="maxRedirections" value="${redis.cluster.maxRedirections}" />
+	</bean>
+</beans>

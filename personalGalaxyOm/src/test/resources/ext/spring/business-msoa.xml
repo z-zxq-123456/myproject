@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean class="com.baidu.ub.msoa.container.support.bundle.ExtBundleContextPostProcessor">
+        <constructor-arg name="bundleName" value="ensemble-om"/>
+        <property name="reloadBundleContext" value="true"/>
+    </bean>
+
+    <bean id="serviceMappingLoader" class="com.dcits.baixin.msoa.support.ServiceMappingLoader" init-method="init">
+        <property name="locations" value="classpath*:META-INF/service/*.xml"/>
+    </bean>
+
+    <bean class="com.dcits.baixin.msoa.client.ConsumerBeanProcesser"/>
+
+    <bean class="com.dcits.card.frame.api.CmcInternalReference"/>
+
+    <bean id="parserMapping" class="com.dcits.orion.base.map.mapping.ParserMapping">
+        <property name="mappingLocations" value="classpath*:parserMapping/**/*.xml"/>
+    </bean>
+
+    <bean class="com.dcits.baixin.http.SpringServletRegistry">
+        <property name="servletRegistry">
+            <map key-type="java.lang.String">
+                <entry key="/omtest" value-ref="omServlet"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="internalInvoker" class="com.dcits.ensemble.om.pm.common.adapter.CmcOMAdapter"/>
+    <bean id="omServlet" class="com.dcits.baixin.connector.AdapterServlet">
+        <property name="adapter">
+            <bean class="com.dcits.ensemble.om.pm.common.adapter.CmcOMAdapter"/>
+        </property>
+    </bean>
+
+    <bean id="httpAdapter" class="com.dcits.ensemble.om.pm.common.adapter.HttpAdapter">
+        <property name="adapters">
+            <map key-type="java.lang.String" value-type="com.dcits.galaxy.adapter.Adapter">
+                <!-- 对应om中配置的url -->
+                <entry key="http://10.4.71.17:9917/galaxy" value-ref="internalInvoker"/>
+                <!--<entry key="http:aaaa:bb/cc" value-ref="internalInvoker"/>-->
+            </map>
+        </property>
+    </bean>
+
+</beans>

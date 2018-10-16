@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dcits.ensemble.om.oms.dao.app.EcmAppinstDeployDao">
+  <!-- Created by tangxl on 2015/08/26 09:44:42. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppinstDeploy" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppinstDeploy">
+    select *
+    from ecm_appinst_deploy
+    where APP_INTANT_ID = #{appIntantId,jdbcType=INTEGER}  AND APP_VER_ID = #{appVerId,jdbcType=INTEGER}     
+  </select>
+ <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.app.EcmAppinstDeploy">
+      select   a.APP_NAME,a.APP_PATH,a.APP_PORT,a.APP_WORK,b.SER_IP,c.APP_INTANT_NAME,c.APP_INTANT_VER,d.APP_DEPLOY_DATE,e.USER_NAME
+      from  ecm_app_info a ,ecm_server_info b,ecm_app_intant c,ecm_appinst_deploy d,WEB_USER e
+      where d.APP_INTANT_ID=c.APP_INTANT_ID and c.APP_ID=a.APP_ID and c.SER_ID=b.SER_ID and d.APP_DEPLOY_USERID =e.USER_ID
+      <if test="baseParam.appId != null">
+       AND a.APP_ID= #{baseParam.appId ,jdbcType=INTEGER}
+      </if>
+       <if test="baseParam.userId!= null">
+        AND d.APP_DEPLOY_USERID = #{baseParam.userId,jdbcType=INTEGER}
+      </if>
+      <if test="baseParam.startTime!=null">
+      <if test="baseParam.endTime!=null">
+      AND <![CDATA[
+      d.APP_DEPLOY_DATE >= #{baseParam.startTime,jdbcType=VARCHAR} and d.APP_DEPLOY_DATE<= #{baseParam.endTime,jdbcType=VARCHAR}
+      ]]>
+      </if>
+      </if>
+      order by d.APP_DEPLOY_DATE  DESC
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppinstDeploy">
+    delete from ecm_appinst_deploy
+    where APP_DEPLOY_ID = #{appDeployId,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppinstDeploy">
+    update ecm_appinst_deploy
+    <set>
+      <if test="appDeployDate != null">
+        APP_DEPLOY_DATE = #{appDeployDate,jdbcType=VARCHAR},
+      </if>
+      <if test="appDeployUserid != null">
+        APP_DEPLOY_USERID = #{appDeployUserid,jdbcType=INTEGER}
+      </if>
+    </set>
+  where APP_DEPLOY_ID = #{appDeployId,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.app.EcmAppinstDeploy">
+    insert into ecm_appinst_deploy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+     <if test="appDeployId != null">
+        APP_DEPLOY_ID,
+      </if>
+      <if test="appIntantId != null">
+        APP_INTANT_ID,
+      </if>
+      <if test="appVerId != null">
+        APP_VER_ID,
+      </if>
+      <if test="appDeployDate != null">
+        APP_DEPLOY_DATE,
+      </if>
+      <if test="appDeployUserid != null">
+        APP_DEPLOY_USERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+     <if test="appDeployId != null">
+        #{appDeployId,jdbcType=INTEGER},
+      </if>
+      <if test="appIntantId != null">
+        #{appIntantId,jdbcType=INTEGER},
+      </if>
+      <if test="appVerId != null">
+        #{appVerId,jdbcType=INTEGER},
+      </if>
+      <if test="appDeployDate != null">
+        #{appDeployDate,jdbcType=VARCHAR},
+      </if>
+      <if test="appDeployUserid != null">
+        #{appDeployUserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,79 @@
+ .step-body{
+	position: relative;
+}
+.step-header{		
+	width: 100%;
+	margin: 0 auto;
+	display: none;
+}
+.step-header ul{
+		padding: 0;	
+}
+.step-header li{
+	list-style-type:none;
+	text-align: center;
+	margin-top:-21px;	
+	width:100px;
+}
+.step-header li p{
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 12px;
+	font-family:  微软雅黑;
+	color: #999999;
+	width:100px;
+	text-align:center;
+}
+.step-header li span{
+	position: relative;
+	margin: 0 auto;	
+	font-weight: bold;
+	font-size: 20px;
+	font-family: Arial;
+	color: #999999;
+	font-size:14px;
+	font-weight: blod;
+	height: 26px;
+	line-height: 26px;
+	width:24px;
+	background: url(../images/cell.png) center no-repeat ;
+	display: block;
+	width:100px;
+	text-align:center;
+}
+.step-header li.step-active span{
+	background: url(../images/cell-active.png) center no-repeat ;
+	color: #59b359;
+}
+.step-header li.step-current span{
+	background: url(../images/cell-current.png) center no-repeat ;
+}
+.step-header li.step-active p{
+	color: #999999;
+}
+.step-header li.step-current p{
+	color: #268026;
+}
+.step-bar,.step-bar-active{
+	height: 6px;
+	border-radius: 12px;
+}
+.step-bar{
+	width:100%;
+	background-color:#e5e5e5 ;
+	position: relative;
+	border-radius: 12px;
+	z-index: -1;
+	height:6px;
+	top:10px;
+}
+.step-bar-active{
+	width: 0px;
+	background-color:#59B359;
+
+}
+.step-list{
+	margin-top:80px;
+	display: none;
+	clear: both;
+}

@@ -1,0 +1,25 @@
+var rowData;
+$(document).ready(function() {
+        rowData = parent.$('#cmcTranInfo').DataTable().rows(".odd").data()[0];
+        $("#cardNo").val(rowData.cardNo);
+        $("#baseAcctNo").val(rowData.baseAcctNo);
+        $("#customerId").val(rowData.customerId);
+        $("#othCardNo").val(rowData.othCardNo);
+        $("#othClientNo").val(rowData.othClientNo);
+        $("#channelSeqNo").val(rowData.channelSeqNo);
+        $("#channelSubSeqNo").val(rowData.channelSubSeqNo);
+        $("#tranDate").val(rowData.tranDate);
+        $("#settlementDate").val(rowData.settlementDate);
+        $("#channelType").val(rowData.channelType);
+        $("#tranStatus").val(rowData.tranStatus);
+        $("#revFlag").val(rowData.revFlag);
+        $("#cancelFlag").val(rowData.cancelFlag);
+        $("#ccy").val(rowData.ccy);
+        $("#systemId").val(rowData.systemId);
+        $("#tranType").val(rowData.tranType);
+        $("#cdFlag").val(rowData.cdFlag);
+        $("#tranAmt").val(rowData.tranAmt);
+        $("#origSeqNo").val(rowData.origSeqNo);
+        $("#origSubSeqNo").val(rowData.origSubSeqNo);
+        $("#settleFlag").val(rowData.settleFlag);
+});

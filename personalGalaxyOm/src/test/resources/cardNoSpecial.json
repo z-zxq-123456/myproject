@@ -1,0 +1,48 @@
+{
+  "BODY": {
+    "MODELS": [
+      {
+        "OPERATE_TYPE": "SAVE",
+        "ORDER_NO": "87654321",
+        "PRODUCT_RULE_NO": "0001",
+        "STATUS": "0"
+      },
+      {
+        "OPERATE_TYPE": "SAVE",
+        "ORDER_NO": "87654321",
+        "PRODUCT_RULE_NO": "0002",
+        "STATUS": "0"
+      },
+      {
+        "OPERATE_TYPE": "SAVE",
+        "ORDER_NO": "87654321",
+        "PRODUCT_RULE_NO": "0003",
+        "STATUS": "0"
+      }
+    ],
+    "PK_NAME": "ORDER_NO|PRODUCT_RULE_NO",
+    "TABLE_NAME": "CMC_CARD_NO_SPECIAL"
+  },
+  "SYS_HEAD": {
+    "AUTH_FLAG": "N",
+    "BRANCH_ID": "900001",
+    "COMPANY": "",
+    "DEST_BRANCH_NO": "900001",
+    "MESSAGE_CODE": "0001",
+    "MESSAGE_TYPE": "1200",
+    "MODULE_ID": "CP",
+    "PROGRAM_ID": "LiM8A",
+    "SEQ_NO": "20160330-091459.868",
+    "SERVER_ID": "127.0.0.1",
+    "SERVICE_CODE": "CP",
+    "SOURCE_BRANCH_NO": "0001",
+    "SOURCE_TYPE": "1003",
+    "SYSTEM_ID": "114001ABcbsazx20171013",
+    "TRAN_DATE": "29991018",
+    "TRAN_MODE": "ONLINE",
+    "TRAN_TIMESTAMP": "193713760",
+    "USER_ID": "ADMIN",
+    "USER_LANG": "CHINESE",
+    "WS_ID": "05"
+  }
+}

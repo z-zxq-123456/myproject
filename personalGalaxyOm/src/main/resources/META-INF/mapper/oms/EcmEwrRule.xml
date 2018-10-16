@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.oms.dao.sys.EcmEwrInfoDao">
+<!--<mapper namespace="com.dcits.ensemble.om.oms.dao.sys.EcmParamDao">-->
+    <!-- Created by tangxl on 2014/07/24 13:54:58. -->
+    <!--<select id="selectByPrimaryKey" parameterType="java.util.Map" resultType="com.dcits.ensemble.om.oms.module.sys.EcmParam">
+        select *
+        from ECM_PARAM
+        where PARA_CODE = #{paraCode,jdbcType=VARCHAR}
+    </select>-->
+    <select id="findList" parameterType="com.dcits.galaxy.dal.mybatis.proactor.page.ParameterWrapper" resultType="com.dcits.ensemble.om.oms.module.sys.EcmEwrInfo">
+        select *   from ecm_warnrule
+        <where>
+            <if test="baseParam.ruleName != null ">
+                AND RULE_NAME like '%${baseParam.ruleName}%'
+            </if>
+            <if test="baseParam.ruleRank != null">
+                AND RULE_RANK = #{baseParam.ruleRank,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by RULE_ID
+    </select>
+
+    <insert id="insert" parameterType="com.dcits.ensemble.om.oms.module.sys.EcmEwrInfo">
+        insert into ecm_warnrule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ruleName != null">
+                RULE_NAME,
+            </if>
+            <if test="ruleRank != null">
+                RULE_RANK,
+            </if>
+            <if test="ruleDesc != null">
+                RULE_DESC,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ruleName != null">
+                #{ruleName,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleRank != null">
+                #{ruleRank,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleDesc != null">
+                #{ruleDesc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.sys.EcmEwrInfo">
+        update ecm_warnrule
+        <set>
+            <if test="ruleName != null">
+                RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleRank != null">
+                RULE_RANK = #{ruleRank,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleDesc != null">
+                RULE_DESC = #{ruleDesc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where RULE_ID = #{ruleId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.oms.module.sys.EcmEwrInfo">
+        delete from ecm_warnrule
+        where RULE_ID = #{ruleId,jdbcType=INTEGER}
+    </delete>
+</mapper>

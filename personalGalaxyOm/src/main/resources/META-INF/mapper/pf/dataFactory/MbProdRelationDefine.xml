@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcits.ensemble.om.pf.dao.dataFactory.MbProdRelationDefineDao">
+  <!-- Created by admin on 2016/04/28 13:43:54. -->
+  <select id="selectByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine">
+    select *
+    from mb_prod_relation_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+      <if test="subProdType != null">
+        AND SUB_PROD_TYPE = #{subProdType,jdbcType=VARCHAR}
+      </if>
+      <if test="eventType != null">
+        AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      </if>
+      <if test="assembleId != null">
+        AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="selectByPrimaryKeyList" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine" resultType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine">
+    SELECT DISTINCT EVENT_TYPE,ASSEMBLE_TYPE,ASSEMBLE_ID,STATUS
+    FROM mb_prod_relation_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine">
+    delete from mb_prod_relation_define
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+      <if test="subProdType != null">
+        AND SUB_PROD_TYPE = #{subProdType,jdbcType=VARCHAR}
+      </if>
+      <if test="eventType != null">
+        AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      </if>
+      <if test="assembleId != null">
+        AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+      </if>
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine">
+    update mb_prod_relation_define
+    <set>
+      <if test="assembleType != null">
+        ASSEMBLE_TYPE = #{assembleType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+        AND SUB_PROD_TYPE = #{subProdType,jdbcType=VARCHAR}
+        AND EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+        AND ASSEMBLE_ID = #{assembleId,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.dcits.ensemble.om.pf.module.dataFactory.MbProdRelationDefine">
+    insert into mb_prod_relation_define
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        PROD_TYPE,
+      </if>
+      <if test="subProdType != null">
+        SUB_PROD_TYPE,
+      </if>
+      <if test="eventType != null">
+        EVENT_TYPE,
+      </if>
+      <if test="assembleType != null">
+        ASSEMBLE_TYPE,
+      </if>
+      <if test="assembleId != null">
+        ASSEMBLE_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodType != null">
+        #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="subProdType != null">
+        #{subProdType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleType != null">
+        #{assembleType,jdbcType=VARCHAR},
+      </if>
+      <if test="assembleId != null">
+        #{assembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
