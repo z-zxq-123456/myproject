@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="203ec147-870e-429d-8556-d38a16635ecf" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_1.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/my_mybatics.iml" afterPath="$PROJECT_DIR$/my_mybatics.iml" />
-      <change beforePath="$PROJECT_DIR$/mybatics_version1/mybatics-version-1.0.iml" afterPath="$PROJECT_DIR$/mybatics_version1/mybatics-version-1.0.iml" />
-      <change beforePath="$PROJECT_DIR$/mybatics_version1/src/main/java/com/qxz/learn/plugin/MyInterceptor.java" afterPath="$PROJECT_DIR$/mybatics_version1/src/main/java/com/qxz/learn/plugin/MyInterceptor.java" />
-      <change beforePath="$PROJECT_DIR$/mybatics_version2/mybatics-version-2.0.iml" afterPath="$PROJECT_DIR$/mybatics_version2/mybatics-version-2.0.iml" />
-    </list>
+    <list default="true" id="203ec147-870e-429d-8556-d38a16635ecf" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/mybatics_version1/target/" />
     <ignored path="$PROJECT_DIR$/mybatics_version2/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
