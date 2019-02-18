@@ -10,9 +10,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>personJavaTest</module>
-        <module>personDubboTest</module>
         <module>personNetTest</module>
         <module>personSpringTest</module>
+        <module>personDubboTest</module>
     </modules>
 
     <properties>
