@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+    <!--预授权完成撤销冲正-->
+    <flow id="MbsdCard-1300-0007">
+
+        <!--卡客户号关联查询-->
+        <service id="qryClient">
+            <in>
+                <item name="processId">'clientCardLinkQuery'</item>
+                <item name="CARD_NO">[in][BODY][CARD_NO]</item>
+                <item name="CLIENT_NO">[in][BODY][CLIENT_NO]</item>
+            </in>
+        </service>
+
+        <!--通用检查-->
+        <service id="checkCard">
+            <in>
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_TYPE">'1200'</item>
+                    <item name="MESSAGE_CODE">'0023'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY" ref="[in][BODY]">
+                    <item name="TRAN_TYPE">'8016'</item>
+                    <item name="BUSINESS_CHECK">'1111'</item>
+                    <item name="SEQ_NO">[in][BODY][CHANNEL_SEQ_NO]</item>
+                    <item name="SUB_SEQ_NO">[in][BODY][SUB_TRAN_SEQ_NO]</item>
+                    <item name="CHANNEL_ID">[in][BODY][CHANNEL_TYPE]</item>
+                </map>
+            </in>
+        </service>
+
+        <service id="password">
+            <in>
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_TYPE">'1200'</item>
+                    <item name="MESSAGE_CODE">'0024'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY" ref="[in][BODY]">
+                </map>
+            </in>
+        </service>
+
+        <!--卡账关联查询-->
+        <service id="qryAcctNo">
+            <in>
+                <item name="processId">'inqueryCardInfo'</item>
+                <item name="CARD_NO">[in][BODY][CARD_NO]</item>
+            </in>
+        </service>
+
+        <!--预授权完成撤销查询并校验-->
+        <service id="cmcAuthRevCheck">
+            <in>
+                <item name="processId">'cmcAuthRevCheck'</item>
+                <item name="FZ_NO">[in][BODY][RESTRAINT_SEQ_NO]</item>
+                <item name="AUTH_INFO">[in][BODY][AUTH_INFO]</item>
+                <item name="AUTH_KIND">"0"</item>
+                <item name="SETTLEMENT_DATE">[in][BODY][SETTLEMENT_DATE]</item>
+                <item name="SEQ_NO">[in][BODY][CHANNEL_SEQ_NO]</item>
+                <item name="SUB_SEQ_NO">[in][BODY][SUB_TRAN_SEQ_NO]</item>
+                <item name="CHANNEL_ID">[in][BODY][CHANNEL_TYPE]</item>
+            </in>
+        </service>
+
+        <!--交易前流水登记-->
+        <service id="beforeTran">
+            <in>
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_TYPE">'1200'</item>
+                    <item name="MESSAGE_CODE">'0006'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY" ref="[in][BODY]">
+                    <map name="TRAN_FLAG">
+                        <item name="PERIOD">"B"</item>
+                        <item name="AUTH_KIND_TYPE">"6"</item>
+                        <item name="IN_INFO">[in]</item>
+                    </map>
+                    <item name="AUTH_INFO">[in][BODY][AUTH_INFO]</item>
+                    <item name="FZ_NO">[in][BODY][RESTRAINT_SEQ_NO]</item>
+                    <item name="CLIENT_NO">[qryAcctNo_out][0][CLIENT_NO]</item>
+                    <item name="CUSTOMER_ID">[qryAcctNo_out][0][CLIENT_NO]</item>
+                    <item name="BASE_ACCT_NO">[qryAcctNo_out][0][ACCT_NO]</item>
+                    <item name="CCY">[in][BODY][CCY]</item>
+                    <item name="ORIG_SEQ_NO">[in][BODY][CHANNEL_SEQ_NO]</item>
+                    <item name="ORIG_SUB_SEQ_NO">[in][BODY][SUB_TRAN_SEQ_NO]</item>
+                    <item name="SYSTEM_ID">[qryAcctNo_out][0][SYSTEM_ID]</item>
+                    <item name="TRAN_AMT">[cmcAuthRevCheck_out][0][TRAN_AMT]</item>
+                    <item name="OTH_CARD_NO">[cmcAuthRevCheck_out][0][OTH_CARD_NO]</item>
+                </map>
+            </in>
+        </service>
+
+        <service id="cmsAuthRevCbs">
+            <in>
+                <map name="HEAD" ref="[in][SYS_HEAD]">
+                    <item name="SERVICE_ID">'ReverseTransactionAPI'</item>
+                    <item name="ID">'reverseTransaction'</item>
+                    <item name="ASYNC">"false"</item>
+                    <item name="SYS_DATE">[in][SYS_HEAD][TRAN_DATE]</item>
+                    <item name="SYS_TIMESTAMP">[in][SYS_HEAD][TRAN_DATE] +" "+ [in][SYS_HEAD][TRAN_TIMESTAMP]</item>
+                    <item name="TRANS_ID">[in][SYS_HEAD][TRANS_ID]</item>
+                    <item name="SUB_TRANS_ID">[in][SYS_HEAD][SUB_TRANS_ID]</item>
+                    <item name="SEQ_NO">[in][SYS_HEAD][SEQ_NO]</item>
+                    <item name="SUB_TRANS_SEQ">[beforeTran_out][0][BODY][CHANNEL_ST_SUB_SEQ_NO]</item>
+                </map>
+                <item name="CLIENT_NO">[qryAcctNo_out][0][CLIENT_NO]</item>
+                <item name="CHANNEL_SEQ_NO">[cmcAuthRevCheck_out][0][CHANNEL_SEQ_NO]</item>
+                <item name="SUB_TRAN_SEQ_NO">[cmcAuthRevCheck_out][0][CHANNEL_ST_SUB_SEQ_NO]</item>
+                <item name="OTH_CLIENT_NO">[cmcAuthRevCheck_out][0][OTH_CLIENT_NO]</item>
+                <item name="SETTLEMENT_DATE">[in][BODY][SETTLEMENT_DATE]</item>
+                <item name="REVERSAL_REASON">[in][BODY][REVERSAL_REASON]</item>
+                <item name="USER_LANG">'CHINESE'</item>
+            </in>
+        </service>
+
+        <!--交易后流水登记-->
+        <service id="afterTran">
+            <in>
+                <map name="SYS_HEAD" ref="[in][SYS_HEAD]">
+                    <item name="MESSAGE_TYPE">'1200'</item>
+                    <item name="MESSAGE_CODE">'0007'</item>
+                </map>
+                <item name="APP_HEAD">[in][APP_HEAD]</item>
+                <item name="LOCAL_HEAD">[in][LOCAL_HEAD]</item>
+                <map name="BODY" ref="[beforeTran_out][0][BODY]">
+                    <map name="TRAN_FLAG">
+                        <item name="PERIOD">"A"</item>
+                        <item name="AUTH_KIND_TYPE">"6"</item>
+                        <item name="IN_INFO">[in]</item>
+                        <item name="OUT_INFO">[cmsAuthRevCbs_out][0]</item>
+                        <item name="RET_STATUS">[cmsAuthRevCbs_out][0][HEAD][RET_STATUS]</item>
+                    </map>
+                    <item name="AUTH_INFO">[in][BODY][AUTH_INFO]</item>
+                    <item name="CARD_NO">[in][BODY][CARD_NO]</item>
+                    <item name="SETTLEMENT_DATE">[in][BODY][SETTLEMENT_DATE]</item>
+                </map>
+            </in>
+        </service>
+
+        <out>
+            <if test="[cmsAuthRevCbs_out]!= null ">
+                <map name="SYS_HEAD">
+                    <item name="RET_STATUS">[cmsAuthRevCbs_out][0][HEAD][RET_STATUS]</item>
+                    <list name="RET">
+                        <item name="RET_MSG">[cmsAuthRevCbs_out][0][HEAD][RET_RESULT][0][RET_MSG]</item>
+                        <item name="RET_CODE">[cmsAuthRevCbs_out][0][HEAD][RET_RESULT][0][RET_CODE]</item>
+                    </list>
+                </map>
+                <map name="BODY">
+                    <if test="[cmsAuthRevCbs_out][0][HEAD][RET_STATUS] == 'S'">
+                        <item name="CARD_VALID_DATE">[qryAcctNo_out][0][CARD_VALID_DATE]</item>
+                    </if>
+                </map>
+            </if>
+        </out>
+    </flow>
+</mapping>

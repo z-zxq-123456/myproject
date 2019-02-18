@@ -1,0 +1,133 @@
+"D:\Program Files\Java\jdk1.8.0_131\bin\java" -Didea.launcher.port=7538 "-Didea.launcher.bin.path=D:\Program Files\ideaIU-2016.3.2.win\bin" -Dfile.encoding=UTF-8 -classpath "D:\Program Files\Java\jdk1.8.0_131\jre\lib\charsets.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\deploy.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\access-bridge-64.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\cldrdata.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\dnsns.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\jaccess.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\jfxrt.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\localedata.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\nashorn.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunec.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunjce_provider.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunmscapi.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunpkcs11.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\zipfs.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\javaws.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jce.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jfr.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jfxswt.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jsse.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\management-agent.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\plugin.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\resources.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar;F:\开发测试\dubbo\dubbo\out\production\testForLearn;D:\Program Files\ideaIU-2016.3.2.win\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain com.test.learn.thread.ReentrantReadAndWrite.Test
+Thread-0: Price 1: 1.000000
+Writer: Attempt to modify the prices.
+Thread-0: Price 2: 2.000000
+Thread-0: Price 1: 1.000000
+Thread-8: Price 1: 1.000000
+Writer: Attempt to modify the prices.
+Thread-6: Price 1: 1.000000
+Writer: Attempt to modify the prices.
+Thread-4: Price 1: 1.000000
+Writer: Attempt to modify the prices.
+Thread-2: Price 1: 1.000000
+Writer: Attempt to modify the prices.
+Thread-2: Price 2: 4.857328
+Writer: Prices have been modified.
+Thread-4: Price 2: 0.627636
+Writer: Prices have been modified.
+Thread-6: Price 2: 0.425510
+Writer: Prices have been modified.
+Thread-8: Price 2: 4.927986
+Writer: Prices have been modified.
+Thread-0: Price 2: 2.000000
+Thread-0: Price 1: 0.380746
+Thread-8: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-6: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-2: Price 1: 0.380746
+Thread-2: Price 2: 4.133335
+Writer: Prices have been modified.
+Thread-2: Price 1: 0.380746
+Thread-4: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-6: Price 2: 4.133335
+Thread-8: Price 1: 0.380746
+Thread-0: Price 2: 4.133335
+Thread-8: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-6: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-2: Price 2: 4.133335
+Thread-4: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-8: Price 1: 0.380746
+Thread-0: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-6: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-2: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-6: Price 1: 0.380746
+Thread-8: Price 1: 0.380746
+Thread-0: Price 2: 4.133335
+Thread-8: Price 2: 4.133335
+Thread-6: Price 2: 4.133335
+Thread-4: Price 2: 4.133335
+Thread-2: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-6: Price 1: 0.380746
+Thread-6: Price 2: 4.133335
+Thread-8: Price 1: 0.380746
+Thread-0: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-8: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-8: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-8: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-8: Price 1: 0.380746
+Thread-8: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-6: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-2: Price 1: 0.380746
+Thread-4: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-6: Price 2: 4.133335
+Thread-6: Price 1: 0.380746
+Thread-0: Price 2: 4.133335
+Thread-6: Price 2: 4.133335
+Thread-4: Price 1: 0.380746
+Thread-4: Price 2: 4.133335
+Thread-2: Price 2: 4.133335
+Thread-0: Price 1: 0.380746
+Thread-2: Price 1: 0.380746
+Thread-0: Price 2: 4.133335
+Thread-2: Price 2: 4.133335
+Thread-2: Price 1: 0.380746
+Thread-2: Price 2: 4.133335
+Thread-0: Price 1: 0.380746
+Thread-2: Price 1: 0.380746
+Thread-0: Price 2: 4.133335
+Thread-2: Price 2: 4.133335
+Thread-0: Price 1: 0.380746
+Thread-0: Price 2: 4.133335
+Thread-2: Price 1: 0.380746
+Thread-0: Price 1: 0.380746
+Thread-2: Price 2: 4.133335
+Thread-0: Price 2: 4.133335
+Thread-2: Price 1: 0.380746
+Thread-0: Price 1: 0.380746
+Thread-2: Price 2: 4.133335
+Thread-0: Price 2: 4.133335
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+Writer: Attempt to modify the prices.
+Writer: Prices have been modified.
+
+Process finished with exit code 0
