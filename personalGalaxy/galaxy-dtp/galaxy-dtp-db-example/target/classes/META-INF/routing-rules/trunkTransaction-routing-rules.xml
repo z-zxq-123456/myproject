@@ -1,7 +1,0 @@
-<rules>
-	<!-- 以下为通用规则 -->
-	<rule>
-		<namespace>com.dcits.galaxy.dtp.trunk.TrunkTransaction</namespace>
-		<shards>partition_tm</shards>
-	</rule>
-</rules>

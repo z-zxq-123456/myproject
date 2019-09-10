@@ -1,0 +1,1 @@
+单例的两种模式：都存在如果通过反射机制和AccessibleObject.setAccessible()方法，可以访问到私有方法，不能保证唯一性。

@@ -1,1 +1,0 @@
-alter table batch_std_job add column JOB_GROUP_ID varchar(40);
