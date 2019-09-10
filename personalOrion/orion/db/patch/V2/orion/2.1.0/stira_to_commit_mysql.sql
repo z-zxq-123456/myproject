@@ -1,1 +1,0 @@
-alter table STRIA_FLOW add column TX_FLAG varchar(1) DEFAULT 'Y';

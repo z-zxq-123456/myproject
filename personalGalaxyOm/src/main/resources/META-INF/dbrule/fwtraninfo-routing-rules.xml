@@ -1,7 +1,0 @@
-<rules>
-	<!-- 以下为通用规则 -->
-	<rule>
-		<namespace>com.dcits.ensemble.om.oms.dao.app.FwTranInfoDao</namespace>
-		<shards>partition1</shards>
-	</rule>
-</rules>

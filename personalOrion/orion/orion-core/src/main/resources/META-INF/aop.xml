@@ -1,5 +1,0 @@
-<aspectj>
-    <aspects>
-        <aspect name="com.dcits.orion.core.annotation.CacheAspect"/>
-    </aspects>
-</aspectj>

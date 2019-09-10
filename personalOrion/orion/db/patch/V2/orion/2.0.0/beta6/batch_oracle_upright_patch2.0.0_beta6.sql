@@ -1,1 +1,0 @@
-alter table BATCH_STD_JOB add (JOB_GROUP_ID varchar2(40));

@@ -1,8 +1,0 @@
-BEGIN
-   EXECUTE IMMEDIATE 'alter table STRIA_FLOW add (TX_FLAG varchar2(1 char) DEFAULT ''Y'')';
-EXCEPTION
-   WHEN OTHERS
-   THEN
-      NULL;
-END;
-/

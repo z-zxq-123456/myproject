@@ -1,3 +1,0 @@
-json2map=com.dcits.orion.base.error.JsonError
-json2mapByMapping=com.dcits.orion.base.error.JsonError
-xml2map=com.dcits.orion.base.error.XmlError
