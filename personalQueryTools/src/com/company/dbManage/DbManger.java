@@ -86,7 +86,7 @@ public class DbManger implements IDao {
 
 
              resultSet = DbConn.getResultSet(statement,getQureyAcctSql(baseAcctNo));
-            if (resultSet.next()){
+            if (!resultSet.next()){
                 throw new RuntimeException("账户不存在或已销户!");
             }
             String internalKey = null,baseRoute = null;

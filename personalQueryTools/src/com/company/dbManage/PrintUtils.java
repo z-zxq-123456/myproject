@@ -10,10 +10,10 @@ public  class PrintUtils {
         try {
             String[] columns = args.split(",");
             StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append(key).append(" result = {");
+            stringBuffer.append(key).append(" result = {").append("\r\n");
             for (Map map:result){
                 for (int i = 0; i < columns.length; i ++){
-                    stringBuffer.append("<").append(columns[i]).append(" = ").append(map.get(columns[i])).append(">") ;
+                    stringBuffer.append("<").append(columns[i]).append(" = ").append(map.get(columns[i])).append(">").append("\r\n") ;
                 }
                 stringBuffer.append("}");
                 System.out.println(stringBuffer.toString());
