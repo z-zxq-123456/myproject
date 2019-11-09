@@ -14,6 +14,7 @@ public class ConfigUtils {
     public static int pkSize;
     public static String env;
     public static long lastModify;
+	public static boolean first = true;
     public static List<Listener> listeners = new ArrayList<>();
     private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
@@ -32,9 +33,10 @@ public class ConfigUtils {
                 System.out.println(e.getMessage());
             }
 
-            if (lastTime == lastModify ){
+            if (lastTime == lastModify && !first){
                 return;
             }
+			
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             Properties properties = new Properties();
             try {
@@ -47,7 +49,7 @@ public class ConfigUtils {
             dataNum = Integer.parseInt(properties.getProperty("dataNum"));
             env = properties.getProperty("env");
             lastModify = lastTime;
-
+			first = false;
             for (Listener listener:listeners){
                 listener.onChange();
             }
