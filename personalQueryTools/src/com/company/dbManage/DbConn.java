@@ -17,13 +17,17 @@ public class DbConn implements ConfigUtils.Listener {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            getConnInfo(false);
+            if (ConfigUtils.first){
+                getConnInfo(false);
+            }
             conn = DriverManager.getConnection(properties.getProperty("db1.jdbcUrl"),properties.getProperty("db1.username"),properties.getProperty("db1.password"));
-            ConfigUtils.listeners.add(dbConn);
+            ConfigUtils.first=false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConfigUtils.listeners.add(dbConn);
         }
         return conn;
     }

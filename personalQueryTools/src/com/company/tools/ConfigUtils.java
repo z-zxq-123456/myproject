@@ -33,7 +33,7 @@ public class ConfigUtils {
                 System.out.println(e.getMessage());
             }
 
-            if (lastTime == lastModify && !first){
+            if (lastTime == lastModify){
                 return;
             }
 			
@@ -49,7 +49,6 @@ public class ConfigUtils {
             dataNum = Integer.parseInt(properties.getProperty("dataNum"));
             env = properties.getProperty("env");
             lastModify = lastTime;
-			first = false;
             for (Listener listener:listeners){
                 listener.onChange();
             }
