@@ -14,6 +14,16 @@ public class RouteUnit implements IExecute {
 
     private static RouteUnit routeUnit;
 
+    @Override
+    public void printLineBefore() {
+        System.out.println("=================== calc Before  ===================");
+    }
+
+    @Override
+    public void printLineAfter() {
+        System.out.println("=================== calc after  ===================");
+    }
+
     public static RouteUnit getInstance(){
         if (routeUnit == null){
             routeUnit = new RouteUnit();

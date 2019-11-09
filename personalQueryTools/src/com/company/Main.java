@@ -28,13 +28,16 @@ public class Main {
             String commands = scanner.nextLine();
 
             IExecute execute = CommandParser.parseArgs(commands);
-
             try {
                 if (execute != null){
+                    execute.printLineBefore();
+
                     execute.execute(commands);
                 }
             }catch (Exception e){
                 System.out.println(e.getMessage());
+            }finally {
+                if (execute != null) execute.printLineAfter();
             }
         }
     }

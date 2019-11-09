@@ -15,6 +15,15 @@ public class AcctInfoUnit implements IExecute, IService {
 
     private static final String space = " ";
 
+    @Override
+    public void printLineBefore() {
+        System.out.println("=================== acct info Before  ==================");
+    }
+
+    @Override
+    public void printLineAfter() {
+        System.out.println("=================== acct info after  ==================");
+    }
 
     @Override
     public void execute(String args) {
@@ -43,7 +52,7 @@ public class AcctInfoUnit implements IExecute, IService {
         try {
             DbManger.getInstance().getAcctInfo(baseAcctNo);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -7,6 +7,16 @@ public class RouteHashUnit implements IExecute {
 
     private static RouteHashUnit routeUnit;
 
+    @Override
+    public void printLineBefore() {
+        System.out.println("=================== route hash Before ===================");
+    }
+
+    @Override
+    public void printLineAfter() {
+        System.out.println("=================== route hash after ===================");
+    }
+
     public static RouteHashUnit getInstance(){
         if (routeUnit == null){
             routeUnit = new RouteHashUnit();

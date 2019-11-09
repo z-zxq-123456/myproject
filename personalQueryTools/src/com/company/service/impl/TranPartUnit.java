@@ -12,6 +12,16 @@ public class TranPartUnit implements IService, IExecute {
     private static final String space = " ";
 
     @Override
+    public void printLineBefore() {
+        System.out.println("=================== tran Before ===================");
+    }
+
+    @Override
+    public void printLineAfter() {
+        System.out.println("=================== tran after ===================");
+    }
+
+    @Override
     public void execute(String args) {
 
         String[] commands = args.split(space);

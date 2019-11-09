@@ -21,17 +21,19 @@ public class ConfigUtils {
 
         executorService.scheduleAtFixedRate(()->{
 
-            File file = new File("src/config/application.properties");
+            File file = new File("config/application.properties");
             long lastTime = file.lastModified();
 
-            if (lastTime == lastModify ){
-                return;
-            }
+
             FileInputStream fileInputStream = null;
             try {
                 fileInputStream = new FileInputStream(file);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+
+            if (lastTime == lastModify ){
+                return;
             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             Properties properties = new Properties();
@@ -88,7 +90,7 @@ public class ConfigUtils {
         if (lastModify == 0){
             throw new RuntimeException("system init! try later");
         }
-        File file = new File("src/config/"+env+".db.properties");
+        File file = new File("config/"+env+".db.properties");
         FileInputStream fileInputStream = null;
         try {
             fileInputStream = new FileInputStream(file);

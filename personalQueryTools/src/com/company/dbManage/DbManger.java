@@ -35,11 +35,12 @@ public class DbManger implements IDao {
         ResultSet resultSet = DbConn.getResultSet(statement,getQureyAcctSql(baseAcctNo));
         ResultSet resultSet2 = null;
 
-        if (resultSet == null){
+        if (!resultSet.next()){
             throw new RuntimeException("账户不存在或已销户!");
         }
 
         try{
+            resultSet.previous();
             List<Map<String,Object>> mbacctList = new ArrayList();
             List mbacctattach = new ArrayList();
             while(resultSet.next()){
@@ -85,11 +86,13 @@ public class DbManger implements IDao {
 
 
              resultSet = DbConn.getResultSet(statement,getQureyAcctSql(baseAcctNo));
-            if (resultSet == null){
+            if (resultSet.next()){
                 throw new RuntimeException("账户不存在或已销户!");
             }
             String internalKey = null,baseRoute = null;
             String routerKey = null;
+
+            resultSet.previous();
             while(resultSet.next()){
                 internalKey = resultSet.getString("INTERNAL_KEY");
                 baseRoute = resultSet.getString("ROUTER_KEY");
@@ -105,10 +108,11 @@ public class DbManger implements IDao {
             }
 
             resultSet3= DbConn.getResultSet(statement,getQueryTransql(channelSeqNo,routerKey));
-            if (resultSet3 == null){
+            if (resultSet3.next()){
                 throw new RuntimeException("无改流水记录!");
             }
             List mbtranHistList = new ArrayList();
+            resultSet3.previous();
 
             while(resultSet3.next()){
 
