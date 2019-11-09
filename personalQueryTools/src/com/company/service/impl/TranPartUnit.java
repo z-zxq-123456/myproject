@@ -1,8 +1,11 @@
 package com.company.service.impl;
 
+import com.company.dbManage.DbManger;
 import com.company.service.IExecute;
 import com.company.service.IService;
 import com.company.tools.CheckTools;
+
+import java.sql.SQLException;
 
 public class TranPartUnit implements IService, IExecute {
 
@@ -13,7 +16,7 @@ public class TranPartUnit implements IService, IExecute {
 
         String[] commands = args.split(space);
 
-        if (CheckTools.checkPart(commands)){
+        if (!CheckTools.checkPart(commands)){
             throw new IllegalArgumentException("the input args size is illegal!");
         }
 
@@ -35,8 +38,11 @@ public class TranPartUnit implements IService, IExecute {
 
     @Override
     public void calcTranHistPartation(String baseAcctNo, String channelSeqNo) {
-
-
+        try {
+            DbManger.getInstance().getTranHistInfo(baseAcctNo,channelSeqNo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

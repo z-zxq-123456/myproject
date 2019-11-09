@@ -2,11 +2,23 @@ package com.company;
 
 import com.company.service.CommandParser;
 import com.company.service.IExecute;
+import com.company.tools.ConfigUtils;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        while(ConfigUtils.lastModify==0){
+            try {
+                Thread.sleep(500L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.print("*");
+        }
+        System.out.println("server is started!");
 
         while (true){
 

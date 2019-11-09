@@ -4,7 +4,7 @@ public class CheckTools {
 
 
     public static boolean checkBaseAcctNo(String baseAcctNo){
-        if (baseAcctNo == null ||  baseAcctNo.length() != 32){
+        if (baseAcctNo == null ||  baseAcctNo.length() != 22){
             return false;
         }
         return true;
