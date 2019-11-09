@@ -12,12 +12,16 @@ public  class PrintUtils {
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append(key).append(" result = {").append("\r\n");
             for (Map map:result){
+                stringBuffer.append("[ ").append("\r\n");
                 for (int i = 0; i < columns.length; i ++){
                     stringBuffer.append("<").append(columns[i]).append(" = ").append(map.get(columns[i])).append(">").append("\r\n") ;
                 }
-                stringBuffer.append("}");
-                System.out.println(stringBuffer.toString());
+                stringBuffer.append("]").append("\r\n");
             }
+            stringBuffer.append("}").append("\r\n");
+
+            System.out.println(stringBuffer.toString());
+
         }catch (Exception e){
             e.printStackTrace();
         }
