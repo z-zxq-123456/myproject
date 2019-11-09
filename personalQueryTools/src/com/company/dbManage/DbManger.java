@@ -100,18 +100,18 @@ public class DbManger implements IDao {
 
             resultSet2 = DbConn.getResultSet(statement, getQueryAttach(internalKey,baseRoute));
             while(resultSet2.next()){
-                if (resultSet2.getString("BAL_UPD_TYPE").equals("T")){
+                if (("T").equals(resultSet2.getString("BAL_UPD_TYPE"))){
                     routerKey =String.valueOf(Math.abs(channelSeqNo.hashCode()%ConfigUtils.getPkSize()));
                 }else {
-                    routerKey =  resultSet.getString("ROUTER_KEY");
+                    routerKey =  baseRoute;
                 }
             }
 
             resultSet3= DbConn.getResultSet(statement,getQueryTransql(channelSeqNo,routerKey));
-            if (resultSet3.next()){
+            if (!resultSet3.next()){
                 throw new RuntimeException("无改流水记录!");
             }
-            List mbtranHistList = new ArrayList();
+            List<Map<String,Object>> mbtranHistList = new ArrayList();
             resultSet3.previous();
 
             while(resultSet3.next()){
@@ -134,7 +134,7 @@ public class DbManger implements IDao {
                 mbTranHist.put("OTH_PROD_TYPE",resultSet3.getString("OTH_PROD_TYPE"));
                 mbTranHist.put("TRAN_STATUS",resultSet3.getString("TRAN_STATUS"));
                 mbTranHist.put("REFERENCE",resultSet3.getString("REFERENCE"));
-                mbtranHistList.add(mbtranHistList);
+                mbtranHistList.add(mbTranHist);
 
             }
             PrintUtils.print("mbTranHist",mbTranHistInfo,mbtranHistList);
