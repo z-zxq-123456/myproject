@@ -23,7 +23,7 @@ public class Main {
         while (true){
 
             Scanner scanner = new Scanner(System.in);
-            System.out.println("please input the command and args!");
+            System.out.println("please input the command and args! input help for details");
 
             String commands = scanner.nextLine();
 

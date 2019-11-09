@@ -5,5 +5,7 @@ public enum Command {
     INFO,
     TRAN,
     ROUTE,
-    CALC
+    CALC,
+    HIST,
+    HELP
 }
