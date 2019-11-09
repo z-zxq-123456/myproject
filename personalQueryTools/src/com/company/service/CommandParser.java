@@ -53,6 +53,8 @@ public class CommandParser {
                 case HIST:
                     printHistory();
                     return null;
+                case EXIT:
+                    System.exit(1);
                 default:
                     System.out.println("not include the op, please check it !");
                     return null;
@@ -80,11 +82,12 @@ public class CommandParser {
 
     private static void help(){
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("INFO 账户").append("\r\n").append("--查看账户属性,透支属性").append("\r\n");
-        stringBuffer.append("TRAN 账户 全局流水号").append("\r\n").append("--查看交易流水信息").append("\r\n");
-        stringBuffer.append("ROUTE 路由字段").append("\r\n").append("--hash路由").append("\r\n");
-        stringBuffer.append("CALC 路由字段").append("\r\n").append("--整形路由").append("\r\n");
-        stringBuffer.append("HIST").append("\r\n").append("--查看历史记录").append("\r\n");
+        stringBuffer.append("INFO 账户").append("--查看账户属性,透支属性").append("\r\n");
+        stringBuffer.append("TRAN 账户 全局流水号").append("--查看交易流水信息").append("\r\n");
+        stringBuffer.append("ROUTE 路由字段").append("--hash路由").append("\r\n");
+        stringBuffer.append("CALC 路由字段").append("--整形路由").append("\r\n");
+        stringBuffer.append("HIST").append("--查看历史记录").append("\r\n");
+        stringBuffer.append("EXIT").append("--退出").append("\r\n");
         System.out.println(stringBuffer.toString());
     }
 

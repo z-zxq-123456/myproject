@@ -7,5 +7,6 @@ public enum Command {
     ROUTE,
     CALC,
     HIST,
-    HELP
+    HELP,
+    EXIT
 }
