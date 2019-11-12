@@ -101,7 +101,7 @@ public class DbManger implements IDao {
             resultSet2 = DbConn.getResultSet(statement, getQueryAttach(internalKey,baseRoute));
             while(resultSet2.next()){
                 if (("T").equals(resultSet2.getString("BAL_UPD_TYPE"))){
-                    routerKey =String.valueOf(Math.abs(channelSeqNo.hashCode()%ConfigUtils.getPkSize()));
+                    routerKey =String.valueOf(Math.abs(channelSeqNo.hashCode()));
                 }else {
                     routerKey =  baseRoute;
                 }
@@ -156,9 +156,13 @@ public class DbManger implements IDao {
         if (!baseAcctNo.startsWith("90")){
             sb.append(" and router_key = ").append("'").append(baseAcctNo.substring(0,12)).append("'");
         }else {
-            sb.append(" and router_key = ").append("'").append(Math.abs(baseAcctNo.hashCode())% ConfigUtils.getPkSize()).append("'");
+            sb.append(" and router_key = ").append("'").append(Math.abs(baseAcctNo.hashCode())).append("'");
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Math.abs("9000013001999001000014".hashCode()));
     }
 
     private String getQueryAttach(String internalKey,String routerKey){
