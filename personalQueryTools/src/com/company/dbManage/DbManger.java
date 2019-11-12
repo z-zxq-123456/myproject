@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class DbManger implements IDao {
 
-    private String acctInfo = "INTERNAL_KEY,PROD_TYPE,ACCT_STATUS,INT_IND,ROUTER_KEY";
+    private String acctInfo = "INTERNAL_KEY,ACCT_SEQ_NO,PROD_TYPE,ACCT_STATUS,INT_IND,ROUTER_KEY";
     private String acctAttachInfo = "GL_CODE,BAL_UPD_TYPE,OD_FACILITY,BAL_DIRECT_TYPE";
     private String mbTranHistInfo = "INTERNAL_KEY,TRAN_DATE,TRAN_TYPE,EVENT_TYPE,CR_DR_MAINT_IND,TRAN_AMT,BRANCH,BASE_ACCT_NO,ACCT_SEQ_NO,PROD_TYPE,OTH_SEQ_NO,OTH_INTERNAL_KEY,OTH_BASE_ACCT_NO,OTH_ACCT_SEQ_NO,OTH_PROD_TYPE,TRAN_STATUS,REFERENCE";
 
@@ -47,23 +47,29 @@ public class DbManger implements IDao {
 
                 Map<String,Object> mbAcct = new HashMap();
                 mbAcct.put("INTERNAL_KEY",resultSet.getString("INTERNAL_KEY"));
+                mbAcct.put("ACCT_SEQ_NO",resultSet.getString("ACCT_SEQ_NO"));
                 mbAcct.put("PROD_TYPE",resultSet.getString("PROD_TYPE"));
                 mbAcct.put("ACCT_STATUS",resultSet.getString("ACCT_STATUS"));
                 mbAcct.put("INT_IND",resultSet.getString("INT_IND"));
                 mbAcct.put("ROUTER_KEY",resultSet.getString("ROUTER_KEY"));
                 mbacctList.add(mbAcct);
             }
-            resultSet2 = DbConn.getResultSet(statement,
-                    getQueryAttach((String) mbacctList.get(0).get("INTERNAL_KEY"),(String) mbacctList.get(0).get("ROUTER_KEY")));
 
-            while(resultSet2.next()){
-                Map<String,Object> mbAcctAttach = new HashMap();
-                mbAcctAttach.put("GL_CODE",resultSet2.getString("GL_CODE"));
-                mbAcctAttach.put("BAL_UPD_TYPE",resultSet2.getString("BAL_UPD_TYPE"));
-                mbAcctAttach.put("OD_FACILITY",resultSet2.getString("OD_FACILITY"));
-                mbAcctAttach.put("BAL_DIRECT_TYPE",resultSet2.getString("BAL_DIRECT_TYPE"));
-                mbacctattach.add(mbAcctAttach);
+            for (Map mbacct:mbacctList){
+
+                resultSet2 = DbConn.getResultSet(statement,
+                        getQueryAttach((String) mbacct.get("INTERNAL_KEY"),(String) mbacct.get("ROUTER_KEY")));
+
+                while(resultSet2.next()){
+                    Map<String,Object> mbAcctAttach = new HashMap();
+                    mbAcctAttach.put("GL_CODE",resultSet2.getString("GL_CODE"));
+                    mbAcctAttach.put("BAL_UPD_TYPE",resultSet2.getString("BAL_UPD_TYPE"));
+                    mbAcctAttach.put("OD_FACILITY",resultSet2.getString("OD_FACILITY"));
+                    mbAcctAttach.put("BAL_DIRECT_TYPE",resultSet2.getString("BAL_DIRECT_TYPE"));
+                    mbacctattach.add(mbAcctAttach);
+                }
             }
+
             PrintUtils.print("mbAcct",acctInfo,mbacctList);
             PrintUtils.print("mbAcctAttach",acctAttachInfo,mbacctattach);
         }finally {
@@ -93,9 +99,15 @@ public class DbManger implements IDao {
             String routerKey = null;
 
             resultSet.previous();
+            int count = 0;
             while(resultSet.next()){
+                count++;
                 internalKey = resultSet.getString("INTERNAL_KEY");
                 baseRoute = resultSet.getString("ROUTER_KEY");
+            }
+
+            if (count > 1){
+                throw new RuntimeException("暂不支持查询AIO账户交易流水!");
             }
 
             resultSet2 = DbConn.getResultSet(statement, getQueryAttach(internalKey,baseRoute));

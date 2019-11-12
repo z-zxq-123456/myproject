@@ -34,6 +34,9 @@ public class RouteUnit implements IExecute {
     public void printRoute(String args){
         String [] commands = args.split(" ");
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("env [ ").append(ConfigUtils.env).append(" ]")
+                 .append(" pkSize [ ").append(ConfigUtils.pkSize).append(" ]")
+                .append(" dataNum [ ").append(ConfigUtils.dataNum).append(" ]");
         stringBuilder.append("result = [ ")
                 .append(" pk = ")
                 .append(String.valueOf(Long.valueOf(commands[1]) % ConfigUtils.getPkSize()))
