@@ -1,45 +1,59 @@
 package com.qxz.learn.statement;
 
-import com.qxz.learn.executor.MyExecutor;
+
 import com.qxz.learn.mapping.MyBoundSql;
 import com.qxz.learn.mapping.MyMappedStatement;
-import com.qxz.learn.result.MyResultHandler;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
+import com.qxz.learn.parameter.MyParameterHandler;
+import java.sql.*;
 
 /**
  * @Description :
  * @Author :zhouxqh
  * @Date : Create on 2018/9/27
  */
-public class MySimplerStatementHandler extends MyBaseStatementHandler {
+public class MySimplerStatementHandler implements MyStatementHandler {
 
-    public MySimplerStatementHandler(MyMappedStatement mappedStatement, Object parameters, MyBoundSql boundSql, MyResultHandler resultHandler, MyExecutor executor) {
-        super(mappedStatement, parameters, boundSql, resultHandler, executor);
+
+    private MyMappedStatement mappedStatement;
+
+    public MySimplerStatementHandler(MyMappedStatement mappedStatement) {
+        this.mappedStatement = mappedStatement;
     }
 
     @Override
-    public int update(Statement statement) throws SQLException {
-        return 0;
+    public PreparedStatement prepare(Connection connection, Integer timeout) throws SQLException {
+
+        String oriSql =  mappedStatement.getSql();
+        if (oriSql != null){
+            return connection.prepareStatement(oriSql);
+        }else {
+            //exception sql is null
+        }
+        return null;
     }
 
     @Override
-    public <E> List<E> query(Statement statement, MyResultHandler handler) throws SQLException {
-        String sql = boundSql.getSql();
-        statement.execute(sql);
-        return resultSetHandler.handleResultSets(statement);
+    public int update(PreparedStatement statement) throws SQLException {
+       return statement.executeUpdate();
+    }
+
+    @Override
+    public ResultSet query(PreparedStatement statement) throws SQLException {
+        return statement.executeQuery();
+    }
+
+    @Override
+    public MyBoundSql getBoundSql() {
+        return null;
+    }
+
+    @Override
+    public MyParameterHandler getParamenterHandler() {
+        return null;
     }
 
     @Override
     public void parameterize(Statement statement) {
 
-    }
-
-    @Override
-    protected Statement initStatement(Connection connection) throws SQLException {
-        return connection.createStatement();
     }
 }

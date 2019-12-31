@@ -1,7 +1,9 @@
 package com.qxz.learn.session;
 
-import java.io.Reader;
-import java.util.Properties;
+import com.qxz.learn.configuration.MyConfiguration;
+import java.io.IOException;
+import java.io.InputStream;
+
 
 /**
  * @Description :
@@ -10,19 +12,17 @@ import java.util.Properties;
  */
 public class MySqlSessionFactoryBuilder {
 
-    public MySqlSessionFactory build(Reader reader){
-        return build(reader,null,null);
+    public MySqlSessionFactory build(String filename){
+        InputStream inputStream = MySqlSessionFactoryBuilder.class.getClassLoader().getResourceAsStream(filename);
+        return build(inputStream);
     }
 
-    public MySqlSessionFactory build(Reader reader,String environment){
-        return build(reader,environment,null);
-    }
-
-    public MySqlSessionFactory build(Reader reader,Properties properties){
-        return build(reader,null,properties);
-    }
-
-    public MySqlSessionFactory build(Reader reader, String environment, Properties properties){
-
+    public MySqlSessionFactory build(InputStream inputStream){
+        try {
+            MyConfiguration.variables.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new MyDefaultSqlSessionFactory(new MyConfiguration());
     }
 }

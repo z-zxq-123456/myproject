@@ -2,11 +2,8 @@ package com.qxz.learn.statement;
 
 import com.qxz.learn.mapping.MyBoundSql;
 import com.qxz.learn.parameter.MyParameterHandler;
-import com.qxz.learn.result.MyResultHandler;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -16,13 +13,12 @@ import java.util.List;
  */
 public interface MyStatementHandler {
 
-    Statement prepare(Connection connection,Integer timeout)
+    PreparedStatement prepare(Connection connection,Integer timeout) throws SQLException;
+
+    int update(PreparedStatement statement)
         throws SQLException;
 
-    int update(Statement statement)
-        throws SQLException;
-
-    <E>List<E> query(Statement statement,MyResultHandler handler)
+    ResultSet query(PreparedStatement statement)
         throws SQLException;
 
     MyBoundSql getBoundSql();

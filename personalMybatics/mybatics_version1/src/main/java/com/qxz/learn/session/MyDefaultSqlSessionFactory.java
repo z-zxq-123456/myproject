@@ -1,8 +1,9 @@
 package com.qxz.learn.session;
 
 import com.qxz.learn.configuration.MyConfiguration;
-import com.qxz.learn.executor.MyExecutor;
-import com.qxz.learn.mapping.MyEnvironment;
+import java.io.File;
+import java.net.URL;
+
 
 /**
  * @Description :
@@ -13,31 +14,38 @@ public class MyDefaultSqlSessionFactory implements MySqlSessionFactory {
 
     private MyConfiguration myConfiguration;
 
-    @Override
-    public MyConfiguration getConfiguration(){
-        return myConfiguration;
-    }
 
-    public void setMyConfiguration(MyConfiguration myConfiguration) {
+    public MyDefaultSqlSessionFactory(MyConfiguration myConfiguration) {
         this.myConfiguration = myConfiguration;
+        loadMappersInfo(MyConfiguration.variables.getProperty("MAPPER_LOCATION").replaceAll("\\.","/"));
     }
 
     @Override
     public MySqlSession openSqlSession() {
-        return openSqlSessionFromDbSource(false);
+
+        MySqlSession session = new MyDefaultSqlSession(this.myConfiguration);
+        return session;
     }
 
-    @Override
-    public MySqlSession openSqlSession(boolean autoCommit) {
-        return openSqlSessionFromDbSource(autoCommit);
+    private void loadMappersInfo(String dirName){
+        URL resources = MyDefaultSqlSessionFactory.class.getClassLoader().getResource(dirName);
+        File mapperDir = new File(resources.getFile());
+        if (mapperDir.isDirectory()){
+
+            File[] mappers = mapperDir.listFiles();
+            if(mappers != null){
+                for (File file:mappers){
+                    if (file.isDirectory()){
+                        loadMappersInfo(dirName+"/"+file.getName());
+                    }else if (file.getName().endsWith("Mapper")){
+
+                    }
+                }
+            }
+
+        }
+
     }
 
-
-    public MySqlSession openSqlSessionFromDbSource(boolean autoCommit){
-
-        final MyEnvironment environment = myConfiguration.getEnvironment();
-        final MyExecutor executor = myConfiguration.newExecutor();
-        return new MyDefaultSqlSession(myConfiguration,executor,autoCommit);
-    }
 
 }
