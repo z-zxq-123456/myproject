@@ -1,22 +1,9 @@
 package com.qxz.learn.executor;
 
-import com.qxz.learn.configuration.MyConfiguration;
-import com.qxz.learn.exception.MyExecutorException;
-import com.qxz.learn.exception.MySqlException;
-import com.qxz.learn.factory.MyObjectFactory;
 import com.qxz.learn.mapping.*;
-import com.qxz.learn.parameter.MyParameterHandler;
-import com.qxz.learn.result.MyDefaultResultHandler;
-import com.qxz.learn.result.MyResultHandler;
-import com.qxz.learn.session.MyDefaultResultContext;
-import com.qxz.learn.type.MyTypeHandler;
-import com.qxz.learn.type.MyTypeHandlerRegistry;
-import org.apache.ibatis.session.AutoMappingBehavior;
-
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -26,300 +13,53 @@ import java.util.*;
  */
 public class MyDefaultResultSetHandler implements MyResultSetHandler {
 
-    private final MyExecutor executor;
-    private final MyConfiguration configuration;
+
     private final MyMappedStatement mappedStatement;
-    private final MyParameterHandler parameterHandler;
-    private final MyResultHandler resultHandler;
-    private final MyBoundSql boundSql;
-    private final MyObjectFactory objectFactory;
-    private final MyTypeHandlerRegistry typeHandlerRegistry;
 
 
-
-    private final Map<String, MyResultMapping> nextResultMaps = new HashMap<String, MyResultMapping>();
-
-
-    public MyDefaultResultSetHandler(MyExecutor executor, MyMappedStatement mappedStatement, MyParameterHandler parameterHandler, MyResultHandler resultHandler, MyBoundSql boundSql) {
-        this.executor = executor;
-        this.configuration = mappedStatement.getConfiguration();
+    public MyDefaultResultSetHandler(MyMappedStatement mappedStatement) {
         this.mappedStatement = mappedStatement;
-        this.parameterHandler = parameterHandler;
-        this.resultHandler = resultHandler;
-        this.boundSql = boundSql;
-        this.objectFactory = configuration.getObjectFactory();
-        this.typeHandlerRegistry = configuration.getTypeHandlerRegistry();
     }
 
     @Override
-    public List<Object> handleResultSets(Statement stmt) throws SQLException {
-
-        MyErrorContext.instance().activity("handler result").object(mappedStatement.getId());
-        final List<Object> multipleResults = new ArrayList<>();
-        int resultSetCount = 0;
-        MyResultSetWrapper rsw = getFirstResultSet(stmt);
-        List<MyResultMap> resultMaps = mappedStatement.getResultMaps();
-        int resultMapCount = resultMaps.size();
-
-        while (rsw != null && resultMapCount > resultSetCount) {
-            MyResultMap resultMap = resultMaps.get(resultSetCount);
-            handleResultSet(rsw, resultMap, multipleResults, null);
-            rsw = getNextResultSet(stmt);
-            cleanUpAfterHandlingResultSet();
-            resultSetCount++;
+    public <E> List<E> handleResultSets(ResultSet resultSet) throws SQLException {
+        List<E> result = new ArrayList<>();
+        if (null == resultSet)
+        {
+            return null;
         }
-
-        String[] resultSets = mappedStatement.getResultSet();
-        if (resultSets != null) {
-            while (rsw != null && resultSetCount < resultSets.length) {
-                MyResultMapping parentMapping = nextResultMaps.get(resultSets[resultSetCount]);
-                if (parentMapping != null) {
-                    String nestedResultMapId = parentMapping.getNestedResultMapId();
-                    MyResultMap resultMap = configuration.getResultMap(nestedResultMapId);
-                    handleResultSet(rsw, resultMap, null, parentMapping);
+        try {
+            Class<?> entity = Class.forName(mappedStatement.getResultType());
+            E obj = (E)entity.newInstance();
+            Field[] declaredFields = entity.getDeclaredFields();
+            for (Field field : declaredFields)
+            {
+                // 对成员变量赋值
+                field.setAccessible(true);
+                Class<?> fieldType = field.getType();
+                // 目前只实现了string和int转换
+                if (String.class.equals(fieldType))
+                {
+                    field.set(entity, resultSet.getString(field.getName()));
                 }
-                rsw = getNextResultSet(stmt);
-                cleanUpAfterHandlingResultSet();
-                resultSetCount++;
-            }
-        }
-
-        return collapseSingleResultList(multipleResults);
-    }
-
-    private MyResultSetWrapper getFirstResultSet(Statement stmt)throws SQLException{
-        ResultSet rs = stmt.getResultSet();
-        while (rs == null){
-            if (stmt.getMoreResults()){
-                rs = stmt.getResultSet();
-            }else {
-                if (stmt.getUpdateCount() == -1){
-                    break;
+                else if (int.class.equals(fieldType) || Integer.class.equals(fieldType))
+                {
+                    field.set(entity, resultSet.getInt(field.getName()));
+                }
+                else
+                {
+                    // 其他类型自己转换，这里就直接设置了
+                    field.set(entity, resultSet.getObject(field.getName()));
                 }
             }
+            result.add(obj);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
-        return rs != null ? new MyResultSetWrapper(configuration,rs):null;
-    }
-
-    private void handleResultSet(MyResultSetWrapper rsw, MyResultMap resultMap, List<Object> mulitResults, MyResultMapping parentMapping) throws SQLException{
-      try {
-          if (parentMapping != null){
-              handlerRowValueSingle(rsw,resultMap,null,parentMapping);
-          }else {
-              if (resultHandler == null){
-                  MyResultHandler myResultHandler = new MyDefaultResultHandler(objectFactory);
-                  if (resultMap.isHasNestedResultMaps()){
-                      // TODO ignored nested resultMap
-                  }else {
-                      handlerRowValueSingle(rsw,resultMap,myResultHandler,parentMapping);
-                  }
-                  mulitResults.add(((MyDefaultResultHandler) myResultHandler).getResultList());
-              }else {
-                  handlerRowValueSingle(rsw,resultMap,resultHandler,parentMapping);
-              }
-          }
-      }finally {
-          try {
-              if (rsw.getResultSet() != null) {
-                  (rsw.getResultSet()).close();
-              }
-          } catch (SQLException e) { }
-      }
-    }
-
-    private void handlerRowValueSingle(MyResultSetWrapper rsw,MyResultMap resultMap,MyResultHandler resultHandler,MyResultMapping resultMapping)throws SQLException{
-        MyDefaultResultContext resultContext = new MyDefaultResultContext();
-        //TODO ignore skip rows
-        while(rsw.getResultSet().next()){
-            MyResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rsw.getResultSet(),resultMap,null);
-            Object rowValue = getRowValue(rsw,discriminatedResultMap);
-            storeObject(resultHandler, resultContext, rowValue, resultMapping, rsw.getResultSet());
-        }
-    }
-
-    private void storeObject(MyResultHandler<?> resultHandler, MyDefaultResultContext<Object> resultContext, Object rowValue, MyResultMapping parentMapping, ResultSet rs){
-        if (parentMapping != null){
-            // TODO ignored multiple result set
-        }else {
-            resultContext.nextResultObject(rowValue);
-            ((MyResultHandler<Object>)resultHandler).handleResult(resultContext);
-        }
-    }
-
-    private Object getRowValue(MyResultSetWrapper rsw,MyResultMap resultMap)throws SQLException{
-        //final ResultLoaderMap lazyLoader = new ResultLoaderMap();TODO ignored ResultLoaderMap
-        Object resultObject = createResultObject(rsw, resultMap, null);
-        //TODO ignored type handler
-        return resultObject;
-    }
-
-    private Object createResultObject(MyResultSetWrapper rsw,MyResultMap resultMap,String columnPrefix)throws SQLException{
-        final List<Class<?>> constructorArgsTypes = new ArrayList<>();
-        final List<Object> constructorArgs = new ArrayList<>();
-        final Object resultObject = createResultObject(rsw,resultMap,constructorArgsTypes,constructorArgs,columnPrefix);
-        // TODO ignored type handler and configuration proxyFactory
-        return resultObject;
-    }
-
-    private Object createResultObject(MyResultSetWrapper rsw,MyResultMap resultMap,List<Class<?>> constructorArgsTypes,List<Object> constructorArgs,String columnPrefix)throws SQLException{
-        final Class<?> resultType = resultMap.getType();
-        // TODO ignored metaClass
-        final List<MyResultMapping> constructorMappings = resultMap.getConstructorResultMappings();
-        if (hasTypeHandlerForResultObject(rsw,resultType)){
-            return createPrimitiveResultObject(rsw, resultMap, columnPrefix);
-        }else if (!constructorMappings.isEmpty()){
-            return createParameterizedResultObject(rsw, resultType, constructorMappings, constructorArgsTypes, constructorArgs, columnPrefix);
-        }else if (resultType.isInterface()){
-            return objectFactory.create(resultType);
-        }else if (shouldApplyAutomaticMappings(resultMap, false)){
-            return createByConstructorSignature(rsw, resultType, constructorArgsTypes, constructorArgs, columnPrefix);
-        }
-        throw new MyExecutorException("invalidate type " +resultType);
-    }
-
-    private boolean hasTypeHandlerForResultObject(MyResultSetWrapper rsw,Class resultType){
-        if (rsw.getColumnNames().size() == 1){
-            return typeHandlerRegistry.hasTypeHandler(resultType, rsw.getJdbcType(rsw.getColumnNames().get(0)));
-        }
-        return typeHandlerRegistry.hasTypeHandler(resultType);
-    }
-
-    private Object createPrimitiveResultObject(MyResultSetWrapper rsw,MyResultMap resultMap,String columnPrefix)throws SQLException {
-        final Class<?> resultType = resultMap.getType();
-        final String columnName;
-        if (!resultMap.getResultMappings().isEmpty()) {
-            final List<MyResultMapping> resultMappingList = resultMap.getResultMappings();
-            final MyResultMapping mapping = resultMappingList.get(0);
-            columnName = prependPrefix(mapping.getColumn(), columnPrefix);
-        } else {
-            columnName = rsw.getColumnNames().get(0);
-        }
-        final MyTypeHandler<?> typeHandler = rsw.getTypeHandler(resultType, columnName);
-        return typeHandler.getResult(rsw.getResultSet(), columnName);
-    }
-
-    private Object createParameterizedResultObject(MyResultSetWrapper rsw,
-                                                   Class resultType,
-                                                   List<MyResultMapping> constructorMappings,
-                                                   List<Class<?>> constructorArgsTypes,List<Object> constructorArgs, String columnPrefix){
-        boolean foundValues = false;
-        for (MyResultMapping constructorMapping : constructorMappings) {
-            final Class<?> parameterType = constructorMapping.getJavaType();
-            final String column = constructorMapping.getColumn();
-            final Object value;
-            try {
-                //TODO ignored nested constructorMapping
-               /* if (constructorMapping.getNestedQueryId() != null) {
-                    value = getNestedQueryConstructorValue(rsw.getResultSet(), constructorMapping, columnPrefix);
-                } else if (constructorMapping.getNestedResultMapId() != null) {
-                    final MyResultMap resultMap = configuration.getResultMap(constructorMapping.getNestedResultMapId());
-                    value = getRowValue(rsw, resultMap);
-                } else {*/
-                    final MyTypeHandler<?> typeHandler = constructorMapping.getTypeHandler();
-                    value = typeHandler.getResult(rsw.getResultSet(), prependPrefix(column, columnPrefix));
-//                }
-            }catch (SQLException e) {
-                throw new MyExecutorException("Could not process result for mapping: " + constructorMapping, e);
-            }
-            constructorArgsTypes.add(parameterType);
-            constructorArgs.add(value);
-            foundValues = value != null || foundValues;
-        }
-        return foundValues ? objectFactory.create(resultType, constructorArgsTypes, constructorArgs) : null;
-    }
-
-
-    private boolean shouldApplyAutomaticMappings(MyResultMap resultMap,boolean isNested){
-        if (resultMap.getAutoMapping() != null){
-            return resultMap.getAutoMapping();
-        }else {
-            if (isNested){
-                return AutoMappingBehavior.FULL == configuration.getAutoMappingBehavior();
-            }else {
-                return AutoMappingBehavior.NONE != configuration.getAutoMappingBehavior();
-            }
-        }
-    }
-
-    private Object createByConstructorSignature(MyResultSetWrapper rsw,Class resultType,
-                                                List<Class<?>> constructorArgsTypes,
-                                                List<Object> constructorArgs, String columnPrefix)throws SQLException{
-        for (Constructor<?> constructor:resultType.getDeclaredConstructors()){
-            if (typeNames(constructor.getParameterTypes()).equals(rsw.getClassNames())){
-               boolean foundValues = false;
-               for (int i = 0; i < constructor.getParameterTypes().length; i++){
-                   Class<?> parameterType = constructor.getParameterTypes()[i];
-                   String columnName = rsw.getColumnNames().get(i);
-                   MyTypeHandler<?> typeHandler = rsw.getTypeHandler(parameterType, columnName);
-                   Object value = typeHandler.getResult(rsw.getResultSet(), prependPrefix(columnName, columnPrefix));
-                   constructorArgsTypes.add(parameterType);
-                   constructorArgs.add(value);
-                   foundValues = value != null || foundValues;
-               }
-                return foundValues ? objectFactory.create(resultType, constructorArgsTypes, constructorArgs) : null;
-            }
-        }
-        throw new MyExecutorException("No constructor found in " + resultType.getName() + " matching " + rsw.getClassNames());
-
-    }
-
-    private List<String> typeNames(Class<?>[] parameterTypes){
-        List<String> names = new ArrayList<>();
-        for (Class<?> type:parameterTypes){
-            names.add(type.getName());
-        }
-        return names;
-    }
-
-    private MyResultMap resolveDiscriminatedResultMap(ResultSet rs,MyResultMap resultMap,String columnPrefix)throws SQLException{
-        Set<String> pastDiscriminators = new HashSet<String>();
-        MyDiscriminator discriminator = resultMap.getDiscriminator();
-        while (discriminator != null) {
-            final Object value = getDiscriminatorValue(rs, discriminator, columnPrefix);
-            final String discriminatedMapId = discriminator.getMapIdFor(String.valueOf(value));
-            if (configuration.hasResultMap(discriminatedMapId)) {
-                resultMap = configuration.getResultMap(discriminatedMapId);
-                MyDiscriminator lastDiscriminator = discriminator;
-                discriminator = resultMap.getDiscriminator();
-                if (discriminator == lastDiscriminator || !pastDiscriminators.add(discriminatedMapId)) {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        return resultMap;
-    }
-
-    private Object getDiscriminatorValue(ResultSet rs, MyDiscriminator discriminator, String columnPrefix) throws SQLException {
-        final MyResultMapping resultMapping = discriminator.getResultMapping();
-        final MyTypeHandler<?> typeHandler = resultMapping.getTypeHandler();
-        return typeHandler.getResult(rs, prependPrefix(resultMapping.getColumn(), columnPrefix));
-    }
-
-    private String prependPrefix(String column,String prefix){
-        if (column == null || column.length() == 0 || prefix == null || prefix.length() == 0){
-            return column;
-        }
-        return prefix+column;
-    }
-
-    private MyResultSetWrapper getNextResultSet(Statement statement)throws SQLException{
-        if (statement.getConnection().getMetaData().supportsMultipleResultSets()){
-            if (!(!statement.getMoreResults() && (statement.getUpdateCount() == -1))){
-                ResultSet rs = statement.getResultSet();
-                return rs != null ? new MyResultSetWrapper(configuration,rs) : null;
-            }
-        }
-        return null;
-    }
-
-    private void cleanUpAfterHandlingResultSet(){
-
-    }
-
-    @SuppressWarnings("unchecked")
-    private List<Object> collapseSingleResultList(List multipleResults){
-        return multipleResults.size() == 1 ? (List<Object>) multipleResults.get(0) : multipleResults;
+        return result;
     }
 }

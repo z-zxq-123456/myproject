@@ -49,7 +49,7 @@ public class MyConfiguration {
 
 
     public void addMappedStatement(MyMappedStatement mappedStatement) {
-        this.mappedStatement.put(mappedStatement.getId(),mappedStatement);
+        this.mappedStatement.put(mappedStatement.getSqlId(),mappedStatement);
     }
 
     public static String getProperty(String key){

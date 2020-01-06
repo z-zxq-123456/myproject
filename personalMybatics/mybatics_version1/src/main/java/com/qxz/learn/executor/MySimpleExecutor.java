@@ -2,13 +2,13 @@ package com.qxz.learn.executor;
 
 import com.qxz.learn.configuration.MyConfiguration;
 import com.qxz.learn.exception.MySqlException;
+import com.qxz.learn.executor.parameter.DefaultParameterHandler;
+import com.qxz.learn.executor.parameter.ParameterHandler;
 import com.qxz.learn.mapping.MyMappedStatement;
 import com.qxz.learn.statement.MySimplerStatementHandler;
 import com.qxz.learn.statement.MyStatementHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class MySimpleExecutor implements MyExecutor {
@@ -17,11 +17,16 @@ public class MySimpleExecutor implements MyExecutor {
     private MyExecutor warpper;
     private static Connection connection;
 
+    public MySimpleExecutor(MyConfiguration myConfiguration) {
+        this.myConfiguration = myConfiguration;
+    }
+
     static {
-       /* String driver = Configuration.getProperty(Constant.DB_DRIVER_CONF);
-        String url = Configuration.getProperty(Constant.DB_URL_CONF);
-        String username = Configuration.getProperty(Constant.DB_USERNAME_CONF);
-        String password = Configuration.getProperty(Constant.db_PASSWORD);
+
+        String driver = MyConfiguration.getProperty("driver");
+        String url = MyConfiguration.getProperty("url");
+        String username = MyConfiguration.getProperty("username");
+        String password = MyConfiguration.getProperty("password");
         try
         {
             Class.forName(driver);
@@ -31,7 +36,7 @@ public class MySimpleExecutor implements MyExecutor {
         catch (Exception e)
         {
             e.printStackTrace();
-        }*/
+        }
     }
 
 
@@ -55,7 +60,17 @@ public class MySimpleExecutor implements MyExecutor {
     @Override
     public <E> List<E> doQuery(MyMappedStatement ms, Object parameter)
             throws SQLException, MySqlException {
-        return null;
+
+        MyMappedStatement mappedStatement = myConfiguration.getMappedStatement(ms.getSqlId());
+        MyStatementHandler statementHandler = new MySimplerStatementHandler(mappedStatement);
+        PreparedStatement preparedStatement = statementHandler.prepare(connection,0);
+
+        ParameterHandler parameterHandler = new DefaultParameterHandler(parameter);
+        parameterHandler.setParameters(preparedStatement);
+        ResultSet resultSet = statementHandler.query(preparedStatement);
+
+        MyResultSetHandler resultSetHandler = new MyDefaultResultSetHandler(mappedStatement);
+        return resultSetHandler.handleResultSets(resultSet);
     }
 
     @Override
@@ -65,6 +80,9 @@ public class MySimpleExecutor implements MyExecutor {
         MyStatementHandler handler = new MySimplerStatementHandler(ms);
         try {
             PreparedStatement preparedStatement = handler.prepare(connection,0);
+            ParameterHandler parameterHandler = new DefaultParameterHandler(params);
+            parameterHandler.setParameters(preparedStatement);
+
             handler.update(preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();

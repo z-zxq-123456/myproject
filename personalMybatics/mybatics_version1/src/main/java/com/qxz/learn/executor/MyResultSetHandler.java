@@ -1,5 +1,6 @@
 package com.qxz.learn.executor;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -11,6 +12,6 @@ import java.util.List;
  */
 public interface MyResultSetHandler {
 
-    <E> List<E> handleResultSets(Statement stmt) throws SQLException;
+    <E> List<E> handleResultSets(ResultSet resultSet) throws SQLException;
 
 }
