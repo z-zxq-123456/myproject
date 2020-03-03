@@ -1,7 +1,5 @@
 package com.qxz.learn.type;
 
-import com.qxz.learn.io.ResourcesUtils;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.ResultSet;
@@ -104,7 +102,7 @@ public class MyTypeAliasRegistry {
         TYPE_ALIAS.put(key,value);
     }
 
-    public <T> Class<T> resolveAlias(String string) {
+   /* public <T> Class<T> resolveAlias(String string) {
         try {
             if (string == null) {
                 return null;
@@ -120,6 +118,6 @@ public class MyTypeAliasRegistry {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Could not resolve type alias '" + string + "'.  Cause: " + e, e);
         }
-    }
+    }*/
 
 }

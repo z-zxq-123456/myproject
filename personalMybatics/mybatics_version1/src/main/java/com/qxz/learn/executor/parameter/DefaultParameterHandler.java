@@ -15,11 +15,13 @@ public class DefaultParameterHandler implements ParameterHandler {
     public void setParameters(PreparedStatement ps) {
         try {
             if (ps != null){
+                Object[] params = (Object[])parameter;
                 if (ps.getClass().isArray()){
-                    Object[] params = (Object[])parameter;
                     for (int i=0; i<params.length;i++){
                         ps.setObject(i+1,params[i]);
                     }
+                }else {
+                    ps.setObject(1,params[0]);
                 }
             }
         }catch (SQLException e){

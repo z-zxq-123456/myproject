@@ -28,37 +28,40 @@ public class MyDefaultResultSetHandler implements MyResultSetHandler {
         {
             return null;
         }
-        try {
-            Class<?> entity = Class.forName(mappedStatement.getResultType());
-            E obj = (E)entity.newInstance();
-            Field[] declaredFields = entity.getDeclaredFields();
-            for (Field field : declaredFields)
-            {
-                // 对成员变量赋值
-                field.setAccessible(true);
-                Class<?> fieldType = field.getType();
-                // 目前只实现了string和int转换
-                if (String.class.equals(fieldType))
+
+        while (resultSet.next()){
+            try {
+                Class<?> entity = Class.forName(mappedStatement.getResultType());
+                E obj = (E)entity.newInstance();
+                Field[] declaredFields = obj.getClass().getDeclaredFields();
+                for (Field field : declaredFields)
                 {
-                    field.set(entity, resultSet.getString(field.getName()));
+                    // 对成员变量赋值
+                    field.setAccessible(true);
+                    Class<?> fieldType = field.getType();
+                    // 目前只实现了string和int转换
+                    if (String.class.equals(fieldType))
+                    {
+                        field.set(obj, resultSet.getString(field.getName()));
+                    }
+                    else if (int.class.equals(fieldType) || Integer.class.equals(fieldType))
+                    {
+                        field.set(obj, resultSet.getInt(field.getName()));
+                    }
+                    else
+                    {
+                        // 其他类型自己转换，这里就直接设置了
+                        field.set(obj, resultSet.getObject(field.getName()));
+                    }
                 }
-                else if (int.class.equals(fieldType) || Integer.class.equals(fieldType))
-                {
-                    field.set(entity, resultSet.getInt(field.getName()));
-                }
-                else
-                {
-                    // 其他类型自己转换，这里就直接设置了
-                    field.set(entity, resultSet.getObject(field.getName()));
-                }
+                result.add(obj);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
             }
-            result.add(obj);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
         }
         return result;
     }

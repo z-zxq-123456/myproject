@@ -5,6 +5,8 @@ import com.qxz.learn.mapping.MyBoundSql;
 import com.qxz.learn.mapping.MyMappedStatement;
 import com.qxz.learn.parameter.MyParameterHandler;
 import java.sql.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Description :
@@ -15,6 +17,7 @@ public class MySimplerStatementHandler implements MyStatementHandler {
 
 
     private MyMappedStatement mappedStatement;
+    private static Pattern param_pattern = Pattern.compile("#\\{([^\\{\\}]*)\\}");
 
     public MySimplerStatementHandler(MyMappedStatement mappedStatement) {
         this.mappedStatement = mappedStatement;
@@ -25,7 +28,8 @@ public class MySimplerStatementHandler implements MyStatementHandler {
 
         String oriSql =  mappedStatement.getSql();
         if (oriSql != null){
-            return connection.prepareStatement(oriSql);
+            Matcher matcher = param_pattern.matcher(oriSql);
+            return connection.prepareStatement(matcher.replaceAll("?"));
         }else {
             //exception sql is null
         }

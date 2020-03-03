@@ -7,7 +7,6 @@ import com.qxz.learn.executor.parameter.ParameterHandler;
 import com.qxz.learn.mapping.MyMappedStatement;
 import com.qxz.learn.statement.MySimplerStatementHandler;
 import com.qxz.learn.statement.MyStatementHandler;
-
 import java.sql.*;
 import java.util.List;
 
@@ -23,10 +22,10 @@ public class MySimpleExecutor implements MyExecutor {
 
     static {
 
-        String driver = MyConfiguration.getProperty("driver");
-        String url = MyConfiguration.getProperty("url");
-        String username = MyConfiguration.getProperty("username");
-        String password = MyConfiguration.getProperty("password");
+        String driver = MyConfiguration.getProperty("db.driver");
+        String url = MyConfiguration.getProperty("db.url");
+        String username = MyConfiguration.getProperty("db.username");
+        String password = MyConfiguration.getProperty("db.password");
         try
         {
             Class.forName(driver);
@@ -55,7 +54,6 @@ public class MySimpleExecutor implements MyExecutor {
     public void rollback(boolean required) throws MySqlException {
 
     }
-
 
     @Override
     public <E> List<E> doQuery(MyMappedStatement ms, Object parameter)
