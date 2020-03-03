@@ -17,6 +17,8 @@
         <jdk.version>1.8</jdk.version>
         <project.encoding>UTF-8</project.encoding>
         <mybatics.version>3.4.1</mybatics.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <mysql.version>5.1.39</mysql.version>
     </properties>
 
     <dependencyManagement>
@@ -25,6 +27,16 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
+            </dependency>
+            <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
