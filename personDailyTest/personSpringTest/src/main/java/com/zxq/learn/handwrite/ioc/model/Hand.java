@@ -1,4 +1,4 @@
-package com.zxq.learn.handwrite.model;
+package com.zxq.learn.handwrite.ioc.model;
 
 /**
  * @description

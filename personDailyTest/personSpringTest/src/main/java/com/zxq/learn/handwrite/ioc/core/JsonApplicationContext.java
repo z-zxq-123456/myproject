@@ -1,8 +1,8 @@
-package com.zxq.learn.handwrite.core;
+package com.zxq.learn.handwrite.ioc.core;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.zxq.learn.handwrite.bean.BeanDefinition;
-import com.zxq.learn.handwrite.util.JsonUtils;
+import com.zxq.learn.handwrite.ioc.bean.BeanDefinition;
+import com.zxq.learn.handwrite.ioc.util.JsonUtils;
 
 import java.io.InputStream;
 import java.util.List;

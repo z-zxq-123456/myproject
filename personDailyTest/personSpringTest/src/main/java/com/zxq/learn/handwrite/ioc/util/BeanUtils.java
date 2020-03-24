@@ -1,6 +1,5 @@
-package com.zxq.learn.handwrite.util;
+package com.zxq.learn.handwrite.ioc.util;
 
-import com.zxq.learn.handwrite.bean.ContructArg;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.NoOp;
 

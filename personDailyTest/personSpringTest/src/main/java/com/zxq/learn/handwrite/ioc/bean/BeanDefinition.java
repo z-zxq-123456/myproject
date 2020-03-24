@@ -1,4 +1,4 @@
-package com.zxq.learn.handwrite.bean;
+package com.zxq.learn.handwrite.ioc.bean;
 
 import java.util.List;
 

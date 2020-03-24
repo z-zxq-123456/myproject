@@ -1,10 +1,10 @@
-package com.zxq.learn.handwrite.core;
+package com.zxq.learn.handwrite.ioc.core;
 
-import com.zxq.learn.handwrite.bean.BeanDefinition;
-import com.zxq.learn.handwrite.bean.ContructArg;
-import com.zxq.learn.handwrite.util.BeanUtils;
-import com.zxq.learn.handwrite.util.ClassUtils;
-import com.zxq.learn.handwrite.util.ReflectUtils;
+import com.zxq.learn.handwrite.ioc.bean.BeanDefinition;
+import com.zxq.learn.handwrite.ioc.bean.ContructArg;
+import com.zxq.learn.handwrite.ioc.util.BeanUtils;
+import com.zxq.learn.handwrite.ioc.util.ClassUtils;
+import com.zxq.learn.handwrite.ioc.util.ReflectUtils;
 import org.springframework.util.StringUtils;
 import java.lang.reflect.Field;
 import java.util.*;

@@ -1,4 +1,4 @@
-package com.zxq.learn.handwrite.util;
+package com.zxq.learn.handwrite.ioc.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;

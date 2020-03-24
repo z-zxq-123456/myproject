@@ -1,7 +1,7 @@
-package com.zxq.learn.handwrite;
+package com.zxq.learn.handwrite.ioc;
 
-import com.zxq.learn.handwrite.core.JsonApplicationContext;
-import com.zxq.learn.handwrite.model.Robot;
+import com.zxq.learn.handwrite.ioc.core.JsonApplicationContext;
+import com.zxq.learn.handwrite.ioc.model.Robot;
 
 /**
  * @description
