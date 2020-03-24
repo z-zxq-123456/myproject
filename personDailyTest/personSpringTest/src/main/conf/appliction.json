@@ -1,0 +1,14 @@
+[
+  {
+    "name":"robot",
+    "className":"com.zxq.learn.handwrite.model.Robot"
+  },
+  {
+    "name":"hand",
+    "className":"com.zxq.learn.handwrite.model.Hand"
+  },
+  {
+    "name":"mouth",
+    "className":"com.zxq.learn.handwrite.model.Mouth"
+  }
+]
