@@ -1,7 +1,5 @@
 package com.qxz.learn.session;
 
-import com.qxz.learn.configuration.MyConfiguration;
-
 /**
  * @Description :
  * @Author :zhouxqh
@@ -11,7 +9,4 @@ public interface MySqlSessionFactory {
 
     MySqlSession openSqlSession();
 
-    MySqlSession openSqlSession(boolean autoCommit);
-
-    MyConfiguration getConfiguration();
 }

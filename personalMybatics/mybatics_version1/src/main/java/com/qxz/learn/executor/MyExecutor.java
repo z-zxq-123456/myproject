@@ -20,5 +20,5 @@ public interface MyExecutor {
 
     <E> List<E> doQuery(MyMappedStatement ms, Object parameter) throws SQLException,MySqlException;
 
-    int update(MyMappedStatement mappedStatement,Object params) throws MySqlException;
+    int update(MyMappedStatement mappedStatement,Object params) ;
 }

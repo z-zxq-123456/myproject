@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface MySqlSession {
 
-    int insert(String statement);
+    int insert(String statement,Object parameter);
 
     int delete(String statement);
 
@@ -24,7 +24,7 @@ public interface MySqlSession {
 
     <T>List<T> selectOne(String statement,Object parament);
 
-    int update(String statement);
+    int update(String statement,Object parameter);
 
     void commit();
 
@@ -32,7 +32,7 @@ public interface MySqlSession {
 
     void close();
 
-    <T>T getMapper(Class clz);
+    <T>T getMapper(Class<T> clz);
 
     MyConfiguration getConfiguration();
 
