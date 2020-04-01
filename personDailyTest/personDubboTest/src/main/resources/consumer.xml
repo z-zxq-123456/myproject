@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:myRpc="http://com.zxq.learn.handwrite/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://com.zxq.learn.handwrite/dubbo
+	http://com.zxq.learn.handwrite/dubbo/dubbo.xsd">
+
+    <myRpc:reference id="userService" interface="com.exampl.zxq.handwirte.dubbo.Interface.UserService" />
+    <bean id="userServiceImpl" class="com.exampl.zxq.handwirte.dubbo.Interface.UserServiceImpl"/>
+
+</beans>

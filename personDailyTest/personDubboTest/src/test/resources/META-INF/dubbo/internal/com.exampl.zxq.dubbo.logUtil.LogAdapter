@@ -1,0 +1,2 @@
+log4j=com.exampl.zxq.dubbo.logUtil.Log4JLog
+adaptive=com.exampl.zxq.dubbo.logUtil.Slf4JLog

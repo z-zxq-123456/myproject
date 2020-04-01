@@ -11,6 +11,5 @@ gen
 .idea/
 personDailyTest.iml
 dailytestdubbo1.iml
-personDubboTest/src/
 personJavaTest/target/
 personSpringTest/target/
