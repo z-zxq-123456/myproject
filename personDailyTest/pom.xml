@@ -24,6 +24,7 @@
         <taobal.express.version>3.0.6</taobal.express.version>
         <cglib.version>3.1</cglib.version>
         <jackson.version>2.9.8</jackson.version>
+        <netty.version>4.1.33.Final</netty.version>
 
     </properties>
 
@@ -91,6 +92,12 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <!-- Use 'netty-all' for 4.0 or above -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
             </dependency>
 
         </dependencies>
