@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/database_pool/database_pool.iml" filepath="$PROJECT_DIR$/database_pool/database_pool.iml" />
       <module fileurl="file://$PROJECT_DIR$/my_mybatics.iml" filepath="$PROJECT_DIR$/my_mybatics.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatics_version1/mybatics-version-1.0.iml" filepath="$PROJECT_DIR$/mybatics_version1/mybatics-version-1.0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mybatics_version2/mybatics-version-2.0.iml" filepath="$PROJECT_DIR$/mybatics_version2/mybatics-version-2.0.iml" />
     </modules>
   </component>
 </project>
