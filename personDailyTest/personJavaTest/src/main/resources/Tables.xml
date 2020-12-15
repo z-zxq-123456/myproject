@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+    <table id = "mbTranHist" type = "L" >
+        <colum id = "baseAcctNo"   type="String"  convert = "BASE_ACCT_NO"/>
+        <colum id = "channelSeqNo" type="String"  convert = "CHANNEL_SEQ_NO"/>
+    </table>
+
+
+</root>
