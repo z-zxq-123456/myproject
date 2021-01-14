@@ -18,7 +18,7 @@
     <properties>
         <jdk.version>1.8</jdk.version>
         <project.encoding>utf-8</project.encoding>
-        <poi.version>3.11</poi.version>
+        <poi.version>3.17</poi.version>
         <poi.ooxml.version>3.11</poi.ooxml.version>
         <spring.version>3.2.13.RELEASE</spring.version>
         <taobal.express.version>3.0.6</taobal.express.version>
