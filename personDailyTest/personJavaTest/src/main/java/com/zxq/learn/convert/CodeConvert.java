@@ -1,5 +1,9 @@
 package com.zxq.learn.convert;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+
 /**
  *
  * 全角半角 转换工具类
@@ -55,6 +59,64 @@ public class CodeConvert {
 
         }
         return buf.toString();
+    }
+
+
+    public static void main(String[] args) {
+
+
+        List<Future> list= new ArrayList<>();
+        Executor executor =Executors.newCachedThreadPool();
+
+        Callable<Integer> callable1= ()->{
+            System.out.println(Thread.currentThread().getName()+"--------------------------");
+            return 1;
+        };
+        Callable<Integer> callable2= ()->{
+            System.out.println(Thread.currentThread().getName()+"--------------------------");
+            return 2;
+        };
+        Callable<Integer> callable3= ()->{
+            Thread.sleep(20000L);
+            System.out.println(Thread.currentThread().getName()+"--------------------------");
+            return 3;
+        };
+        Callable<Integer> callable4= ()->{
+            System.out.println(Thread.currentThread().getName()+"--------------------------");
+            return 4;
+        };
+        Callable<Integer> callable5= ()->{
+            System.out.println(Thread.currentThread().getName()+"--------------------------");
+            return 5;
+        };
+
+
+        list.add( ((ExecutorService) executor).submit(callable1));
+        list.add( ((ExecutorService) executor).submit(callable2));
+        list.add( ((ExecutorService) executor).submit(callable4));
+        list.add( ((ExecutorService) executor).submit(callable5));
+
+        try {
+            Thread.sleep(5000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        list.add( ((ExecutorService) executor).submit(callable3));
+
+
+        for (Future f:list){
+
+            try {
+                System.out.println(f.get()+" [[[[[[[]]]]]]]]");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }finally {
+                f.cancel(false);
+            }
+        }
+
     }
 
 
