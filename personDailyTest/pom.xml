@@ -20,7 +20,7 @@
         <project.encoding>utf-8</project.encoding>
         <poi.version>3.11</poi.version>
         <poi.ooxml.version>3.11</poi.ooxml.version>
-        <spring.version>3.2.13.RELEASE</spring.version>
+        <spring.version>5.2.22.RELEASE</spring.version>
         <taobal.express.version>3.0.6</taobal.express.version>
         <cglib.version>3.1</cglib.version>
         <jackson.version>2.9.8</jackson.version>
