@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="database_pool" />
         <module name="mybatics-version-1.0" />
-        <module name="mybatics-version-2.0" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="database_pool" target="1.8" />
       <module name="my_mybatics" target="1.5" />
       <module name="mybatics-version-1.0" target="1.8" />
       <module name="mybatics-version-2.0" target="1.8" />

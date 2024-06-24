@@ -1,0 +1,17 @@
+
+
+
+<tables>
+
+    <table name = "mb_acct_attach"
+           class = "com.zxq.learn.parseDb.MbAcctAttach">
+        <row name ="isDeposit"       reflect="back1" localStart="0" localEnd = "1">是否保证金</row>
+        <row name ="matHolidayDelay" reflect="back1" localStart="1" localEnd = "2">定期节假日到期是否顺延</row>
+    </table>
+
+    <table name = "mb_acct"
+           class = "com.zxq.learn.parseDb.MbAcct">
+        <row name ="whiteFlag"       reflect="back1" localStart="0" localEnd = "1">是否保证金</row>
+    </table>
+
+</tables>

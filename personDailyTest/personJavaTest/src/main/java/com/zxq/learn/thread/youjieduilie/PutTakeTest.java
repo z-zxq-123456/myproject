@@ -20,7 +20,7 @@ public class PutTakeTest {
     public  int nTrialx,nPairs;
 
     public PutTakeTest(int capacity, int nTrialx, int nPairs) {
-        this.barrier = new CyclicBarrier(nPairs * 2 + 1, new Runnable() {
+        this.barrier = new CyclicBarrier(nPairs * 2 +1, new Runnable() {
             @Override
             public void run() {
 
@@ -51,8 +51,9 @@ public class PutTakeTest {
                 pool.execute(new Provider());
                 pool.execute(new Consumer());
             }
+           this.barrier.await();
             this.barrier.await();
-            this.barrier.await();
+            System.out.println("===============");
         }catch (Exception e){
             e.printStackTrace();
         }
